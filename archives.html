@@ -1688,6 +1688,17 @@ pre.ipynb {
   font-size: 13px;
 }
 
+/* remove the prompt div from text cells */
+div.text_cell .prompt {
+    display: none;
+}
+
+/* remove horizontal padding from text cells, */
+/* so it aligns with outer body text */
+div.text_cell_render {
+    padding: 0.5em 0em;
+}
+
 img.anim_icon{padding:0; border:0; vertical-align:middle; -webkit-box-shadow:none; -box-shadow:none}
 </style>
 
@@ -2285,6 +2296,20 @@ init_mathjax();
                             </span>
                         </footer>
                     </article>
+                    <article>
+                        <h1><a href="blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/">Frequentism and Bayesianism: A Practical Introduction</a></h1>
+                        <time datetime="2014-03-11 11:00:00" pubdate>
+                            <span class="month">Mar</span>
+                            <span class="day">11</span>
+                            <span class="year">2014</span>
+                        </time>
+                        <footer>
+                            <span class="categories">posted in
+                                <a class='category' href='/category/misc.html'>misc</a>
+                                
+                            </span>
+                        </footer>
+                    </article>
 	    </div>
     </article>
 </div>
@@ -2292,6 +2317,9 @@ init_mathjax();
   <section>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
+      <li class="post">
+          <a href="http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/">Frequentism and Bayesianism: A Practical Introduction</a>
+      </li>
       <li class="post">
           <a href="http://jakevdp.github.io/blog/2014/01/10/d3-plugins-truly-interactive/">D3 Plugins: Truly Interactive Matplotlib In Your Browser</a>
       </li>
@@ -2303,9 +2331,6 @@ init_mathjax();
       </li>
       <li class="post">
           <a href="http://jakevdp.github.io/blog/2013/12/01/kernel-density-estimation/">Kernel Density Estimation in Python</a>
-      </li>
-      <li class="post">
-          <a href="http://jakevdp.github.io/blog/2013/10/26/big-data-brain-drain/">The Big Data Brain Drain: Why Science is in Trouble</a>
       </li>
     </ul>
   </section>

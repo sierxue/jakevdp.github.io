@@ -1688,6 +1688,17 @@ pre.ipynb {
   font-size: 13px;
 }
 
+/* remove the prompt div from text cells */
+div.text_cell .prompt {
+    display: none;
+}
+
+/* remove horizontal padding from text cells, */
+/* so it aligns with outer body text */
+div.text_cell_render {
+    padding: 0.5em 0em;
+}
+
 img.anim_icon{padding:0; border:0; vertical-align:middle; -webkit-box-shadow:none; -box-shadow:none}
 </style>
 
@@ -2029,6 +2040,9 @@ nbviewer utility <a href="http://nbviewer.ipython.org/url/jakevdp.github.com/dow
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/">Frequentism and Bayesianism: A Practical Introduction</a>
+      </li>
+      <li class="post">
           <a href="http://jakevdp.github.io/blog/2014/01/10/d3-plugins-truly-interactive/">D3 Plugins: Truly Interactive Matplotlib In Your Browser</a>
       </li>
       <li class="post">
@@ -2039,9 +2053,6 @@ nbviewer utility <a href="http://nbviewer.ipython.org/url/jakevdp.github.com/dow
       </li>
       <li class="post">
           <a href="http://jakevdp.github.io/blog/2013/12/01/kernel-density-estimation/">Kernel Density Estimation in Python</a>
-      </li>
-      <li class="post">
-          <a href="http://jakevdp.github.io/blog/2013/10/26/big-data-brain-drain/">The Big Data Brain Drain: Why Science is in Trouble</a>
       </li>
     </ul>
   </section>
