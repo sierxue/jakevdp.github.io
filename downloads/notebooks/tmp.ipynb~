@@ -1,0 +1,50 @@
+{
+ "metadata": {
+  "name": "",
+  "signature": "sha256:3f4beef47448ae48db98f316c7a9f8d0687b1a46a0823ef2ab58e1fe4299b638"
+ },
+ "nbformat": 3,
+ "nbformat_minor": 0,
+ "worksheets": [
+  {
+   "cells": [
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "Here is a first cell. Below this, I have an HTML comment which looks like ``<!-- COMMENT -->``\n",
+      "\n",
+      "The remainder of the notebook disappears on reload. This does not happen in IPython 1.x"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "<!-- PELICAN_BEGIN_SUMMARY -->\n",
+      "One of the first things a scientist hears about statistics is that there is are two different approaches: frequentism and Bayesianism. Despite their importance, many scientific researchers never have opportunity to learn the distinctions between them and the different practical approaches that result. The purpose of this post is to synthesize the philosophical and pragmatic aspects of the frequentist and Bayesian approaches, so that scientists like myself might be better prepared to understand the types of data analysis people do.\n",
+      "\n",
+      "I'll start by addressing the philosophical distinctions between the views, and from there move to discussion of how these ideas are applied in practice, with some Python code snippets demonstrating the difference between the approaches.\n",
+      "<!-- PELICAN_END_SUMMARY -->"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "Here is the next cell. You won't see this in IPython 2.x"
+     ]
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [],
+     "language": "python",
+     "metadata": {},
+     "outputs": []
+    }
+   ],
+   "metadata": {}
+  }
+ ]
+}
