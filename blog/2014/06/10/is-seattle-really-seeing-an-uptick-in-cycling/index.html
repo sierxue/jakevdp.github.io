@@ -1801,7 +1801,7 @@ init_mathjax();
 </div>
 
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This post will use two datasets, which you can easily access with an internet connection.</p>
+<p>This post will use two datasets, which you can easily access with an internet connection. You can find the exact data I used in the <a href="https://github.com/jakevdp/SeattleBike">GitHub repository</a>, or access it from the original sources below.</p>
 <p>First, I'll be using the Fremont Bridge Hourly Bicycle Counts. To download this data, go to the <a href="https://data.seattle.gov/Transportation/Fremont-Bridge-Hourly-Bicycle-Counts-by-Month-Octo/65db-xm6k">fremont bridge</a> page, and do the following (I accessed this on June 6th, 2014):</p>
 <ul>
 <li>click &quot;export&quot;</li>
@@ -11225,6 +11225,7 @@ annual change: 10%
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Is Seattle really seeing an uptick in cycling? The answer appears to be yes: <strong>corrected for seasonal and climate effects, Seattle's Fremont bridge is seeing, on average, about one new bicycle commuter each work day</strong>, and that trend reflects the entire year-and-a-half that the city has been collecting data. Along the way, we saw how rain, temperature, and daylight affect the choices of Seattle's bicycling community.</p>
 <p>This has been an exploration of available cycling data using an incredibly simple linear model based on daily climate trends. This just scrapes the surface, and uses an extremely simplistic linear model to find some broad-brush results. It's clear from the ~500 rider RMS that there are still some factors I've left out: perhaps seasonal effects like Bike-to-work month (happening each May) and summer vacation times have some effect. My hunch is that the difference in weather from one day to the next might be more important than the weather isolated on any given day; we've not taken that into account. Most notably, nonlinear effects might play a role (for example, the trend for cold + precipitation might outweigh the trend for cold and the trend for rain considered separately) but nevertheless, I think these are some interesting results despite the shortcuts taken in the analysis!</p>
+<p>I've also been more than a bit rough-shod throughout: I've reported maximum likelihood values for the parameters here, without exploring confidence or credibility intervals for those parameters. That's something you'd want to do before drawing any definite conclusions from the data, or using them for anything more than a fun distraction. I hope the open format used here encourages others to extend this analysis!</p>
 <p>Thanks for reading!</p>
 <p><small> This post was written entirely in the IPython notebook. You can <a href="http://jakevdp.github.io/downloads/notebooks/SeattleCycling.ipynb">download</a> this notebook, or see a static view <a href="http://nbviewer.ipython.org/url/jakevdp.github.io/downloads/notebooks/SeattleCycling.ipynb">here</a>. </small></p>
 </div></p></div>
