@@ -1774,14 +1774,14 @@ init_mathjax();
 
   <div class="entry-content"><p>
 <div class="text_cell_render border-box-sizing rendered_html">
-<!-- BEGIN_PELICAN_SUMMARY -->
+
 <p>In a <a href="http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/">previous post</a> I gave a brief practical introduction to frequentism and Bayesianism as they relate to the analysis of scientific data. In it, I discussed the fundamental philosophical difference between frequentism and Bayesianism, and showed several simple problems where the two approaches give basically the same results.</p>
 <p>While it is easy to show that the two approaches are often equivalent for simple problems, it is also true that they can diverge greatly for more complicated problems. I've found that in practice, this divergence makes itself most clear in two different situations:</p>
 <ol style="list-style-type: decimal">
 <li>The handling of nuisance parameters</li>
 <li>The subtle (and often overlooked) difference between frequentist confidence intervals and Bayesian credible intervals</li>
 </ol>
-<p>The second point is a bit more philosophical and in-depth, and I'm going to save it for a later post and focus here on the first point: the difference between frequentist and Bayesian treatment of nuisance parameters. Though I tried my best to stay impartial in the previous post, here you'll start to see my leanings toward the Bayesian approach. Consider this a warmup for when I get around to addressing point number 2: that will likely get downright polemical. <!-- END_PELICAN_SUMMARY --></p>
+<p>The second point is a bit more philosophical and in-depth, and I'm going to save it for a later post and focus here on the first point: the difference between frequentist and Bayesian treatment of nuisance parameters. Though I tried my best to stay impartial in the previous post, here you'll start to see my leanings toward the Bayesian approach. Consider this a warmup for when I get around to addressing point number 2: that will likely get downright polemical. </p>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="What-is-a-Nuisance-Parameter?">What is a Nuisance Parameter?<a class="anchor-link" href="#What-is-a-Nuisance-Parameter?">&#182;</a></h2>
@@ -1799,7 +1799,7 @@ init_mathjax();
 <p>I'll start with an example of nuisance parameters that, in one form or another, dates all the way back to the posthumous <a href="http://www.stat.ucla.edu/history/essay.pdf">1763 paper</a> written by Thomas Bayes himself. The particular version of this problem I use here is borrowed from <a href="ftp://selab.janelia.org/pub/publications/Eddy-ATG3/Eddy-ATG3-reprint.pdf">Eddy 2004</a>.</p>
 <p>The setting is a rather contrived game in which Alice and Bob bet on the outcome of a process they can't directly observe:</p>
 <p>Alice and Bob enter a room. Behind a curtain there is a billiard table, which they cannot see, but their friend Carol can. Carol rolls a ball down the table, and marks where it lands. Once this mark is in place, Carol begins rolling new balls down the table. If the ball lands to the left of the mark, Alice gets a point; if it lands to the right of the mark, Bob gets a point. We can assume for the sake of example that Carol's rolls are unbiased: that is, the balls have an equal chance of ending up anywhere on the table. The first person to reach <strong>six points</strong> wins the game.</p>
-<p>Here the location of the mark (determined by the first roll) can be considered a nuisance parameter: it is unknown, and not of immediate interest, but it clearly must be accounted for when predicting the outcome of subsequent rolls. If the first roll settles far to the right, then subsequent rolls will favor Alice. If it settles far to the right, Bob will be favored instead.</p>
+<p>Here the location of the mark (determined by the first roll) can be considered a nuisance parameter: it is unknown, and not of immediate interest, but it clearly must be accounted for when predicting the outcome of subsequent rolls. If the first roll settles far to the right, then subsequent rolls will favor Alice. If it settles far to the left, Bob will be favored instead.</p>
 <p>Given this setup, here is the question we ask of ourselves:</p>
 <blockquote>
 <p>In a particular game, after eight rolls, Alice has five points and Bob has three points. What is the probability that Bob will go on to win the game?</p>
@@ -4961,6 +4961,9 @@ USeEECtCRZ0QQqwIFXVCCLEi/x/3iyWvDy9gAQAAAABJRU5ErkJggg==
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="http://jakevdp.github.io/blog/2014/06/10/is-seattle-really-seeing-an-uptick-in-cycling/">Is Seattle Really Seeing an Uptick In Cycling?</a>
+      </li>
+      <li class="post">
           <a href="http://jakevdp.github.io/blog/2014/06/06/frequentism-and-bayesianism-2-when-results-differ/">Frequentism and Bayesianism II: When Results Differ</a>
       </li>
       <li class="post">
@@ -4971,9 +4974,6 @@ USeEECtCRZ0QQqwIFXVCCLEi/x/3iyWvDy9gAQAAAABJRU5ErkJggg==
       </li>
       <li class="post">
           <a href="http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/">Frequentism and Bayesianism: A Practical Introduction</a>
-      </li>
-      <li class="post">
-          <a href="http://jakevdp.github.io/blog/2014/01/10/d3-plugins-truly-interactive/">D3 Plugins: Truly Interactive Matplotlib In Your Browser</a>
       </li>
     </ul>
   </section>
