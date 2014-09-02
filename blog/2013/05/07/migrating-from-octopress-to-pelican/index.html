@@ -1700,9 +1700,17 @@ div.text_cell_render {
 }
 
 img.anim_icon{padding:0; border:0; vertical-align:middle; -webkit-box-shadow:none; -box-shadow:none}
+
+div.collapseheader {
+    width=100%;
+    background-color:#d3d3d3;
+    padding: 2px;
+    cursor: pointer;
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
 </style>
 
-<script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
 <script type="text/javascript">
 init_mathjax = function() {
     if (window.MathJax) {
@@ -1722,6 +1730,23 @@ init_mathjax = function() {
 }
 init_mathjax();
 </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    $("div.collapseheader").click(function () {
+    $header = $(this).children("span").first();
+    $codearea = $(this).children(".input_area");
+    console.log($(this).children());
+    $codearea.slideToggle(500, function () {
+        $header.text(function () {
+            return $codearea.is(":visible") ? "Collapse Code" : "Expand Code";
+        });
+    });
+});
+});
+</script>
+
 
 
   <!-- http://t.co/dKP3o1e -->
@@ -1904,7 +1929,8 @@ into the post:</p>
 
 
 <p>Here is an example of the output of the video tag:</p>
-<p><video width='240' height='180' preload='none' controls poster='/downloads/videos/animate_square.png'><source src='/downloads/videos/animate_square.mp4' type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></video></p>
+<p><div class="videobox">
+            <video width="240" height="180" preload="none" controls poster="/downloads/videos/animate_square.png"><source src='/downloads/videos/animate_square.mp4' type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></video></div></p>
 <p>(see <a href="/blog/2012/09/26/optical-illusions-in-matplotlib/">this post</a> for a
 description of this video).</p>
 <h4>The Code Include Tag</h4>
