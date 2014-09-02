@@ -1794,6 +1794,22 @@ jQuery(document).ready(function($) {
   		<article>
 <header>
       <h1 class="entry-title">
+        <a href="https://jakevdp.github.io/blog/2014/09/02/on-frequentism-and-fried-chicken/">On Frequentism and Fried Chicken</a>
+      </h1>
+      <p class="meta"><time datetime="2014-09-02T16:00:00" pubdate>Sep 02, 2014</time></p>
+</header>
+
+  <div class="entry-content">
+
+<p>My recent series of posts on <a href="http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/">Frequentism and Bayesianism</a> have drawn a lot of comments, but recently Frederick J. Ross, a UW colleague whom I have not yet had the pleasure of meeting, penned a particularly strong-worded critique: <a href="http://madhadron.com/posts/2014-08-30-frequentist_and_bayesian_statistics.html">Bayesian vs frequentist: squabbling among the ignorant</a>. Here I want to briefly explore and respond to the points he makes in the post.
+</div>
+  <footer>
+    <a rel="full-article" href="https://jakevdp.github.io/blog/2014/09/02/on-frequentism-and-fried-chicken/">Read On &crarr;</a>
+  </footer>
+  		</article>
+  		<article>
+<header>
+      <h1 class="entry-title">
         <a href="https://jakevdp.github.io/blog/2014/08/22/hacking-academia/">Hacking Academia: Data Science and the University</a>
       </h1>
       <p class="meta"><time datetime="2014-08-22T08:00:00" pubdate>Aug 22, 2014</time></p>
@@ -1964,25 +1980,6 @@ jQuery(document).ready(function($) {
     <a rel="full-article" href="https://jakevdp.github.io/blog/2014/01/10/d3-plugins-truly-interactive/">Read On &crarr;</a>
   </footer>
   		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://jakevdp.github.io/blog/2013/12/19/a-d3-viewer-for-matplotlib/">A D3 Viewer for Matplotlib Visualizations</a>
-      </h1>
-      <p class="meta"><time datetime="2013-12-19T13:00:00" pubdate>Dec 19, 2013</time></p>
-</header>
-
-  <div class="entry-content">
-
-<p>I've spent a lot of time recently attempting to push the boundaries of tools for interactive data exploration within the IPython notebook. I have worked on animations, including an <a href="http://jakevdp.github.io/blog/2013/05/12/embedding-matplotlib-animations/">HTML5 embedding</a> and a <a href="http://jakevdp.github.io/blog/2013/05/19/a-javascript-viewer-for-matplotlib-animations/">Javascript Viewer</a>. I have worked on <a href="http://jakevdp.github.io/blog/2013/06/01/ipython-notebook-javascript-python-communication/">javascript/python kernel interaction</a> and <a href="http://jakevdp.github.io/blog/2013/12/05/static-interactive-widgets/">static javascript widgets</a>. But I would say that the holy grail of interactive data visualization in the IPython notebook is, as I've <a href="http://jakevdp.github.io/blog/2013/03/23/matplotlib-and-the-future-of-visualization-in-python/">mentioned previously</a>, a truly interactive in-browser matplotlib display.</p>
-<p>There are many people pushing in this direction in the Python world. <a href="http://continuum.io/blog/painless_streaming_plots_w_bokeh">Bokeh</a> and <a href="https://plot.ly/">Plotly</a> are new visualization packages which have built Python APIs from scratch. The demos are beautiful and impressive, and the APIs are clean and intuitive. But, because matplotlib is so well-established in the Python world, it would be nice to be able to continue using it even in the age of browser-based visualization. To this end, some of the matplotlib core devs have been working on a <a href="http://mdboom.github.io/blog/2012/10/11/matplotlib-in-the-browser-its-coming/">WebGL viewer</a> for matplotlib figures. I've seen a working demo, and it's very cool, but last I heard it still has a long way to go.</p>
-<p>I've been wondering for a while whether it might be possible to create a solution using D3.js. D3 (short for <a href="http://d3js.org/">data-driven documents</a>) is a framework which facilitates the easy creation and manipulation of groups of HTML objects. Combined with the native SVG support of modern web browsers, it provides an extremely powerful and flexible low-level interface to creating interactive graphics on the web. I've long wondered what it would take to write a D3 backend or frontend for matplotlib, but I'd never experimented with the idea. It was a couple weeks ago at <a href="http://seattle.beerandcode.org/">Seattle Beer &amp;&amp; Code</a> meetup that I chatted with some expert Javascript hackers who pointed out where I might start.</p>
-<p>I started to try things out, and over the course of a few late nights, came up with a first attempt at a partial interactive D3 viewer for matplotlib images: the result is the <code>mpld3</code> package, available on <a href="http://github.com/jakevdp/mpld3">my GitHub page</a>.</p>
-</div>
-  <footer>
-    <a rel="full-article" href="https://jakevdp.github.io/blog/2013/12/19/a-d3-viewer-for-matplotlib/">Read On &crarr;</a>
-  </footer>
-  		</article>
 <div class="pagination">
     <a class="prev" href="https://jakevdp.github.io/category/misc2.html">&larr; Older</a>
 
@@ -1992,6 +1989,9 @@ jQuery(document).ready(function($) {
   <section>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
+      <li class="post">
+          <a href="https://jakevdp.github.io/blog/2014/09/02/on-frequentism-and-fried-chicken/">On Frequentism and Fried Chicken</a>
+      </li>
       <li class="post">
           <a href="https://jakevdp.github.io/blog/2014/08/22/hacking-academia/">Hacking Academia: Data Science and the University</a>
       </li>
@@ -2003,9 +2003,6 @@ jQuery(document).ready(function($) {
       </li>
       <li class="post">
           <a href="https://jakevdp.github.io/blog/2014/06/10/is-seattle-really-seeing-an-uptick-in-cycling/">Is Seattle Really Seeing an Uptick In Cycling?</a>
-      </li>
-      <li class="post">
-          <a href="https://jakevdp.github.io/blog/2014/06/06/frequentism-and-bayesianism-2-when-results-differ/">Frequentism and Bayesianism II: When Results Differ</a>
       </li>
     </ul>
   </section>
