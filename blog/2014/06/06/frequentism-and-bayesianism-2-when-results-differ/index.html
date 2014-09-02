@@ -1777,7 +1777,7 @@ jQuery(document).ready(function($) {
 </ul>
 
 
-<form action="http://google.com/search" method="get">
+<form action="//google.com/search" method="get">
   <fieldset role="search">
     <input type="hidden" name="q" value="site:jakevdp.github.io" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
@@ -1798,64 +1798,115 @@ jQuery(document).ready(function($) {
 </header>
 
   <div class="entry-content"><p>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><em>This post is part of a 4-part series: <a href="http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/">Part I</a> <a href="http://jakevdp.github.io/blog/2014/06/06/frequentism-and-bayesianism-2-when-results-differ/">Part II</a> <a href="http://jakevdp.github.io/blog/2014/06/12/frequentism-and-bayesianism-3-confidence-credibility/">Part III</a> <a href="http://jakevdp.github.io/blog/2014/06/14/frequentism-and-bayesianism-4-bayesian-in-python/">Part IV</a></em></p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>This post is part of a 4-part series: <a href="http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/">Part I</a>  <a href="http://jakevdp.github.io/blog/2014/06/06/frequentism-and-bayesianism-2-when-results-differ/">Part II</a>  <a href="http://jakevdp.github.io/blog/2014/06/12/frequentism-and-bayesianism-3-confidence-credibility/">Part III</a>  <a href="http://jakevdp.github.io/blog/2014/06/14/frequentism-and-bayesianism-4-bayesian-in-python/">Part IV</a></em></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 
-<p>In a <a href="http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/">previous post</a> I gave a brief practical introduction to frequentism and Bayesianism as they relate to the analysis of scientific data. In it, I discussed the fundamental philosophical difference between frequentism and Bayesianism, and showed several simple problems where the two approaches give basically the same results.</p>
-<p>While it is easy to show that the two approaches are often equivalent for simple problems, it is also true that they can diverge greatly for more complicated problems. I've found that in practice, this divergence makes itself most clear in two different situations:</p>
-<ol style="list-style-type: decimal">
-<li>The handling of nuisance parameters</li>
-<li>The subtle (and often overlooked) difference between frequentist confidence intervals and Bayesian credible intervals</li>
-</ol>
-<p>The second point is a bit more philosophical and in-depth, and I'm going to save it for a later post and focus here on the first point: the difference between frequentist and Bayesian treatment of nuisance parameters. Though I tried my best to stay impartial in the previous post, here you'll start to see my leanings toward the Bayesian approach. Consider this a warmup for when I get around to addressing point number 2: that will likely get downright polemical. </p>
+In a <a href="http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/">previous post</a> I gave a brief practical introduction to frequentism and Bayesianism as they relate to the analysis of scientific data. In it, I discussed the fundamental philosophical difference between frequentism and Bayesianism, and showed several simple problems where the two approaches give basically the same results.
+
+While it is easy to show that the two approaches are often equivalent for simple problems, it is also true that they can diverge greatly for more complicated problems. I&#39;ve found that in practice, this divergence makes itself most clear in two different situations:
+
+1. The handling of nuisance parameters
+2. The subtle (and often overlooked) difference between frequentist confidence intervals and Bayesian credible intervals
+
+The second point is a bit more philosophical and in-depth, and I&#39;m going to save it for a later post and focus here on the first point: the difference between frequentist and Bayesian treatment of nuisance parameters. Though I tried my best to stay impartial in the previous post, here you&#39;ll start to see my leanings toward the Bayesian approach. Consider this a warmup for when I get around to addressing point number 2: that will likely get downright polemical.
+
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="What-is-a-Nuisance-Parameter?">What is a Nuisance Parameter?<a class="anchor-link" href="#What-is-a-Nuisance-Parameter?">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>A nuisance parameter is any quantity whose value is not relevant to the goal of an analysis, but is nevertheless required to determine some quantity of interest. For example, in the <a href="http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/#Varying-Photon-Counts:-The-Bayesian-Approach">second application</a> worked-through in the previous post, we estimated both the mean <span class="math">\(\mu\)</span> and intrinsic scatter <span class="math">\(\sigma\)</span> for the observed photons. In practice, we may only be interested in <span class="math">\(\mu\)</span>, the mean of the distribution. In this case <span class="math">\(\sigma\)</span> is a nuisance parameter: it is not of immediate interest, but is nevertheless an essential stepping-stone in determining the final estimate of <span class="math">\(\mu\)</span>, the parameter of interest.</p>
-<p>To illustrate this, I'm going to go through two examples where nuisance parameters come into play. We'll explore both the frequentist and the Bayesian approach to solving both of these problems:</p>
 </div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A nuisance parameter is any quantity whose value is not relevant to the goal of an analysis, but is nevertheless required to determine some quantity of interest. For example, in the <a href="http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/#Varying-Photon-Counts:-The-Bayesian-Approach">second application</a> worked-through in the previous post, we estimated both the mean $\mu$ and intrinsic scatter $\sigma$ for the observed photons. In practice, we may only be interested in $\mu$, the mean of the distribution. In this case $\sigma$ is a nuisance parameter: it is not of immediate interest, but is nevertheless an essential stepping-stone in determining the final estimate of $\mu$, the parameter of interest.</p>
+<p>To illustrate this, I&#39;m going to go through two examples where nuisance parameters come into play. We&#39;ll explore both the frequentist and the Bayesian approach to solving both of these problems:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Example-#1:-The-Bayesian-Billiard-Game">Example #1: The Bayesian Billiard Game<a class="anchor-link" href="#Example-#1:-The-Bayesian-Billiard-Game">&#182;</a></h2>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>I'll start with an example of nuisance parameters that, in one form or another, dates all the way back to the posthumous <a href="http://www.stat.ucla.edu/history/essay.pdf">1763 paper</a> written by Thomas Bayes himself. The particular version of this problem I use here is borrowed from <a href="ftp://selab.janelia.org/pub/publications/Eddy-ATG3/Eddy-ATG3-reprint.pdf">Eddy 2004</a>.</p>
-<p>The setting is a rather contrived game in which Alice and Bob bet on the outcome of a process they can't directly observe:</p>
-<p>Alice and Bob enter a room. Behind a curtain there is a billiard table, which they cannot see, but their friend Carol can. Carol rolls a ball down the table, and marks where it lands. Once this mark is in place, Carol begins rolling new balls down the table. If the ball lands to the left of the mark, Alice gets a point; if it lands to the right of the mark, Bob gets a point. We can assume for the sake of example that Carol's rolls are unbiased: that is, the balls have an equal chance of ending up anywhere on the table. The first person to reach <strong>six points</strong> wins the game.</p>
+<p>I&#39;ll start with an example of nuisance parameters that, in one form or another, dates all the way back to the posthumous <a href="http://www.stat.ucla.edu/history/essay.pdf">1763 paper</a> written by Thomas Bayes himself. The particular version of this problem I use here is borrowed from <a href="ftp://selab.janelia.org/pub/publications/Eddy-ATG3/Eddy-ATG3-reprint.pdf">Eddy 2004</a>.</p>
+<p>The setting is a rather contrived game in which Alice and Bob bet on the outcome of a process they can&#39;t directly observe:</p>
+<p>Alice and Bob enter a room. Behind a curtain there is a billiard table, which they cannot see, but their friend Carol can. Carol rolls a ball down the table, and marks where it lands. Once this mark is in place, Carol begins rolling new balls down the table. If the ball lands to the left of the mark, Alice gets a point; if it lands to the right of the mark, Bob gets a point.  We can assume for the sake of example that Carol&#39;s rolls are unbiased: that is, the balls have an equal chance of ending up anywhere on the table.  The first person to reach <strong>six points</strong> wins the game.</p>
 <p>Here the location of the mark (determined by the first roll) can be considered a nuisance parameter: it is unknown, and not of immediate interest, but it clearly must be accounted for when predicting the outcome of subsequent rolls. If the first roll settles far to the right, then subsequent rolls will favor Alice. If it settles far to the left, Bob will be favored instead.</p>
 <p>Given this setup, here is the question we ask of ourselves:</p>
 <blockquote>
 <p>In a particular game, after eight rolls, Alice has five points and Bob has three points. What is the probability that Bob will go on to win the game?</p>
 </blockquote>
-<p>Intuitively, you probably realize that because Alice received five of the eight points, the marker placement likely favors her. And given this, it's more likely that the next roll will go her way as well. And she has three opportunities to get a favorable roll before Bob can win; she seems to have clinched it. But, <strong>quantitatively</strong>, what is the probability that Bob will squeak-out a win?</p>
+<p>Intuitively, you probably realize that because Alice received five of the eight points, the marker placement likely favors her. And given this, it&#39;s more likely that the next roll will go her way as well. And she has three opportunities to get a favorable roll before Bob can win; she seems to have clinched it.  But, <strong>quantitatively</strong>, what is the probability that Bob will squeak-out a win?</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="A-Na&#239;ve-Frequentist-Approach">A Na&#239;ve Frequentist Approach<a class="anchor-link" href="#A-Na&#239;ve-Frequentist-Approach">&#182;</a></h3>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Someone following a classical frequentist approach might reason as follows:</p>
-<p>To determine the result, we need an intermediate estimate of where the marker sits. We'll quantify this marker placement as a probability <span class="math">\(p\)</span> that any given roll lands in Alice's favor. Because five balls out of eight fell on Alice's side of the marker, we can quickly show that the maximum likelihood estimate of <span class="math">\(p\)</span> is given by:</p>
-<p><span class="math">\[
+<p>To determine the result, we need an intermediate estimate of where the marker sits. We&#39;ll quantify this marker placement as a probability $p$ that any given roll lands in Alice&#39;s favor.  Because five balls out of eight fell on Alice&#39;s side of the marker, we can quickly show that the maximum likelihood estimate of $p$ is given by:</p>
+<p>$$
 \hat{p} = 5/8
-\]</span></p>
+$$</p>
 <p>(This result follows in a straightforward manner from the <a href="http://en.wikipedia.org/wiki/Binomial_distribution">binomial likelihood</a>). Assuming this maximum likelihood probability, we can compute the probability that Bob will win, which is given by:</p>
-<p><span class="math">\[
+<p>$$
 P(B) = (1 - \hat{p})^3
-\]</span></p>
+$$</p>
 <p>That is, he needs to win three rolls in a row. Thus, we find that the following estimate of the probability:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[1]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">p_hat</span> <span class="o">=</span> <span class="mf">5.</span> <span class="o">/</span> <span class="mf">8.</span>
 <span class="n">freq_prob</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p_hat</span><span class="p">)</span> <span class="o">**</span> <span class="mi">3</span>
 <span class="k">print</span><span class="p">(</span><span class="s">&quot;Naïve Frequentist Probability of Bob Winning: {0:.2f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">freq_prob</span><span class="p">))</span>
@@ -1863,13 +1914,14 @@ In&nbsp;[1]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 Naïve Frequentist Probability of Bob Winning: 0.05
 
@@ -1881,27 +1933,35 @@ Naïve Frequentist Probability of Bob Winning: 0.05
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>In other words, we'd give Bob the following odds of winning:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In other words, we&#39;d give Bob the following odds of winning:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[2]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">print</span><span class="p">(</span><span class="s">&quot;Odds against Bob winning: {0:.0f} to 1&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">((</span><span class="mf">1.</span> <span class="o">-</span> <span class="n">freq_prob</span><span class="p">)</span> <span class="o">/</span> <span class="n">freq_prob</span><span class="p">))</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 Odds against Bob winning: 18 to 1
 
@@ -1913,77 +1973,152 @@ Odds against Bob winning: 18 to 1
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>So we've estimated using frequentist ideas that Alice will win about 18 times for each time Bob wins. Let's try a Bayesian approach next.</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So we&#39;ve estimated using frequentist ideas that Alice will win about 18 times for each time Bob wins. Let&#39;s try a Bayesian approach next.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Bayesian-Approach">Bayesian Approach<a class="anchor-link" href="#Bayesian-Approach">&#182;</a></h3>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can also approach this problem from a Bayesian standpoint. This is slightly more involved, and requires us to first define some notation.</p>
-<p>We'll consider the following random variables:</p>
+<p>We&#39;ll consider the following random variables:</p>
 <ul>
-<li><span class="math">\(B\)</span> = Bob Wins</li>
-<li><span class="math">\(D\)</span> = observed data, i.e. <span class="math">\(D = (n_A, n_B) = (5, 3)\)</span></li>
-<li><span class="math">\(p\)</span> = unknown probability that a ball lands on Alice's side during the current game</li>
+<li>$B$ = Bob Wins</li>
+<li>$D$ = observed data, i.e. $D = (n_A, n_B) = (5, 3)$</li>
+<li>$p$ = unknown probability that a ball lands on Alice&#39;s side during the current game</li>
 </ul>
-<p>We want to compute <span class="math">\(P(B~|~D)\)</span>; that is, the probability that Bob wins given our observation that Alice currently has five points to Bob's three.</p>
-<p>The general Bayesian method of treating nuisance parameters is <em>marginalization</em>, or integrating the joint probability over the entire range of the nuisance parameter. In this case, that means that we will first calculate the joint distribution <span class="math">\[
+<p>We want to compute $P(B~|~D)$; that is, the probability that Bob wins given our observation that Alice currently has five points to Bob&#39;s three.</p>
+<p>The general Bayesian method of treating nuisance parameters is <em>marginalization</em>, or integrating the joint probability over the entire range of the nuisance parameter. In this case, that means that we will first calculate the joint distribution
+$$
 P(B,p~|~D)
-\]</span> and then marginalize over <span class="math">\(p\)</span> using the following identity: <span class="math">\[
+$$
+and then marginalize over $p$ using the following identity:
+$$
 P(B~|~D) \equiv \int_{-\infty}^\infty P(B,p~|~D) {\mathrm d}p
-\]</span> This identity follows from the definition of conditional probability, and the law of total probability: that is, it is a fundamental consequence of probability axioms and will always be true. Even a frequentist would recognize this; they would simply disagree with our interpretation of <span class="math">\(P(p)\)</span> as being a measure of uncertainty of our own knowledge.</p>
+$$
+This identity follows from the definition of conditional probability, and the law of total probability: that is, it is a fundamental consequence of probability axioms and will always be true. Even a frequentist would recognize this; they would simply disagree with our interpretation of $P(p)$ as being a measure of uncertainty of our own knowledge.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Building-our-Bayesian-Expression">Building our Bayesian Expression<a class="anchor-link" href="#Building-our-Bayesian-Expression">&#182;</a></h4>
 </div>
+</div>
+</div>
 
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>To compute this result, we will manipulate the above expression for <span class="math">\(P(B~|~D)\)</span> until we can express it in terms of other quantities that we can compute.</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We'll start by applying the following definition of <a href="http://en.wikipedia.org/wiki/Conditional_probability#Definition">conditional probability</a> to expand the term <span class="math">\(P(B,p~|~D)\)</span>:</p>
-<p><span class="math">\[
+<p>To compute this result, we will manipulate the above expression for $P(B~|~D)$ until we can express it in terms of other quantities that we can compute.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We&#39;ll start by applying the following definition of <a href="http://en.wikipedia.org/wiki/Conditional_probability#Definition">conditional probability</a> to expand the term $P(B,p~|~D)$:</p>
+<p>$$
 P(B~|~D) = \int P(B~|~p, D) P(p~|~D) dp
-\]</span></p>
+$$</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Next we use <a href="http://en.wikipedia.org/wiki/Bayes%27_theorem">Bayes' rule</a> to rewrite <span class="math">\(P(p~|~D)\)</span>:</p>
-<p><span class="math">\[
+<p>Next we use <a href="http://en.wikipedia.org/wiki/Bayes%27_theorem">Bayes&#39; rule</a> to rewrite $P(p~|~D)$:</p>
+<p>$$
 P(B~|~D) = \int P(B~|~p, D) \frac{P(D~|~p)P(p)}{P(D)} dp
-\]</span></p>
+$$</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Finally, using the same probability identity we started with, we can expand <span class="math">\(P(D)\)</span> in the denominator to find:</p>
-<p><span class="math">\[
+<p>Finally, using the same probability identity we started with, we can expand $P(D)$ in the denominator to find:</p>
+<p>$$
 P(B~|~D) = \frac{\int P(B~|~p,D) P(D~|~p) P(p) dp}{\int P(D~|~p)P(p) dp}
-\]</span></p>
+$$</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now the desired probability is expressed in terms of three quantities that we can compute. Let's look at each of these in turn:</p>
+<p>Now the desired probability is expressed in terms of three quantities that we can compute. Let&#39;s look at each of these in turn:</p>
 <ul>
-<li><span class="math">\(P(B~|~p,D)\)</span>: This term is exactly the frequentist likelihood we used above. In words: given a marker placement <span class="math">\(p\)</span> and the fact that Alice has won 5 times and Bob 3 times, what is the probability that Bob will go on to six wins? Bob needs three wins in a row, i.e. <span class="math">\(P(B~|~p,D) = (1 - p) ^ 3\)</span>.</li>
-<li><span class="math">\(P(D~|~p)\)</span>: this is another easy-to-compute term. In words: given a probability <span class="math">\(p\)</span>, what is the likelihood of exactly 5 positive outcomes out of eight trials? The answer comes from the well-known <a href="http://en.wikipedia.org/wiki/Binomial_distribution">Binomial distribution</a>: in this case <span class="math">\(P(D~|~p) \propto p^5 (1-p)^3\)</span></li>
-<li><span class="math">\(P(p)\)</span>: this is our prior on the probability <span class="math">\(p\)</span>. By the problem definition, we can assume that <span class="math">\(p\)</span> is evenly drawn between 0 and 1. That is, <span class="math">\(P(p) \propto 1\)</span>, and the integrals range from 0 to 1.</li>
+<li>$P(B~|~p,D)$: This term is exactly the frequentist likelihood we used above. In words: given a marker placement $p$ and the fact that Alice has won 5 times and Bob 3 times, what is the probability that Bob will go on to six wins?  Bob needs three wins in a row, i.e. $P(B~|~p,D) = (1 - p) ^ 3$.</li>
+<li>$P(D~|~p)$: this is another easy-to-compute term. In words: given a probability $p$, what is the likelihood of exactly 5 positive outcomes out of eight trials? The answer comes from the well-known <a href="http://en.wikipedia.org/wiki/Binomial_distribution">Binomial distribution</a>: in this case $P(D~|~p) \propto p^5 (1-p)^3$</li>
+<li>$P(p)$: this is our prior on the probability $p$. By the problem definition, we can assume that $p$ is evenly drawn between 0 and 1.  That is, $P(p) \propto 1$, and the integrals range from 0 to 1.</li>
 </ul>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Putting this all together, canceling some terms, and simplifying a bit, we find <span class="math">\[
+<p>Putting this all together, canceling some terms, and simplifying a bit, we find
+$$
 P(B~|~D) = \frac{\int_0^1 (1 - p)^6 p^5 dp}{\int_0^1 (1 - p)^3 p^5 dp}
-\]</span> where both integrals are evaluated from 0 to 1.</p>
+$$
+where both integrals are evaluated from 0 to 1.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>These integrals might look a bit difficult, until we notice that they are special cases of the <a href="http://en.wikipedia.org/wiki/Beta_function">Beta Function</a>: <span class="math">\[
+<p>These integrals might look a bit difficult, until we notice that they are special cases of the <a href="http://en.wikipedia.org/wiki/Beta_function">Beta Function</a>:
+$$
 \beta(n, m) = \int_0^1 (1 - p)^{n - 1} p^{m - 1}
-\]</span> The Beta function can be further expressed in terms of gamma functions (i.e. factorials), but for simplicity we'll compute them directly using Scipy's beta function implementation:</p>
+$$
+The Beta function can be further expressed in terms of gamma functions (i.e. factorials), but for simplicity we&#39;ll compute them directly using Scipy&#39;s beta function implementation:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[3]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">beta</span>
 <span class="n">bayes_prob</span> <span class="o">=</span> <span class="n">beta</span><span class="p">(</span><span class="mi">6</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">beta</span><span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 
@@ -1992,13 +2127,14 @@ In&nbsp;[3]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 P(B|D) = 0.09
 
@@ -2010,27 +2146,35 @@ P(B|D) = 0.09
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The associated odds are the following:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[4]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">print</span><span class="p">(</span><span class="s">&quot;Bayesian odds against Bob winning: {0:.0f} to 1&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">((</span><span class="mf">1.</span> <span class="o">-</span> <span class="n">bayes_prob</span><span class="p">)</span> <span class="o">/</span> <span class="n">bayes_prob</span><span class="p">))</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 Bayesian odds against Bob winning: 10 to 1
 
@@ -2042,22 +2186,41 @@ Bayesian odds against Bob winning: 10 to 1
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>So we see that the Bayesian result gives us 10 to 1 odds, which is quite different than the 18 to 1 odds found using the frequentist approach. So which one is correct?</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="A-Brute-Force/Monte-Carlo-Approach">A Brute Force/Monte Carlo Approach<a class="anchor-link" href="#A-Brute-Force/Monte-Carlo-Approach">&#182;</a></h3>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>For this type of well-defined and simple setup, it is actually relatively easy to use a Monte Carlo simulation to determine the correct answer. This is essentially a brute-force tabulation of possible outcomes: we generate a large number of random games, and simply count the fraction of relevant games that Bob goes on to win. The current problem is especially simple because so many of the random variables involved are uniformly distributed. We can use the <code>numpy</code> package to do this as follows:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For this type of well-defined and simple setup, it is actually relatively easy to use a Monte Carlo simulation to determine the correct answer. This is essentially a brute-force tabulation of possible outcomes: we generate a large number of random games, and simply count the fraction of relevant games that Bob goes on to win. The current problem is especially simple because so many of the random variables involved are uniformly distributed.  We can use the <code>numpy</code> package to do this as follows:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[5]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
@@ -2098,13 +2261,14 @@ In&nbsp;[5]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 (Sanity check passed)
 Number of suitable games: 11068
@@ -2120,33 +2284,64 @@ MC Odds against Bob winning: 10 to 1
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The Monte Carlo approach gives 10-to-1 odds on Bob, which agrees with the Bayesian approach. Apparently, our naïve frequentist approach above was flawed.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Discussion">Discussion<a class="anchor-link" href="#Discussion">&#182;</a></h3>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This example shows several different approaches to dealing with the presence of a nuisance parameter <em>p</em>. The Monte Carlo simulation gives us a close brute-force estimate of the true probability (assuming the validity of our assumptions), which the Bayesian approach matches. The naïve frequentist approach, by utilizing a single maximum likelihood estimate of the nuisance parameter <span class="math">\(p\)</span>, arrives at the wrong result.</p>
-<p>Before my comment thread explodes and I get ripped to shreds – again – on Reddit and Hacker News, I should emphasize that <strong>this does not imply frequentism itself is incorrect</strong>. The incorrect result above is more a matter of the approach being &quot;naïve&quot; than it being &quot;frequentist&quot;. There certainly exist frequentist methods for handling this sort of nuisance parameter – for example, it is theoretically possible to apply a transformation and conditioning of the data to isolate the dependence on <span class="math">\(p\)</span> – but I've not been able to find any approach to this particular problem that does not somehow take advantage of Bayesian-like marginalization over <span class="math">\(p\)</span>.</p>
-<p>Another potential point of contention is that the question itself is posed in a way that is perhaps unfair to the classical, frequentist approach. A frequentist might instead hope to give the answer in terms of null tests or confidence intervals: that is, they might devise a procedure to construct limits which would provably bound the correct answer in <span class="math">\(100\times(1 - p)\)</span> percent of similar trials, for some value of <span class="math">\(p\)</span> – say, 0.05 (note this is a different <span class="math">\(p\)</span> than the <span class="math">\(p\)</span> we've been talking about above). This might be classically accurate, but it doesn't quite answer the question at hand. I'll leave discussion of the meaning of such confidence intervals for my follow-up post on the subject.</p>
-<p>There is one clear common point of these two potential frequentist responses: both require some degree of effort and/or special expertise; perhaps a suitable frequentist approach would be immediately obvious to someone with a PhD in statistics, but is most definitely <em>not</em> obvious to a statistical lay-person simply trying to answer the question at hand. In this sense, I think Bayesianism provides a better approach for this sort of problem: by simple algebraic manipulation of a few well-known axioms of probability within a Bayesian framework, we can straightforwardly arrive at the correct answer without need for other special expertise.</p>
-<p>We'll explore a more data-oriented example of dealing with nuisance parameters next.</p>
 </div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This example shows several different approaches to dealing with the presence of a nuisance parameter <em>p</em>. The Monte Carlo simulation gives us a close brute-force estimate of the true probability (assuming the validity of our assumptions), which the Bayesian approach matches. The naïve frequentist approach, by utilizing a single maximum likelihood estimate of the nuisance parameter $p$, arrives at the wrong result.</p>
+<p>Before my comment thread explodes and I get ripped to shreds – again – on Reddit and Hacker News, I should emphasize that <strong>this does not imply frequentism itself is incorrect</strong>. The incorrect result above is more a matter of the approach being &quot;naïve&quot; than it being &quot;frequentist&quot;. There certainly exist frequentist methods for handling this sort of nuisance parameter – for example, it is theoretically possible to apply a transformation and conditioning of the data to isolate the dependence on $p$ – but I&#39;ve not been able to find any approach to this particular problem that does not somehow take advantage of Bayesian-like marginalization over $p$.</p>
+<p>Another potential point of contention is that the question itself is posed in a way that is perhaps unfair to the classical, frequentist approach. A frequentist might instead hope to give the answer in terms of null tests or confidence intervals: that is, they might devise a procedure to construct limits which would provably bound the correct answer in $100\times(1 - p)$ percent of similar trials, for some value of $p$ – say, 0.05 (note this is a different $p$ than the $p$ we&#39;ve been talking about above). This might be classically accurate, but it doesn&#39;t quite answer the question at hand. I&#39;ll leave discussion of the meaning of such confidence intervals for my follow-up post on the subject.</p>
+<p>There is one clear common point of these two potential frequentist responses: both require some degree of effort and/or special expertise; perhaps a suitable frequentist approach would be immediately obvious to someone with a PhD in statistics, but is most definitely <em>not</em> obvious to a statistical lay-person simply trying to answer the question at hand. In this sense, I think Bayesianism provides a better approach for this sort of problem: by simple algebraic manipulation of a few well-known axioms of probability within a Bayesian framework, we can straightforwardly arrive at the correct answer without need for other special expertise.</p>
+<p>We&#39;ll explore a more data-oriented example of dealing with nuisance parameters next.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Example-#2:-Linear-Fit-with-Outliers">Example #2: Linear Fit with Outliers<a class="anchor-link" href="#Example-#2:-Linear-Fit-with-Outliers">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>One situation where the concept of nuisance parameters can be helpful is accounting for outliers in data. Consider the following dataset, relating the observed variables <span class="math">\(x\)</span> and <span class="math">\(y\)</span>, and the error of <span class="math">\(y\)</span> stored in <span class="math">\(e\)</span>.</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>One situation where the concept of nuisance parameters can be helpful is accounting for outliers in data. Consider the following dataset, relating the observed variables $x$ and $y$, and the error of $y$ stored in $e$.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[7]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">3</span><span class="p">,</span>  <span class="mi">9</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span>
               <span class="mi">40</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">67</span><span class="p">,</span> <span class="mi">69</span><span class="p">,</span> <span class="mi">72</span><span class="p">,</span> <span class="mi">88</span><span class="p">])</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">33</span><span class="p">,</span> <span class="mi">68</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">71</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">49</span><span class="p">,</span>
@@ -2157,17 +2352,25 @@ In&nbsp;[7]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We'll visualize this data below:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We&#39;ll visualize this data below:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[8]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%</span><span class="k">matplotlib</span> <span class="n">inline</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 
@@ -2176,15 +2379,16 @@ In&nbsp;[8]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAAEACAYAAACuzv3DAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAGF9JREFUeJzt3W1sU+f9xvHLPEh/0a2kYcSGhdYobQAnIYSGIpVteE0d
 NFooT00HFbilI9P2Zq2qJuwVRJOIabVR2PqmFaNRq5Rl0oTSiqwQQSiFAoMQwdauWVkSnhJvENxC
@@ -2297,41 +2501,69 @@ Vtc1NDSER61YWdO///1vk5+fb/Lz801OTk743Lb6ODU1NZnCwkIzefJkM3/+fBMKhSyvyRhjLly4
 YEaNGmW++eab8GtW17V27Vrj8XhMbm6uWbZsmenp6bG8ph/+8IfG4/GY/Px8s2PHDmNM9MeJCUEA
 YHMs9QYANkeQA4DNEeQAYHMEOQDYHEEOADZHkAOAzRHkAGBzBDkA2Nz/A9XSNzeIOPyYAAAAAElF
 TkSuQmCC
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Our task is to find a line of best-fit to the data. It's clear upon visual inspection that there are some outliers among these points, but let's start with a simple non-robust maximum likelihood approach. Like we saw in the previous post, the following simple maximum likelihood result can be considered to be either frequentist or Bayesian (with uniform priors): in this sort of simple problem, the approaches are essentially equivalent.</p>
-<p>We'll propose a simple linear model, which has a slope and an intercept encoded in a parameter vector <span class="math">\(\theta\)</span>. The model is defined as follows: <span class="math">\[
+<p>Our task is to find a line of best-fit to the data. It&#39;s clear upon visual inspection that there are some outliers among these points, but let&#39;s start with a simple non-robust maximum likelihood approach. Like we saw in the previous post, the following simple maximum likelihood result can be considered to be either frequentist or Bayesian (with uniform priors): in this sort of simple problem, the approaches are essentially equivalent.</p>
+<p>We&#39;ll propose a simple linear model, which has a slope and an intercept encoded in a parameter vector $\theta$. The model is defined as follows:
+$$
 \hat{y}(x~|~\theta) = \theta_0 + \theta_1 x
-\]</span> Given this model, we can compute a Gaussian likelihood for each point: <span class="math">\[
+$$
+Given this model, we can compute a Gaussian likelihood for each point:
+$$
 p(x_i,y_i,e_i~|~\theta) \propto \exp\left[-\frac{1}{2e_i^2}\left(y_i - \hat{y}(x_i~|~\theta)\right)^2\right]
-\]</span> The total likelihood is the product of all the individual likelihoods. Computing this and taking the log, we have: <span class="math">\[
+$$
+The total likelihood is the product of all the individual likelihoods. Computing this and taking the log, we have:
+$$
 \log \mathcal{L}(D~|~\theta) = \mathrm{const} - \sum_i \frac{1}{2e_i^2}\left(y_i - \hat{y}(x_i~|~\theta)\right)^2
-\]</span> This should all look pretty familiar if you read through the previous post. This final expression is the log-likelihood of the data given the model, which can be maximized to find the <span class="math">\(\theta\)</span> corresponding to the maximum-likelihood model. Equivalently, we can minimize the summation term, which is known as the <em>loss</em>: <span class="math">\[
+$$
+This should all look pretty familiar if you read through the previous post. This final expression is the log-likelihood of the data given the model, which can be maximized to find the $\theta$ corresponding to the maximum-likelihood model. Equivalently, we can minimize the summation term, which is known as the <em>loss</em>:
+$$
 \mathrm{loss} = \sum_i \frac{1}{2e_i^2}\left(y_i - \hat{y}(x_i~|~\theta)\right)^2
-\]</span> This loss expression is known as a <em>squared loss</em>; here we've simply shown that the squared loss can be derived from the Gaussian log likelihood.</p>
+$$
+This loss expression is known as a <em>squared loss</em>; here we&#39;ve simply shown that the squared loss can be derived from the Gaussian log likelihood.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Standard-Likelihood-Approach">Standard Likelihood Approach<a class="anchor-link" href="#Standard-Likelihood-Approach">&#182;</a></h3>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Following the logic of the previous post, we can maximize the likelihood (or, equivalently, minimize the loss) to find <span class="math">\(\theta\)</span> within a frequentist paradigm. For a flat prior in <span class="math">\(\theta\)</span>, the maximum of the Bayesian posterior will yield the same result. (note that there are good arguments based on the principle of maximum entropy that a flat prior is not the best choice here; we'll ignore that detail for now, as it's a very small effect for this problem).</p>
-<p>For simplicity, we'll use scipy's <code>optimize</code> package to minimize the loss (in the case of squared loss, this computation can be done more efficiently using matrix methods, but we'll use numerical minimization for simplicity here)</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Following the logic of the previous post, we can maximize the likelihood (or, equivalently, minimize the loss) to find $\theta$ within a frequentist paradigm. For a flat prior in $\theta$, the maximum of the Bayesian posterior will yield the same result. (note that there are good arguments based on the principle of maximum entropy that a flat prior is not the best choice here; we&#39;ll ignore that detail for now, as it&#39;s a very small effect for this problem).</p>
+<p>For simplicity, we&#39;ll use scipy&#39;s <code>optimize</code> package to minimize the loss (in the case of squared loss, this computation can be done more efficiently using matrix methods, but we&#39;ll use numerical minimization for simplicity here)</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[9]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">optimize</span>
 
 <span class="k">def</span> <span class="nf">squared_loss</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">e</span><span class="o">=</span><span class="n">e</span><span class="p">):</span>
@@ -2348,15 +2580,16 @@ In&nbsp;[9]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXUAAAEKCAYAAADticXcAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XlQVFeiBvCvUdwQWQVEBFxB0CiKu0jrBZ0YUTGKxiVo
 EjVxluhznpqYRIkvgjFjjKOTjMYYDCI6VVM+l+goqzuuuBtcoEEEIgIKCrKd90ceN6DsWze3v19V
@@ -2567,32 +2800,52 @@ PiweP34sJEkSPXv2FN7e3iIrK0vbVW1S0dHRwsfHRwgh9PZcxMXFCXd3d/Haa68JX19fkZ2drbfn
 Yt26dcLFxUX06dNHvP3226KgoEBvzsWMGTNEp06dhKGhobCzsxM//PBDla/9iy++EN27dxdOTk7i
 yJEj1ZbPyUdERArC7eyIiBSEoU5EpCAMdSIiBWGoExEpCEOdiEhBGOpERArCUCciUhCGOhGRgvwf
 XKyVoC9GUcsAAAAASUVORK5CYII=
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>It's clear on examination that the outliers are exerting a disproportionate influence on the fit. This is due to the nature of the squared loss function. If you have a single outlier that is, say 10 standard deviations away from the fit, its contribution to the loss will out-weigh that of 25 points which are 2 standard deviations away!</p>
+<p>It&#39;s clear on examination that the outliers are exerting a disproportionate influence on the fit. This is due to the nature of the squared loss function. If you have a single outlier that is, say 10 standard deviations away from the fit, its contribution to the loss will out-weigh that of 25 points which are 2 standard deviations away!</p>
 <p>Clearly the squared loss is overly sensitive to outliers, and this is causing issues with our fit. One way to address this within the frequentist paradigm is to simply adjust the loss function to be more robust.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Frequentist-Correction-for-Outliers:-Huber-Loss">Frequentist Correction for Outliers: Huber Loss<a class="anchor-link" href="#Frequentist-Correction-for-Outliers:-Huber-Loss">&#182;</a></h3>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The variety of possible loss functions is quite literally infinite, but one relatively well-motivated option is the <a href="http://en.wikipedia.org/wiki/Huber_loss_function">Huber loss</a>. The Huber loss defines a critical value at which the loss curve transitions from quadratic to linear. Let's create a plot which compares the Huber loss to the standard squared loss for several critical values <span class="math">\(c\)</span>:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The variety of possible loss functions is quite literally infinite, but one relatively well-motivated option is the <a href="http://en.wikipedia.org/wiki/Huber_loss_function">Huber loss</a>. The Huber loss defines a critical value at which the loss curve transitions from quadratic to linear. Let&#39;s create a plot which compares the Huber loss to the standard squared loss for several critical values $c$:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[10]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">huber_loss</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
@@ -2609,15 +2862,16 @@ In&nbsp;[10]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYcAAAEPCAYAAACp/QjLAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XlYlGX3wPHvsCkCAqICgkmKguKaa7nR4q645x6WW1m/
 9NXcNdFSxN3UXpdKzTXttVwzU3O3zFwqzTVUBCRlEUXW4f798cgwKMgAM8zC/bkuLmCWZ86MOGfO
@@ -2990,24 +3244,32 @@ sbOzQ1JSEnx9fWFjYwOVSmXyTaSB6vH09MS+ffuwcOFC9PT0QCwWIz09HQ4ODrCxsYFUKsXz58+h
 0WiM6l+5ciVCQ0Mhl8uh0Wjg6ekJALC1tYWfnx+8vb0REhKCjRs3Ctts3LgRcXFxkMvlGDlyJHJy
 ciAWi02O/CUSifD69WvExMQIb2Xt37//e3cZ+4/jLrsZY4wZ4dtKjDHGjHByYIwxZoSTA2OMMSOc
 HBhjjBnh5MAYY8wIJwfGGGNGODkwxhgzwsmBMcaYkf8BTq0qrIx6q5kAAAAASUVORK5CYII=
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The Huber loss is equivalent to the squared loss for points which are well-fit by the model, but reduces the loss contribution of outliers. For example, a point 20 standard deviations from the fit has a squared loss of 200, but a c=3 Huber loss of just over 55. Let's see the result of the best-fit line using the Huber loss rather than the squared loss. We'll plot the squared loss result in light gray for comparison:</p>
+<p>The Huber loss is equivalent to the squared loss for points which are well-fit by the model, but reduces the loss contribution of outliers. For example, a point 20 standard deviations from the fit has a squared loss of 200, but a c=3 Huber loss of just over 55. Let&#39;s see the result of the best-fit line using the Huber loss rather than the squared loss. We&#39;ll plot the squared loss result in light gray for comparison:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[11]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">def</span> <span class="nf">total_huber_loss</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">e</span><span class="o">=</span><span class="n">e</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">huber_loss</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">theta</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="n">e</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 
@@ -3021,15 +3283,16 @@ In&nbsp;[11]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXUAAAEKCAYAAADticXcAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XdYVMfeB/DvotJ2kSYsVVFUihpLUBN9FQwBryiISrAH
 jAJLmia50XQ1uQkYb6Ix7SwIiCIC6r2KKAaRYOxGxRKVYBQQEYhSVPoC5/0jd09A6Wxj9/d5nn0e
@@ -3276,41 +3539,61 @@ bAuptr4TPj4+SEhIQH19PXJzc3Hz5k1MmDCh/cJkfQKAZVn20KFD7PDhw1l7e3v2iy++kMchVNbx
 xaVLl1gXFxf2mWeeYefMmcNWVFRobFts2LCBdXZ2ZkeOHMm+/PLLbH19vca0xYIFC1hLS0u2X79+
 rI2NDRsdHd3uZ//8889Ze3t71sHBgT18+HCH5dPkI0IIUSO0nR0hhKgRCnVCCFEjFOqEEKJGKNQJ
 IUSNUKgTQogaoVAnhBA1QqFOCCFqhEKdEELUyP8DvbrhLSr3HQ8AAAAASUVORK5CYII=
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>By eye, this seems to have worked as desired: the fit is much closer to our intuition!</p>
-<p>However a Bayesian might point out that the motivation for this new loss function is a bit suspect: as we showed, the squared-loss can be straightforwardly derived from a Gaussian likelihood. The Huber loss seems a bit <em>ad hoc</em>: where does it come from? How should we decide what value of <span class="math">\(c\)</span> to use? Is there any good motivation for using a linear loss on outliers, or should we simply remove them instead? How might this choice affect our resulting model?</p>
+<p>However a Bayesian might point out that the motivation for this new loss function is a bit suspect: as we showed, the squared-loss can be straightforwardly derived from a Gaussian likelihood. The Huber loss seems a bit <em>ad hoc</em>: where does it come from? How should we decide what value of $c$ to use? Is there any good motivation for using a linear loss on outliers, or should we simply remove them instead? How might this choice affect our resulting model?</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="A-Bayesian-Approach-to-Outliers:-Nuisance-Parameters">A Bayesian Approach to Outliers: Nuisance Parameters<a class="anchor-link" href="#A-Bayesian-Approach-to-Outliers:-Nuisance-Parameters">&#182;</a></h3>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The Bayesian approach to accounting for outliers generally involves <em>modifying the model</em> so that the outliers are accounted for. For this data, it is abundantly clear that a simple straight line is not a good fit to our data. So let's propose a more complicated model that has the flexibility to account for outliers. One option is to choose a mixture between a signal and a background:</p>
-<p><span class="math">\[
+<p>The Bayesian approach to accounting for outliers generally involves <em>modifying the model</em> so that the outliers are accounted for. For this data, it is abundantly clear that a simple straight line is not a good fit to our data. So let&#39;s propose a more complicated model that has the flexibility to account for outliers. One option is to choose a mixture between a signal and a background:</p>
+<p>$$
 \begin{array}{ll}
 p(\{x_i\}, \{y_i\},\{e_i\}~|~\theta,\{g_i\},\sigma,\sigma_b) = &amp; \frac{g_i}{\sqrt{2\pi e_i^2}}\exp\left[\frac{-\left(\hat{y}(x_i~|~\theta) - y_i\right)^2}{2e_i^2}\right] \\
 &amp;+ \frac{1 - g_i}{\sqrt{2\pi \sigma_B^2}}\exp\left[\frac{-\left(\hat{y}(x_i~|~\theta) - y_i\right)^2}{2\sigma_B^2}\right]
 \end{array}
-\]</span></p>
-<p>What we've done is expanded our model with some nuisance parameters: <span class="math">\(\{g_i\}\)</span> is a series of weights which range from 0 to 1 and encode for each point <span class="math">\(i\)</span> the degree to which it fits the model. <span class="math">\(g_i=0\)</span> indicates an outlier, in which case a Gaussian of width <span class="math">\(\sigma_B\)</span> is used in the computation of the likelihood. This <span class="math">\(\sigma_B\)</span> can also be a nuisance parameter, or its value can be set at a sufficiently high number, say 50.</p>
-<p>Our model is much more complicated now: it has 22 parameters rather than 2, but the majority of these can be considered nuisance parameters, which can be marginalized-out in the end, just as we marginalized (integrated) over <span class="math">\(p\)</span> in the Billiard example. Let's construct a function which implements this likelihood. As in the previous post, we'll use the <a href="http://dan.iel.fm/emcee/current/">emcee</a> package to explore the parameter space.</p>
-<p>To actually compute this, we'll start by defining functions describing our prior, our likelihood function, and our posterior:</p>
+$$</p>
+<p>What we&#39;ve done is expanded our model with some nuisance parameters: $\{g_i\}$ is a series of weights which range from 0 to 1 and encode for each point $i$ the degree to which it fits the model. $g_i=0$ indicates an outlier, in which case a Gaussian of width $\sigma_B$ is used in the computation of the likelihood. This $\sigma_B$ can also be a nuisance parameter, or its value can be set at a sufficiently high number, say 50.</p>
+<p>Our model is much more complicated now: it has 22 parameters rather than 2, but the majority of these can be considered nuisance parameters, which can be marginalized-out in the end, just as we marginalized (integrated) over $p$ in the Billiard example.  Let&#39;s construct a function which implements this likelihood. As in the previous post, we&#39;ll use the <a href="http://dan.iel.fm/emcee/current/">emcee</a> package to explore the parameter space.</p>
+<p>To actually compute this, we&#39;ll start by defining functions describing our prior, our likelihood function, and our posterior:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[12]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># theta will be an array of length 2 + N, where N is the number of points</span>
 <span class="c"># theta[0] is the intercept, theta[1] is the slope,</span>
 <span class="c"># and theta[2 + i] is the weight g_i</span>
@@ -3335,17 +3618,25 @@ In&nbsp;[12]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now we'll run the MCMC samples to explore the parameter space:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we&#39;ll run the MCMC samples to explore the parameter space:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[13]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># Note that this step will take a few minutes to run!</span>
 
 <span class="n">ndim</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c"># number of parameters in the model</span>
@@ -3369,13 +3660,14 @@ In&nbsp;[13]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stderr">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stderr output_text">
 <pre>
 -c:16: RuntimeWarning: divide by zero encountered in log
 -c:15: RuntimeWarning: divide by zero encountered in log
@@ -3388,16 +3680,23 @@ In&nbsp;[13]:
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Once we have these samples, we can exploit a very nice property of the Markov chains. Because their distribution models the posterior, we can integrate out (i.e. marginalize) over nuisance parameters simply by ignoring them!</p>
 <p>We can look at the (marginalized) distribution of slopes and intercepts by examining the first two columns of the sample:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[14]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sample</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">sample</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s">&#39;,k&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;intercept&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;slope&#39;</span><span class="p">);</span>
@@ -3405,15 +3704,16 @@ In&nbsp;[14]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYoAAAEPCAYAAABcA4N7AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnX+UU/WVwG8yyczEYRyjscFAcDIzQQjgG5BgtaEOZuxo
 g1214azL2uDZ1u0J9Ifb1rAe3SOt4ZdtT/e0GRbX7p61bqgWu5XWQqarMru0YEcza+uRuiiOK74p
@@ -3807,25 +4107,33 @@ Ia7rAqWB9gCjo6MsLy/7cefn50ApMRwcHHB/f0+xWGR7e5tkMkkgEODx8fFP3p5IRUoU8s+zLOvT
 cDjMwsKC/9mxWIyJiQkikQiTk5NEo1Gam5tJJpN0dXVpM1uqQo/HinwRuVyOs7MzVlZWqn0pImVU
 UYh8EZZl/bCiEakmVRQiIlKRKgoREalIiUJERCpSohARkYqUKEREpCIlChERqUiJQkREKvofd37D
 cWbwghcAAAAASUVORK5CYII=
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We see a distribution of points near a slope of <span class="math">\(\sim 0.45\)</span>, and an intercept of <span class="math">\(\sim 31\)</span>. We'll plot this model over the data below, but first let's see what other information we can extract from this trace.</p>
-<p>One nice feature of analyzing MCMC samples is that the choice of nuisance parameters is completely symmetric: just as we can treat the <span class="math">\(\{g_i\}\)</span> as nuisance parameters, we can also treat the slope and intercept as nuisance parameters! Let's do this, and check the posterior for <span class="math">\(g_1\)</span> and <span class="math">\(g_2\)</span>, the outlier flag for the first two points:</p>
+<p>We see a distribution of points near a slope of $\sim 0.45$, and an intercept of $\sim 31$. We&#39;ll plot this model over the data below, but first let&#39;s see what other information we can extract from this trace.</p>
+<p>One nice feature of analyzing MCMC samples is that the choice of nuisance parameters is completely symmetric: just as we can treat the $\{g_i\}$ as nuisance parameters, we can also treat the slope and intercept as nuisance parameters! Let&#39;s do this, and check the posterior for $g_1$ and $g_2$, the outlier flag for the first two points:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[15]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sample</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">sample</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">],</span> <span class="s">&#39;,k&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;$g_1$&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;$g_2$&#39;</span><span class="p">)</span>
@@ -3836,13 +4144,14 @@ In&nbsp;[15]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 g1 mean: 0.63
 g2 mean: 0.39
@@ -3851,10 +4160,10 @@ g2 mean: 0.39
 </div>
 </div>
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_area"><div class="prompt"></div>
 
 
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYcAAAERCAYAAACQIWsgAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsvV2sc9lZH77P9zk6Ma6RwY1TI5wZJ5IT6qqVVYgcJeCL
 ETggVXIuyoUnQAQyCdD0w6mE0FSKmUngAlVy0IQLviLTi5kWgaqJI1WaSlQJKnJAQgQBieaCGAUF
@@ -4576,25 +4885,33 @@ IfDaa6+548ePu3/961/u17/+9U4PJ0eOTUd+csiRYwjcdttt7pe//KX74Q9/6I4cOeL+/ve/u+ee
 e86dOHFip4eWI8emIO/nkCNHjhw5BpCfHHLkyJEjxwBy4ZAjR44cOQaQC4ccOXLkyDGAXDjkyJEj
 R44B5MIhR44cOXIMIBcOOXLkyJFjALlwyJEjR44cA8iFQ44cOXLkGEAuHHLkyJEjxwD+H3Sr2SvG
 SW91AAAAAElFTkSuQmCC
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>There is not an extremely strong constraint on either of these, but we do see that <span class="math">\((g_1, g_2) = (1, 0)\)</span> is slightly favored: the means of <span class="math">\(g_1\)</span> and <span class="math">\(g_2\)</span> are greater than and less than 0.5, respecively. If we choose a cutoff at <span class="math">\(g=0.5\)</span>, our algorithm has identified <span class="math">\(g_2\)</span> as an outlier.</p>
-<p>Let's make use of all this information, and plot the marginalized best model over the original data. As a bonus, we'll draw red circles to indicate which points the model detects as outliers:</p>
+<p>There is not an extremely strong constraint on either of these, but we do see that $(g_1, g_2) = (1, 0)$ is slightly favored: the means of $g_1$ and $g_2$ are greater than and less than 0.5, respecively. If we choose a cutoff at $g=0.5$, our algorithm has identified $g_2$ as an outlier.</p>
+<p>Let&#39;s make use of all this information, and plot the marginalized best model over the original data. As a bonus, we&#39;ll draw red circles to indicate which points the model detects as outliers:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[16]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">theta3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sample</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">g</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sample</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:],</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">outliers</span> <span class="o">=</span> <span class="p">(</span><span class="n">g</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">)</span>
@@ -4609,15 +4926,16 @@ In&nbsp;[16]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXUAAAEKCAYAAADticXcAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XlYU1f+P/B3QNawJGEJYEAUQYtYl2rb0bHSOmh16t5i
 qyLOVNFxxml97Gi1qCBVELWLbb9tsS6IImr7c6kWRq3i1LbaadG6CyqgIKA2CTskJOf3B5PbgAEC
@@ -4935,38 +5253,71 @@ DRrEBg8ezAYPHswyMzPZb7/9xsaMGcOCg4NZREQEk8lk5u5qp8rOzmYTJ05kjLFuuy8uXrzIhg0b
 xp588kk2depUJpfLu+2+2LBhAwsNDWVhYWFszpw5TKFQdJt98eqrrzJfX19mZ2fHJBIJ2759e6vb
 vm7dOhYUFMT69evHsrKy2myfJh8RQogVoeXsCCHEilBRJ4QQK0JFnRBCrAgVdUIIsSJU1AkhxIpQ
 USeEECtCRZ0QQqwIFXVCCLEi/x/3iyWvDy9gAQAAAABJRU5ErkJggg==
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The result, shown by the dark line, matches our intuition! Furthermore, the points automatically identified as outliers are the ones we would identify by hand. For comparison, the gray lines show the two previous approaches: the simple maximum likelihood and the frequentist approach based on Huber loss.</p>
+<p>The result, shown by the dark line, matches our intuition! Furthermore, the points automatically identified as outliers are the ones we would identify by hand.  For comparison, the gray lines show the two previous approaches: the simple maximum likelihood and the frequentist approach based on Huber loss.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Discussion">Discussion<a class="anchor-link" href="#Discussion">&#182;</a></h3>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Here we've dived into linear regression in the presence of outliers. A typical Gaussian maximum likelihood approach fails to account for the outliers, but we were able to correct this in the frequentist paradigm by modifying the loss function, and in the Bayesian paradigm by adopting a mixture model with a large number of nuisance parameters.</p>
+<p>Here we&#39;ve dived into linear regression in the presence of outliers. A typical Gaussian maximum likelihood approach fails to account for the outliers, but we were able to correct this in the frequentist paradigm by modifying the loss function, and in the Bayesian paradigm by adopting a mixture model with a large number of nuisance parameters.</p>
 <p>Both approaches have their advantages and disadvantages: the frequentist approach here is relatively straightforward and computationally efficient, but is based on the use of a loss function which is not particularly well-motivated. The Bayesian approach is well-founded and produces very nice results, but requires a rather subjective specification of a prior. It is also much more intensive in both coding time and computational time.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Conclusion...-for-now">Conclusion... for now<a class="anchor-link" href="#Conclusion...-for-now">&#182;</a></h2>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In the previous post, I discussed the philosophical differences between frequentism and Bayesianism, and showed that, despite these differences, they often give the same result for simple problems. Here we've explored one category of problem where the results begin to diverge: accounting for nuisance parameters.</p>
-<p>For Bayes' billiard ball example, we showed that a naïve frequentist approach leads to the wrong answer, while a naïve Bayesian approach leads to the correct answer. This doesn't mean frequentism is wrong, but it does mean we must be very careful when applying it.</p>
+<p>In the previous post, I discussed the philosophical differences between frequentism and Bayesianism, and showed that, despite these differences, they often give the same result for simple problems. Here we&#39;ve explored one category of problem where the results begin to diverge: accounting for nuisance parameters.</p>
+<p>For Bayes&#39; billiard ball example, we showed that a naïve frequentist approach leads to the wrong answer, while a naïve Bayesian approach leads to the correct answer. This doesn&#39;t mean frequentism is wrong, but it does mean we must be very careful when applying it.</p>
 <p>For the linear regression example, we showed one possible approach from both frequentism and Bayesianism for accounting for outliers in our data. Using a robust frequentist cost function is relatively fast and painless, but is dubiously motivated and leads to results which are difficult to interpret. Using a Bayesian mixture model takes more effort and requires more intensive computation, but leads to a very nice result in which multiple questions can be answered at once: in this case, marginalizing one way to find the best-fit model, and marginalizing another way to identify outliers in the data.</p>
 <p>So which is better, frequentism or Bayesianism?</p>
-<p>The answer probably depends on your level of expertise in frequentist and Bayesian methods, as well as the size of your problem and your available computational resources. I, like many with a Physics background, tend to lean toward Bayesian methods partly because they appeal to my desire to be able to derive anything from fundamental principles. With Bayesianism, based on algebraic manipulation of a few probability axioms, we can construct extremely flexible methods to address a wide variety of problems. Just as the conservation of mass-energy can be applied to everything from projectile motion to stellar structure, Bayes' rule and the Bayesian probability interpretation can be applied to solve virtually any statistical problem: from computing gambling odds to detecting exoplanet transits in noisy photometric data. In a Bayesian paradigm, you need not spend years memorizing and understanding obscure frequentist techniques and jargon (p-values, null tests, confidence intervals, breakdown points, etc.) in order to do such nontrivial analyses. It's a common misconception, I think: people imagine that Bayesian analysis is hard. On the contrary, many scientists use it just because it's easy!</p>
-<p>Ease and aesthetics aside, though, there's a further important reason that I sit firmly in the Bayesian camp, and that has to do with the interpretation of frequentist confidence intervals and Bayesian credibility regions within the context of scientific data. As this post is already way too long, that discussion will have to wait for <a href="http://jakevdp.github.io/blog/2014/06/12/frequentism-and-bayesianism-3-confidence-credibility/">next time</a>.</p>
-<p><small> This post was written entirely in the IPython notebook. You can <a href="http://jakevdp.github.io/downloads/notebooks/FreqBayes2.ipynb">download</a> this notebook, or see a static view on <a href="http://nbviewer.ipython.org/url/jakevdp.github.io/downloads/notebooks/FreqBayes2.ipynb">nbviewer</a>. </small></p>
+<p>The answer probably depends on your level of expertise in frequentist and Bayesian methods, as well as the size of your problem and your available computational resources. I, like many with a Physics background, tend to lean toward Bayesian methods partly because they appeal to my desire to be able to derive anything from fundamental principles. With Bayesianism, based on algebraic manipulation of a few probability axioms, we can construct extremely flexible methods to address a wide variety of problems. Just as the conservation of mass-energy can be applied to everything from projectile motion to stellar structure, Bayes&#39; rule and the Bayesian probability interpretation can be applied to solve virtually any statistical problem: from computing gambling odds to detecting exoplanet transits in noisy photometric data. In a Bayesian paradigm, you need not spend years memorizing and understanding obscure frequentist techniques and jargon (p-values, null tests, confidence intervals, breakdown points, etc.) in order to do such nontrivial analyses. It&#39;s a common misconception, I think: people imagine that Bayesian analysis is hard. On the contrary, many scientists use it just because it&#39;s easy!</p>
+<p>Ease and aesthetics aside, though, there&#39;s a further important reason that I sit firmly in the Bayesian camp, and that has to do with the interpretation of frequentist confidence intervals and Bayesian credibility regions within the context of scientific data. As this post is already way too long, that discussion will have to wait for <a href="http://jakevdp.github.io/blog/2014/06/12/frequentism-and-bayesianism-3-confidence-credibility/">next time</a>.</p>
+<p><small>
+This post was written entirely in the IPython notebook.  You can <a href="http://jakevdp.github.io/downloads/notebooks/FreqBayes2.ipynb">download</a> this notebook, or see a static view on <a href="http://nbviewer.ipython.org/url/jakevdp.github.io/downloads/notebooks/FreqBayes2.ipynb">nbviewer</a>.
+</small></p>
+</div>
+</div>
 </div></p></div>
     <footer>
 <p class="meta">
@@ -5020,7 +5371,7 @@ USeEECtCRZ0QQqwIFXVCCLEi/x/3iyWvDy9gAQAAAABJRU5ErkJggg==
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Jake Vanderplas -
+    Copyright &copy;  2012-2014  - Jake Vanderplas -
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
     <script type="text/javascript">
@@ -5048,7 +5399,7 @@ USeEECtCRZ0QQqwIFXVCCLEi/x/3iyWvDy9gAQAAAABJRU5ErkJggg==
           var disqus_title = 'Frequentism and Bayesianism II: When Results Differ';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-	    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
 	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 	   })();
 	</script>

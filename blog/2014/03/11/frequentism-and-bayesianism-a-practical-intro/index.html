@@ -1777,7 +1777,7 @@ jQuery(document).ready(function($) {
 </ul>
 
 
-<form action="http://google.com/search" method="get">
+<form action="//google.com/search" method="get">
   <fieldset role="search">
     <input type="hidden" name="q" value="site:jakevdp.github.io" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
@@ -1798,47 +1798,98 @@ jQuery(document).ready(function($) {
 </header>
 
   <div class="entry-content"><p>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><em>This post is part of a 4-part series: <a href="http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/">Part I</a> <a href="http://jakevdp.github.io/blog/2014/06/06/frequentism-and-bayesianism-2-when-results-differ/">Part II</a> <a href="http://jakevdp.github.io/blog/2014/06/12/frequentism-and-bayesianism-3-confidence-credibility/">Part III</a> <a href="http://jakevdp.github.io/blog/2014/06/14/frequentism-and-bayesianism-4-bayesian-in-python/">Part IV</a></em></p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>This post is part of a 4-part series: <a href="http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/">Part I</a>  <a href="http://jakevdp.github.io/blog/2014/06/06/frequentism-and-bayesianism-2-when-results-differ/">Part II</a>  <a href="http://jakevdp.github.io/blog/2014/06/12/frequentism-and-bayesianism-3-confidence-credibility/">Part III</a>  <a href="http://jakevdp.github.io/blog/2014/06/14/frequentism-and-bayesianism-4-bayesian-in-python/">Part IV</a></em></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 
-<p>One of the first things a scientist hears about statistics is that there is are two different approaches: frequentism and Bayesianism. Despite their importance, many scientific researchers never have opportunity to learn the distinctions between them and the different practical approaches that result. The purpose of this post is to synthesize the philosophical and pragmatic aspects of the frequentist and Bayesian approaches, so that scientists like myself might be better prepared to understand the types of data analysis people do.</p>
-<p>I'll start by addressing the philosophical distinctions between the views, and from there move to discussion of how these ideas are applied in practice, with some Python code snippets demonstrating the difference between the approaches. </p>
+One of the first things a scientist hears about statistics is that there is are two different approaches: frequentism and Bayesianism. Despite their importance, many scientific researchers never have opportunity to learn the distinctions between them and the different practical approaches that result. The purpose of this post is to synthesize the philosophical and pragmatic aspects of the frequentist and Bayesian approaches, so that scientists like myself might be better prepared to understand the types of data analysis people do.
+
+I&#39;ll start by addressing the philosophical distinctions between the views, and from there move to discussion of how these ideas are applied in practice, with some Python code snippets demonstrating the difference between the approaches.
+
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Frequentism-vs.-Bayesianism:-a-Philosophical-Debate">Frequentism vs. Bayesianism: a Philosophical Debate<a class="anchor-link" href="#Frequentism-vs.-Bayesianism:-a-Philosophical-Debate">&#182;</a></h2>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Fundamentally, the disagreement between frequentists and Bayesians concerns the definition of probability.</p>
-<p>For frequentists, probability only has meaning in terms of <strong>a limiting case of repeated measurements</strong>. That is, if I measure the photon flux <span class="math">\(F\)</span> from a given star (we'll assume for now that the star's flux does not vary with time), then measure it again, then again, and so on, each time I will get a slightly different answer due to the statistical error of my measuring device. In the limit of a large number of measurements, the <em>frequency</em> of any given value indicates the probability of measuring that value. For frequentists <strong>probabilities are fundamentally related to frequencies of events</strong>. This means, for example, that in a strict frequentist view, it is meaningless to talk about the probability of the <em>true</em> flux of the star: the true flux is (by definition) a single fixed value, and to talk about a frequency distribution for a fixed value is nonsense.</p>
-<p>For Bayesians, the concept of probability is extended to cover <strong>degrees of certainty about statements</strong>. Say a Bayesian claims to measure the flux <span class="math">\(F\)</span> of a star with some probability <span class="math">\(P(F)\)</span>: that probability can certainly be estimated from frequencies in the limit of a large number of repeated experiments, but this is not fundamental. The probability is a statement of my knowledge of what the measurement reasult will be. For Bayesians, <strong>probabilities are fundamentally related to our own knowledge about an event</strong>. This means, for example, that in a Bayesian view, we can meaningfully talk about the probability that the <em>true</em> flux of a star lies in a given range. That probability codifies our knowledge of the value based on prior information and/or available data.</p>
-<p>The surprising thing is that this arguably subtle difference in philosophy leads, in practice, to vastly different approaches to the statistical analysis of data. Below I will give a few practical examples of the differences in approach, along with associated Python code to demonstrate the practical aspects of the resulting methods.</p>
+<p>For frequentists, probability only has meaning in terms of <strong>a limiting case of repeated measurements</strong>. That is, if I measure the photon flux $F$ from a given star (we&#39;ll assume for now that the star&#39;s flux does not vary with time), then measure it again, then again, and so on, each time I will get a slightly different answer due to the statistical error of my measuring device. In the limit of a large number of measurements, the <em>frequency</em> of any given value indicates the probability of measuring that value.  For frequentists <strong>probabilities are fundamentally related to frequencies of events</strong>. This means, for example, that in a strict frequentist view, it is meaningless to talk about the probability of the <em>true</em> flux of the star: the true flux is (by definition) a single fixed value, and to talk about a frequency distribution for a fixed value is nonsense.</p>
+<p>For Bayesians, the concept of probability is extended to cover <strong>degrees of certainty about statements</strong>.  Say a Bayesian claims to measure the flux $F$ of a star with some probability $P(F)$: that probability can certainly be estimated from frequencies in the limit of a large number of repeated experiments, but this is not fundamental. The probability is a statement of my knowledge of what the measurement reasult will be. For Bayesians, <strong>probabilities are fundamentally related to our own knowledge about an event</strong>. This means, for example, that in a Bayesian view, we can meaningfully talk about the probability that the <em>true</em> flux of a star lies in a given range.  That probability codifies our knowledge of the value based on prior information and/or available data.</p>
+<p>The surprising thing is that this arguably subtle difference in philosophy leads, in practice, to vastly different approaches to the statistical analysis of data.  Below I will give a few practical examples of the differences in approach, along with associated Python code to demonstrate the practical aspects of the resulting methods.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Frequentist-and-Bayesian-Approaches-in-Practice:-Counting-Photons">Frequentist and Bayesian Approaches in Practice: Counting Photons<a class="anchor-link" href="#Frequentist-and-Bayesian-Approaches-in-Practice:-Counting-Photons">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Here we'll take a look at an extremely simple problem, and compare the frequentist and Bayesian approaches to solving it. There's necessarily a bit of mathematical formalism involved, but I won't go into too much depth or discuss too many of the subtleties. If you want to go deeper, you might consider — please excuse the shameless plug — taking a look at chapters 4-5 of <a href="http://www.amazon.com/dp/0691151687/">our textbook</a>.</p>
 </div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here we&#39;ll take a look at an extremely simple problem, and compare the frequentist and Bayesian approaches to solving it. There&#39;s necessarily a bit of mathematical formalism involved, but I won&#39;t go into too much depth or discuss too many of the subtleties. If you want to go deeper, you might consider &mdash; please excuse the shameless plug &mdash; taking a look at chapters 4-5 of <a href="http://www.amazon.com/dp/0691151687/">our textbook</a>.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="The-Problem:-Simple-Photon-Counts">The Problem: Simple Photon Counts<a class="anchor-link" href="#The-Problem:-Simple-Photon-Counts">&#182;</a></h3>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Imagine that we point our telescope to the sky, and observe the light coming from a single star. For the time being, we'll assume that the star's true flux is constant with time, i.e. that is it has a fixed value <span class="math">\(F_{\rm true}\)</span> (we'll also ignore effects like sky noise and other sources of systematic error). We'll assume that we perform a series of <span class="math">\(N\)</span> measurements with our telescope, where the <span class="math">\(i^{\rm th}\)</span> measurement reports the observed photon flux <span class="math">\(F_i\)</span> and error <span class="math">\(e_i\)</span>.</p>
-<p>The question is, given this set of measurements <span class="math">\(D = \{F_i,e_i\}\)</span>, what is our best estimate of the true flux <span class="math">\(F_{\rm true}\)</span>?</p>
-<p><small>(Gratuitous aside on measurement errors: We'll make the reasonable assumption that errors are Gaussian. In a Frequentist perspective, <span class="math">\(e_i\)</span> is the standard deviation of the results of a single measurement event in the limit of repetitions of <em>that event</em>. In the Bayesian perspective, <span class="math">\(e_i\)</span> is the standard deviation of the (Gaussian) probability distribution describing our knowledge of that particular measurement given its observed value)</small></p>
-<p>Here we'll use Python to generate some toy data to demonstrate the two approaches to the problem. Because the measurements are number counts, a Poisson distribution is a good approximation to the measurement process:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Imagine that we point our telescope to the sky, and observe the light coming from a single star. For the time being, we&#39;ll assume that the star&#39;s true flux is constant with time, i.e. that is it has a fixed value $F_{\rm true}$ (we&#39;ll also ignore effects like sky noise and other sources of systematic error). We&#39;ll assume that we perform a series of $N$ measurements with our telescope, where the $i^{\rm th}$ measurement reports the observed photon flux $F_i$ and error $e_i$.</p>
+<p>The question is, given this set of measurements $D = \{F_i,e_i\}$, what is our best estimate of the true flux $F_{\rm true}$?</p>
+<p><small>(Gratuitous aside on measurement errors: We&#39;ll make the reasonable assumption that errors are Gaussian. In a Frequentist perspective, $e_i$ is the standard deviation of the results of a single measurement event in the limit of repetitions of <em>that event</em>. In the Bayesian perspective, $e_i$ is the standard deviation of the (Gaussian) probability distribution describing our knowledge of that particular measurement given its observed value)</small></p>
+<p>Here we&#39;ll use Python to generate some toy data to demonstrate the two approaches to the problem. Because the measurements are number counts, a Poisson distribution is a good approximation to the measurement process:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[1]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># Generating some simple photon count data</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
@@ -1852,17 +1903,25 @@ In&nbsp;[1]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now let's make a simple visualization of the &quot;measured&quot; data:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now let&#39;s make a simple visualization of the &quot;measured&quot; data:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[2]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%</span><span class="k">matplotlib</span> <span class="n">inline</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 
@@ -1874,15 +1933,16 @@ In&nbsp;[2]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYcAAAEPCAYAAACp/QjLAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XlwFGX+BvCnExIiJBiumXCogQjBkAjhVJSf0QTQUiKi
 C4IFURF3ZRHXVYHddTXWrhhqPVDI7lZtqRyeLAhGVFYBo6IcJoBaICOEhMtJTCAcIZdJ+vcHO7OZ
@@ -2087,46 +2147,67 @@ lzgtK3nrqaeewqhRo3DJJZdg+fLlQR4ZkfG4rETkpU6dOqGtrc3+cWNjo/3vNTU1uHDhAurq6tDQ
 eeedWL16NdLT0zF27FikpqZCVVWsXr0anTt3xt133422tjaMGzcOxcXFyMrKMvgIiIKHW3YTEZET
 LisREZETFgciInLC4kBERE5YHIiIyAmLAxEROWFxICIiJywORETkhMWBiIic/D9p5DIsYUsvfwAA
 AABJRU5ErkJggg==
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>These measurements each have a different error <span class="math">\(e_i\)</span> which is estimated from <a href="http://en.wikipedia.org/wiki/Poisson_distribution">Poisson statistics</a> using the standard square-root rule. In this toy example we already know the true flux <span class="math">\(F_{\rm true}\)</span>, but the question is this: <strong>given our measurements and errors, what is our best estimate of the true flux?</strong></p>
-<p>Let's take a look at the frequentist and Bayesian approaches to solving this.</p>
+<p>These measurements each have a different error $e_i$ which is estimated from <a href="http://en.wikipedia.org/wiki/Poisson_distribution">Poisson statistics</a> using the standard square-root rule. In this toy example we already know the
+true flux $F_{\rm true}$, but the question is this: <strong>given our measurements and errors, what is our best estimate of the true flux?</strong></p>
+<p>Let&#39;s take a look at the frequentist and Bayesian approaches to solving this.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Frequentist-Approach-to-Simple-Photon-Counts">Frequentist Approach to Simple Photon Counts<a class="anchor-link" href="#Frequentist-Approach-to-Simple-Photon-Counts">&#182;</a></h3>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We'll start with the classical frequentist <strong>maximum likelihood</strong> approach. Given a single observation <span class="math">\(D_i = (F_i, e_i)\)</span>, we can compute the probability distribution of the measurement given the true flux <span class="math">\(F_{\rm true}\)</span> given our assumption of Gaussian errors:</p>
-<p><span class="math">\[ P(D_i~|~F_{\rm true}) = \frac{1}{\sqrt{2\pi e_i^2}} \exp{\left[\frac{-(F_i - F_{\rm true})^2}{2 e_i^2}\right]} \]</span></p>
-<p>This should be read &quot;the probability of <span class="math">\(D_i\)</span> given <span class="math">\(F_{\rm true}\)</span> equals ...&quot;. You should recognize this as a normal distribution with mean <span class="math">\(F_{\rm true}\)</span> and standard deviation <span class="math">\(e_i\)</span>.</p>
-<p>We construct the <strong>likelihood function</strong> by computing the product of the probabilities for each data point:</p>
-<p><span class="math">\[\mathcal{L}(D~|~F_{\rm true}) = \prod_{i=1}^N P(D_i~|~F_{\rm true})\]</span></p>
-<p>Here <span class="math">\(D = \{D_i\}\)</span> represents the entire set of measurements. Because the value of the likelihood can become very small, it is often more convenient to instead compute the log-likelihood. Combining the previous two equations and computing the log, we have</p>
-<p><span class="math">\[\log\mathcal{L} = -\frac{1}{2} \sum_{i=1}^N \left[ \log(2\pi  e_i^2) + \frac{(F_i - F_{\rm true})^2}{e_i^2} \right]\]</span></p>
-<p>What we'd like to do is determine <span class="math">\(F_{\rm true}\)</span> such that the likelihood is maximized. For this simple problem, the maximization can be computed analytically (i.e. by setting <span class="math">\(d\log\mathcal{L}/dF_{\rm true} = 0\)</span>). This results in the following observed estimate of <span class="math">\(F_{\rm true}\)</span>:</p>
-<p><span class="math">\[ F_{\rm est} = \frac{\sum w_i F_i}{\sum w_i};~~w_i = 1/e_i^2 \]</span></p>
-<p>Notice that in the special case of all errors <span class="math">\(e_i\)</span> being equal, this reduces to</p>
-<p><span class="math">\[ F_{\rm est} = \frac{1}{N}\sum_{i=1}^N F_i \]</span></p>
-<p>That is, in agreement with intuition, <span class="math">\(F_{\rm est}\)</span> is simply the mean of the observed data when errors are equal.</p>
-<p>We can go further and ask what the error of our estimate is. In the frequentist approach, this can be accomplished by fitting a Gaussian approximation to the likelihood curve at maximum; in this simple case this can also be solved analytically. It can be shown that the standard deviation of this Gaussian approximation is:</p>
-<p><span class="math">\[ \sigma_{\rm est} = \left(\sum_{i=1}^N w_i \right)^{-1/2} \]</span></p>
-<p>These results are fairly simple calculations; let's evaluate them for our toy dataset:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We&#39;ll start with the classical frequentist <strong>maximum likelihood</strong> approach. Given a single observation $D_i = (F_i, e_i)$, we can compute the probability distribution of the measurement given the true flux $F_{\rm true}$ given our assumption of Gaussian errors:</p>
+<p>$$ P(D_i~|~F_{\rm true}) = \frac{1}{\sqrt{2\pi e_i^2}} \exp{\left[\frac{-(F_i - F_{\rm true})^2}{2 e_i^2}\right]} $$</p>
+<p>This should be read &quot;the probability of $D_i$ given $F_{\rm true}$ equals ...&quot;. You should recognize this as a normal distribution with mean $F_{\rm true}$ and standard deviation $e_i$.</p>
+<p>We construct the <strong>likelihood function</strong> by computing the product of the probabilities for each data point:</p>
+<p>$$\mathcal{L}(D~|~F_{\rm true}) = \prod_{i=1}^N P(D_i~|~F_{\rm true})$$</p>
+<p>Here $D = \{D_i\}$ represents the entire set of measurements. Because the value of the likelihood can become very small, it is often more convenient to instead compute the log-likelihood.  Combining the previous two equations and computing the log, we have</p>
+<p>$$\log\mathcal{L} = -\frac{1}{2} \sum_{i=1}^N \left[ \log(2\pi  e_i^2) + \frac{(F_i - F_{\rm true})^2}{e_i^2} \right]$$</p>
+<p>What we&#39;d like to do is determine $F_{\rm true}$ such that the likelihood is maximized. For this simple problem, the maximization can be computed analytically (i.e. by setting $d\log\mathcal{L}/dF_{\rm true} = 0$). This results in the following observed estimate of $F_{\rm true}$:</p>
+<p>$$ F_{\rm est} = \frac{\sum w_i F_i}{\sum w_i};~~w_i = 1/e_i^2 $$</p>
+<p>Notice that in the special case of all errors $e_i$ being equal, this reduces to</p>
+<p>$$ F_{\rm est} = \frac{1}{N}\sum_{i=1}^N F_i $$</p>
+<p>That is, in agreement with intuition, $F_{\rm est}$ is simply the mean of the observed data when errors are equal.</p>
+<p>We can go further and ask what the error of our estimate is. In the frequentist approach, this can be accomplished by fitting a Gaussian approximation to the likelihood curve at maximum; in this simple case this can also be solved analytically. It can be shown that the standard deviation of this Gaussian approximation is:</p>
+<p>$$ \sigma_{\rm est} = \left(\sum_{i=1}^N w_i \right)^{-1/2} $$</p>
+<p>These results are fairly simple calculations; let&#39;s evaluate them for our toy dataset:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[3]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">w</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">e</span> <span class="o">**</span> <span class="mi">2</span>
 <span class="k">print</span><span class="p">(</span><span class="s">&quot;&quot;&quot;</span>
 <span class="s">      F_true = {0}</span>
@@ -2136,13 +2217,14 @@ In&nbsp;[3]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 
       F_true = 1000
@@ -2157,55 +2239,98 @@ In&nbsp;[3]:
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We find that for 50 measurements of the flux, our estimate has an error of about 0.4% and is consistent with the input value.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Bayesian-Approach-to-Simple-Photon-Counts">Bayesian Approach to Simple Photon Counts<a class="anchor-link" href="#Bayesian-Approach-to-Simple-Photon-Counts">&#182;</a></h3>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The Bayesian approach, as you might expect, begins and ends with probabilities. It recognizes that what we fundamentally want to compute is our knowledge of the parameters in question, i.e. in this case,</p>
-<p><span class="math">\[ P(F_{\rm true}~|~D) \]</span></p>
-<p>Note that this formulation of the problem is <em>fundamentally contrary</em> to the frequentist philosophy, which says that <em>probabilities have no meaning for model parameters</em> like <span class="math">\(F_{\rm true}\)</span>. Nevertheless, within the Bayesian philosophy this is perfectly acceptable.</p>
-<p>To compute this result, Bayesians next apply <a href="http://en.wikipedia.org/wiki/Bayes&#39;_theorem">Bayes' Theorem</a>, a fundamental law of probability:</p>
-<p><span class="math">\[ P(F_{\rm true}~|~D) = \frac{P(D~|~F_{\rm true})~P(F_{\rm true})}{P(D)} \]</span></p>
-<p>Though Bayes' theorem is where Bayesians get their name, it is not this law itself that is controversial, but the Bayesian <em>interpretation of probability</em> implied by the term <span class="math">\(P(F_{\rm true}~|~D)\)</span>.</p>
-<p>Let's take a look at each of the terms in this expression:</p>
+<p>The Bayesian approach, as you might expect, begins and ends with probabilities.  It recognizes that what we fundamentally want to compute is our knowledge of the parameters in question, i.e. in this case,</p>
+<p>$$ P(F_{\rm true}~|~D) $$</p>
+<p>Note that this formulation of the problem is <em>fundamentally contrary</em> to the frequentist philosophy, which says that <em>probabilities have no meaning for model parameters</em> like $F_{\rm true}$. Nevertheless, within the Bayesian philosophy this is perfectly acceptable. </p>
+<p>To compute this result, Bayesians next apply <a href="http://en.wikipedia.org/wiki/Bayes\&#39;_theorem">Bayes&#39; Theorem</a>, a fundamental law of probability:</p>
+<p>$$ P(F_{\rm true}~|~D) = \frac{P(D~|~F_{\rm true})~P(F_{\rm true})}{P(D)} $$</p>
+<p>Though Bayes&#39; theorem is where Bayesians get their name, it is not this law itself that is controversial, but the Bayesian <em>interpretation of probability</em> implied by the term $P(F_{\rm true}~|~D)$.</p>
+<p>Let&#39;s take a look at each of the terms in this expression:</p>
 <ul>
-<li><span class="math">\(P(F_{\rm true}~|~D)\)</span>: The <strong>posterior</strong>, or the probability of the model parameters given the data: this is the result we want to compute.</li>
-<li><span class="math">\(P(D~|~F_{\rm true})\)</span>: The <strong>likelihood</strong>, which is proportional to the <span class="math">\(\mathcal{L}(D~|~F_{\rm true})\)</span> in the frequentist approach, above.</li>
-<li><span class="math">\(P(F_{\rm true})\)</span>: The <strong>model prior</strong>, which encodes what we knew about the model prior to the application of the data <span class="math">\(D\)</span>.</li>
-<li><span class="math">\(P(D)\)</span>: The <strong>data probability</strong>, which in practice amounts to simply a normalization term.</li>
+<li>$P(F_{\rm true}~|~D)$: The <strong>posterior</strong>, or the probability of the model parameters given the data: this is the result we want to compute.</li>
+<li>$P(D~|~F_{\rm true})$: The <strong>likelihood</strong>, which is proportional to the $\mathcal{L}(D~|~F_{\rm true})$ in the frequentist approach, above.</li>
+<li>$P(F_{\rm true})$: The <strong>model prior</strong>, which encodes what we knew about the model prior to the application of the data $D$.</li>
+<li>$P(D)$: The <strong>data probability</strong>, which in practice amounts to simply a normalization term.</li>
 </ul>
-<p>If we set the prior <span class="math">\(P(F_{\rm true}) \propto 1\)</span> (a <em>flat prior</em>), we find</p>
-<p><span class="math">\[P(F_{\rm true}|D) \propto \mathcal{L}(D|F_{\rm true})\]</span></p>
+<p>If we set the prior $P(F_{\rm true}) \propto 1$ (a <em>flat prior</em>), we find</p>
+<p>$$P(F_{\rm true}|D) \propto \mathcal{L}(D|F_{\rm true})$$</p>
 <p>and the Bayesian probability is maximized at precisely the same value as the frequentist result! So despite the philosophical differences, we see that (for this simple problem at least) the Bayesian and frequentist point estimates are equivalent.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="But-What-About-the-Prior?">But What About the Prior?<a class="anchor-link" href="#But-What-About-the-Prior?">&#182;</a></h3>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>You'll noticed that I glossed over something here: the prior, <span class="math">\(P(F_{\rm true})\)</span>. The prior allows inclusion of other information into the computation, which becomes very useful in cases where multiple measurement strategies are being combined to constrain a single model (as is the case in, e.g. cosmological parameter estimation). The necessity to specify a prior, however, is one of the more controversial pieces of Bayesian analysis.</p>
-<p>A frequentist will point out that the prior is problematic when no true prior information is available. Though it might seem straightforward to use a <strong>noninformative prior</strong> like the flat prior mentioned above, there are some <a href="http://normaldeviate.wordpress.com/2013/07/13/lost-causes-in-statistics-ii-noninformative-priors/comment-page-1/">surprisingly subtleties</a> involved. It turns out that in many situations, a truly noninformative prior does not exist! Frequentists point out that the subjective choice of a prior which necessarily biases your result has no place in statistical data analysis.</p>
-<p>A Bayesian would counter that frequentism doesn't solve this problem, but simply skirts the question. Frequentism can often be viewed as simply a special case of the Bayesian approach for some (implicit) choice of the prior: a Bayesian would say that it's better to make this implicit choice explicit, even if the choice might include some subjectivity.</p>
 </div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You&#39;ll noticed that I glossed over something here: the prior, $P(F_{\rm true})$. The prior allows inclusion of other information into the computation, which becomes very useful in cases where multiple measurement strategies are being combined to constrain a single model (as is the case in, e.g. cosmological parameter estimation). The necessity to specify a prior, however, is one of the more controversial pieces of Bayesian analysis.</p>
+<p>A frequentist will point out that the prior is problematic when no true prior information is available. Though it might seem straightforward to use a <strong>noninformative prior</strong> like the flat prior mentioned above, there are some <a href="http://normaldeviate.wordpress.com/2013/07/13/lost-causes-in-statistics-ii-noninformative-priors/comment-page-1/">surprisingly subtleties</a> involved. It turns out that in many situations, a truly noninformative prior does not exist! Frequentists point out that the subjective choice of a prior which necessarily biases your result has no place in statistical data analysis.</p>
+<p>A Bayesian would counter that frequentism doesn&#39;t solve this problem, but simply skirts the question. Frequentism can often be viewed as simply a special case of the Bayesian approach for some (implicit) choice of the prior: a Bayesian would say that it&#39;s better to make this implicit choice explicit, even if the choice might include some subjectivity.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Photon-Counts:-the-Bayesian-approach">Photon Counts: the Bayesian approach<a class="anchor-link" href="#Photon-Counts:-the-Bayesian-approach">&#182;</a></h3>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Leaving these philosophical debates aside for the time being, let's address how Bayesian results are generally computed in practice. For a one parameter problem like the one considered here, it's as simple as computing the posterior probability <span class="math">\(P(F_{\rm true}~|~D)\)</span> as a function of <span class="math">\(F_{\rm true}\)</span>: this is the distribution reflecting our knowledge of the parameter <span class="math">\(F_{\rm true}\)</span>. But as the dimension of the model grows, this direct approach becomes increasingly intractable. For this reason, Bayesian calculations often depend on sampling methods such as <a href="http://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo">Markov Chain Monte Carlo (MCMC)</a>.</p>
-<p>I won't go into the details of the theory of MCMC here. Instead I'll show a practical example of applying an MCMC approach using Dan Foreman-Mackey's excellent <a href="http://dan.iel.fm/emcee/current/">emcee</a> package. Keep in mind here that the goal is to <em>generate a set of points drawn from the posterior probability distribution</em>, and to use those points to determine the answer we seek.</p>
-<p>To perform this MCMC, we start by defining Python functions for the prior <span class="math">\(P(F_{\rm true})\)</span>, the likelihood <span class="math">\(P(D~|~F_{\rm true})\)</span>, and the posterior <span class="math">\(P(F_{\rm true}~|~D)\)</span>, noting that none of these need be properly normalized. Our model here is one-dimensional, but to handle multi-dimensional models we'll define the model in terms of an array of parameters <span class="math">\(\theta\)</span>, which in this case is <span class="math">\(\theta = [F_{\rm true}]\)</span>:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Leaving these philosophical debates aside for the time being, let&#39;s address how Bayesian results are generally computed in practice. For a one parameter problem like the one considered here, it&#39;s as simple as computing the posterior probability $P(F_{\rm true}~|~D)$ as a function of $F_{\rm true}$: this is the distribution reflecting our knowledge of the parameter $F_{\rm true}$. But as the dimension of the model grows, this direct approach becomes increasingly intractable. For this reason, Bayesian calculations often depend on sampling methods such as <a href="http://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo">Markov Chain Monte Carlo (MCMC)</a>.</p>
+<p>I won&#39;t go into the details of the theory of MCMC here. Instead I&#39;ll show a practical example of applying an MCMC approach using Dan Foreman-Mackey&#39;s excellent <a href="http://dan.iel.fm/emcee/current/">emcee</a>  package.  Keep in mind here that the goal is to <em>generate a set of points drawn from the posterior probability distribution</em>, and to use those points to determine the answer we seek.</p>
+<p>To perform this MCMC, we start by defining Python functions for the prior $P(F_{\rm true})$, the likelihood $P(D~|~F_{\rm true})$, and the posterior $P(F_{\rm true}~|~D)$, noting that none of these need be properly normalized. Our model here is one-dimensional, but to handle multi-dimensional models we&#39;ll define the model in terms of an array of parameters $\theta$, which in this case is $\theta = [F_{\rm true}]$:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[4]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">def</span> <span class="nf">log_prior</span><span class="p">(</span><span class="n">theta</span><span class="p">):</span>
     <span class="k">return</span> <span class="mi">1</span>  <span class="c"># flat prior</span>
 
@@ -2219,17 +2344,25 @@ In&nbsp;[4]:
 
 </div>
 </div>
+</div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Now we set up the problem, including generating some random starting guesses for the multiple chains of points.</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[5]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">ndim</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c"># number of parameters in the model</span>
 <span class="n">nwalkers</span> <span class="o">=</span> <span class="mi">50</span>  <span class="c"># number of MCMC walkers</span>
 <span class="n">nburn</span> <span class="o">=</span> <span class="mi">1000</span>  <span class="c"># &quot;burn-in&quot; period to let chains stabilize</span>
@@ -2248,17 +2381,25 @@ In&nbsp;[5]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>If this all worked correctly, the array <code>sample</code> should contain a series of 50000 points drawn from the posterior. Let's plot them and check:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If this all worked correctly, the array <code>sample</code> should contain a series of 50000 points drawn from the posterior. Let&#39;s plot them and check:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[6]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># plot a histogram of the sample</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s">&quot;stepfilled&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
@@ -2272,27 +2413,28 @@ In&nbsp;[6]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[6]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 &lt;matplotlib.text.Text at 0x1075c7510&gt;
 </pre>
-
-</div>
 </div>
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+</div>
+
+<div class="output_area"><div class="prompt"></div>
 
 
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZEAAAEPCAYAAACDTflkAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3Xtc0/e9P/BXIBEUFPAGkoRrAgm3gIKorRqPWibdYWvn
 jmgvrHBOKTuUduvpetqzrrq2p9Ju62ypK9rWznZDT3/WghrR0hq0thCRmwhKEKJJELyCykUg+f7+
@@ -2553,24 +2695,32 @@ QgghZMxYuykVIc7K1dUVMTExlseFhYUICAjgMBEh7KHzRAixssmTJw+6Twohjow2ZxFCCBkzWhMh
 xMr4fL7lDnMhISGWe6YQ4oioRAixMtqcRZwJbc4ihBAyZlQihBBCxoxKhBArc+S7/xFyO9onQggh
 ZMxoTYQQQsiYUYkQQggZMyoRQgghY0YlQgghZMyoRAghhIwZlQghhJAxoxIhhBAyZlQihBBCxuz/
 A3/mfSQ0dAwSAAAAAElFTkSuQmCC
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We end up with a sample of points drawn from the (normal) posterior distribution. The mean and standard deviation of this posterior are the corollary of the frequentist maximum likelihood estimate above:</p>
+<p>We end up with a sample of points drawn from the (normal) posterior distribution.  The mean and standard deviation of this posterior are the corollary of the frequentist maximum likelihood estimate above:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[7]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">print</span><span class="p">(</span><span class="s">&quot;&quot;&quot;</span>
 <span class="s">      F_true = {0}</span>
 <span class="s">      F_est  = {1:.0f} +/- {2:.0f} (based on {3} measurements)</span>
@@ -2579,13 +2729,14 @@ In&nbsp;[7]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 
       F_true = 1000
@@ -2600,33 +2751,64 @@ In&nbsp;[7]:
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We see that as expected for this simple problem, the Bayesian approach yields the same result as the frequentist approach!</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Discussion">Discussion<a class="anchor-link" href="#Discussion">&#182;</a></h3>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Now, you might come away with the impression that the Bayesian method is unnecessarily complicated, and in this case it certainly is. Using an Affine Invariant Markov Chain Monte Carlo Ensemble sampler to characterize a one-dimensional normal distribution is a bit like using the Death Star to destroy a beach ball, but I did this here because it demonstrates an approach that can scale to complicated posteriors in many, many dimensions, and can provide nice results in more complicated situations where an analytic likelihood approach is not possible.</p>
-<p>As a side note, you might also have noticed one little sleight of hand: at the end, we use a frequentist approach to characterize our posterior samples! When we computed the sample mean and standard deviation above, we were employing a distinctly frequentist technique to characterize the posterior distribution. The pure Bayesian result for a problem like this would be to report the posterior distribution itself (i.e. its representative sample), and leave it at that. That is, in pure Bayesianism the answer to a question is not a single number with error bars; the answer is the posterior distribution over the model parameters!</p>
+<p>As a side note, you might also have noticed one little sleight of hand: at the end, we use a frequentist approach to characterize our posterior samples!  When we computed the sample mean and standard deviation above, we were employing a distinctly frequentist technique to characterize the posterior distribution. The pure Bayesian result for a problem like this would be to report the posterior distribution itself (i.e. its representative sample), and leave it at that. That is, in pure Bayesianism the answer to a question is not a single number with error bars; the answer is the posterior distribution over the model parameters!</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Adding-a-Dimension:-Exploring-a-more-sophisticated-model">Adding a Dimension: Exploring a more sophisticated model<a class="anchor-link" href="#Adding-a-Dimension:-Exploring-a-more-sophisticated-model">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's briefly take a look at a more complicated situation, and compare the frequentist and Bayesian results yet again. Above we assumed that the star was static: now let's assume that we're looking at an object which we suspect has some stochastic variation — that is, it varies with time, but in an unpredictable way (a Quasar is a good example of such an object).</p>
-<p>We'll propose a simple 2-parameter Gaussian model for this object: <span class="math">\(\theta = [\mu, \sigma]\)</span> where <span class="math">\(\mu\)</span> is the mean value, and <span class="math">\(\sigma\)</span> is the standard deviation of the variability <em>intrinsic to the object</em>. Thus our model for the probability of the true flux at the time of each observation looks like this:</p>
-<p><span class="math">\[ F_{\rm true} \sim \frac{1}{\sqrt{2\pi\sigma^2}}\exp\left[\frac{-(F - \mu)^2}{2\sigma^2}\right]\]</span></p>
-<p>Now, we'll again consider <span class="math">\(N\)</span> observations each with their own error. We can generate them this way:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let&#39;s briefly take a look at a more complicated situation, and compare the frequentist and Bayesian results yet again.  Above we assumed that the star was static: now let&#39;s assume that we&#39;re looking at an object which we suspect has some stochastic variation &mdash; that is, it varies with time, but in an unpredictable way (a Quasar is a good example of such an object).</p>
+<p>We&#39;ll propose a simple 2-parameter Gaussian model for this object: $\theta = [\mu, \sigma]$ where $\mu$ is the mean value, and $\sigma$ is the standard deviation of the variability <em>intrinsic to the object</em>.  Thus our model for the probability of the true flux at the time of each observation looks like this:</p>
+<p>$$ F_{\rm true} \sim \frac{1}{\sqrt{2\pi\sigma^2}}\exp\left[\frac{-(F - \mu)^2}{2\sigma^2}\right]$$</p>
+<p>Now, we&#39;ll again consider $N$ observations each with their own error. We can generate them this way:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[8]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>  <span class="c"># for reproducibility</span>
 <span class="n">N</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c"># we&#39;ll use more samples for the more complicated model</span>
 <span class="n">mu_true</span><span class="p">,</span> <span class="n">sigma_true</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">15</span>  <span class="c"># stochastic flux model</span>
@@ -2638,26 +2820,40 @@ In&nbsp;[8]:
 
 </div>
 </div>
+</div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Varying-Photon-Counts:-The-Frequentist-Approach">Varying Photon Counts: The Frequentist Approach<a class="anchor-link" href="#Varying-Photon-Counts:-The-Frequentist-Approach">&#182;</a></h3>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The resulting likelihood is the convolution of the intrinsic distribution with the error distribution, so we have</p>
-<p><span class="math">\[\mathcal{L}(D~|~\theta) = \prod_{i=1}^N \frac{1}{\sqrt{2\pi(\sigma^2 + e_i^2)}}\exp\left[\frac{-(F_i - \mu)^2}{2(\sigma^2 + e_i^2)}\right]\]</span></p>
-<p>Analogously to above, we can analytically maximize this likelihood to find the best estimate for <span class="math">\(\mu\)</span>:</p>
-<p><span class="math">\[\mu_{est} =  \frac{\sum w_i F_i}{\sum w_i};~~w_i = \frac{1}{\sigma^2 + e_i^2} \]</span></p>
-<p>And here we have a problem: the optimal value of <span class="math">\(\mu\)</span> <em>depends on</em> the optimal value of <span class="math">\(\sigma\)</span>. The results are correlated, so we can no longer use straightforward analytic methods to arrive at the frequentist result.</p>
-<p>Nevertheless, we can use numerical optimization techniques to determine the maximum likelihood value. Here we'll use the optimization routines available within Scipy's <a href="http://docs.scipy.org/doc/scipy/reference/optimize.html">optimize</a> submodule:</p>
+<p>$$\mathcal{L}(D~|~\theta) = \prod_{i=1}^N \frac{1}{\sqrt{2\pi(\sigma^2 + e_i^2)}}\exp\left[\frac{-(F_i - \mu)^2}{2(\sigma^2 + e_i^2)}\right]$$</p>
+<p>Analogously to above, we can analytically maximize this likelihood to find the best estimate for $\mu$:</p>
+<p>$$\mu_{est} =  \frac{\sum w_i F_i}{\sum w_i};~~w_i = \frac{1}{\sigma^2 + e_i^2} $$</p>
+<p>And here we have a problem: the optimal value of $\mu$ <em>depends on</em> the optimal value of $\sigma$.  The results are correlated, so we can no longer use straightforward analytic methods to arrive at the frequentist result.</p>
+<p>Nevertheless, we can use numerical optimization techniques to determine the maximum likelihood value. Here we&#39;ll use the optimization routines available within Scipy&#39;s <a href="http://docs.scipy.org/doc/scipy/reference/optimize.html">optimize</a> submodule:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[9]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">def</span> <span class="nf">log_likelihood</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">F</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
     <span class="k">return</span> <span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">e</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
                          <span class="o">+</span> <span class="p">(</span><span class="n">F</span> <span class="o">-</span> <span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">e</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
@@ -2677,13 +2873,14 @@ In&nbsp;[9]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 Optimization terminated successfully.
          Current function value: 502.839505
@@ -2702,17 +2899,25 @@ Optimization terminated successfully.
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This maximum likelihood value gives our best estimate of the parameters <span class="math">\(\mu\)</span> and <span class="math">\(\sigma\)</span> governing our model of the source. But this is only half the answer: we need to determine how confident we are in this answer, that is, we need to compute the error bars on <span class="math">\(\mu\)</span> and <span class="math">\(\sigma\)</span>.</p>
-<p>There are several approaches to determining errors in a frequentist paradigm. We could, as above, fit a normal approximation to the maximum likelihood and report the covariance matrix (here we'd have to do this numerically rather than analytically). Alternatively, we can compute statistics like <span class="math">\(\chi^2\)</span> and <span class="math">\(\chi^2_{\rm dof}\)</span> to and use <a href="http://en.wikipedia.org/wiki/Pearson%27s_chi-squared_test">standard tests</a> to determine confidence limits, which also depends on strong assumptions about the Gaussianity of the likelihood. We might alternatively use randomized sampling approaches such as <a href="http://en.wikipedia.org/wiki/Jackknife_(statistics)">Jackknife</a> or <a href="http://en.wikipedia.org/wiki/Bootstrapping_(statistics)">Bootstrap</a>, which maximize the likelihood for randomized samples of the input data in order to explore the degree of certainty in the result.</p>
-<p>All of these would be valid techniques to use, but each comes with its own assumptions and subtleties. Here, for simplicity, we'll use the basic bootstrap resampler found in the <a href="http://astroML.org">astroML</a> package:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This maximum likelihood value gives our best estimate of the parameters $\mu$ and $\sigma$ governing our model of the source.
+But this is only half the answer: we need to determine how confident we are in this answer, that is, we need to compute the error bars on $\mu$ and $\sigma$.</p>
+<p>There are several approaches to determining errors in a frequentist paradigm.  We could, as above, fit a normal approximation to the maximum likelihood and report the covariance matrix (here we&#39;d have to do this numerically rather than analytically). Alternatively, we can compute statistics like $\chi^2$ and $\chi^2_{\rm dof}$ to and use <a href="http://en.wikipedia.org/wiki/Pearson%27s_chi-squared_test">standard tests</a> to determine confidence limits, which also depends on strong assumptions about the Gaussianity of the likelihood.  We might alternatively use randomized sampling approaches such as <a href="http://en.wikipedia.org/wiki/Jackknife_(statistics)">Jackknife</a> or <a href="http://en.wikipedia.org/wiki/Bootstrapping_(statistics)">Bootstrap</a>, which maximize the likelihood for randomized samples of the input data in order to explore the degree of certainty in the result.</p>
+<p>All of these would be valid techniques to use, but each comes with its own assumptions and subtleties.  Here, for simplicity, we&#39;ll use the basic bootstrap resampler found in the <a href="http://astroML.org">astroML</a> package:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[10]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">astroML.resample</span> <span class="kn">import</span> <span class="n">bootstrap</span>
 
 <span class="k">def</span> <span class="nf">fit_samples</span><span class="p">(</span><span class="n">sample</span><span class="p">):</span>
@@ -2727,17 +2932,25 @@ In&nbsp;[10]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now in a similar manner to what we did above for the MCMC Bayesian posterior, we'll compute the sample mean and standard deviation to determine the errors on the parameters.</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now in a similar manner to what we did above for the MCMC Bayesian posterior, we&#39;ll compute the sample mean and standard deviation to determine the errors on the parameters.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[11]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">mu_samp</span> <span class="o">=</span> <span class="n">samples</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
 <span class="n">sig_samp</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">samples</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
 
@@ -2747,13 +2960,14 @@ In&nbsp;[11]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
  mu    = 999 +/- 4
  sigma = 18 +/- 5
@@ -2766,22 +2980,41 @@ In&nbsp;[11]:
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>I should note that there is a <strong>huge</strong> literature on the details of bootstrap resampling, and there are definitely some subtleties of the approach that I am glossing over here. One obvious piece is that there is potential for errors to be correlated or non-Gaussian, neither of which is reflected by simply finding the mean and standard deviation of each model parameter. Nevertheless, I trust that this gives the basic idea of the frequentist approach to this problem.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Varying-Photon-Counts:-The-Bayesian-Approach">Varying Photon Counts: The Bayesian Approach<a class="anchor-link" href="#Varying-Photon-Counts:-The-Bayesian-Approach">&#182;</a></h3>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The Bayesian approach to this problem is almost exactly the same as it was in the previous problem, and we can set it up by slightly modifying the above code.</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[12]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">def</span> <span class="nf">log_prior</span><span class="p">(</span><span class="n">theta</span><span class="p">):</span>
     <span class="c"># sigma needs to be positive.</span>
     <span class="k">if</span> <span class="n">theta</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
@@ -2809,17 +3042,25 @@ In&nbsp;[12]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now that we have the samples, we'll use a convenience routine from astroML to plot the traces and the contours representing one and two standard deviations:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now that we have the samples, we&#39;ll use a convenience routine from astroML to plot the traces and the contours representing one and two standard deviations:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[13]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="kn">import</span> <span class="n">plot_mcmc</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_mcmc</span><span class="p">(</span><span class="n">sample</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s">r&#39;$\mu$&#39;</span><span class="p">,</span> <span class="s">r&#39;$\sigma$&#39;</span><span class="p">],</span> <span class="n">colors</span><span class="o">=</span><span class="s">&#39;k&#39;</span><span class="p">)</span>
@@ -2829,15 +3070,16 @@ In&nbsp;[13]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAacAAAEmCAYAAADGA1/lAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsfX1cVNXW/9eym6IQ4zQxDopyHYnEkZeInNJCKolrxeW5
 JcVT+lDUVbn30scnJX7a7Q0ieyfF3kiulVOTt0aqK0wvOiWFGY4vc8lJSRBlnCtNM4qKprJ/f/Ds
@@ -3716,27 +3958,44 @@ iCBSWVkJDocDbt++bZiOhCD6GqScCCJItLW1QVtbGwAAOJ1OSEtLg2PHjgVZKoKwB/2DLQBB9FWc
 Tic0NzfDvn37oKmpCW7fvg0DBgwItlgEYQtIORFEkDh58iRs3LgRsrOzgy0KQdgOMusRRJCorq6G
 iRMnBlsMgrAllM+JIAiCsB00cyIIgiBsBykngiAIwnaQciIIgiBsBykngiAIwnaQciIIgiBsBykn
 giAIwnaQciIIgiBsx/8DKCGCPZGM49AAAAAASUVORK5CYII=
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The red dot indicates ground truth (from our problem setup), and the contours indicate one and two standard deviations (68% and 95% confidence levels). In other words, based on this analysis we are 68% confident that the model lies within the inner contour, and 95% confident that the model lies within the outer contour.</p>
-<p>Note here that <span class="math">\(\sigma = 0\)</span> is consistent with our data within two standard deviations: that is, depending on the certainty threshold you're interested in, our data are not enough to confidently rule out the possibility of a non-varying source!</p>
-<p>The other thing to notice is that this posterior is definitely <em>not</em> Gaussian: this can be seen by the lack of symmetry in the vertical direction. That means that the Gaussian approximation used within the frequentist approach may not reflect the true uncertainties in the result. This isn't an issue with frequentism itself (i.e. there are certainly ways to account for non-Gaussianity within the frequentist paradigm), but the <em>vast majority</em> of commonly applied frequentist techniques make the explicit or implicit assumption of Gaussianity of the distribution. Bayesian approaches generally don't require such assumptions.</p>
-<p><small>(Side note on priors: there are good arguments that a flat prior on <span class="math">\(\sigma\)</span> subtley biases the calculation in this case: i.e. a flat prior is not necessarily non-informative in the case of scale factors like <span class="math">\(\sigma\)</span>. There are interesting arguments to be made that the <a href="http://en.wikipedia.org/wiki/Jeffreys_prior">Jeffreys Prior</a> would be more applicable. Here I believe the Jeffreys prior is not suitable, because <span class="math">\(\sigma\)</span> is not a true scale factor (i.e. the Gaussian has contributions from <span class="math">\(e_i\)</span> as well). On this question, I'll have to defer to others who have more expertise. Note that subtle — some would say subjective — questions like this are among the features of Bayesian analysis that frequentists take issue with).</small></p>
+<p>The red dot indicates ground truth (from our problem setup), and the contours indicate one and two standard deviations (68% and 95% confidence levels).  In other words, based on this analysis we are 68% confident that the model lies within the inner contour, and 95% confident that the model lies within the outer contour.</p>
+<p>Note here that $\sigma = 0$ is consistent with our data within two standard deviations: that is, depending on the certainty threshold you&#39;re interested in, our data are not enough to confidently rule out the possibility of a non-varying source!</p>
+<p>The other thing to notice is that this posterior is definitely <em>not</em> Gaussian: this can be seen by the lack of symmetry in the vertical direction.  That means that the Gaussian approximation used within the frequentist approach may not reflect the true uncertainties in the result.  This isn&#39;t an issue with frequentism itself (i.e. there are certainly ways to account for non-Gaussianity within the frequentist paradigm), but the <em>vast majority</em> of commonly applied frequentist techniques make the explicit  or implicit assumption of Gaussianity of the distribution.  Bayesian approaches generally don&#39;t require such assumptions.</p>
+<p><small>(Side note on priors: there are good arguments that a flat prior on $\sigma$ subtley biases the calculation in this case: i.e. a flat prior is not necessarily non-informative in the case of scale factors like $\sigma$. There are interesting arguments to be made that the <a href="http://en.wikipedia.org/wiki/Jeffreys_prior">Jeffreys Prior</a> would be more applicable. Here I believe the Jeffreys prior is not suitable, because $\sigma$ is not a true scale factor (i.e. the Gaussian has contributions from $e_i$ as well). On this question, I&#39;ll have to defer to others who have more expertise. Note that subtle &mdash; some would say subjective &mdash; questions like this are among the features of Bayesian analysis that frequentists take issue with).</small></p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion">&#182;</a></h2>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>I hope I've been able to convey through this post how philosophical differences underlying frequentism and Bayesianism lead to fundamentally different approaches to simple problems, which nonetheless can often yield similar or even identical results.</p>
+<p>I hope I&#39;ve been able to convey through this post how philosophical differences underlying frequentism and Bayesianism lead to fundamentally different approaches to simple problems, which nonetheless can often yield similar or even identical results.</p>
 <p>To summarize the differences:</p>
 <ul>
 <li>Frequentism considers probabilities to be related to frequencies of real or hypothetical events.</li>
@@ -3744,9 +4003,16 @@ giAIwnaQciIIgiBsx/8DKCGCPZGM49AAAAAASUVORK5CYII=
 <li>Frequentist analyses generally proceed through use of point estimates and maximum likelihood approaches.</li>
 <li>Bayesian analyses generally compute the posterior either directly or through some version of MCMC sampling.</li>
 </ul>
-<p>In simple problems, the two approaches can yield similar results. As data and models grow in complexity, however, the two approaches can diverge greatly. In a followup post, I plan to show an example or two of these more complicated situations. Stay tuned!</p>
+<p>In simple problems, the two approaches can yield similar results. As data and models grow in complexity, however, the two approaches can diverge greatly.  In a followup post, I plan to show an example or two of these more complicated situations.  Stay tuned!</p>
 <p><em>Update: see the followup post: <a href="http://jakevdp.github.io/blog/2014/06/06/frequentism-and-bayesianism-2-when-results-differ/">Frequentism and Bayesianism II: When Results Differ</a></em></p>
-<p><small> This post was written entirely in the IPython notebook. You can <a href="http://jakevdp.github.io/downloads/notebooks/FreqBayes.ipynb">download</a> this notebook, or see a static view <a href="http://nbviewer.ipython.org/url/jakevdp.github.io/downloads/notebooks/FreqBayes.ipynb">here</a>. </small></p>
+<p><small>
+This post was written entirely in the IPython notebook.  You can
+<a href="http://jakevdp.github.io/downloads/notebooks/FreqBayes.ipynb">download</a>
+this notebook, or see a static view
+<a href="http://nbviewer.ipython.org/url/jakevdp.github.io/downloads/notebooks/FreqBayes.ipynb">here</a>.
+</small></p>
+</div>
+</div>
 </div></p></div>
     <footer>
 <p class="meta">
@@ -3800,7 +4066,7 @@ giAIwnaQciIIgiBsx/8DKCGCPZGM49AAAAAASUVORK5CYII=
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Jake Vanderplas -
+    Copyright &copy;  2012-2014  - Jake Vanderplas -
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
     <script type="text/javascript">
@@ -3828,7 +4094,7 @@ giAIwnaQciIIgiBsx/8DKCGCPZGM49AAAAAASUVORK5CYII=
           var disqus_title = 'Frequentism and Bayesianism: A Practical Introduction';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-	    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
 	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 	   })();
 	</script>

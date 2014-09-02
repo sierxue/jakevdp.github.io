@@ -1777,7 +1777,7 @@ jQuery(document).ready(function($) {
 </ul>
 
 
-<form action="http://google.com/search" method="get">
+<form action="//google.com/search" method="get">
   <fieldset role="search">
     <input type="hidden" name="q" value="site:jakevdp.github.io" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
@@ -1798,92 +1798,260 @@ jQuery(document).ready(function($) {
 </header>
 
   <div class="entry-content"><p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 
-<p>I recently submitted a scikit-learn <a href="https://github.com/scikit-learn/scikit-learn/pull/1732">pull request</a> containing a brand new ball tree and kd-tree for fast nearest neighbor searches in python. In this post I want to highlight some of the features of the new ball tree and kd-tree code that's part of this pull request, compare it to what's available in the <code>scipy.spatial.cKDTree</code> implementation, and run a few benchmarks showing the performance of these methods on various data sets. </p>
-<p>My first-ever open source contribution was a C++ Ball Tree code, with a SWIG python wrapper, that I submitted to scikit-learn. A <a href="https://en.wikipedia.org/wiki/Ball_tree">Ball Tree</a> is a data structure that can be used for fast high-dimensional nearest-neighbor searches: I'd written it for some work I was doing on nonlinear dimensionality reduction of astronomical data (work that eventually led to <a href="http://adsabs.harvard.edu/abs/2009AJ....138.1365V">these</a> <a href="http://adsabs.harvard.edu/abs/2011AJ....142..203D">two</a> papers), and thought that it might find a good home in the scikit-learn project, which Gael and others had just begun to bring out of hibernation.</p>
-<p>After a short time, it became clear that the C++ code was not performing as well as it could be. I spent a bit of time writing a Cython adaptation of the Ball Tree, which is what currently resides in the <a href="http://scikit-learn.org/0.13/modules/neighbors.html"><code>sklearn.neighbors</code></a> module. Though this implementation is fairly fast, it still has several weaknesses:</p>
+I recently submitted a scikit-learn <a href="https://github.com/scikit-learn/scikit-learn/pull/1732">pull request</a>
+containing a brand new ball tree and kd-tree for fast nearest neighbor searches in python.
+In this post I want to highlight some of the features of the new ball tree and kd-tree
+code that&#39;s part of this pull request, compare it to what&#39;s available in the
+<code>scipy.spatial.cKDTree</code> implementation, and run a few benchmarks showing the
+performance of these methods on various data sets.
+
+
+<p>My first-ever open source contribution was a C++
+Ball Tree code, with
+a SWIG python wrapper, that I submitted to scikit-learn.
+A <a href="https://en.wikipedia.org/wiki/Ball_tree">Ball Tree</a>
+is a data structure that can be
+used for fast high-dimensional nearest-neighbor searches:
+I&#39;d written it for some work I was doing on
+nonlinear dimensionality reduction of astronomical data (work
+that eventually led to
+<a href="http://adsabs.harvard.edu/abs/2009AJ....138.1365V">these</a>
+<a href="http://adsabs.harvard.edu/abs/2011AJ....142..203D">two</a> papers),
+and thought that it might find a good home in the scikit-learn
+project, which Gael and others had just begun to bring out of
+hibernation.</p>
+<p>After a short time, it became clear that the C++ code was not performing as
+well as it could be.  I spent a bit of time writing a Cython adaptation of
+the Ball Tree, which is what currently resides in the
+<a href="http://scikit-learn.org/0.13/modules/neighbors.html"><code>sklearn.neighbors</code></a>
+module.  Though this implementation is fairly fast, it still has several
+weaknesses:</p>
 <ul>
-<li>It only works with a Minkowski distance metric (of which Euclidean is a special case). In general, a ball tree can be written to handle any true metric (i.e. one which obeys the triangle inequality).</li>
-<li>It implements only the single-tree approach, not the potentially faster dual-tree approach in which a ball tree is constructed for both the training and query sets.</li>
-<li>It implements only nearest-neighbors queries, and not any of the other tasks that a ball tree can help optimize: e.g. kernel density estimation, N-point correlation function calculations, and other so-called <a href="http://www.fast-lab.org/nbodyproblems.html">Generalized N-body Problems</a>.</li>
+<li>It only works with a Minkowski distance metric (of which Euclidean is a
+special case).  In general, a ball tree can be written to handle any
+true metric (i.e. one which obeys the triangle inequality).</li>
+<li>It implements only the single-tree approach, not the potentially faster
+dual-tree approach in which a ball tree is constructed for both the training
+and query sets.</li>
+<li>It implements only nearest-neighbors queries, and not any of the other
+tasks that a ball tree can help optimize: e.g. kernel density estimation,
+N-point correlation function calculations, and other so-called
+<a href="http://www.fast-lab.org/nbodyproblems.html">Generalized N-body Problems</a>.</li>
 </ul>
-<p>I had started running into these limits when creating astronomical data analysis examples for <a href="http://www.astroML.org">astroML</a>, the Python library for Astronomy and Machine Learning Python that I released last fall. I'd been thinking about it for a while, and finally decided it was time to invest the effort into updating and enhancing the Ball Tree. It took me longer than I planned (in fact, some of my <a href="http://jakevdp.github.io/blog/2012/08/08/memoryview-benchmarks/">first posts</a> on this blog last August came out of the benchmarking experiments aimed at this task), but just a couple weeks ago I finally got things working and submitted a <a href="https://github.com/scikit-learn/scikit-learn/pull/1732">pull request</a> to scikit-learn with the new code.</p>
+<p>I had started running into these limits when creating astronomical data
+analysis examples for <a href="http://www.astroML.org">astroML</a>,
+the Python library for Astronomy and Machine Learning Python
+that I released last fall.  I&#39;d been thinking about it for a while, and
+finally decided it was time to invest the effort into updating and
+enhancing the Ball Tree.  It took me longer than I planned (in fact, some of my
+<a href="http://jakevdp.github.io/blog/2012/08/08/memoryview-benchmarks/">first posts</a>
+on this blog last August came out of the benchmarking experiments aimed at
+this task), but just a couple weeks ago I finally got things working and submitted
+a <a href="https://github.com/scikit-learn/scikit-learn/pull/1732">pull request</a>
+to scikit-learn with the new code.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Features-of-the-New-Ball-Tree-and-KD-Tree">Features of the New Ball Tree and KD Tree<a class="anchor-link" href="#Features-of-the-New-Ball-Tree-and-KD-Tree">&#182;</a></h2>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The new code is actually more than simply a new ball tree: it's written as a generic <em>N</em> dimensional binary search tree, with specific methods added to implement a ball tree and a kd-tree on top of the same core functionality. The new trees have a lot of very interesting and powerful features:</p>
+<p>The new code is actually more than simply a new ball tree:
+it&#39;s written as a generic <em>N</em> dimensional binary search
+tree, with specific methods added to implement a ball tree and a kd-tree on top of
+the same core functionality.  The new trees have a lot of very interesting and
+powerful features:</p>
 <ul>
-<li><p>The ball tree works with any of the following distance metrics, which match those found in the module <code>scipy.spatial.distance</code>:</p>
-<p><code>['euclidean', 'minkowski', 'manhattan', 'chebyshev',  'seuclidean', 'mahalanobis', 'wminkowski', 'hamming',  'canberra', 'braycurtis', 'matching', 'jaccard',  'dice', 'kulsinski', 'rogerstanimoto', 'russellrao',  'sokalmichener', 'sokalsneath', 'haversine']</code></p></li>
-</ul>
-<p>Alternatively, the user can specify a callable Python function to act as the distance metric. While this will be quite a bit slower than using one of the optimized metrics above, it adds nice flexibility.</p>
-<ul>
-<li><p>The kd-tree works with only the first four of the above metrics. This limitation is primarily because the distance bounds are less efficiently calculated for metrics which are not axis-aligned.</p></li>
-<li><p>Both the ball tree and kd-tree implement k-neighbor and bounded neighbor searches, and can use either a single tree or dual tree approach, with either a breadth-first or depth-first tree traversal. Naive nearest neighbor searches scale as <span class="math">\(\mathcal{O}[N^2]\)</span>; the tree-based methods here scale as <span class="math">\(\mathcal{O}[N \log N]\)</span>.</p></li>
-<li><p>Both the ball tree and kd-tree have their memory pre-allocated entirely by <code>numpy</code>: this not only leads to code that's easier to debug and maintain (no memory errors!), but means that either data structure can be serialized using Python's <code>pickle</code> module. This is a very important feature in some contexts, most notably when estimators are being sent between multiple machines in a parallel computing framework.</p></li>
-<li><p>Both the ball tree and kd-tree implement fast kernel density estimation (KDE), which can be used within any of the valid distance metrics. The supported kernels are</p>
-<p><code>['gaussian', 'tophat', 'epanechnikov',  'exponential', 'linear', 'cosine']</code></p></li>
-</ul>
-<p>the combination of these kernel options with the distance metric options above leads to an extremely large number of effective kernel forms. Naive KDE scales as <span class="math">\(\mathcal{O}[N^2]\)</span>; the tree-based methods here scale as <span class="math">\(\mathcal{O}[N \log N]\)</span>.</p>
-<ul>
-<li>Both the ball tree and kd-tree implement fast 2-point correlation functions. A correlation function is a statistical measure of the distribution of data (related to the Fourier power spectrum of the density distribution). Naive 2-point correlation calculations scale as <span class="math">\(\mathcal{O}[N^2]\)</span>; the tree-based methods here scale as <span class="math">\(\mathcal{O}[N \log N]\)</span>.</li>
+<li><p>The ball tree works with any of the following distance metrics, which match
+those found in the module <code>scipy.spatial.distance</code>:</p>
+<p>  <code>[&#39;euclidean&#39;, &#39;minkowski&#39;, &#39;manhattan&#39;, &#39;chebyshev&#39;,
+   &#39;seuclidean&#39;, &#39;mahalanobis&#39;, &#39;wminkowski&#39;, &#39;hamming&#39;,
+   &#39;canberra&#39;, &#39;braycurtis&#39;, &#39;matching&#39;, &#39;jaccard&#39;,
+   &#39;dice&#39;, &#39;kulsinski&#39;, &#39;rogerstanimoto&#39;, &#39;russellrao&#39;,
+   &#39;sokalmichener&#39;, &#39;sokalsneath&#39;, &#39;haversine&#39;]</code></p>
+<p>Alternatively, the user can specify a callable Python function to act as the
+distance metric.  While this will be quite a bit slower than using one of the
+optimized metrics above, it adds nice flexibility.</p>
+</li>
+<li><p>The kd-tree works with only the first four of the above metrics.  This
+limitation is primarily because the distance bounds are less efficiently
+calculated for metrics which are not axis-aligned.</p>
+</li>
+<li><p>Both the ball tree and kd-tree implement k-neighbor and bounded neighbor searches, and
+can use either a single tree or dual tree approach, with either a breadth-first or depth-first
+tree traversal.  Naive nearest neighbor searches scale as $\mathcal{O}[N^2]$;
+the tree-based methods here scale as $\mathcal{O}[N \log N]$.</p>
+</li>
+<li><p>Both the ball tree and kd-tree have their memory pre-allocated entirely by <code>numpy</code>:
+this not only leads to code that&#39;s easier to debug and maintain (no memory errors!),
+but means that either data structure can be serialized using Python&#39;s <code>pickle</code> module.
+This is a very important feature in some contexts, most notably when estimators are being
+sent between multiple machines in a parallel computing framework.</p>
+</li>
+<li><p>Both the ball tree and kd-tree implement fast kernel density estimation (KDE), which can be
+used within any of the valid distance metrics.  The supported kernels are</p>
+<p>  <code>[&#39;gaussian&#39;, &#39;tophat&#39;, &#39;epanechnikov&#39;,
+   &#39;exponential&#39;, &#39;linear&#39;, &#39;cosine&#39;]</code></p>
+<p>the combination of these kernel options with the distance metric options above leads to
+an extremely large number of effective kernel forms.  Naive KDE scales as $\mathcal{O}[N^2]$;
+the tree-based methods here scale as $\mathcal{O}[N \log N]$.</p>
+</li>
+<li><p>Both the ball tree and kd-tree implement fast 2-point correlation functions.  A correlation
+function is a statistical measure of the distribution of data (related to the Fourier power spectrum
+of the density distribution).  Naive 2-point correlation calculations scale as $\mathcal{O}[N^2]$;
+the tree-based methods here scale as $\mathcal{O}[N \log N]$.</p>
+</li>
 </ul>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Comparison-with-cKDTree">Comparison with cKDTree<a class="anchor-link" href="#Comparison-with-cKDTree">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>As mentioned above, there is another nearest neighbor tree available in the SciPy: <code>scipy.spatial.cKDTree</code>. There are a number of things which distinguish the <code>cKDTree</code> from the new kd-tree described here:</p>
-<ul>
-<li><p>like the new kd-tree, <code>cKDTree</code> implements only the first four of the metrics listed above.</p></li>
-<li><p>Unlike the new ball tree and kd-tree, <code>cKDTree</code> uses explicit dynamic memory allocation at the construction phase. This means that the trained tree object cannot be pickled, and must be re-constructed in place of being serialized.</p></li>
-<li><p>Because of the flexibility gained through the use of dynamic node allocation, <code>cKDTree</code> can implement a more sophisticated building methods: it uses the &quot;sliding midpoint rule&quot; to ensure that nodes do not become too long and thin. One side-effect of this, however, is that for certain distributions of points, you can end up with a large proliferation of the number of nodes, which may lead to a huge memory footprint (even memory errors in some cases) and potentially inefficient searches.</p></li>
-<li><p>The <code>cKDTree</code> builds its nodes covering the entire <span class="math">\(N\)</span>-dimensional data space. this leads to relatively efficient build times because node bounds do not need to be recomputed at each level. However, the resulting tree is not as compact as it could be, which potentially leads to slower query times. The new ball tree and kd tree code shrinks nodes to only cover the part of the volume which contains points.</p></li>
-</ul>
-<p>With these distinctions, I thought it would be interesting to do some benchmarks and get a detailed comparison of the performance of the three trees. Note that the <code>cKDTree</code> has just recently been re-written and extended, and is much faster than its previous incarnation. For that reason, I've run these benchmarks with the current bleeding-edge scipy.</p>
 </div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As mentioned above, there is another nearest neighbor tree available in
+the SciPy: <code>scipy.spatial.cKDTree</code>.  There are a number of things which
+distinguish the <code>cKDTree</code> from the new kd-tree described here:</p>
+<ul>
+<li><p>like the new kd-tree, <code>cKDTree</code> implements only the first four of the
+metrics listed above.</p>
+</li>
+<li><p>Unlike the new ball tree and kd-tree, <code>cKDTree</code> uses explicit dynamic
+memory allocation at the construction phase.  This means that the trained
+tree object cannot be pickled, and must be re-constructed in place of
+being serialized.</p>
+</li>
+<li><p>Because of the flexibility gained through the use of dynamic node allocation,
+<code>cKDTree</code> can implement a more sophisticated building methods: it uses the
+&quot;sliding midpoint rule&quot; to ensure that nodes do not become too long and thin.
+One side-effect of this, however, is that for certain distributions of points,
+you can end up with a large proliferation of the number of nodes, which may
+lead to a huge memory footprint (even memory errors in some cases) and
+potentially inefficient searches.</p>
+</li>
+<li><p>The <code>cKDTree</code> builds its nodes covering the entire $N$-dimensional data space.
+this leads to relatively efficient build times because node bounds do not
+need to be recomputed at each level.  However, the resulting tree is not as
+compact as it could be, which potentially leads to slower query times.  The
+new ball tree and kd tree code shrinks nodes to only cover the part of the volume
+which contains points.</p>
+</li>
+</ul>
+<p>With these distinctions, I thought it would be interesting to do some benchmarks and
+get a detailed comparison of the performance of the three trees.
+Note that the <code>cKDTree</code> has just recently been re-written and extended, and is
+much faster than its previous incarnation.  For that reason, I&#39;ve run these benchmarks
+with the current bleeding-edge scipy.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Preparing-the-Benchmarks">Preparing the Benchmarks<a class="anchor-link" href="#Preparing-the-Benchmarks">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>But enough words. Here we'll create some scripts to run these benchmarks. There are several variables that will affect the computation time for a neighbors query:</p>
-<ul>
-<li><strong>The number of points</strong> <span class="math">\(N\)</span>: for a brute-force search, the query will scale as <span class="math">\(\mathcal{O}[N^2]\)</span> . Tree methods usually bring this down to <span class="math">\(\mathcal{O}[N \log N]\)</span> .</li>
-<li><strong>The dimension of the data</strong>, <span class="math">\(D\)</span> : both brute-force and tree-based methods will scale approximately as <span class="math">\(\mathcal{O}[D]\)</span> . For high dimensions, however, the <a href="http://en.wikipedia.org/wiki/Curse_of_dimensionality">curse of dimensionality</a> can make this scaling much worse.</li>
-<li><strong>The desired number of neighbors</strong>, <span class="math">\(k\)</span> : <span class="math">\(k\)</span> does not affect build time, but affects query time in a way that is difficult to quantify</li>
-<li><strong>The tree leaf size</strong>, <code>leaf_size</code>: The leaf size of a tree roughly specifies the number of points at which the tree switches to brute-force, and encodes the tradeoff between the cost of accessing a node, and the cost of computing the distance function.</li>
-<li><strong>The structure of the data</strong>: though data structure and distribution do not affect brute-force queries, they can have a large effect on the query times of tree-based methods.</li>
-<li><strong>Single/Dual tree query</strong>: A single-tree query searches for neighbors of one point at a time. A dual tree query builds a tree on both sets of points, and traverses both trees at the same time. This can lead to significant speedups in some cases.</li>
-<li><strong>Breadth-first vs Depth-first search</strong>: This determines how the nodes are traversed. In practice, it seems not to make a significant difference, so it won't be explored here.</li>
-<li><strong>The chosen metric</strong>: some metrics are slower to compute than others. The metric may also affect the structure of the data, the geometry of the tree, and thus the query and build times.</li>
-</ul>
-<p>In reality, query times depend on all seven of these variables in a fairly complicated way. For that reason, I'm going to show several rounds of benchmarks where these variables are modified while holding the others constant. We'll do all our tests here with the most common Euclidean distance metric, though others could be substituted if desired.</p>
-<p>We'll start by doing some imports to get our IPython notebook ready for the benchmarks. Note that at present, you'll have to install scikit-learn off <a href="https://github.com/jakevdp/scikit-learn/tree/new_ball_tree">my development branch</a> for this to work. In the future, the new KDTree and BallTree will be part of a scikit-learn release.</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>But enough words.  Here we&#39;ll create some scripts to run these benchmarks.
+There are several variables that will affect the computation time for a
+neighbors query:</p>
+<ul>
+<li><strong>The number of points</strong> $N$: for a brute-force search, the query will
+scale as $\mathcal{O}[N^2]$ .  Tree methods usually bring this down to
+$\mathcal{O}[N \log N]$ .</li>
+<li><strong>The dimension of the data</strong>, $D$ : both brute-force and tree-based methods
+will scale approximately as $\mathcal{O}[D]$ .  For high dimensions, however,
+the <a href="http://en.wikipedia.org/wiki/Curse_of_dimensionality">curse of dimensionality</a>
+can make this scaling much worse.</li>
+<li><strong>The desired number of neighbors</strong>, $k$ : $k$ does not affect build time,
+but affects query time in a way that is difficult to quantify</li>
+<li><strong>The tree leaf size</strong>, <code>leaf_size</code>: The leaf size of a tree roughly specifies
+the number of points at which the tree switches to brute-force, and encodes the
+tradeoff between the cost of accessing a node, and the cost of computing the
+distance function.</li>
+<li><strong>The structure of the data</strong>: though data structure and distribution do not
+affect brute-force queries, they can have a large effect on the query times of
+tree-based methods.</li>
+<li><strong>Single/Dual tree query</strong>:  A single-tree query searches for neighbors of one
+point at a time.  A dual tree query builds a tree on both sets of points, and
+traverses both trees at the same time.  This can lead to significant speedups
+in some cases.</li>
+<li><strong>Breadth-first vs Depth-first search</strong>: This determines how the nodes are
+traversed.  In practice, it seems not to make a significant difference,
+so it won&#39;t be explored here.</li>
+<li><strong>The chosen metric</strong>: some metrics are slower to compute than others.
+The metric may also affect the structure of the data, the geometry of the tree,
+and thus the query and build times.</li>
+</ul>
+<p>In reality, query times depend on all seven of these variables in a fairly complicated
+way.  For that reason, I&#39;m going to show several rounds of benchmarks where these
+variables are modified while holding the others constant.  We&#39;ll do all our tests here
+with the most common Euclidean distance metric, though others could be substituted
+if desired.</p>
+<p>We&#39;ll start by doing some imports to get our IPython notebook ready for the benchmarks.
+Note that at present, you&#39;ll have to install scikit-learn off
+<a href="https://github.com/jakevdp/scikit-learn/tree/new_ball_tree">my development branch</a>
+for this to work.  In the future, the new KDTree and BallTree will be part of a
+scikit-learn release.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[1]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%</span><span class="k">pylab</span> <span class="n">inline</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 
 Welcome to pylab, a matplotlib-based Python environment [backend: module://IPython.zmq.pylab.backend_inline].
@@ -1897,12 +2065,13 @@ For more information, type &apos;help(pylab)&apos;.
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[2]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.spatial</span> <span class="kn">import</span> <span class="n">cKDTree</span>
 <span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KDTree</span><span class="p">,</span> <span class="n">BallTree</span>
@@ -1910,22 +2079,41 @@ In&nbsp;[2]:
 
 </div>
 </div>
+</div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Data-Sets">Data Sets<a class="anchor-link" href="#Data-Sets">&#182;</a></h3>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>For spatial tree benchmarks, it's important to use various realistic data sets. In practice, data rarely looks like a uniform distribution, so running benchmarks on such a distribution will not lead to accurate expectations of the algorithm performance.</p>
-<p>For this reason, we'll test three datasets side-by-side: a uniform distribution of points, a set of pixel values from images of hand-written digits, and a set of flux observations from astronomical spectra.</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For spatial tree benchmarks, it&#39;s important to use various realistic data sets.
+In practice, data rarely looks like a uniform distribution, so running benchmarks
+on such a distribution will not lead to accurate expectations of the algorithm
+performance.</p>
+<p>For this reason, we&#39;ll test three datasets side-by-side: a uniform distribution
+of points, a set of pixel values from images of hand-written digits, and a set of
+flux observations from astronomical spectra.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[3]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># Uniform random distribution</span>
 <span class="n">uniform_N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">uniform_D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">1797</span><span class="p">,</span> <span class="mi">128</span><span class="p">))</span>
@@ -1933,14 +2121,16 @@ In&nbsp;[3]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[4]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># Digits distribution</span>
 <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_digits</span>
 <span class="n">digits</span> <span class="o">=</span> <span class="n">load_digits</span><span class="p">()</span>
@@ -1950,13 +2140,14 @@ In&nbsp;[4]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 (1797, 8, 8)
 
@@ -1968,12 +2159,13 @@ In&nbsp;[4]:
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[5]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># We need more than 1797 digits, so let&#39;s stack the central</span>
 <span class="c"># regions of the images to inflate the dataset.</span>
 <span class="n">digits_N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">digits</span><span class="o">.</span><span class="n">images</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">],</span>
@@ -1995,14 +2187,16 @@ In&nbsp;[5]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[6]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># The spectra can be downloaded with astroML: see http://www.astroML.org</span>
 <span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">fetch_sdss_corrected_spectra</span>
 <span class="n">spectra</span> <span class="o">=</span> <span class="n">fetch_sdss_corrected_spectra</span><span class="p">()[</span><span class="s">&#39;spectra&#39;</span><span class="p">]</span>
@@ -2011,33 +2205,35 @@ In&nbsp;[6]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[6]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 (4000, 1000)
 </pre>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[7]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># Take sections of spectra and stack them to reach N=10000 samples</span>
 <span class="n">spectra_N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">spectra</span><span class="p">[:,</span> <span class="mi">500</span><span class="p">:</span><span class="mi">504</span><span class="p">],</span>
                        <span class="n">spectra</span><span class="p">[:,</span> <span class="mi">504</span><span class="p">:</span><span class="mi">508</span><span class="p">],</span>
@@ -2048,14 +2244,16 @@ In&nbsp;[7]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[8]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">print</span> <span class="n">uniform_N</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">uniform_D</span><span class="o">.</span><span class="n">shape</span>
 <span class="k">print</span> <span class="n">digits_N</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">digits_D</span><span class="o">.</span><span class="n">shape</span>
 <span class="k">print</span> <span class="n">spectra_N</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">spectra_D</span><span class="o">.</span><span class="n">shape</span>
@@ -2063,13 +2261,14 @@ In&nbsp;[8]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 (10000, 4) (1797, 128)
 (10000, 4) (1797, 128)
@@ -2083,15 +2282,24 @@ In&nbsp;[8]:
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We now have three datasets with similar sizes. Just for the sake of visualization, let's visualize two dimensions from each as a scatter-plot:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We now have three datasets with similar sizes.  Just for the sake of
+visualization,  let&#39;s visualize two dimensions from each as a
+scatter-plot:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[9]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">titles</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;Uniform&#39;</span><span class="p">,</span> <span class="s">&#39;Digits&#39;</span><span class="p">,</span> <span class="s">&#39;Spectra&#39;</span><span class="p">]</span>
 <span class="n">datasets_D</span> <span class="o">=</span> <span class="p">[</span><span class="n">uniform_D</span><span class="p">,</span> <span class="n">digits_D</span><span class="p">,</span> <span class="n">spectra_D</span><span class="p">]</span>
 <span class="n">datasets_N</span> <span class="o">=</span> <span class="p">[</span><span class="n">uniform_N</span><span class="p">,</span> <span class="n">digits_N</span><span class="p">,</span> <span class="n">spectra_N</span><span class="p">]</span>
@@ -2105,15 +2313,16 @@ In&nbsp;[9]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAscAAADtCAYAAABTXthXAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXt4VNW5/99MMsHEkExIMklgQhICjHKPigFTf4k6kkJs
 J15o0YOJt9BqtdoqpbXHEz1WwNbL0Z5ajqcqx9tRQa31lKjVBpAKaguaKla0JN64FOnQVlvu7+8P
@@ -2737,31 +2946,57 @@ TU1Y1+AGc+bMwaFDh2JhYSGWlZXhtWvXjO9eeeUVzMnJwby8PNyzZ09E7Yj0PYPHxYsXMRAIGOk5
 Sb1u92cWu2MoEr8Db4x52RdE93Av24FnQ1VVlavtEIeoN2XXaDQajUaj0WgAXFyQp9FoNBqNRqPR
 xDpaHGs0Go1Go9FoNJ+jxbFGo9FoNBqNRvM5WhxrNBqNRqPRaDSfo8WxRqPRaDQajUbzOVocazQa
 jUaj0Wg0n/M/vcQlWIZA37cAAAAASUVORK5CYII=
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We can see how different the structure is between these three sets. The uniform data is randomly and densely distributed throughout the space. The digits data actually comprise discrete values between 0 and 16, and more-or-less fill certain regions of the parameter space. The spectra display strongly-correlated values, such that they occupy a very small fraction of the total parameter volume.</p>
+<p>We can see how different the structure is between these three sets.  The uniform data
+is randomly and densely distributed throughout the space.  The digits data actually
+comprise discrete values between 0 and 16, and more-or-less fill certain regions of the
+parameter space.  The spectra display strongly-correlated values, such that they
+occupy a very small fraction of the total parameter volume.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Benchmarking-Scripts">Benchmarking Scripts<a class="anchor-link" href="#Benchmarking-Scripts">&#182;</a></h3>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now we'll create some scripts that will help us to run the benchmarks. Don't worry about these details for now -- you can simply scroll down past these and get to the plots.</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we&#39;ll create some scripts that will help us to run the benchmarks.
+Don&#39;t worry about these details for now -- you can simply scroll down past
+these and get to the plots.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[10]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
 
 <span class="k">def</span> <span class="nf">average_time</span><span class="p">(</span><span class="n">executable</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -2778,14 +3013,16 @@ In&nbsp;[10]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[11]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">TREE_DICT</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">cKDTree</span><span class="o">=</span><span class="n">cKDTree</span><span class="p">,</span> <span class="n">KDTree</span><span class="o">=</span><span class="n">KDTree</span><span class="p">,</span> <span class="n">BallTree</span><span class="o">=</span><span class="n">BallTree</span><span class="p">)</span>
 <span class="n">colors</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">cKDTree</span><span class="o">=</span><span class="s">&#39;black&#39;</span><span class="p">,</span> <span class="n">KDTree</span><span class="o">=</span><span class="s">&#39;red&#39;</span><span class="p">,</span> <span class="n">BallTree</span><span class="o">=</span><span class="s">&#39;blue&#39;</span><span class="p">,</span> <span class="n">brute</span><span class="o">=</span><span class="s">&#39;gray&#39;</span><span class="p">,</span> <span class="n">gaussian_kde</span><span class="o">=</span><span class="s">&#39;black&#39;</span><span class="p">)</span>
 
@@ -2821,14 +3058,16 @@ In&nbsp;[11]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[12]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">def</span> <span class="nf">plot_scaling</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">estimate_brute</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">suptitle</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Plot the scaling comparisons for different tree types&quot;&quot;&quot;</span>
     <span class="c"># Find the iterable key</span>
@@ -2902,29 +3141,64 @@ In&nbsp;[12]:
 
 </div>
 </div>
+</div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Benchmark-Plots">Benchmark Plots<a class="anchor-link" href="#Benchmark-Plots">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now that all the code is in place, we can run the benchmarks. For all the plots, we'll show the build time and query time side-by-side. Note the scales on the graphs below: overall, the build times are usually a factor of 10-100 faster than the query times, so the differences in build times are rarely worth worrying about.</p>
-<p>A note about legends: we'll show <strong>single-tree approaches as a solid line</strong>, and we'll show <strong>dual-tree approaches as dashed lines</strong>. In addition, where it's relevant, we'll estimate the brute force scaling for ease of comparison.</p>
 </div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now that all the code is in place, we can run the benchmarks.
+For all the plots, we&#39;ll show the build time and query time side-by-side.  Note the scales
+on the graphs below: overall, the build times are usually a factor of 10-100
+faster than the query times, so the differences in build times are rarely
+worth worrying about.</p>
+<p>A note about legends: we&#39;ll show <strong>single-tree approaches as a solid line</strong>, and we&#39;ll show
+<strong>dual-tree approaches as dashed lines</strong>.
+In addition, where it&#39;s relevant, we&#39;ll estimate the brute force scaling for ease of comparison.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Scaling-with-Leaf-Size">Scaling with Leaf Size<a class="anchor-link" href="#Scaling-with-Leaf-Size">&#182;</a></h3>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We will start by exploring the scaling with the <code>leaf_size</code> parameter: recall that the leaf size controls the minimum number of points in a given node, and effectively adjusts the tradeoff between the cost of node traversal and the cost of a brute-force distance estimate.</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We will start by exploring the scaling with the <code>leaf_size</code> parameter: recall that the
+leaf size controls the minimum number of points in a given node, and effectively
+adjusts the tradeoff between the cost of node traversal and the cost of a brute-force
+distance estimate.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[13]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">leaf_size</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">title</span><span class="p">,</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">titles</span><span class="p">,</span> <span class="n">datasets_N</span><span class="p">):</span>
     <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_scaling</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">leaf_size</span><span class="o">=</span><span class="n">leaf_size</span><span class="p">,</span> <span class="n">suptitle</span><span class="o">=</span><span class="n">title</span><span class="p">)</span>
@@ -2932,15 +3206,16 @@ In&nbsp;[13]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAmQAAAEnCAYAAAAHNV/jAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXdYVEcXh3+7Iop0RJo0lSgWbNixYCFWjCUW7D3qZ6KJ
 JEqigr3FFGOMmkSjwYhiCbZgQbErdo3YpYlYEBCwUOf7Y8KVpe7C7t7d5bzPs4/ee+fOPTPsnD33
@@ -3532,15 +3807,16 @@ Qwe0bds2799LY/fu3fDy8oKuri6aNWuGH374ocB7urm5ITo6Om/6YOjQoViwYAEWL16MDz/8EDk5
 OdDV1cWaNWvQsmVLZd42Y0wGuP9i6sJpLxhjjDHGJMZTlowxxhhjEuMpS6YVjh8/jm+//bbAY6am
 pti3b59EJWKMsdLh/ouVBk9ZMsYYY4xJjKcsGWOMMcYkxgEZY4wxxpjEOCBjjDHGGJMYB2SMMcYY
 YxLjgIwxxhhjTGL/DxgEKx9xvklNAAAAAElFTkSuQmCC
-">
+"
+>
+</div>
 
 </div>
-</div>
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_area"><div class="prompt"></div>
 
 
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAmQAAAEnCAYAAAAHNV/jAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XdYU9cbB/BvAiIoG2QpS60bcYviQC1uLGrdE1etta7S
 inWhrbPD1vprrbNaanG2OKlKiQO3raMgWgdDxIGAspFwfn+ccjUIkkDITcL7eZ48ktybe8895r45
@@ -4121,15 +4397,16 @@ vOby5cuRlZWlnj4YN24cFi1ahKVLl2LkyJFQqVQwNjbGTz/9BEtLS00eNmNMBvj6xXTc48zDAAAA
 bUlEQVSFy14wxhhjjEmMpywZY4wxxiTGU5bMIOzduxfz58+vcF+XLl0QGhoqUYsYY6x6+PrFqoOn
 LBljjDHGJMZTlowxxhhjEuOAjDHGGGNMYhyQMcYYY4xJjAMyxhhjjDGJcUDGGGOMMSax/wc41VDW
 7dVKWAAAAABJRU5ErkJggg==
-">
+"
+>
+</div>
 
 </div>
-</div>
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_area"><div class="prompt"></div>
 
 
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAmQAAAEnCAYAAAAHNV/jAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXl8Dtf3xz/Pg0Qi+yIL2exBEq1dilhCKWqp2IXa1dbS
 SlBC1dKiparU9qWpRhUNqrGkgqqiVPiJLcgiUhJJSET28/vjNtM8WeTJ9mw579freTEzd+aeuZl7
@@ -4708,31 +4985,60 @@ sf7nhrBhwwaEhobC1tYWtWrVwuTJk/O854IFC5CYmKjfPujXrx9CQkIwY8YMdO/eHVqtFra2tliy
 ZAnq1atnystmGEYB8PrFWAoue8EwDMMwDCMxvGXJMAzDMAwjMbxlyVgF+/btw8SJE/Oca9CgATZv
 3iyRRQzDMIbB6xdjCLxlyTAMwzAMIzG8ZckwDMMwDCMxLMgYhmEYhmEkhgUZwzAMwzCRA2f8AAAA
 G0lEQVSMxLAgYxiGYRiGkRgWZAzDMAzDMBLz/6xzoS0xC19VAAAAAElFTkSuQmCC
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Note that with larger leaf size, the build time decreases: this is because fewer nodes need to be built. For the query times, we see a distinct minimum. For very small leaf sizes, the query slows down because the algorithm must access many nodes to complete the query. For very large leaf sizes, the query slows down because there are too many pairwise distance computations. If we were to use a less efficient metric function, the balance between these would change and a larger leaf size would be warranted. This benchmark motivates our setting the leaf size to 15 for the remaining tests.</p>
+<p>Note that with larger
+leaf size, the build time decreases: this is because fewer nodes need to be built.
+For the query times, we see a distinct minimum.  For very small leaf sizes,
+the query slows down because the algorithm must access many nodes to complete the query.
+For very large leaf sizes, the query slows down because there are too many pairwise distance
+computations.  If we were to use a less efficient metric function, the balance between these
+would change and a larger leaf size would be warranted.
+This benchmark motivates our setting the leaf size to 15 for the remaining tests.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Scaling-with-Number-of-Neighbors">Scaling with Number of Neighbors<a class="anchor-link" href="#Scaling-with-Number-of-Neighbors">&#182;</a></h3>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Here we'll plot the scaling with the number of neighbors <span class="math">\(k\)</span>. This should not effect the build time, because <span class="math">\(k\)</span> does not enter there. It will, however, affect the query time:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here we&#39;ll plot the scaling with the number of neighbors $k$.  This should not effect
+the build time, because $k$ does not enter there.  It will, however, affect the
+query time:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[14]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">k</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">title</span><span class="p">,</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">titles</span><span class="p">,</span> <span class="n">datasets_N</span><span class="p">):</span>
     <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_scaling</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">4000</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">suptitle</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
@@ -4741,15 +5047,16 @@ In&nbsp;[14]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAmQAAAEkCAYAAACBoS1NAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XdcE+cfB/BPwlA2YYPIEhVUHHUiRaIVra24B7ZaZ9X6
 c1ZaR1VArau1tna56kRFcRRX0YqgdeO2oFVQhoAoBWXPPL8/0pyEsElIgt/365UX3N1zd8+tb765
@@ -5258,15 +5565,16 @@ IjNjQEaydOnSJbRq1QqHDx82d1OIiAzGOYyeVc7cDSAy1NmzZzF06FAEBwdz+Z+IZIdzGGnDgIxk
 wu+//45evXqhUqVKGDp0qLmbRESkN85hVBgGZCQrKpUKFStWxObNm9GzZ09UrlwZffr0MXeziIj0
 wjmMCqOSJEkydyOIiIiISjPmkBERERGZGQMyIiIiIjNjQEZERERkZgzIiIiIiMyMARkRERGRmTEg
 IyIiIjKz/wdjZc94GgsdJwAAAABJRU5ErkJggg==
-">
+"
+>
+</div>
 
 </div>
-</div>
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_area"><div class="prompt"></div>
 
 
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAmQAAAEkCAYAAACBoS1NAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXdYVMfXx7+7FEVYYOkdLFGxJxZUVLBgRcWCig2MJWos
 MaJiBdTYoomv8WcwdsUERROxIkrA3hONokZRUFoUIkive94/bvbKwiKdhWU+z3MfuNPumXvnnj13
@@ -5830,15 +6138,16 @@ KM/YhlF2xbQuAFFeHT16FP7+/oiIiGD3PxG5HLZhZA0DMnIply5dwmuvvYZVq1ahTp06WheHiChP
 G9swyg0DMnIpJpMJ999/P9atW4d27dqhZMmS6NSpk9bFIiKyC9swyo1JKaW0LgQRERFRUcY5ZERE
 REQaY0BGREREpDEGZEREREQaY0BGREREpDEGZEREREQaY0BGREREpLH/B5p744zF+M5hAAAAAElF
 TkSuQmCC
-">
+"
+>
+</div>
 
 </div>
-</div>
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_area"><div class="prompt"></div>
 
 
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAmQAAAEkCAYAAACBoS1NAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXdYVEcXh3+7CAqy9I5UG2jsFSsWbLESo6IgaCzRT2OM
 WLABdpOoiTEGY1dUbFGsiCLYo6jRGMEoFkAkCALS657vj5u9YWGBpS5l3ue5D9yZuXPP3HL23Jkz
@@ -6372,33 +6681,63 @@ uzfWrVuH5557ztnFISKyCvswyg+nLElT3N3dUbt2bfz222/OLgoRkdXYh1F+OEJGmlK6dGmsXbsW
 Pj4+qFChAvz9/Z1dJCIii7EPo/wwICNNMRgMcHV1xaZNm9ClSxe4ubmhe/fuzi4WEZFF2IdRfgyK
 oijOLgQRERFRccY1ZEREREROxoCMiIiIyMkYkBERERE5GQMyIiIiIidjQEZERETkZAzIiIiIiJzs
 /wGgY8lFxOzWaAAAAABJRU5ErkJggg==
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Naively you might expect linear scaling with <span class="math">\(k\)</span>, but for large <span class="math">\(k\)</span> that is not the case. Because a priority queue of the nearest neighbors must be maintained, the scaling is super-linear for large <span class="math">\(k\)</span>.</p>
-<p>We also see that brute force has no dependence on <span class="math">\(k\)</span> (all distances must be computed in any case). This means that if <span class="math">\(k\)</span> is very large, a brute force approach will win out (though the exact value for which this is true depends on <span class="math">\(N\)</span>, <span class="math">\(D\)</span>, the structure of the data, and all the other factors mentioned above).</p>
-<p>Note that although the cKDTree build time is a factor of ~3 faster than the others, the absolute time difference is less than two milliseconds: a difference which is orders of magnitude smaller than the query time. This is due to the shortcut mentioned above: the <code>cKDTree</code> doesn't take the time to shrink the bounds of each node.</p>
+<p>Naively you might expect
+linear scaling with $k$, but for large $k$ that is not the case.  Because a
+priority queue of the nearest neighbors must be maintained, the scaling is
+super-linear for large $k$.</p>
+<p>We also see that brute force has no dependence on $k$ (all distances must be computed in
+any case). This means that if $k$ is very large, a brute force approach will win out
+(though the exact value for which this is true depends on $N$, $D$, the structure of
+the data, and all the other factors mentioned above).</p>
+<p>Note that although the cKDTree build time is a factor of ~3 faster than the
+others, the absolute time difference is less than two milliseconds:
+a difference which is orders of magnitude smaller than the query time.
+This is due to the shortcut mentioned above: the <code>cKDTree</code> doesn&#39;t take the time
+to shrink the bounds of each node.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Scaling-with-the-Number-of-Points">Scaling with the Number of Points<a class="anchor-link" href="#Scaling-with-the-Number-of-Points">&#182;</a></h3>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This is where things get interesting: the scaling with the number of points <span class="math">\(N\)</span> :</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This is where things get interesting: the scaling with the number of points $N$ :</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[15]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">N</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">title</span><span class="p">,</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">titles</span><span class="p">,</span> <span class="n">datasets_N</span><span class="p">):</span>
     <span class="n">plot_scaling</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">estimate_brute</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">suptitle</span><span class="o">=</span><span class="n">title</span><span class="p">)</span>
@@ -6406,15 +6745,16 @@ In&nbsp;[15]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAm4AAAEkCAYAAACWg72EAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXdYVMfXx78LgoW6VEGqIVFRo4klKlGJii1YiJVEFDsa
 bImJJYmIXaOJUaNYsaCCBQJYEEWxdyOxgIjSFFSULkrZPe8f92V/LM1d2ArzeR6eh7l37sy57ey5
@@ -7062,15 +7402,16 @@ jhvTKNOmTcPu3buRmpqq6qYwxphcOH4xReCOG9MoVapUwYQJE7B+/XpVN4UxxuTC8YspAnfcmMaZ
 OXMmvLy8kJ6eruqmMMaYXDh+sZLijhvTONWqVcOoUaPg5eXFC3wZYxqF4xcrKe64MY3xfpD73//+
 hxcvXqiwNYwxJjuOX0xR9IiIVN0IxhhjjDFWNB5xY4wxxhjTENxxY4wxxhjTENxxY4wxxhjTENxx
 Y4wxxhjTENxxY4wxxhjTENxxY4wxxhjTEP8P3/exi9jpklEAAAAASUVORK5CYII=
-">
+"
+>
+</div>
 
 </div>
-</div>
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_area"><div class="prompt"></div>
 
 
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAm4AAAEkCAYAAACWg72EAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXdYFNfXx7+7AopIWUCagFhiwaAkdhElKraINSrEBjaI
 IZbEXyyvBjAWbIkxxhILGjFCMCrYEEWQxAKWWKKgQaUIqCBdpO2e948JG5YmC7vsLtzP8+wDM3Pn
@@ -7718,15 +8059,16 @@ xhiTC8cvpijccWMaZfLkydi3bx+SkpJU3RTGGJMLxy+mCNxxYxqlXLlyGDFiBNavX6/qpjDGmFw4
 fjFF4I4b0zgzZszA9u3bkZKSouqmMMaYXDh+sYLijhvTOBUrVsTgwYOxfft2XuDLGNMoHL9YQXHH
 jWmMj4PcDz/8gLi4OBW2hjHGZMfxiymKHhGRqhvBGGOMMcbyxiNujDHGGGMagjtujDHGGGMagjtu
 jDHGGGMagjtujDHGGGMagjtujDHGGGMagjtujDHGGGMa4v/p3mcy3HdgcwAAAABJRU5ErkJggg==
-">
+"
+>
+</div>
 
 </div>
-</div>
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_area"><div class="prompt"></div>
 
 
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAm4AAAEkCAYAAACWg72EAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXdYFMcbx793FBU9kC69iLGXxC5RiQqIil2BKAqKNdgS
 exTRKJYk9ihoFAsKqFHBhih6dgE1ligGUZqASK/S7ub3x/64cFI84I7jjvk8zz2wu7Mz7+7tvvfO
@@ -8390,32 +8732,63 @@ qsADN6ZTypQpgxEjRmDVqlWabgpjjCmE+y+mCjxwYzpnypQp2LJlC9LS0jTdFMYYUwj3X6ygeODG
 dE6FChXw/fffY8uWLbzBlzGmU7j/YgXFAzemM97t5H755RfEx8drsDWMMSY/7r+YqhgREWm6EYwx
 xhhjLH8848YYY4wxpiN44MYYY4wxpiN44MYYY4wxpiN44MYYY4wxpiN44MYYY4wxpiN44MYYY4wx
 piP+D9LSGfPEi56KAAAAAElFTkSuQmCC
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We have set <em>d</em> = 4 and <em>k</em> = 5 in each case for ease of comparison. Examining the graphs, we see some common traits: all the tree algorithms seem to be scaling as approximately <span class="math">\(\mathcal{O}[N\log N]\)</span>, and both kd-trees are beating the ball tree. Somewhat surprisingly, the dual tree approaches are slower than the single-tree approaches. For 10,000 points, the speedup over brute force is around a factor of 50, and this speedup will get larger as <span class="math">\(N\)</span> further increases.</p>
-<p>Additionally, the comparison of datasets is interesting. Even for this low dimensionality, the tree methods tend to be slightly faster for structured data than for uniform data. Surprisingly, the <code>cKDTree</code> performance gets <em>worse</em> for highly structured data. I believe this is due to the use of the sliding midpoint rule: it works well for evenly distributed data, but for highly structured data can lead to situations where there are many very sparsely-populated nodes.</p>
+<p>We have set <em>d</em> = 4 and <em>k</em> = 5 in each case for ease of comparison.
+Examining the graphs, we see some common traits:
+all the tree algorithms seem to be scaling as approximately $\mathcal{O}[N\log N]$,
+and both kd-trees are beating the ball tree.  Somewhat surprisingly,
+the dual tree approaches are slower than the single-tree approaches.
+For 10,000 points, the speedup over brute force is around a factor of 50, and
+this speedup will get larger as $N$ further increases.</p>
+<p>Additionally, the comparison of datasets is interesting.  Even for this low dimensionality,
+the tree methods tend to be slightly faster for structured data than for uniform data.
+Surprisingly, the <code>cKDTree</code> performance gets <em>worse</em> for highly structured data.
+I believe this is due to the use of the sliding midpoint rule: it works well for evenly
+distributed data, but for highly structured data can lead to situations where there
+are many very sparsely-populated nodes.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Scaling-with-the-Dimension">Scaling with the Dimension<a class="anchor-link" href="#Scaling-with-the-Dimension">&#182;</a></h3>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>As a final benchmark, we'll plot the scaling with dimension.</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As a final benchmark, we&#39;ll plot the scaling with dimension.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[16]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">D</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">title</span><span class="p">,</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">titles</span><span class="p">,</span> <span class="n">datasets_D</span><span class="p">):</span>
     <span class="n">plot_scaling</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="n">D</span><span class="p">,</span> <span class="n">estimate_brute</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">suptitle</span><span class="o">=</span><span class="n">title</span><span class="p">)</span>
@@ -8423,15 +8796,16 @@ In&nbsp;[16]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAmQAAAEkCAYAAACBoS1NAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXdYFMcbx793Aopw4IGKSFcsICqJYIEYsWCJ2EvQiKJi
 LFHUnxpLVMCuiSYxMZZYUDEWjBErQQ1nARGiYhRsKE1RBAUBkXa8vz82XDg44I52HM7nee6B3Z2d
@@ -9087,15 +9461,16 @@ P+6/WH54yZIZrHr16kEul+PFixe6bgpjjCmF+y/2Ph6QMcYYY4zpGA/ImMF68OABihUrhqpVq+q6
 KYwxphTuv9j7eEDGDNKLFy8wefJkTJ8+XddNYYwxpXD/xXLDQf3MYBQvXhwtW7ZERkYGihcvDkdH
 R8yePRtGRka6bhpjjH0U918sPzwgY4wxxhjTMV6yZIwxxhjTMR6QMcYYY4zpGA/IGGOMMcZ0jAdk
 jDHGGGM6xgMyxhhjjDEd4wEZY4wxxpiO/T+gBK/gDzNdmgAAAABJRU5ErkJggg==
-">
+"
+>
+</div>
 
 </div>
-</div>
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_area"><div class="prompt"></div>
 
 
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAmQAAAEkCAYAAACBoS1NAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXdYVMfXx7+7CArSFpAiXYkKEcXYJQaiEntvGEXAlmhU
 jBpbjIBdExNfTbELigqixi4hKmgEKfaCDQVBUIMKAtJ3z/vHDftjqbvIsuw6n+fh0XvvlHPvzD17
@@ -9744,15 +10119,16 @@ mGD79u2gMnqEEGVA/RcpTQ15N4CQslJTU0NgYCAAIDExERMnTkRaWhrWrFkj34YRQkgpqP8ipaFK
 SIT6L1IUSuonSqNGjRowMjJCTk4OatSogSlTpmDRokVQUVGRd9MIIaRE1H+R0lBARgghhBAiZzRl
 SQghhBAiZxSQEUIIIYTIGQVkhBBCCCFyRgEZIYQQQoicUUBGCCGEECJnFJARQgghhMjZ/wFP+KMr
 04dn1AAAAABJRU5ErkJggg==
-">
+"
+>
+</div>
 
 </div>
-</div>
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_area"><div class="prompt"></div>
 
 
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAmQAAAEkCAYAAACBoS1NAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXdYVMfXx7+7Agqy4lJEBCmKDXvs8DMQFbtRrGhUsBCj
 sSVqFAvFgiVqEjXGEgGVKEo0lqhINGABBaJiw4bSgqggKB1h97x/bNiXlbYLuyy7zOd5eB7uvVPO
@@ -10411,34 +10787,80 @@ K9gqIYRImfRfIiUyZSlMVvny5aHRaPDo0SOlmyKEEGki/Zd4nwRkQgghhBAKk4BMmKxbt24ha9as
 KFy4sNJNEUKINJH+S7xPAjJhkh49eoShQ4di1KhRSjdFCCHSRPovkRxJ6hcmI1u2bLCwsEB8fDyy
 ZcuGvn37YuzYsTAzM1O6aUII8UnSf4mUSEAmhBBCCKEwmbIUQgghhFCYBGRCCCGEEAqTgEwIIYQQ
 QmESkAkhhBBCKEwCMiGEEEIIhUlAJoQQQgihsP8DbqPCsVl2f1AAAAAASUVORK5CYII=
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>As we increase the dimension, we see something interesting. For more broadly-distributed data (uniform and digits), the dual-tree approach begins to out-perform the single-tree approach, by as much as a factor of 2. In bottom-right panel, we again see a strong effect of the cKDTree's shortcut in construction: because it builds nodes which span the entire volume of parameter space, most of these nodes are quite empty, especially as the dimension is increased. This leads to queries which are quite a bit slower for sparse data in high dimensions, and overwhelms by a factor of 100 any computational savings at construction.</p>
+<p>As we increase the dimension, we see something interesting.  For more
+broadly-distributed data (uniform and digits), the dual-tree approach
+begins to out-perform the single-tree approach, by as much as a factor
+of 2.  In bottom-right panel, we again see a strong effect of the cKDTree&#39;s
+shortcut in construction: because it builds nodes which span the entire
+volume of parameter space, most of these nodes are quite empty, especially
+as the dimension is increased.  This leads to queries which are quite a bit
+slower for sparse data in high dimensions, and overwhelms by a factor of 100
+any computational savings at construction.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion">&#182;</a></h2>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In a lot of ways, the plots here are their own conclusion. But in general, this exercise convinces me that the new Ball Tree and KD Tree in scikit-learn are at the very least equal to the scipy implementation, and in some cases much better:</p>
+<p>In a lot of ways, the plots here are their own conclusion. But in general, this
+exercise convinces me that the new Ball Tree and KD Tree in scikit-learn are at the very
+least equal to the scipy implementation, and in some cases much better:</p>
 <ul>
 <li>All three trees scale in the expected way with the number and dimension of the data</li>
-<li>All three trees beat brute force by orders of magnitude in all but the most extreme circumstances.</li>
-<li>The <code>cKDTree</code> seems to be less optimal for highly-structured data, which is the kind of data that is generally of interest.</li>
-<li>The <code>cKDTree</code> has the further disadvantage of using dynamically allocated nodes, which cannot be serialized. The pre-allocation of memory for the new ball tree and kd tree solves this problem.</li>
+<li>All three trees beat brute force by orders of magnitude in all but the most extreme
+circumstances.</li>
+<li>The <code>cKDTree</code> seems to be less optimal for highly-structured data, which is the kind
+of data that is generally of interest.</li>
+<li>The <code>cKDTree</code> has the further disadvantage of using dynamically allocated nodes,
+which cannot be serialized.  The pre-allocation of memory
+for the new ball tree and kd tree solves this problem.</li>
 </ul>
-<p>On top of this, the new ball tree and kd tree have several other advantages, including more flexibility in traversal methods, more available metrics, and more availale query types (e.g. KDE and 2-point correlation).</p>
-<p>One thing that still puzzles me is the fact that the dual tree approaches don't offer much of an improvement over single tree. The literature on the subject would make me expect otherwise (<a href="http://www.fast-lab.org/nbodyproblems.html">FastLab</a>, for example, quotes near-linear-time queries for dual tree approaches), so perhaps there's some efficiency I've missed.</p>
-<p>In a later post, I plan to go into more detail and explore and benchmark some of the new functionalities added: the kernel density estimation and 2-point correlation function methods. Until then, I hope you've found this post interesting, and I hope you find this new code useful!</p>
-<p>This post was written entirely in the IPython notebook. You can <a href="http://jakevdp.github.com/downloads/notebooks/TreeBench.ipynb">download</a> this notebook, or see a static view <a href="http://nbviewer.ipython.org/url/jakevdp.github.com/downloads/notebooks/TreeBench.ipynb">here</a>.</p>
+<p>On top of this, the new ball tree and kd tree have several other advantages, including
+more flexibility in traversal methods, more available metrics, and more
+availale query types (e.g. KDE and 2-point correlation).</p>
+<p>One thing that still puzzles me is the fact that the dual tree approaches don&#39;t offer
+much of an improvement over single tree.  The literature on the subject would
+make me expect otherwise (<a href="http://www.fast-lab.org/nbodyproblems.html">FastLab</a>,
+for example, quotes near-linear-time queries for dual tree approaches),
+so perhaps there&#39;s some efficiency I&#39;ve missed.</p>
+<p>In a later post, I plan to go into more detail and explore and benchmark
+some of the new functionalities added: the kernel density estimation
+and 2-point correlation function methods.  Until then,
+I hope you&#39;ve found this post interesting, and I hope you find this new
+code useful!</p>
+<p>This post was written entirely in the IPython notebook.  You can
+<a href="http://jakevdp.github.com/downloads/notebooks/TreeBench.ipynb">download</a>
+this notebook, or see a static view
+<a href="http://nbviewer.ipython.org/url/jakevdp.github.com/downloads/notebooks/TreeBench.ipynb">here</a>.</p>
+</div>
+</div>
 </div></p></div>
     <footer>
 <p class="meta">
@@ -10492,7 +10914,7 @@ QmESkAkhhBBCKEwCMiGEEEIIhUlAJoQQQgihsP8DbqPCsVl2f1AAAAAASUVORK5CYII=
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Jake Vanderplas -
+    Copyright &copy;  2012-2014  - Jake Vanderplas -
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
     <script type="text/javascript">
@@ -10520,7 +10942,7 @@ QmESkAkhhBBCKEwCMiGEEEIIhUlAJoQQQgihsP8DbqPCsVl2f1AAAAAASUVORK5CYII=
           var disqus_title = 'Benchmarking Nearest Neighbor Searches in Python';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-	    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
 	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 	   })();
 	</script>

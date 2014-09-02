@@ -1777,7 +1777,7 @@ jQuery(document).ready(function($) {
 </ul>
 
 
-<form action="http://google.com/search" method="get">
+<form action="//google.com/search" method="get">
   <fieldset role="search">
     <input type="hidden" name="q" value="site:jakevdp.github.io" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
@@ -1798,26 +1798,41 @@ jQuery(document).ready(function($) {
 </header>
 
   <div class="entry-content"><p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Update, March 2014: there are some major changes and refactorings in mpld3 version 0.1. Because of this, some of the code below will not work with the current release: please see the <a href="http://mpld3.github.io">mpld3 documentation</a> for more information.</strong></p>
+<p><strong>Update, March 2014: there are some major changes and refactorings in mpld3 version 0.1.
+Because of this, some of the code below will not work with the current release: please
+see the <a href="http://mpld3.github.io">mpld3 documentation</a> for more information.</strong></p>
 
 
-<p>I've spent a lot of time recently attempting to push the boundaries of tools for interactive data exploration within the IPython notebook. I have worked on animations, including an <a href="http://jakevdp.github.io/blog/2013/05/12/embedding-matplotlib-animations/">HTML5 embedding</a> and a <a href="http://jakevdp.github.io/blog/2013/05/19/a-javascript-viewer-for-matplotlib-animations/">Javascript Viewer</a>. I have worked on <a href="http://jakevdp.github.io/blog/2013/06/01/ipython-notebook-javascript-python-communication/">javascript/python kernel interaction</a> and <a href="http://jakevdp.github.io/blog/2013/12/05/static-interactive-widgets/">static javascript widgets</a>. But I would say that the holy grail of interactive data visualization in the IPython notebook is, as I've <a href="http://jakevdp.github.io/blog/2013/03/23/matplotlib-and-the-future-of-visualization-in-python/">mentioned previously</a>, a truly interactive in-browser matplotlib display.</p>
-<p>There are many people pushing in this direction in the Python world. <a href="http://continuum.io/blog/painless_streaming_plots_w_bokeh">Bokeh</a> and <a href="https://plot.ly/">Plotly</a> are new visualization packages which have built Python APIs from scratch. The demos are beautiful and impressive, and the APIs are clean and intuitive. But, because matplotlib is so well-established in the Python world, it would be nice to be able to continue using it even in the age of browser-based visualization. To this end, some of the matplotlib core devs have been working on a <a href="http://mdboom.github.io/blog/2012/10/11/matplotlib-in-the-browser-its-coming/">WebGL viewer</a> for matplotlib figures. I've seen a working demo, and it's very cool, but last I heard it still has a long way to go.</p>
-<p>I've been wondering for a while whether it might be possible to create a solution using D3.js. D3 (short for <a href="http://d3js.org/">data-driven documents</a>) is a framework which facilitates the easy creation and manipulation of groups of HTML objects. Combined with the native SVG support of modern web browsers, it provides an extremely powerful and flexible low-level interface to creating interactive graphics on the web. I've long wondered what it would take to write a D3 backend or frontend for matplotlib, but I'd never experimented with the idea. It was a couple weeks ago at <a href="http://seattle.beerandcode.org/">Seattle Beer &amp;&amp; Code</a> meetup that I chatted with some expert Javascript hackers who pointed out where I might start.</p>
-<p>I started to try things out, and over the course of a few late nights, came up with a first attempt at a partial interactive D3 viewer for matplotlib images: the result is the <code>mpld3</code> package, available on <a href="http://github.com/jakevdp/mpld3">my GitHub page</a>.</p>
+<p>I&#39;ve spent a lot of time recently attempting to push the boundaries of tools for interactive data exploration within the IPython notebook.  I have worked on animations, including an <a href="http://jakevdp.github.io/blog/2013/05/12/embedding-matplotlib-animations/">HTML5 embedding</a> and a <a href="http://jakevdp.github.io/blog/2013/05/19/a-javascript-viewer-for-matplotlib-animations/">Javascript Viewer</a>.  I have worked on <a href="http://jakevdp.github.io/blog/2013/06/01/ipython-notebook-javascript-python-communication/">javascript/python kernel interaction</a> and <a href="http://jakevdp.github.io/blog/2013/12/05/static-interactive-widgets/">static javascript widgets</a>.  But I would say that the holy grail of interactive data visualization in the IPython notebook is, as I&#39;ve <a href="http://jakevdp.github.io/blog/2013/03/23/matplotlib-and-the-future-of-visualization-in-python/">mentioned previously</a>, a truly interactive in-browser matplotlib display.</p>
+<p>There are many people pushing in this direction in the Python world. <a href="http://continuum.io/blog/painless_streaming_plots_w_bokeh">Bokeh</a> and <a href="https://plot.ly/">Plotly</a> are new visualization packages which have built Python APIs from scratch.  The demos are beautiful and impressive, and the APIs are clean and intuitive.  But, because matplotlib is so well-established in the Python world, it would be nice to be able to continue using it even in the age of browser-based visualization. To this end, some of the matplotlib core devs have been working on a <a href="http://mdboom.github.io/blog/2012/10/11/matplotlib-in-the-browser-its-coming/">WebGL viewer</a> for matplotlib figures.  I&#39;ve seen a working demo, and it&#39;s very cool, but last I heard it still has a long way to go.</p>
+<p>I&#39;ve been wondering for a while whether it might be possible to create a solution using D3.js.  D3 (short for <a href="http://d3js.org/">data-driven documents</a>) is a framework which facilitates the easy creation and manipulation of groups of HTML objects.  Combined with the native SVG support of modern web browsers, it provides an extremely powerful and flexible low-level interface to creating interactive graphics on the web.  I&#39;ve long wondered what it would take to write a D3 backend or frontend for matplotlib, but I&#39;d never experimented with the idea. It was a couple weeks ago at <a href="http://seattle.beerandcode.org/">Seattle Beer &amp;&amp; Code</a> meetup that I chatted with some expert Javascript hackers who pointed out where I might start.</p>
+<p>I started to try things out, and over the course of a few late nights, came up with a first attempt at a partial interactive D3 viewer for matplotlib images: the result is the <code>mpld3</code> package, available on <a href="http://github.com/jakevdp/mpld3">my GitHub page</a>.  </p>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="a-first-demo-mpld3">A First Demo: <code>mpld3</code></h2>
-<p>The usage of <code>mpld3</code> is extremely simple: with it, we can simply create a matplotlib plot, call <code>display_d3</code>, and get an interactive result rendered using D3! Here's a quick example: be sure to try panning and zooming the plot with your mouse.</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="a-first-demo-mpld3-">A First Demo: <code>mpld3</code></h2>
+<p>The usage of <code>mpld3</code> is extremely simple: with it, we can simply create a matplotlib plot, call <code>display_d3</code>, and get an interactive result rendered using D3!  Here&#39;s a quick example: be sure to try panning and zooming the plot with your mouse.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[1]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%</span><span class="k">matplotlib</span> <span class="n">inline</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
@@ -1826,14 +1841,16 @@ In&nbsp;[1]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[2]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">),</span>
@@ -1853,16 +1870,16 @@ In&nbsp;[2]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[2]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
-<div class="output_html rendered_html">
+<div class="output_html rendered_html output_subarea output_pyout">
 
     <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
     
@@ -2148,22 +2165,28 @@ In&nbsp;[2]:
 </div>
 
 </div>
-</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="how-it-all-works">How it all works</h2>
-<p>So what exactly is the magic here? We can take a look at what's going on under the hood by printing the html directly. It's long, so we'll print just the first few lines:</p>
+<p>So what exactly is the magic here?  We can take a look at what&#39;s going on under the hood by printing the html directly.  It&#39;s long, so we&#39;ll print just the first few lines:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[3]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">mpld3</span>
 <span class="n">html</span> <span class="o">=</span> <span class="n">mpld3</span><span class="o">.</span><span class="n">fig_to_d3</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
 <span class="k">print</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">html</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)[:</span><span class="mi">12</span><span class="p">])</span>
@@ -2171,13 +2194,14 @@ In&nbsp;[3]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 
     &lt;script type=&quot;text/javascript&quot; src=&quot;http://d3js.org/d3.v3.min.js&quot;&gt;&lt;/script&gt;
@@ -2200,14 +2224,24 @@ In&nbsp;[3]:
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>You can download this notebook and print the full HTML to see more.</p>
-<p>The essential idea is this: matplotlib has a well-defined API with an <a href="http://matplotlib.org/api/index.html">abstract object structure</a> which is rendered to different formats (interactive displays, pdf, png, etc.) through specialized backends. What I've done here is create a function which digs into the object structure of a matplotlib figure, sniffs out relevant information, and translates it into D3-powered vector graphics. Having never used D3 before this week, I based it all on examples I found online (<a href="http://alignedleft.com/tutorials/d3/making-a-scatterplot">this</a>, <a href="http://jsfiddle.net/KSAbK/1/">that</a>, <a href="http://bl.ocks.org/weiglemc/6185069">and</a> <a href="http://stackoverflow.com/questions/15069959/d3-js-scatter-plot-zoom-drag-boundaries-zoom-buttons-reset-zoom-calculate-m">others</a>), which were extremely helpful in the process.</p>
-<p>Once that mapping of matplotlib object to D3-powered HTML/Javascript was complete, I tied the resulting HTML to the IPython's <a href="http://nbviewer.ipython.org/github/ipython/ipython/blob/master/examples/notebooks/Part%205%20-%20Rich%20Display%20System.ipynb">rich display</a> hook, and the result is what you see above.</p>
+<p>The essential idea is this: matplotlib has a well-defined API with an <a href="http://matplotlib.org/api/index.html">abstract object structure</a> which is rendered to different formats (interactive displays, pdf, png, etc.) through specialized backends.  What I&#39;ve done here is create a function which digs into the object structure of a matplotlib figure, sniffs out relevant information, and translates it into D3-powered vector graphics.  Having never used D3 before this week, I based it all on examples I found online (<a href="http://alignedleft.com/tutorials/d3/making-a-scatterplot">this</a>, <a href="http://jsfiddle.net/KSAbK/1/">that</a>, <a href="http://bl.ocks.org/weiglemc/6185069">and</a> <a href="http://stackoverflow.com/questions/15069959/d3-js-scatter-plot-zoom-drag-boundaries-zoom-buttons-reset-zoom-calculate-m">others</a>), which were extremely helpful in the process.</p>
+<p>Once that mapping of matplotlib object to D3-powered HTML/Javascript was complete, I tied the resulting HTML to the IPython&#39;s  <a href="http://nbviewer.ipython.org/github/ipython/ipython/blob/master/examples/notebooks/Part%205%20-%20Rich%20Display%20System.ipynb">rich display</a> hook, and the result is what you see above.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="whats-supported-and-whats-not">What's supported and what's not</h2>
-<p>To be entirely fair, I should point out now that if you're expecting to take this and render your favorite matplotlib plot out-of-the-box, you're probably in for a disappointment. The package is currently a limited proof-of-concept which works for a few of matplotlib's features; I'm hoping to add others with time (or better yet, let other contributors add to the library), but as of this posting only the following is supported:</p>
+<h2 id="what-s-supported-and-what-s-not">What&#39;s supported and what&#39;s not</h2>
+<p>To be entirely fair, I should point out now that if you&#39;re expecting to take this and render your favorite matplotlib plot out-of-the-box, you&#39;re probably in for a disappointment.  The package is currently a limited proof-of-concept which works for a few of matplotlib&#39;s features; I&#39;m hoping to add others with time (or better yet, let other contributors add to the library), but as of this posting only the following is supported:</p>
 <h4 id="currently-supported-features">Currently Supported Features</h4>
 <ul>
 <li>Defining figure sizes</li>
@@ -2217,7 +2251,7 @@ In&nbsp;[3]:
 <li>grids of various styles</li>
 <li>xlabels, ylabels, titles, and text</li>
 </ul>
-<p>That's a small list out of a large number of features available. Here are some of the future features to work on, to name a few:</p>
+<p>That&#39;s a small list out of a large number of features available.  Here are some of the future features to work on, to name a few:</p>
 <h4 id="currently-unsupported-features">Currently Unsupported Features</h4>
 <ul>
 <li>patches (i.e. shapes like histograms, etc.)</li>
@@ -2227,26 +2261,41 @@ In&nbsp;[3]:
 <li>correct text placement and alignment</li>
 <li>images (e.g. <code>plt.imshow()</code>)</li>
 <li>log axes and date axes</li>
-<li>everything else I didn't explicitly list above</li>
+<li>everything else I didn&#39;t explicitly list above</li>
 <li>tick placement and formatting</li>
 <li>axes text (i.e. text whihc pans and zooms with the data)</li>
 <li>legends and plot labels</li>
 </ul>
-<p>As you can see, there's a lot that's missing. However, there's nothing fundamental keeping most of these from being added: it's just a matter of putting-in the coding hours. I've tried to design the module so that it will be easy to extend; if you'd like to contribute, please take a look and try it out! And, if you're reading this much past December 2013, I (and others) will hopefully have done some more work and implemented some more features. Be sure to check the <a href="http://github.com/jakevdp/mpld3/">github repository</a> for updates.</p>
+<p>As you can see, there&#39;s a lot that&#39;s missing.  However, there&#39;s nothing fundamental keeping most of these from being added: it&#39;s just a matter of putting-in the coding hours.  I&#39;ve tried to design the module so that it will be easy to extend; if you&#39;d like to contribute, please take a look and try it out!  And, if you&#39;re reading this much past December 2013, I (and others) will hopefully have done some more work and implemented some more features.  Be sure to check the <a href="http://github.com/jakevdp/mpld3/">github repository</a> for updates.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="more-examples">More Examples</h2>
-<p>The details out of the way, we can now take a look at a few more examples of what is possible here. You'll see the lines, points, grids, and labels that are made possible in the current version of <code>mpld3</code>. In each case, note the fact that we're not using any markup beyond the standard matplotlib syntax. Throughout, I've tried to capture the relevant metadata and pass it on to the HTML-rendered plot:</p>
+<p>The details out of the way, we can now take a look at a few more examples of what is possible here.  You&#39;ll see the lines, points, grids, and labels that are made possible in the current version of <code>mpld3</code>.  In each case, note the fact that we&#39;re not using any markup beyond the standard matplotlib syntax.  Throughout, I&#39;ve tried to capture the relevant metadata and pass it on to the HTML-rendered plot:</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="multiple-lines">Multiple Lines</h3>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[4]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">offset</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span>
@@ -2260,16 +2309,16 @@ In&nbsp;[4]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[4]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
-<div class="output_html rendered_html">
+<div class="output_html rendered_html output_subarea output_pyout">
 
     <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
     
@@ -2709,21 +2758,27 @@ In&nbsp;[4]:
 </div>
 
 </div>
-</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="dots-and-points">Dots and Points</h3>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[5]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span> <span class="s">&#39;-o&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
         <span class="n">color</span><span class="o">=</span><span class="s">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
@@ -2739,16 +2794,16 @@ In&nbsp;[5]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[5]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
-<div class="output_html rendered_html">
+<div class="output_html rendered_html output_subarea output_pyout">
 
     <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
     
@@ -2979,21 +3034,27 @@ In&nbsp;[5]:
 </div>
 
 </div>
-</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="moving-window-average">Moving Window Average</h3>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[6]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
@@ -3013,16 +3074,16 @@ In&nbsp;[6]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[6]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
-<div class="output_html rendered_html">
+<div class="output_html rendered_html output_subarea output_pyout">
 
     <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
     
@@ -3287,21 +3348,27 @@ In&nbsp;[6]:
 </div>
 
 </div>
-</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="subplots">Subplots</h3>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[7]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># multiple subplots, adjusted for spacing</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
@@ -3321,16 +3388,16 @@ In&nbsp;[7]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[7]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
-<div class="output_html rendered_html">
+<div class="output_html rendered_html output_subarea output_pyout">
 
     <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
     
@@ -4148,16 +4215,26 @@ In&nbsp;[7]:
 </div>
 
 </div>
-</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="conclusion">Conclusion</h2>
-<p>As I mentioned above, there is still a lot to be done to make this a truly useful tool for data exploration: right now, the list of usupported features alone likely dwarfs the size of the current code base! But as a proof-of-concept, I think this work is headed in the right direction. I'm still not entirely convinced that a hacked approach like this should be preferred over a more bottom-up approach to interactive visualization, such as those being developed by the Bokeh and Plotly teams. But if there's one thing I've learned in open source, it's that <a href="http://vcresearch.berkeley.edu/news/wresting-new-tricks-python-fernando-perez-wins-2012-award-advancement-free-software">afternoon hacks</a>, given time and talent, can turn into irreplaceable tools for scientific computing. In the open, the truly useful hacks develop and evolve: all our most useful tools were started by someone, somewhere, who had a good idea and a bit of free time to try it out. In open source work, we should never let the perfect be the enemy of the good.</p>
-<p><small> This post was written entirely in the IPython notebook. You can <a href="http://jakevdp.github.com/downloads/notebooks/mpld3Demo.ipynb">download</a> this notebook, or see a static view <a href="http://nbviewer.ipython.org/url/jakevdp.github.com/downloads/notebooks/mpld3Demo.ipynb">here</a>. </small></p>
+<p>As I mentioned above, there is still a lot to be done to make this a truly useful tool for data exploration: right now, the list of usupported features alone likely dwarfs the size of the current code base! But as a proof-of-concept, I think this work is headed in the right direction.  I&#39;m still not entirely convinced that a hacked approach like this should be preferred over a more bottom-up approach to interactive visualization, such as those being developed by the Bokeh and Plotly teams.  But if there&#39;s one thing I&#39;ve learned in open source, it&#39;s that <a href="http://vcresearch.berkeley.edu/news/wresting-new-tricks-python-fernando-perez-wins-2012-award-advancement-free-software">afternoon hacks</a>, given time and talent, can turn into irreplaceable tools for scientific computing.  In the open, the truly useful hacks develop and evolve: all our most useful tools were started by someone, somewhere, who had a good idea and a bit of free time to try it out.  In open source work, we should never let the perfect be the enemy of the good.</p>
+<p><small>
+This post was written entirely in the IPython notebook.  You can
+<a href="http://jakevdp.github.com/downloads/notebooks/mpld3Demo.ipynb">download</a>
+this notebook, or see a static view
+<a href="http://nbviewer.ipython.org/url/jakevdp.github.com/downloads/notebooks/mpld3Demo.ipynb">here</a>.
+</small></p>
+</div>
+</div>
 </div></p></div>
     <footer>
 <p class="meta">
@@ -4211,7 +4288,7 @@ In&nbsp;[7]:
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Jake Vanderplas -
+    Copyright &copy;  2012-2014  - Jake Vanderplas -
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
     <script type="text/javascript">
@@ -4239,7 +4316,7 @@ In&nbsp;[7]:
           var disqus_title = 'A D3 Viewer for Matplotlib Visualizations';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-	    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
 	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 	   })();
 	</script>

@@ -1777,7 +1777,7 @@ jQuery(document).ready(function($) {
 </ul>
 
 
-<form action="http://google.com/search" method="get">
+<form action="//google.com/search" method="get">
   <fieldset role="search">
     <input type="hidden" name="q" value="site:jakevdp.github.io" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
@@ -1798,28 +1798,40 @@ jQuery(document).ready(function($) {
 </header>
 
   <div class="entry-content"><p>
-<div class="text_cell_render border-box-sizing rendered_html">
-
-<p>I'll cut to the chase: here's what I've created: a javascript-based animation viewer, with hooks to embed it in IPython. It's best viewed in a modern browser (unfortunately Firefox does not currently qualify as &quot;modern&quot; due to its lack of HTML5 support)</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>
+I&#39;ll cut to the chase: here&#39;s what I&#39;ve created: a
+javascript-based animation viewer, with hooks to embed
+it in IPython.  It&#39;s best viewed in a modern browser
+(unfortunately Firefox does not currently qualify as
+&quot;modern&quot; due to its lack of HTML5 support)</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[1]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%</span><span class="k">pylab</span> <span class="n">inline</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 
 Welcome to pylab, a matplotlib-based Python environment [backend: module://IPython.kernel.zmq.pylab.backend_inline].
@@ -1833,12 +1845,13 @@ For more information, type &apos;help(pylab)&apos;.
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[2]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># get the JSAnimation import at https://github.com/jakevdp/JSAnimation</span>
 <span class="kn">from</span> <span class="nn">JSAnimation</span> <span class="kn">import</span> <span class="n">examples</span>
 <span class="n">examples</span><span class="o">.</span><span class="n">basic_animation</span><span class="p">()</span>
@@ -1846,16 +1859,16 @@ In&nbsp;[2]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[2]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
-<div class="output_html rendered_html">
+<div class="output_html rendered_html output_subarea output_pyout">
 
 <script language="javascript">
   /* Define the Animation class */
@@ -19692,41 +19705,101 @@ AElFTkSuQmCC\
 </div>
 
 </div>
-</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>I think the result is pretty good, if I do say so myself. </p>
+<p>I think the result is pretty good, if I do say so myself.
+</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="The-Background">The Background<a class="anchor-link" href="#The-Background">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Last week, Fernando Perez visited UW to give a talk for the <a href="http://escience.washington.edu/">eScience institute</a>. Over lunch we were discussing the possibility of building a Javascript-based animation viewer which could be embedded in IPython notebooks. I had written a <a href="http://jakevdp.github.io/blog/2013/05/12/embedding-matplotlib-animations/">short hack</a> to embed mp4 movies in IPython, which works quite well: Michael Kuhlen of Berkeley ran with the idea and made <a href="http://nbviewer.ipython.org/urls/bitbucket.org/mqk/public-ipython-notebooks/raw/e75599b4fa636f9964388142fff8af012f418917/VL2_subhalo_orbits.ipynb">this</a> notebook, which embeds a 3D rendering of orbits within an N-body simulation.</p>
-<p>The problem with this mp4 approach is that it requires installation of ffmpeg or mencoder with the proper video codec libraries. What we wanted was something that only requires Python and a web browser: something that could use Javascript to display frames rendered by Matplotlib.</p>
-<p>Above you see the result of a week's worth of evenings hacking on Python, html, and Javascript -- my first real foray into the latter. The result is a small python package, available on my github page: <a href="https://github.com/jakevdp/JSAnimation">https://github.com/jakevdp/JSAnimation</a>. See the README and examples on that page for details of how this can be used.</p>
 </div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Last week, Fernando Perez visited UW to give a talk for the
+<a href="http://escience.washington.edu/">eScience institute</a>. Over
+lunch we were discussing the possibility of building a Javascript-based
+animation viewer which could be embedded in IPython notebooks.
+I had written a <a href="http://jakevdp.github.io/blog/2013/05/12/embedding-matplotlib-animations/">short hack</a>
+to embed mp4 movies in IPython, which works quite well:
+Michael Kuhlen of Berkeley ran with the idea and made
+<a href="http://nbviewer.ipython.org/urls/bitbucket.org/mqk/public-ipython-notebooks/raw/e75599b4fa636f9964388142fff8af012f418917/VL2_subhalo_orbits.ipynb">this</a>
+notebook, which embeds a 3D rendering of orbits within an N-body simulation.</p>
+<p>The problem with this mp4 approach is that it requires installation of ffmpeg or
+mencoder with the proper video codec libraries.  What we wanted was something
+that only requires Python and a web browser: something that could use Javascript
+to display frames rendered by Matplotlib.</p>
+<p>Above you see the result of a week&#39;s worth of evenings hacking on Python, html,
+and Javascript -- my first real foray into the latter.  The result is a small
+python package, available on my github page:
+<a href="https://github.com/jakevdp/JSAnimation"><a href="https://github.com/jakevdp/JSAnimation">https://github.com/jakevdp/JSAnimation</a></a>.
+See the README and examples on that page for details of how this can be used.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="So-what's-going-on-here?">So what's going on here?<a class="anchor-link" href="#So-what's-going-on-here?">&#182;</a></h2>
 </div>
+</div>
+</div>
 
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>You can dig into the code to see how it works, but here's the short version:</p>
-<p>The package adds an IPython representation hook to the animation object, similar to the one I showed <a href="http://jakevdp.github.io/blog/2013/05/12/embedding-matplotlib-animations/">here</a>. When the animation is displayed, IPython calls the new <code>HTMLWriter</code> to convert the animation to an embeddable html document. This writer is capable of saving any animation to a stand-alone HTML file, with the frames either embedded or in a separate directory: this stand-alone file is created, read-in, and embedded into the document as raw HTML.</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>For IPython, the animation creates frames that are embedded directly in the HTML source via the base-64 representation. A base-64 representation is a standard way of encoding binary data to a normal string of text, which looks like this:</p>
+<p>You can dig into the code to see how it works, but here&#39;s the short version:</p>
+<p>The package adds an IPython representation hook to the animation object, similar
+to the one I showed <a href="http://jakevdp.github.io/blog/2013/05/12/embedding-matplotlib-animations/">here</a>.
+When the animation is displayed, IPython calls the new <code>HTMLWriter</code> to convert
+the animation to an embeddable html document.  This writer is capable of saving any
+animation to a stand-alone HTML file, with the frames either embedded or in a separate
+directory: this stand-alone file is created, read-in, and embedded into the document
+as raw HTML.</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For IPython, the animation creates frames that are embedded directly in the HTML source
+via the base-64 representation.  A base-64 representation is a standard
+way of encoding binary data to a normal string of text, which looks like this:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[3]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
 <span class="c"># write the figure to a temporary file, and encode the results to base64</span>
@@ -19742,13 +19815,14 @@ In&nbsp;[3]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 iVBORw0KGgoAAAANSUhEUgAAAbAAAAEgCAYAAADVKCZpAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJztnXt0XVW977877zZN2iZ9QJNAgYQ+KLRotaCi4VFLKxQF
@@ -19765,31 +19839,42 @@ sIAxDMMwiYQFjGEYhkkkLGAMwzBMImEBYxiGYRIJCxjDMAyTSFjAGIZhmETCAsYwDMMkEhYwhmE
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We only print the first few sections of the data, as it is a rather large string. The magic of this is that contained in that string is all the information needed to reconstruct the original PNG image. We can see that directly by inserting the string into an HTML image tag, which results in a frame embedded in the document itself:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We only print the first few sections of the data, as it is a rather large string.
+The magic of this is that contained in that string is all the information needed
+to reconstruct the original PNG image.  We can see that directly by inserting the
+string into an HTML image tag, which results in a frame embedded in the
+document itself:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[4]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
 <span class="n">HTML</span><span class="p">(</span><span class="s">&#39;&lt;img src=&quot;data:image/png;base64,{0}&quot;&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[4]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
-<div class="output_html rendered_html">
+<div class="output_html rendered_html output_subarea output_pyout">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbAAAAEgCAYAAADVKCZpAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJztnXt0XVW977877zZN2iZ9QJNAgYQ+KLRotaCi4VFLKxQF
 PNRzREdFrGgH6pFzz7l6zj3gHVaq5w4Pw3od9QEHAQvq8VpQCMgjqC1thVYKtEJ5tKTpO02aNGne
@@ -20168,30 +20253,55 @@ hAWMYRiGSSQsYAzDMEwi+f87BDaQAmWDfgAAAABJRU5ErkJggg==
 </div>
 
 </div>
-</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This sort of thing is similar to what goes on in the background every time you use embedded figures in an IPython notebook.</p>
-<p>By embedding all the frames this way, we're able to use Javascript to switch between them at a given frame-rate using the javascript <code>setInterval()</code> function. The rest is just straightforward javascript event handling.</p>
+<p>This sort of thing is similar to what goes on in the background every time you use
+embedded figures in an IPython notebook.</p>
+<p>By embedding all the frames this way, we&#39;re able to use Javascript to switch
+between them at a given frame-rate using the javascript <code>setInterval()</code>
+function.  The rest is just straightforward javascript event handling.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Embedding-Your-Own-Animation">Embedding Your Own Animation<a class="anchor-link" href="#Embedding-Your-Own-Animation">&#182;</a></h2>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>If you'd like to use this to create your own animation, you can follow the suggestions in the <a href="http://jakevdp.github.io/blog/2012/08/18/matplotlib-animation-tutorial/">animation tutorial</a>. To embed your animation in the notebook, import <code>IPython_display</code> from the <code>JSAnimation</code> package. This will add the <code>_repr_html_</code> method to the animation class, so that creating the animation will lead to it being displayed via the Javascript embedding.</p>
+<p>If you&#39;d like to use this to create your own animation, you can follow the
+suggestions in the <a href="http://jakevdp.github.io/blog/2012/08/18/matplotlib-animation-tutorial/">animation tutorial</a>.
+To embed your animation in the notebook, import <code>IPython_display</code> from the <code>JSAnimation</code>
+package.  This will add the <code>_repr_html_</code> method to the animation class, so that creating
+the animation will lead to it being displayed via the Javascript embedding.</p>
 <p>Here is an example showing how the above animation was created:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[5]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">animation</span>
 <span class="kn">from</span> <span class="nn">JSAnimation</span> <span class="kn">import</span> <span class="n">IPython_display</span>
 
@@ -20215,16 +20325,16 @@ In&nbsp;[5]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[5]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
-<div class="output_html rendered_html">
+<div class="output_html rendered_html output_subarea output_pyout">
 
 <script language="javascript">
   /* Define the Animation class */
@@ -38061,25 +38171,60 @@ AElFTkSuQmCC\
 </div>
 
 </div>
-</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Remaining-Issues">Remaining Issues<a class="anchor-link" href="#Remaining-Issues">&#182;</a></h2>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>One of my goals in this was to make it relatively lightweight: For this reason, it doesn't depend on JQuery, JQuery-UI, and other nice packages that might be suited for this type of application.</p>
-<p>For that reason, the frame slider uses the HTML5 slider element, which is <a href="http://caniuse.com/input-range">not yet supported</a> by all browsers. In particular, if you're using older versions of IE or Firefox, the frame dragger will appear as an ugly numerical input box. Making this compatible with non-HTML5-compliant browsers would be possible, but would require a lot more javascript hacking.</p>
-<p>Second, this does not scale well to large animations. Because each frame is individually embedded in the document, the size of the notebook can become very large very quickly. Typical web-ready video formats involve a lot of image compression. This tends to be easy for video: most frames look very similar to the last, with just a few changes. Implementing this sort of compression in Javascript would certainly be possible, but is well beyond my minimal Javascript hacking abilities. It would be very cool if someone could run with this idea and create what would amount to a Javascript video codec to reduce the size of these embedded animations. I think it could be done with some effort.</p>
+<p>One of my goals in this was to make it relatively lightweight:
+For this reason, it doesn&#39;t depend on JQuery, JQuery-UI, and other
+nice packages that might be suited for this type of application.</p>
+<p>For that reason, the frame slider uses the HTML5 slider element, which
+is <a href="http://caniuse.com/input-range">not yet supported</a> by all browsers.
+In particular, if you&#39;re using older versions of IE or Firefox,
+the frame dragger will appear as
+an ugly numerical input box.  Making this compatible with non-HTML5-compliant
+browsers would be possible, but would require a lot more javascript hacking.</p>
+<p>Second, this does not scale well to large animations.  Because each frame is
+individually embedded in the document, the size of the notebook can become
+very large very quickly.  Typical web-ready video formats involve a lot of
+image compression.  This tends to be easy for video: most frames look very similar
+to the last, with just a few changes.  Implementing this sort of compression
+in Javascript would certainly be possible, but is well beyond my minimal Javascript
+hacking abilities.  It would be very cool if someone could run with this idea
+and create what would amount to a Javascript video codec to reduce the size of
+these embedded animations.  I think it could be done with some effort.</p>
 <p>As it is, though, I think this is a pretty neat widget and will definitely find good uses.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>I hope you've found this useful, and thanks for reading! This was a fun one.</p>
-<p><em>This post was written in the IPython notebook: The notebook can be downloaded</em> <a href="http://jakevdp.github.io/downloads/notebooks/JSAnimation.ipynb"><em>here</em></a>, <em>or viewed statically</em> <a href="http://nbviewer.ipython.org/url/jakevdp.github.io/downloads/notebooks/JSAnimation.ipynb"><em>here</em></a></p>
+<p>I hope you&#39;ve found this useful, and thanks for reading!  This was a fun one.</p>
+<p><em>This post was written in the IPython notebook:  The notebook can be downloaded</em>
+<a href="http://jakevdp.github.io/downloads/notebooks/JSAnimation.ipynb"><em>here</em></a>,
+<em>or viewed statically</em>
+<a href="http://nbviewer.ipython.org/url/jakevdp.github.io/downloads/notebooks/JSAnimation.ipynb"><em>here</em></a></p>
+</div>
+</div>
 </div></p></div>
     <footer>
 <p class="meta">
@@ -38133,7 +38278,7 @@ AElFTkSuQmCC\
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Jake Vanderplas -
+    Copyright &copy;  2012-2014  - Jake Vanderplas -
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
     <script type="text/javascript">
@@ -38161,7 +38306,7 @@ AElFTkSuQmCC\
           var disqus_title = 'A Javascript Viewer for Matplotlib Animations';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-	    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
 	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 	   })();
 	</script>

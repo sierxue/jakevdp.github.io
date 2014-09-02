@@ -1777,7 +1777,7 @@ jQuery(document).ready(function($) {
 </ul>
 
 
-<form action="http://google.com/search" method="get">
+<form action="//google.com/search" method="get">
   <fieldset role="search">
     <input type="hidden" name="q" value="site:jakevdp.github.io" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
@@ -1798,28 +1798,50 @@ jQuery(document).ready(function($) {
 </header>
 
   <div class="entry-content"><p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 
 
 <p>The inspiration of my previous <a href="http://jakevdp.github.io/blog/2013/12/01/kernel-density-estimation/">kernel density estimation post</a> was a blog post by <a href="http://www.mglerner.com/blog/?p=28">Michael Lerner</a>, who used my <a href="http://jakevdp.github.io/blog/2013/05/19/a-javascript-viewer-for-matplotlib-animations/">JSAnimation</a> tools to do a nice interactive demo of the relationship between kernel density estimation and histograms.</p>
-<p>This was on the heels of <a href="https://twitter.com/ellisonbg">Brian Granger</a>'s excellent <a href="http://vimeo.com/79832657">PyData NYC Keynote</a> where he live-demoed the brand new IPython interactive tools. This new functionality is very cool. Wes McKinney <a href="https://twitter.com/wesmckinn/status/399560987415965696">remarked</a> that day on Twitter that &quot;IPython's interact machinery is going to be a huge deal&quot;. I completely agree: the ability to quickly generate interactive widgets to explore your data is going to change the way a lot of people do their daily scientific computing work.</p>
-<p>But there's one issue with the new widget framework as it currently stands: unless you're connected to an IPython kernel (i.e. actually running IPython to view your notebook), the widgets are useless. Don't get me wrong: they're incredibly cool when you're actually interacting with data. But the bread-and-butter of this blog and many others is static notebook views: for this purpose, widgets with callbacks to the Python kernel aren't so helpful.</p>
-<p>This is where <code>ipywidgets</code> comes in. </p>
+<p>This was on the heels of <a href="https://twitter.com/ellisonbg">Brian Granger</a>&#39;s excellent <a href="http://vimeo.com/79832657">PyData NYC Keynote</a> where he live-demoed the brand new IPython interactive tools.  This new functionality is very cool.  Wes McKinney <a href="https://twitter.com/wesmckinn/status/399560987415965696">remarked</a> that day on Twitter that &quot;IPython&#39;s interact machinery is going to be a huge deal&quot;.
+I completely agree: the ability to quickly generate interactive widgets to explore your data is going to change the way a lot of people do their daily scientific computing work.</p>
+<p>But there&#39;s one issue with the new widget framework as it currently stands: unless you&#39;re connected to an IPython kernel (i.e. actually running IPython to view your notebook), the widgets are useless.  Don&#39;t get me wrong: they&#39;re incredibly cool when you&#39;re actually interacting with data.  But the bread-and-butter of this blog and many others is static notebook views: for this purpose, widgets with callbacks to the Python kernel aren&#39;t so helpful.</p>
+<p>This is where <code>ipywidgets</code> comes in.
+</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="my-afternoon-hack-ipy-widgets">My Afternoon Hack: IPy-Widgets</h2>
-<p>I've been thinking about this issue for the past few weeks, but this morning as I was biking to work through Seattle's current cold-snap, the idea came to me. Interactive widgets can be done, and done rather easily. I got to work, and after doing a few things I couldn't put off, decided to forego my real research for the day and instead focus on the betterment of humanity (or at least the growing portion of humanity who use the IPython notebook for their work). For anyone who follows me <a href="https://twitter.com/jakevdp">on Twitter</a>, you might say I <a href="https://twitter.com/jakevdp/status/408678764705378304">chose option B</a>. The result is <code>ipywidgets</code>: a rough attempt at what, with some effort, might become a very useful library. You can view the current progress on my <a href="http://github.com/jakevdp/ipywidgets">GitHub</a> page. To run the code in this notebook, clone that repository and type <code>python setup.py install</code>. The package is pure python, very lightweight, and should install painlessly on most systems.</p>
-<p>The basic idea of creating these widgets is this: you set up a function that does something interesting, you specify the range of parameter choices, and call a function which pre-generates the results and displays a javascript slider which allows you to interact with these results. Here's a quick example of how it works:</p>
+<p>I&#39;ve been thinking about this issue for the past few weeks, but this morning as I was biking to work through Seattle&#39;s current cold-snap, the idea came to me.  Interactive widgets can be done, and done rather easily.  I got to work, and after doing a few things I couldn&#39;t put off, decided to forego my real research for the day and instead focus on the betterment of humanity (or at least the growing portion of humanity who use the IPython notebook for their work).  For anyone who follows me <a href="https://twitter.com/jakevdp">on Twitter</a>, you might say I <a href="https://twitter.com/jakevdp/status/408678764705378304">chose option B</a>.  The result is <code>ipywidgets</code>: a rough attempt at what, with some effort, might become a very useful library.  You can view the current progress on my <a href="http://github.com/jakevdp/ipywidgets">GitHub</a> page.
+To run the code in this notebook, clone that repository and type <code>python setup.py install</code>. The package is pure python, very lightweight, and should install painlessly on most systems.</p>
+<p>The basic idea of creating these widgets is this: you set up a function that does something interesting, you specify the range of parameter choices, and call a function which pre-generates the results and displays a javascript slider which allows you to interact with these results.  Here&#39;s a quick example of how it works:</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>First we set up a function which takes some arguments and plots something:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[1]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%</span><span class="k">matplotlib</span> <span class="n">inline</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
@@ -1839,17 +1861,25 @@ In&nbsp;[1]:
 
 </div>
 </div>
+</div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Next, you import some tools from <code>ipywidgets</code>, and interact with your plot:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[2]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">StaticInteract</span><span class="p">,</span> <span class="n">RangeWidget</span><span class="p">,</span> <span class="n">RadioWidget</span>
 
 <span class="n">StaticInteract</span><span class="p">(</span><span class="n">plot</span><span class="p">,</span>
@@ -1859,16 +1889,16 @@ In&nbsp;[2]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[2]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
-<div class="output_html rendered_html">
+<div class="output_html rendered_html output_subarea output_pyout">
 
     <script type="text/javascript">
       function interactUpdate(div){
@@ -6359,26 +6389,38 @@ DocTEFw0OBxOQHDR4HA4AfH/3U0s55B3u/wAAAAASUVORK5CYII=
 </div>
 
 </div>
-</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>That's all there is to it!</p>
+<p>That&#39;s all there is to it!</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="how-this-all-works">How this all works</h2>
-<p>Because this is a static view, all the output must be pre-generated and saved in the notebook. The way this works is to save the generated frames within divs that are hidden and shown whenever the widget is changed. Here's a rough sample that gives the idea of what's going on with the HTML and Javascript in the background:</p>
+<p>Because this is a static view, all the output must be pre-generated and saved in the notebook.  The way this works is to save the generated frames within divs that are hidden and shown whenever the widget is changed.  Here&#39;s a rough sample that gives the idea of what&#39;s going on with the HTML and Javascript in the background:</p>
 <p>First we define a javascript function which takes the values from HTML5 <code>input</code> blocks, and shows and hides items based on those inputs.</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[3]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">JS_FUNCTION</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
 <span class="s">&lt;script type=&quot;text/javascript&quot;&gt;</span>
 <span class="s">  function interactUpdate(div){</span>
@@ -6407,17 +6449,25 @@ In&nbsp;[3]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Next we create a few divs with different outputs: here our outputs are simply the numbers one through 4, along with their text and roman numeral representations. We also define the input slider with the appropriate callback:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Next we create a few divs with different outputs: here our outputs are simply the numbers one through 4, along with their text and roman numeral representations.  We also define the input slider with the appropriate callback:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[4]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">WIDGETS</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
 <span class="s">&lt;div&gt;</span>
 <span class="s"> &lt;div name=&quot;num1&quot;, style=&quot;display:block&quot;&gt;</span>
@@ -6440,33 +6490,41 @@ In&nbsp;[4]:
 
 </div>
 </div>
+</div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Now if we run and view this script, we see a simple slider which shows and hides the <code>div</code>s in the way we expect.</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[5]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
 <span class="n">HTML</span><span class="p">(</span><span class="n">JS_FUNCTION</span> <span class="o">+</span> <span class="n">WIDGETS</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[5]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
-<div class="output_html rendered_html">
+<div class="output_html rendered_html output_subarea output_pyout">
 
 <script type="text/javascript">
   function interactUpdate(div){
@@ -6511,30 +6569,48 @@ In&nbsp;[5]:
 </div>
 
 </div>
-</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>That's all there is to it!</p>
+<p>That&#39;s all there is to it!</p>
 <p>After writing some Python scripts to generate the HTML and Javascript code for us, we have our static interactive widgets.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="some-examples">Some Examples</h2>
-<p>Now that this is in place, let's look at a few more examples of what this allows:</p>
+<p>Now that this is in place, let&#39;s look at a few more examples of what this allows:</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="fibonacci-numbers">Fibonacci Numbers</h3>
-<p>The simplest thing we can do is simply save some textual output. Let's write a function which displays the first <span class="math">\(N\)</span> Fibonacci numbers, and tie it to a slider:</p>
+<p>The simplest thing we can do is simply save some textual output.  Let&#39;s write a function which displays the first $N$ Fibonacci numbers, and tie it to a slider:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[6]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">def</span> <span class="nf">show_fib</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
     <span class="n">sequence</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
     <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
@@ -6550,16 +6626,16 @@ In&nbsp;[6]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[6]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
-<div class="output_html rendered_html">
+<div class="output_html rendered_html output_subarea output_pyout">
 
     <script type="text/javascript">
       function interactUpdate(div){
@@ -6992,25 +7068,38 @@ In&nbsp;[6]:
 </div>
 
 </div>
-</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>A slightly silly example, sure, but it shows just how easy it is to do this!</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="sympy-math">SymPy Math</h3>
-<p>For some fancier mathematical gymnastics, we can turn to SymPy. <a href="http://sympy.org/">SymPy</a> is a package which does Symbolic computation in Python. It has the ability to nicely render its output in the IPython notebook. Let's take a look at a simple factoring example with Sympy (the following requires SymPy 0.7 or greater):</p>
+<p>For some fancier mathematical gymnastics, we can turn to SymPy.
+<a href="http://sympy.org/">SymPy</a> is a package which does Symbolic computation in Python.  It has the ability to nicely render its output in the IPython notebook.  Let&#39;s take a look at a simple factoring example with Sympy (the following requires SymPy 0.7 or greater):</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[7]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># Initialize notebook printing</span>
 <span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">init_printing</span>
 <span class="n">init_printing</span><span class="p">()</span>
@@ -7029,16 +7118,16 @@ In&nbsp;[7]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[7]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
-<div class="output_html rendered_html">
+<div class="output_html rendered_html output_subarea output_pyout">
 
     <script type="text/javascript">
       function interactUpdate(div){
@@ -7704,26 +7793,38 @@ z/C/sgL/Bexhvei7yn6tAAAAAElFTkSuQmCC
 </div>
 
 </div>
-</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>By moving the slider, we see the factorization of the resulting polynomial.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="matplotlib">Matplotlib</h3>
-<p>And of course, you can use this to display matplotlib plots. Keep in mind, though, that every image must be pre-generated and stored in the notebook, so if you have a large number of settings (or combinations of multiple settings), the notebook size will blow up very quickly!</p>
-<p>For this example, I want to quickly revisit the <a href="http://www.mglerner.com/blog/?p=28">post</a> which inspired me, and compare the kernel density estimation of a distribution with a couple kernels and bandwidths. We'll make the figure smaller so as to not blow-up the size of this notebook:</p>
+<p>And of course, you can use this to display matplotlib plots.  Keep in mind, though, that every image must be pre-generated and stored in the notebook, so if you have a large number of settings (or combinations of multiple settings), the notebook size will blow up very quickly!</p>
+<p>For this example, I want to quickly revisit the <a href="http://www.mglerner.com/blog/?p=28">post</a> which inspired me, and compare the kernel density estimation of a distribution with a couple kernels and bandwidths.  We&#39;ll make the figure smaller so as to not blow-up the size of this notebook:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[8]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%</span><span class="k">matplotlib</span> <span class="n">inline</span>
 <span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KernelDensity</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
@@ -7759,14 +7860,16 @@ In&nbsp;[8]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[9]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">StaticInteract</span><span class="p">,</span> <span class="n">RangeWidget</span>
 <span class="n">StaticInteract</span><span class="p">(</span><span class="n">plot_KDE_estimate</span><span class="p">,</span>
                <span class="n">kernel</span><span class="o">=</span><span class="n">RadioWidget</span><span class="p">([</span><span class="s">&#39;gaussian&#39;</span><span class="p">,</span> <span class="s">&#39;tophat&#39;</span><span class="p">,</span> <span class="s">&#39;exponential&#39;</span><span class="p">],</span>
@@ -7776,16 +7879,16 @@ In&nbsp;[9]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[9]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
-<div class="output_html rendered_html">
+<div class="output_html rendered_html output_subarea output_pyout">
 
     <script type="text/javascript">
       function interactUpdate(div){
@@ -15905,20 +16008,36 @@ WJ8o3oT1+NEAAAAASUVORK5CYII=
 </div>
 
 </div>
-</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sliding the slider adjusts the bandwidth, and the radio buttons change the kernel used.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="summary">Summary</h2>
-<p>I'm pretty excited about these tools. I think they'll allow for some really interesting demos and visualizations, especially if more time can be spent polishing them. The package is still very rough: it offers little flexibility in how the widgets are displayed, it only implements radio buttons and a slider, and it still hiccups at times when the slider items are floating-point values (this is due to differences in Javascript's and Python's default representations of floating point numbers). Regardless, I hope you have fun playing with this, and I hope to see some posts using this on other blogs in the near future!</p>
+<p>I&#39;m pretty excited about these tools.  I think they&#39;ll allow for some really interesting demos and visualizations, especially if more time can be spent polishing them.  The package is still very rough: it offers little flexibility in how the widgets are displayed, it only implements radio buttons and a slider, and it still hiccups at times when the slider items are floating-point values (this is due to differences in Javascript&#39;s and Python&#39;s default representations of floating point numbers).  Regardless, I hope you have fun playing with this, and I hope to see some posts using this on other blogs in the near future!</p>
 <p>Happy Hacking!</p>
-<p><small> This post was written entirely in the IPython notebook. You can <a href="http://jakevdp.github.com/downloads/notebooks/IPythonWidgets.ipynb">download</a> this notebook, or see a static view <a href="http://nbviewer.ipython.org/url/jakevdp.github.com/downloads/notebooks/IPythonWidgets.ipynb">here</a>. </small></p>
+<p><small>
+This post was written entirely in the IPython notebook.  You can
+<a href="http://jakevdp.github.com/downloads/notebooks/IPythonWidgets.ipynb">download</a>
+this notebook, or see a static view
+<a href="http://nbviewer.ipython.org/url/jakevdp.github.com/downloads/notebooks/IPythonWidgets.ipynb">here</a>.
+</small></p>
+</div>
+</div>
 </div></p></div>
     <footer>
 <p class="meta">
@@ -15972,7 +16091,7 @@ WJ8o3oT1+NEAAAAASUVORK5CYII=
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Jake Vanderplas -
+    Copyright &copy;  2012-2014  - Jake Vanderplas -
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
     <script type="text/javascript">
@@ -16000,7 +16119,7 @@ WJ8o3oT1+NEAAAAASUVORK5CYII=
           var disqus_title = 'Static Interactive Widgets for IPython Notebooks';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-	    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
 	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 	   })();
 	</script>

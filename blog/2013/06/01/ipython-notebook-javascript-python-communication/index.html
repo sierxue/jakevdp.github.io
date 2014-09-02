@@ -1777,7 +1777,7 @@ jQuery(document).ready(function($) {
 </ul>
 
 
-<form action="http://google.com/search" method="get">
+<form action="//google.com/search" method="get">
   <fieldset role="search">
     <input type="hidden" name="q" value="site:jakevdp.github.io" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
@@ -1798,28 +1798,67 @@ jQuery(document).ready(function($) {
 </header>
 
   <div class="entry-content"><p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 
-<p>I've been working with javascript and the IPython notebook recently, and found myself in need of a way to pass data back and forth between the Javascript runtime and the IPython kernel. There's a bit of information about this floating around on various mailing lists and forums, but no real organized tutorial on the subject. Partly this is because the tools are relatively specialized, and partly it's because the functionality I'll outline here is planned to be <a href="https://github.com/ipython/ipython/wiki/Roadmap:-IPython">obsolete</a> in the 2.0 release of IPython.</p>
-<p>Nevertheless, I thought folks might be interested to hear what I've learned. What follows are a few basic examples of moving data back and forth between the IPython kernel and the browser's javascript. Note that if you're viewing this statically (i.e. on the blog or on nbviewer) then the javascript calls below will not work: to see the code in action, you'll need to <a href="http://jakevdp.github.io/downloads/notebooks/JSInteraction.ipynb">download</a> the notebook and open it in IPython. </p>
+I&#39;ve been working with javascript and the IPython notebook recently, and found myself
+in need of a way to pass data back and forth between the Javascript runtime and the
+IPython kernel.  There&#39;s a bit of information about this floating around on various
+mailing lists and forums, but no real organized tutorial on the subject.
+Partly this is because the tools are relatively specialized,
+and partly it&#39;s because the functionality I&#39;ll outline here is planned to
+be <a href="https://github.com/ipython/ipython/wiki/Roadmap:-IPython">obsolete</a>
+in the 2.0 release of IPython.
+
+Nevertheless, I thought folks might be interested to hear what I&#39;ve learned.
+What follows are a few basic examples of moving data back and forth between
+the IPython kernel and the browser&#39;s javascript. 
+Note that if you&#39;re viewing this statically (i.e. on the blog or on nbviewer) then
+the javascript calls below will not work: to see the code in action, you&#39;ll need
+to <a href="http://jakevdp.github.io/downloads/notebooks/JSInteraction.ipynb">download</a>
+the notebook and open it in IPython.
+
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Executing-Python-Statements-From-Javascript">Executing Python Statements From Javascript<a class="anchor-link" href="#Executing-Python-Statements-From-Javascript">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The key functionality needed for interaction between javascript and the IPython kernel is the <code>kernel</code> object in the IPython Javascript package. A python statement can be executed from javascript as follows:</p>
-<pre><code>var kernel = IPython.notebook.kernel;
-kernel.execute(command);</code></pre>
-<p>where <code>command</code> is a string containing python code.</p>
-<p>Here is a short example where we use HTML elements and javascript callbacks to execute a statement in the Python kernel from Javascript, using the <code>kernel.execute</code> command:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The key functionality needed for interaction between javascript and the
+IPython kernel is the <code>kernel</code> object
+in the IPython Javascript package.
+A python statement can be executed from javascript as follows:</p>
+<pre><code>var kernel = IPython.notebook.kernel;
+kernel.execute(command);
+</code></pre><p>where <code>command</code> is a string containing python code.</p>
+<p>Here is a short example where we use HTML elements and javascript callbacks
+to execute a statement in the Python kernel from Javascript, using the
+<code>kernel.execute</code> command:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[1]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
 
 <span class="n">input_form</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
@@ -1849,16 +1888,16 @@ In&nbsp;[1]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[1]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
-<div class="output_html rendered_html">
+<div class="output_html rendered_html output_subarea output_pyout">
 
 <div style="background-color:gainsboro; border:solid black; width:300px; padding:20px;">
 Variable Name: <input type="text" id="var_name" value="foo"><br>
@@ -1881,37 +1920,43 @@ Variable Value: <input type="text" id="var_value" value="bar"><br>
 </div>
 
 </div>
-</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-After pressing
-<button>
-Set Value
-</button> 
-<p>above with the default arguments, the value of the variable <code>foo</code> is set in the Python kernel, and can be accessed from Python:</p>
+<p>After pressing <button>Set Value</button> above
+with the default arguments, the value of the variable
+<code>foo</code> is set in the Python kernel, and can be
+accessed from Python:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[2]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">print</span> <span class="n">foo</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 bar
 
@@ -1923,47 +1968,89 @@ bar
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Examining the code, we see that when the button is clicked, the <code>set_value()</code> function is called, which constructs a simple Python statement assigning <code>var_value</code> to the variable given by <code>var_name</code>. As mentioned above, the key to interaction between Javascript and the notebook kernel is to use the <code>IPython.notebook.kernel.execute()</code> command, passing valid Python code in a string. We also log the result to the javascript console, which can be helpful for Javascript debugging.</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Examining the code, we see that
+when the button is clicked, the <code>set_value()</code> function is called, which
+constructs a simple Python statement
+assigning <code>var_value</code> to the variable given by <code>var_name</code>.  As mentioned
+above, the key to interaction between Javascript and the notebook kernel is to use
+the <code>IPython.notebook.kernel.execute()</code> command, passing valid Python
+code in a string.  We also log the result to the javascript console, which
+can be helpful for Javascript debugging.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Accessing-Python-Output-In-Javascript">Accessing Python Output In Javascript<a class="anchor-link" href="#Accessing-Python-Output-In-Javascript">&#182;</a></h2>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Executing Python statements from Javascript is one thing, but we'd really like to be able to do something with the output.</p>
-<p>In order to process the output of a Python statement executed in the kernel, we need to add a callback function to the <code>execute</code> statement. The full extent of callbacks is a bit involved, but the first step is to set a callback which does something with the <code>output</code> attribute.</p>
-<p>To set an output, we pass a Javascript callback object to the execute call, looking like this:</p>
+<p>Executing Python statements from Javascript is one thing, but we&#39;d
+really like to be able to do something with the output.</p>
+<p>In order to process the output of a Python statement executed in the kernel,
+we need to add a callback function to the <code>execute</code> statement.
+The full extent of callbacks is a bit involved, but the first step is
+to set a callback which does something with the <code>output</code> attribute.</p>
+<p>To set an output, we pass a Javascript callback object to the
+execute call, looking like this:</p>
 <pre><code>var kernel = IPython.notebook.kernel;
 function callback(out_type, out_data){
     // do_something
 }
-kernel.execute(command, {&quot;output&quot;: callback});</code></pre>
-<p>Using this, we can execute a Python command and do something with the result. The python command can be as simple as a variable name: in this case, the value returned is simply the value of that variable.</p>
-<p>To demonstrate this, we'll first import <code>pi</code> and <code>sin</code> from the <code>math</code> package in Python:</p>
+kernel.execute(command, {&quot;output&quot;: callback});
+</code></pre><p>Using this, we can execute a Python command and do something with
+the result.  The python command can be as simple as a variable name:
+in this case, the value returned is simply the value of that variable.</p>
+<p>To demonstrate this, we&#39;ll first import <code>pi</code> and <code>sin</code>
+from the <code>math</code> package in Python:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[3]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span><span class="p">,</span> <span class="n">sin</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>And then we'll manipulate this value via Javascript:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>And then we&#39;ll manipulate this value via Javascript:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[4]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># Add an input form similar to what we saw above</span>
 <span class="n">input_form</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
 <span class="s">&lt;div style=&quot;background-color:gainsboro; border:solid black; width:600px; padding:20px;&quot;&gt;</span>
@@ -2016,16 +2103,16 @@ In&nbsp;[4]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[4]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
-<div class="output_html rendered_html">
+<div class="output_html rendered_html output_subarea output_pyout">
 
 <div style="background-color:gainsboro; border:solid black; width:600px; padding:20px;">
 Code: <input type="text" id="code_input" size="50" height="2" value="sin(pi / 2)"><br>
@@ -2070,47 +2157,74 @@ Result: <input type="text" id="result_output" size="50" value="1.0"><br>
 </div>
 
 </div>
-</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-Pressing
-<button>
-Execute
-</button> 
-<p>above will call <code>kernel.execute</code> with the contents of the <strong>Code</strong> box, passing a callback which displays the result in the result box.</p>
-<p>The reason the callback has so many conditionals is because there are several types of outputs we need to handle. Note that the output handler is given as the <code>output</code> attribute of a Javascript object, and passed to the <code>kernel.execute</code> function. Again, we use <code>console.log</code> to allow us to inspect the objects using the Javascript console.</p>
+<p>Pressing <button>Execute</button> above will call <code>kernel.execute</code>
+with the contents of the <strong>Code</strong> box, passing a callback which
+displays the result in the result box.</p>
+<p>The reason the callback has so many conditionals is because there are several types
+of outputs we need to handle.  Note that the output handler is given as the <code>output</code>
+attribute of a Javascript object, and passed to the <code>kernel.execute</code> function.
+Again, we use <code>console.log</code> to allow us to inspect the objects
+using the Javascript console.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Application:-An-On-the-fly-Matplotlib-Animation">Application: An On-the-fly Matplotlib Animation<a class="anchor-link" href="#Application:-An-On-the-fly-Matplotlib-Animation">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>In a <a href="http://jakevdp.github.io/blog/2013/05/19/a-javascript-viewer-for-matplotlib-animations/">previous post</a> I introduced a javascript viewer for matplotlib animations. This viewer pre-computes all the matplotlib frames, embeds them in the notebook, and offers some tools to view them.</p>
-<p>Here we'll explore a different strategy: rather than precomputing all the frames before displaying them, we'll use the javascript/python kernel communication and <em>generate the frames as needed</em>.</p>
-<p>Note that if you're viewing this statically (e.g. in nbviewer or on my blog), it will be relatively unexciting: with no IPython kernel available, calls to the kernel will do nothing. To see this in action, please <a href="http://jakevdp.github.io/downloads/notebooks/JSInteraction.ipynb">download</a> the notebook and open it with a running IPython notebook instance.</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In a <a href="http://jakevdp.github.io/blog/2013/05/19/a-javascript-viewer-for-matplotlib-animations/">previous post</a>
+I introduced a javascript viewer for matplotlib animations. This viewer pre-computes all the matplotlib
+frames, embeds them in the notebook, and offers some tools to view them.</p>
+<p>Here we&#39;ll explore a different strategy: rather than precomputing all the frames before displaying them,
+we&#39;ll use the javascript/python kernel communication and <em>generate the frames as needed</em>.</p>
+<p>Note that if you&#39;re viewing this statically (e.g. in nbviewer or on my blog), it will be relatively
+unexciting: with no IPython kernel available, calls to the kernel will do nothing.
+To see this in action, please
+<a href="http://jakevdp.github.io/downloads/notebooks/JSInteraction.ipynb">download</a> the notebook and open it with a running IPython notebook instance.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[6]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%</span><span class="k">pylab</span> <span class="n">inline</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 
 Welcome to pylab, a matplotlib-based Python environment [backend: module://IPython.kernel.zmq.pylab.backend_inline].
@@ -2124,12 +2238,13 @@ For more information, type &apos;help(pylab)&apos;.
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[7]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
 <span class="kn">from</span> <span class="nn">cStringIO</span> <span class="kn">import</span> <span class="n">StringIO</span>
 
@@ -2234,18 +2349,28 @@ In&nbsp;[7]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This code should be considered a proof-of-concept: in particular, it requires the display object to be named <code>disp</code> in the global namespace. But making it more robust would be a relatively simple process.</p>
-<p>Here we'll test the result by creating a simple animation and displaying it dynamically:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This code should be considered a proof-of-concept: in particular, it
+requires the display object to be named <code>disp</code> in the global namespace.
+But making it more robust would be a relatively simple process.</p>
+<p>Here we&#39;ll test the result by creating a simple animation and displaying it dynamically:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[8]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">animation</span>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
@@ -2272,16 +2397,16 @@ In&nbsp;[8]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[8]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
-<div class="output_html rendered_html">
+<div class="output_html rendered_html output_subarea output_pyout">
 
 <div class="animation" align="center">
 <img id="anim_frame" src=""><br>
@@ -2350,22 +2475,40 @@ setTimeout(nextFrame, 0);
 </div>
 
 </div>
-</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Once again, if you're viewing this statically, you'll see nothing above the buttons. The kernel needs to be running in order to see this: you can <a href="http://jakevdp.github.io/downloads/notebooks/JSInteraction.ipynb">download the notebook</a> and run it to see the results (To see a statically-viewable version of the animation, refer to the <a href="http://jakevdp.github.io/blog/2013/05/19/a-javascript-viewer-for-matplotlib-animations/">previous post</a>). But I assure you, it works! We've created an animation viewer which uses bi-directional communication between javascript and matplotlib to generate the frames in real-time.</p>
-<p>Note that this is still rather limited, and should be considered a proof-of-concept more than a finished result. In particular, on my four-year-old linux box, I can only achieve a frame-rate of about 10 frames/sec. Part of this is due to the reliance on png images saved within matplotlib, as we can see by profiling the function:</p>
+<p>Once again, if you&#39;re viewing this statically, you&#39;ll see nothing above
+the buttons.  The kernel needs to be running in order to see this: you can
+<a href="http://jakevdp.github.io/downloads/notebooks/JSInteraction.ipynb">download the notebook</a> and run it to see the results (To see a
+statically-viewable version of the animation, refer to the
+<a href="http://jakevdp.github.io/blog/2013/05/19/a-javascript-viewer-for-matplotlib-animations/">previous post</a>).
+But I assure you,
+it works!  We&#39;ve created an animation viewer which uses bi-directional
+communication between javascript and matplotlib to generate the frames in
+real-time.</p>
+<p>Note that this is still rather limited, and should be considered a proof-of-concept
+more than a finished result.  In particular, on my four-year-old linux box, I
+can only achieve a frame-rate of about 10 frames/sec.
+Part of this is due to the reliance on png images saved within matplotlib,
+as we can see by profiling the function:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[10]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">def</span> <span class="nf">save_to_mem</span><span class="p">(</span><span class="n">fig</span><span class="p">):</span>
     <span class="nb">buffer</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">()</span>
     <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="nb">buffer</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="s">&#39;png&#39;</span><span class="p">)</span>
@@ -2379,27 +2522,28 @@ In&nbsp;[10]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[10]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 [&lt;matplotlib.lines.Line2D at 0x3a26f50&gt;]
 </pre>
-
-</div>
 </div>
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+</div>
+
+<div class="output_area"><div class="prompt"></div>
 
 
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXgAAAD9CAYAAAC2l2x5AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJztnXt0XdV9579XupIsyzK2sS1AcnDAjm2CsZmYEmDSMWkI
 cWZq2tJOoA1NU5c6tEySmSSTrHZ1BbImDGSaWc0KbQeaR5OmoWSmTU064IQ8HAINNgmPTDEN4mGw
@@ -2903,33 +3047,36 @@ t672xje+8fQxfO2112q/9Eu/VJRJOuK6666rnX322bWOjo7awMBA7Qtf+IL12H3yk5+snX/++bVV
 q1bVtm/fPoUtb82Qx/Pzn/987YYbbqitXbu2dtFFF9Wuueaa2quvvnp6+eJ4muMHP/hBrVQq1dat
 W3e6xPSBBx6Ien2WarViopgiiiiiiJkY0/6NTkUUUUQRReijEPgiiiiiiBkahcAXUUQRRczQKAS+
 iCKKKGKGRiHwRRRRRBEzNAqBL6KIIoqYofH/AXtefgmaVOPdAAAAAElFTkSuQmCC
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[11]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%</span><span class="k">timeit</span> <span class="n">save_to_mem</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 10 loops, best of 3: 54.2 ms per loop
 
@@ -2941,14 +3088,43 @@ In&nbsp;[11]:
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>That's a cap of about 20 frames per second on matplotlib's end, not including the time required to serialize and send the data, or to render each frame on the page. I'm certain there are much better ways to do this particular application, but they would take a bit more thought.</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>I hope this post was helpful to you, as unpolished as the results are, and please let me know if you have ideas about how to do this more effectively! Also, keep in mind that Javascript support should be improving immensely in IPython 2.0, which (according to the <a href="https://github.com/ipython/ipython/wiki/Roadmap:-IPython">roadmap</a>) should be released in December of 2013. At that point I may have more to say on the subject!</p>
+<p>That&#39;s a cap of about 20 frames per second on matplotlib&#39;s end, not including
+the time required to serialize and send the data,
+or to render each frame on the page.
+I&#39;m certain there are much better ways to do this particular application,
+but they would take a bit more thought.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><em>This post was composed entirely in IPython notebook.</em> <em>The source notebook can be downloaded</em> <a href="http://jakevdp.github.io/downloads/notebooks/JSInteraction.ipynb">here</a></p>
+<p>I hope this post was helpful to you, as unpolished as the results are, and
+please let me know if you have ideas about how to do this more effectively!
+Also, keep in mind that Javascript support should be improving immensely in
+IPython 2.0, which (according to the <a href="https://github.com/ipython/ipython/wiki/Roadmap:-IPython">roadmap</a>)
+should be released in December of 2013.  At that point I may have more to say
+on the subject!</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>This post was composed entirely in IPython notebook.</em>
+<em>The source notebook can be downloaded</em>
+<a href="http://jakevdp.github.io/downloads/notebooks/JSInteraction.ipynb">here</a></p>
+</div>
+</div>
 </div></p></div>
     <footer>
 <p class="meta">
@@ -3002,7 +3178,7 @@ In&nbsp;[11]:
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Jake Vanderplas -
+    Copyright &copy;  2012-2014  - Jake Vanderplas -
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
     <script type="text/javascript">
@@ -3030,7 +3206,7 @@ In&nbsp;[11]:
           var disqus_title = 'IPython Notebook: Javascript/Python Bi-directional Communication';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-	    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
 	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 	   })();
 	</script>

@@ -1777,7 +1777,7 @@ jQuery(document).ready(function($) {
 </ul>
 
 
-<form action="http://google.com/search" method="get">
+<form action="//google.com/search" method="get">
   <fieldset role="search">
     <input type="hidden" name="q" value="site:jakevdp.github.io" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
@@ -1798,29 +1798,41 @@ jQuery(document).ready(function($) {
 </header>
 
   <div class="entry-content"><p>
-<div class="text_cell_render border-box-sizing rendered_html">
-
-<p>One of the most consistently popular posts on this blog has been my <a href="http://jakevdp.github.io/blog/2012/10/07/xkcd-style-plots-in-matplotlib/">XKCDify</a> post, where I followed in the footsteps of others to write a little hack for xkcd-style plotting in matplotlib. In it, I mentioned the <a href="https://github.com/matplotlib/matplotlib/pull/1329">Sketch Path Filter</a> pull request that would eventually supersede my ugly little hack.</p>
-<p>Well, &quot;eventually&quot; has finally come. Observe:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>
+One of the most consistently popular posts on this blog has been my
+<a href="http://jakevdp.github.io/blog/2012/10/07/xkcd-style-plots-in-matplotlib/">XKCDify</a> post,
+where I followed in the footsteps of others to write a little hack for xkcd-style plotting
+in matplotlib.  In it, I mentioned the <a href="https://github.com/matplotlib/matplotlib/pull/1329">Sketch Path Filter</a>
+pull request that would eventually supersede my ugly little hack.</p>
+<p>Well, &quot;eventually&quot; has finally come.  Observe:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[1]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%</span><span class="k">pylab</span> <span class="n">inline</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 
 Welcome to pylab, a matplotlib-based Python environment [backend: module://IPython.kernel.zmq.pylab.backend_inline].
@@ -1834,12 +1846,13 @@ For more information, type &apos;help(pylab)&apos;.
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[2]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">plt</span><span class="o">.</span><span class="n">xkcd</span><span class="p">()</span>  <span class="c"># Yes...</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Whoo Hoo!!!&#39;</span><span class="p">)</span>
@@ -1847,27 +1860,28 @@ In&nbsp;[2]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[2]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 &lt;matplotlib.text.Text at 0x2fade10&gt;
 </pre>
-
-</div>
 </div>
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+</div>
+
+<div class="output_area"><div class="prompt"></div>
 
 
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYAAAAELCAYAAADQsFGkAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXl4U1X6x79pkqZJ2qRNWkpBZFMEURAYRhRBlF0BBwEF
 AUVUFJQZl5lxmZ9SdwF1ABdAAQHZlwER2RSKbLIjiCIim1hoaZM2zd4kPb8/DuemoXuW3pvkfJ6n
@@ -2258,30 +2272,54 @@ QEpPTye9Xv9/610yG8Ecna6uLhgMBkilUoeZ/P5v7t69i/b2dkilUkxNTaGjowMXLlyAj48P29I4
 lgi3b99GWloavn379kcfH/9Pqa+vR3JyMgAgJCQEAwMDCAwMREdHx7+aB+MCAAcHxx/Dly9f0NPT
 A5lMxrYUm2I2m9HW1oYXL16gpaUFAQEBKCsr+9e7nrkAwMHBweGgsL4MlIODg4ODHbgAwMHBweGg
 cAGAg4ODw0HhAgAHBweHg8IFAA4ODg4HhQsAHBwcHA7KX60VJk94SH9vAAAAAElFTkSuQmCC
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The <code>plt.xkcd()</code> function enables some rcParam settings which can automatically convert <strong>any</strong> matplotlib plot into XKCD style. You can peruse the matplotlib xkcd gallery <a href="http://matplotlib.org/xkcd/gallery.html">here</a> for inspiration, or read on where I'll show off some of my favorite of the possibilities.</p>
+<p>The <code>plt.xkcd()</code> function enables some rcParam settings which can automatically convert
+<strong>any</strong> matplotlib plot into XKCD style.  You can peruse the matplotlib xkcd gallery
+<a href="http://matplotlib.org/xkcd/gallery.html">here</a> for inspiration, or read on where I&#39;ll
+show off some of my favorite of the possibilities.</p>
 
 
-<p><em>By the way, this new functionality requires matplotlib version 1.3, which can currently be downloaded and installed from <a href="http://github.com/matplotlib/matplotlib">github</a>. Also, if you want to have the font match above, be sure to download and install the <a href="http://xkcdsucks.blogspot.com/2009/03/xkcdsucks-is-proud-to-present-humor.html">Humor Sans</a> font on your system. For matplotlib to recognize it, you may have to remove the font cache, found on your system at</em></p>
+<p><em>By the way, this new functionality requires matplotlib version 1.3, which can currently
+be downloaded and installed from <a href="http://github.com/matplotlib/matplotlib">github</a>.
+Also, if you want to have the font match above, be sure to download and install the
+<a href="http://xkcdsucks.blogspot.com/2009/03/xkcdsucks-is-proud-to-present-humor.html">Humor Sans</a>
+font on your system.  For matplotlib to recognize it, you may have to remove the font cache,
+found on your system at</em></p>
+<pre><code>$HOME/.matplotlib/fontList.cache
+</code></pre>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Even simple plots can be made much more interesting:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[3]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="n">y1</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="n">y2</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -2294,27 +2332,28 @@ In&nbsp;[3]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[3]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 &lt;matplotlib.text.Text at 0x31e3190&gt;
 </pre>
-
-</div>
 </div>
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+</div>
+
+<div class="output_area"><div class="prompt"></div>
 
 
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYcAAAERCAYAAACQIWsgAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXd4W/W5+D/ae8t2Ejt7Q4BACDNhj0Iu0AG3vd2lT7nQ
 ++uivYUWuKTcDgpcoECBAmW1jDSFAKFhBRKygOxJljMcb8va8xxJ5/z+kCVinGErtiU55/M8ehJZ
@@ -2986,24 +3025,32 @@ gkajwejRo7Fz507MnDmzw4vM/N2C7+vWrUNoaChSU1Mxd+5cjBs3Dj4+Pn9bfvXq1cjMzERsbGyH
 vo/DeRp8ym5Oj0ar1UIqlf7jRaRKSkrwzTffYNWqVXBycvrX9hQUFGD79u3Ys2cP5HL5vz4eh/NP
 4eLA4XA4nFbw3kocDofDaQUXBw6Hw+G0gosDh8PhcFrBxYHD4XA4reDiwOFwOJxWcHHgcDgcTiv+
 D9HPQ5oNeb8TAAAAAElFTkSuQmCC
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>3D plots work as well:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[4]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
 <span class="kn">from</span> <span class="nn">matplotlib.collections</span> <span class="kn">import</span> <span class="n">PolyCollection</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
@@ -3032,13 +3079,14 @@ In&nbsp;[4]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stderr">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stderr output_text">
 <pre>
 /home/vanderplas/PythonEnv/pydev/local/lib/python2.7/site-packages/matplotlib-1.3.x-py2.7-linux-x86_64.egg/matplotlib/axis.py:695: MatplotlibDeprecationWarning: This function has been made private and movedto &#96;_set_scale&#96;. This wrapper function will be removed in 1.4
   &quot;removed in 1.4&quot;, mplDeprecation)
@@ -3047,22 +3095,22 @@ In&nbsp;[4]:
 </div>
 </div>
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[4]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 (0, 1)
 </pre>
-
-</div>
 </div>
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+</div>
+
+<div class="output_area"><div class="prompt"></div>
 
 
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAV0AAADtCAYAAAAcNaZ2AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsvXmQHOd53/95+5prLwCLixQJEuAFHrpssixLpAjZpu24
 bEkuR5Ll0I5lyw6rFMtxnEqpHEVSxSoplkLZkV2hi7IlSyKjX2yFpmhRkUTq5oUbIAASBLD3gdnZ
@@ -3908,24 +3956,32 @@ jBjRHcsN0McJiG6AAJ3AYrG4vl+/fj0ffvgh6enpft2HTqfz6/YC9A0CohsgwHkye/Zs7rvvPn78
 8UfS09PJy8vj888/9zrIsjO89tpr1NTUMHXqVL9sL0DfIiC6AQKcByqViueff57IyEjWrl3LLbfc
 wquvvupXf+zo0aP9tq0AfY9AyliAAD6we/duzGYz8+bNcwXLhBCBFooBzpuA6AYIECBADxIoAw4Q
 IECAHuT/A8fZkjWaRZ90AAAAAElFTkSuQmCC
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can use the new package to quickly reproduce a <a href="http://xkcd.com/1235/">recent XKCD comic</a>:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[5]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
 
@@ -3951,27 +4007,28 @@ In&nbsp;[5]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[5]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 &lt;matplotlib.text.Text at 0x35adc90&gt;
 </pre>
-
-</div>
 </div>
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+</div>
+
+<div class="output_area"><div class="prompt"></div>
 
 
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAeoAAADpCAYAAADrjnQgAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXl8zFf3xz+TmUkyk2WSmSEiCFlEyILgsVWstYSKfa+i
 VeUp9ShKtahqa6eKVm1t2lK7amnRUh5LF9QeO7GE7PsySebz+2N+3yuTmSQTpTztvF+veZHver/3
@@ -4965,24 +5022,36 @@ GJ7/iqKA53ndMsf3+DGB+jNFIhF4vd68rjU3NzdYWFjQ1qROTk60Ws9ykM1mDaWW4vE4/H4/Wlpa
 U+FLXq/X0BKO2qbZbrejuroatbW1CAQCX/JZqmV972kt/C/6sadn/Q2KopgYhvnuYRCii+Yn+QxP
 T08ms9lsslgsJf9uf3/fdH19bXK73SaWZU11dXWmysrKvzTK/xsFakIIIaSMlX6EIoQQQsi3okBN
 CCGElDEK1IQQQkgZo0BNCCGElDEK1IQQQkgZ+wWuFAoZRKyHvwAAAABJRU5ErkJggg==
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>And as my favorite example, we can recreate any of the animations I've shown in this blog, making them xkcd-style with a simple <code>plt.xkcd()</code> annotation. Below you can see the double-pendulum animation from <a href="http://jakevdp.github.io/blog/2012/08/18/matplotlib-animation-tutorial/">this post</a>, rendered using the XKCD sketch path:</p>
+<p>And as my favorite example, we can recreate any of the animations I&#39;ve
+shown in this blog, making them xkcd-style with a simple <code>plt.xkcd()</code>
+annotation.  Below you can see the double-pendulum animation from
+<a href="http://jakevdp.github.io/blog/2012/08/18/matplotlib-animation-tutorial/">this post</a>,
+rendered using the XKCD sketch path:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[6]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
 <span class="n">url</span> <span class="o">=</span> <span class="s">&#39;http://jakevdp.github.io/downloads/videos/double_pendulum_xkcd.mp4&#39;</span>
 <span class="n">HTML</span><span class="p">(</span><span class="s">&#39;&lt;video controls alt=&quot;animation&quot; src=&quot;{0}&quot;&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="p">))</span>
@@ -4990,34 +5059,57 @@ In&nbsp;[6]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[6]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
-<div class="output_html rendered_html">
+<div class="output_html rendered_html output_subarea output_pyout">
 <video controls alt="animation" src="http://jakevdp.github.io/downloads/videos/double_pendulum_xkcd.mp4">
 </div>
 
 </div>
-</div>
 
 </div>
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The code used to create this movie can be downloaded <a href="http://jakevdp.github.io/downloads/code/double_pendulum_xkcd.py">here</a></p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This addition to matplotlib is much more flexible than the little hack I wrote last fall; I hope you have fun playing with it. And as someone quipped at the Scipy conference in June, &quot;First one to get an XKCD plot in a Nature paper wins!&quot;</p>
+<p>The code used to create this movie can be downloaded
+<a href="http://jakevdp.github.io/downloads/code/double_pendulum_xkcd.py">here</a></p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><em>This post was written entirely as an IPython notebook. The full notebook can be downloaded</em> <a href="http://jakevdp.github.io/downloads/notebooks/XKCD_sketch_path.ipynb"><em>here</em></a>, <em>or viewed statically on</em> <a href="http://nbviewer.ipython.org/url/jakevdp.github.io/downloads/notebooks/XKCD_sketch_path.ipynb"><em>nbviewer</em></a></p>
+<p>This addition to matplotlib is much more flexible than the little hack I wrote last fall;
+I hope you have fun playing with it.  And as someone quipped at the Scipy conference in June,
+&quot;First one to get an XKCD plot in a Nature paper wins!&quot;</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>This post was written entirely as an IPython notebook. The full notebook can be downloaded</em>
+<a href="http://jakevdp.github.io/downloads/notebooks/XKCD_sketch_path.ipynb"><em>here</em></a>,
+<em>or viewed statically on</em>
+<a href="http://nbviewer.ipython.org/url/jakevdp.github.io/downloads/notebooks/XKCD_sketch_path.ipynb"><em>nbviewer</em></a></p>
+</div>
+</div>
 </div></p></div>
     <footer>
 <p class="meta">
@@ -5071,7 +5163,7 @@ In&nbsp;[6]:
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Jake Vanderplas -
+    Copyright &copy;  2012-2014  - Jake Vanderplas -
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
     <script type="text/javascript">
@@ -5099,7 +5191,7 @@ In&nbsp;[6]:
           var disqus_title = 'XKCD Plots in Matplotlib: Going the Whole Way';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-	    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
 	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 	   })();
 	</script>

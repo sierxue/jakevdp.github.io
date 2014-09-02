@@ -1777,7 +1777,7 @@ jQuery(document).ready(function($) {
 </ul>
 
 
-<form action="http://google.com/search" method="get">
+<form action="//google.com/search" method="get">
   <fieldset role="search">
     <input type="hidden" name="q" value="site:jakevdp.github.io" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
@@ -1798,70 +1798,127 @@ jQuery(document).ready(function($) {
 </header>
 
   <div class="entry-content"><p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><em>Update: as I was putting the finishing touches on this notebook, I noticed <a href="http://www.seattlebikeblog.com/2014/06/09/a-statistical-analysis-of-biking-on-the-fremont-bridge-part-1-overview/">this post</a>, the first in a series on Seattle Bike Blog which analyzes much of the same data used here. Apparently great minds think alike! (incidentally, to prove that I'm not just cribbing that content, check the <a href="http://github.com/jakevdp/SeattleBike/commits/master">github commit log</a>: I wrote the bulk of this post several days before the SBB blog series was posted. Version control priority FTW!)</em></p>
+<p><em>Update: as I was putting the finishing touches on this notebook, I noticed <a href="http://www.seattlebikeblog.com/2014/06/09/a-statistical-analysis-of-biking-on-the-fremont-bridge-part-1-overview/">this post</a>, the first in a series on Seattle Bike Blog which analyzes much of the same data used here. Apparently great minds think alike! (incidentally, to prove that I&#39;m not just cribbing that content, check the <a href="http://github.com/jakevdp/SeattleBike/commits/master">github commit log</a>: I wrote the bulk of this post several days before the SBB blog series was posted. Version control priority FTW!)</em></p>
 <p><em>Update #2: I added error bars to the estimates in the final section (should have done that from the beginning, I know...</em></p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 
-<p>Cycling in Seattle seems to be taking off. This can be seen qualitatively in the increased visibility of advocacy groups like <a href="http://seattlegreenways.org/">Seattle Neighborhood Greenways</a> and <a href="http://www.cascade.org/">Cascade Bicycle Club</a>, the excellent reporting of sites like the <a href="http://www.seattlebikeblog.com/">Seattle Bike Blog</a>, and the investment by the city in high-profile traffic safety projects such as <a href="http://www.seattle.gov/transportation/PBL.htm">Protected Bike Lanes</a>, <a href="http://www.seattle.gov/transportation/pedestrian_masterplan/pedestrian_toolbox/tools_deua_diets.htm">Road diets/Rechannelizations</a> and the <a href="http://www.seattle.gov/transportation/bikemaster.htm">Seattle Bicycle Master Plan</a>.</p>
-<p>But, qualitative arguments aside, there is also an increasing array of quantitative data available, primarily from the <a href="http://www.seattle.gov/transportation/bikecounter.htm">Bicycle counters</a> installed at key locations around the city. The first was the <a href="http://www.seattle.gov/transportation/bikecounter_fremont.htm">Fremont Bridge Bicycle Counter</a>, installed in October 2012, which gives daily updates on the number of bicycles crossing the bridge: currently upwards of 5000-6000 per day during sunny commute days.</p>
-<p>Bicycle advocates have been <a href="http://www.seattlebikeblog.com/2014/05/14/fremont-bridge-smashes-bike-count-record-for-real-this-time-bike-use-rises-all-over-town/">pointing out</a> the upward trend of the counter, and I must admit I've been excited as anyone else to see this surge in popularity of cycling (Most days, I bicycle 22 miles round trip, crossing both the Spokane St. and Fremont bridge each way).</p>
-<p>But anyone who looks closely at the data must admit: there is a large weekly and monthly swing in the bicycle counts, and people seem most willing to ride on dry, sunny summer days. Given the warm streak we've had in Seattle this spring, I wondered: <strong>are we really seeing an increase in cycling, or can it just be attributed to good weather?</strong></p>
+Cycling in Seattle seems to be taking off. This can be seen qualitatively in the increased visibility of advocacy groups like <a href="http://seattlegreenways.org/">Seattle Neighborhood Greenways</a> and <a href="http://www.cascade.org/">Cascade Bicycle Club</a>, the excellent reporting of sites like the <a href="http://www.seattlebikeblog.com/">Seattle Bike Blog</a>, and the investment by the city in high-profile traffic safety projects such as <a href="http://www.seattle.gov/transportation/PBL.htm">Protected Bike Lanes</a>, <a href="http://www.seattle.gov/transportation/pedestrian_masterplan/pedestrian_toolbox/tools_deua_diets.htm">Road diets/Rechannelizations</a> and the <a href="http://www.seattle.gov/transportation/bikemaster.htm">Seattle Bicycle Master Plan</a>.
+
+But, qualitative arguments aside, there is also an increasing array of quantitative data available, primarily from the <a href="http://www.seattle.gov/transportation/bikecounter.htm">Bicycle counters</a> installed at key locations around the city. The first was the <a href="http://www.seattle.gov/transportation/bikecounter_fremont.htm">Fremont Bridge Bicycle Counter</a>, installed in October 2012, which gives daily updates on the number of bicycles crossing the bridge: currently upwards of 5000-6000 per day during sunny commute days.
+
+Bicycle advocates have been <a href="http://www.seattlebikeblog.com/2014/05/14/fremont-bridge-smashes-bike-count-record-for-real-this-time-bike-use-rises-all-over-town/">pointing out</a> the upward trend of the counter, and I must admit I&#39;ve been excited as anyone else to see this surge in popularity of cycling (Most days, I bicycle 22 miles round trip, crossing both the Spokane St. and Fremont bridge each way).
+
+But anyone who looks closely at the data must admit: there is a large weekly and monthly swing in the bicycle counts, and people seem most willing to ride on dry, sunny summer days. Given the warm streak we&#39;ve had in Seattle this spring, I wondered: <strong>are we really seeing an increase in cycling, or can it just be attributed to good weather?</strong>
 
 
-<p>Here I've set-out to try and answer this question. Along the way, we'll try to deduce just how much the weather conditions affect Seattleites' transportation choices.</p>
+
+<p>Here I&#39;ve set-out to try and answer this question. Along the way, we&#39;ll try to deduce just how much the weather conditions affect Seattleites&#39; transportation choices.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="A-Quick-Aside">A Quick Aside<a class="anchor-link" href="#A-Quick-Aside">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>If anyone is landing on this page via the normal bicycle advocacy channels, I should warn you that this won't look like a typical Seattle-bike-advocate blog post. I currently work as a data scientist at the <a href="http://data.washington.edu/">University of Washington eScience Institute</a>, where I'm incredibly fortunate to have the flexibility to spend a couple hours each week on side-projects like this. Most of my <a href="http://jakevdp.github.io">blog posts</a> are pretty technical in nature: I tend to focus on statistical methods and visualization using the <a href="http://www.python.org">Python</a> programming language.</p>
-<p>This post is composed in an <a href="http://ipython.org/notebook.html">IPython notebook</a>, which is a fully executable document which combines text, data, code, and visualizations all in one place. The nice thing is that anyone with a bit of desire and initiative could install the (free) IPython software on their computer and open this document, re-running and checking my results, and perhaps modifying my assumptions to see what happens. In a way, this post is as much about <strong>how</strong> to work with data as it is about <strong>what</strong> we learn from the data.</p>
-<p>In other words, this is an <strong>entirely reproducible analysis</strong>. Every piece of data and software used here is open and freely available to anyone who wants to use it. It's an example of the direction I think data journalism should go as it starts to more and more emulate data-driven scientific research.</p>
-<p>That said, there's a lot of technical stuff below. If you're not familiar with Python or other data analysis frameworks, don't be afraid to skip over the code and look at the plots, which I'll do my best to explain.</p>
 </div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If anyone is landing on this page via the normal bicycle advocacy channels, I should warn you that this won&#39;t look like a typical Seattle-bike-advocate blog post. I currently work as a data scientist at the <a href="http://data.washington.edu/">University of Washington eScience Institute</a>, where I&#39;m incredibly fortunate to have the flexibility to spend a couple hours each week on side-projects like this. Most of my <a href="http://jakevdp.github.io">blog posts</a> are pretty technical in nature: I tend to focus on statistical methods and visualization using the <a href="http://www.python.org">Python</a> programming language.</p>
+<p>This post is composed in an <a href="http://ipython.org/notebook.html">IPython notebook</a>, which is a fully executable document which combines text, data, code, and visualizations all in one place. The nice thing is that anyone with a bit of desire and initiative could install the (free) IPython software on their computer and open this document, re-running and checking my results, and perhaps modifying my assumptions to see what happens. In a way, this post is as much about <strong>how</strong> to work with data as it is about <strong>what</strong> we learn from the data.</p>
+<p>In other words, this is an <strong>entirely reproducible analysis</strong>. Every piece of data and software used here is open and freely available to anyone who wants to use it. It&#39;s an example of the direction I think data journalism should go as it starts to more and more emulate data-driven scientific research.</p>
+<p>That said, there&#39;s a lot of technical stuff below. If you&#39;re not familiar with Python or other data analysis frameworks, don&#39;t be afraid to skip over the code and look at the plots, which I&#39;ll do my best to explain.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="The-Data">The Data<a class="anchor-link" href="#The-Data">&#182;</a></h2>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This post will use two datasets, which you can easily access with an internet connection. You can find the exact data I used in the <a href="https://github.com/jakevdp/SeattleBike">GitHub repository</a>, or access it from the original sources below.</p>
-<p>First, I'll be using the Fremont Bridge Hourly Bicycle Counts. To download this data, go to the <a href="https://data.seattle.gov/Transportation/Fremont-Bridge-Hourly-Bicycle-Counts-by-Month-Octo/65db-xm6k">fremont bridge</a> page, and do the following (I accessed this on June 6th, 2014):</p>
+<p>First, I&#39;ll be using the Fremont Bridge Hourly Bicycle Counts. To download this data, go to the <a href="https://data.seattle.gov/Transportation/Fremont-Bridge-Hourly-Bicycle-Counts-by-Month-Octo/65db-xm6k">fremont bridge</a> page, and do the following (I accessed this on June 6th, 2014):</p>
 <ul>
 <li>click &quot;export&quot;</li>
 <li>click &quot;download as CSV&quot;</li>
 </ul>
-<p>Second, I'll be using weather data available at the <a href="http://www.ncdc.noaa.gov/">National Climatic Data Center</a>. We'll use weather data from the SeaTac Airport weather station. To get this data, go to the <a href="http://www.ncdc.noaa.gov/cdo-web/search?datasetid=GHCND">Climate Data Search</a> page and do the following (I accessed this on June 6th, 2014):</p>
+<p>Second, I&#39;ll be using weather data available at the <a href="http://www.ncdc.noaa.gov/">National Climatic Data Center</a>. We&#39;ll use weather data from the SeaTac Airport weather station. To get this data, go to the <a href="http://www.ncdc.noaa.gov/cdo-web/search?datasetid=GHCND">Climate Data Search</a> page and do the following (I accessed this on June 6th, 2014):</p>
 <ul>
 <li>Choose &quot;Daily Summaries&quot;</li>
 <li>Choose 2012/10/1 to the present date</li>
 <li>Search for &quot;Station&quot;, and type in &quot;USW00024233&quot; (ID for SeaTac Airport weather station)</li>
 <li>Click the icon on the map and &quot;Add to Cart&quot;</li>
-<li><p>go to &quot;Shopping Cart&quot;</p></li>
+<li><p>go to &quot;Shopping Cart&quot;</p>
+<ul>
 <li>make sure date range is 2012/10/1 to 2014/5/14</li>
 <li>choose Custom GHCN-Daily CSV</li>
-<li><p>click &quot;Continue&quot;</p></li>
-<li>next page: click &quot;select all&quot;</li>
+<li>click &quot;Continue&quot;</li>
+</ul>
+</li>
+<li><p>next page: click &quot;select all&quot;</p>
+</li>
 <li>click &quot;continue&quot;</li>
-<li><p>enter email address and submit order</p></li>
+<li>enter email address and submit order</li>
 </ul>
 <p>When the data set is ready, you will get an email with a download link. It was about an hour wait when I did it.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Examining-the-Fremont-Bridge-Data">Examining the Fremont Bridge Data<a class="anchor-link" href="#Examining-the-Fremont-Bridge-Data">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The first thing we're going to do is load and examine the data from the Fremont bike counter. We'll use the <a href="http://pandas.pydata.org/">pandas</a> package, a free and open source set of data analysis tools for the Python language.</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The first thing we&#39;re going to do is load and examine the data from the Fremont bike counter. We&#39;ll use the <a href="http://pandas.pydata.org/">pandas</a> package, a free and open source set of data analysis tools for the Python language.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[1]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># some necessary imports</span>
 
 <span class="o">%</span><span class="k">matplotlib</span> <span class="n">inline</span>
@@ -1872,14 +1929,16 @@ In&nbsp;[1]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[2]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># Load the data file, and create a column with total north/south traffic</span>
 
 <span class="n">hourly</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&quot;FremontHourly.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s">&#39;Date&#39;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
@@ -1889,14 +1948,16 @@ In&nbsp;[2]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[3]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># Resample the data into daily and weekly totals</span>
 
 <span class="n">daily</span> <span class="o">=</span> <span class="n">hourly</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s">&#39;d&#39;</span><span class="p">,</span> <span class="s">&#39;sum&#39;</span><span class="p">)</span>
@@ -1905,32 +1966,41 @@ In&nbsp;[3]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now let's take a peek at our data and see what it looks like:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now let&#39;s take a peek at our data and see what it looks like:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[4]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">weekly</span><span class="p">[[</span><span class="s">&#39;northbound&#39;</span><span class="p">,</span> <span class="s">&#39;southbound&#39;</span><span class="p">,</span> <span class="s">&#39;total&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Weekly riders&#39;</span><span class="p">);</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAY4AAAEbCAYAAADNr2OMAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXlYlOXawH+DkCsqoKKAiAouKJuWWy54XNLM6mRqWC4d
 7aR2Ks06lp3K0tRzSs1K2z7azVwqt3IXtDS1cA1cAFlkUwFFcAFhnu+PhxkGmB0GZvD9XZeXvPtz
@@ -2542,39 +2612,48 @@ rHqWnsORDJ9xcDgyJjs7G927d0d+fj7U1NQwZcoUfPvttwCAr776Cm5ubti7dy+GDx9eXCvexsYG
 qqqqsLW1xZdffokFCxYgKioKPXr0ABFBV1cXx44dk6daHE4xPDjO4XA4nGrBXVUcDofDqRbccHA4
 HA6nWnDDweFwOJxqwQ0Hh8PhcKoFNxwcDofDqRbccHA4HA6nWnDDweFwOJxqwQ0Hh8PhcKrF/wM/
 sbd5ZuLIAAAAAABJRU5ErkJggg==
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The red line shows the total number of weekly crossings, which is the sum of the northbound and southbound crossings.</p>
-<p>At first glance, April and May 2014 include some spikes in the data: over 32,000 riders per week crossed the bridge one week in May! This trend might be a bit clearer if we use a <strong>moving window average</strong>: basically, for each day we'll take the average of the 30-day period around it:</p>
+<p>At first glance, April and May 2014 include some spikes in the data: over 32,000 riders per week crossed the bridge one week in May! This trend might be a bit clearer if we use a <strong>moving window average</strong>: basically, for each day we&#39;ll take the average of the 30-day period around it:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[5]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">pd</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">moments</span><span class="o">.</span><span class="n">rolling_mean</span><span class="p">(</span><span class="n">daily</span><span class="p">[</span><span class="s">&#39;total&#39;</span><span class="p">],</span> <span class="mi">30</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXkAAAEbCAYAAAA/P/RsAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJztnXlcVPX6xz+IuKWGloLOiCAM4igCoWDlgpoLueTN8l5a
 0JJb2bWszDL6VdbtXmzTzKLlpjfLq2WLSwumpuOSgYliCiUYoCwjriiLgjLf3x8PZwDZZpjlnDk8
@@ -2902,34 +2981,54 @@ d7L0DNMwPJJnWjWXLl1CWFgYrly5grZt2yI2NhZPPvkkAODRRx/F9OnT8emnn2LixInm3rwhISFw
 d3dHaGgoHnjgATz++OPIzc3FTTfdBCEEevbsifXr18upFsOY4YlXhmEYFcPuGoZhGBXDRp5hGEbF
 sJFnGIZRMWzkGYZhVAwbeYZhGBXDRp5hGEbFsJFnGIZRMWzkGYZhVMz/A16cWP9H+PdLAAAAAElF
 TkSuQmCC
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This is the increased ridership that folks have been talking about. There is some seasonal variation, but the trend seems clear: 2014 has seen a lot of cyclists crossing the bridge.</p>
-<p>But it is clear that there is still some seasonal variation. What we're going to try to do below is to <strong>model this variation</strong> based on our intuition about what factors might come into play in people's decision about whether to ride.</p>
-<p>For simplicity, I'm going to stick with a <strong>linear model</strong> here. It would be possible to go deeper and use a more sophisticated model (I'd eventually like to try Random Forests), but a linear model should give us a good approximation of what's happening.</p>
+<p>But it is clear that there is still some seasonal variation. What we&#39;re going to try to do below is to <strong>model this variation</strong> based on our intuition about what factors might come into play in people&#39;s decision about whether to ride.</p>
+<p>For simplicity, I&#39;m going to stick with a <strong>linear model</strong> here. It would be possible to go deeper and use a more sophisticated model (I&#39;d eventually like to try Random Forests), but a linear model should give us a good approximation of what&#39;s happening.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Step-1:-Accounting-for-hours-of-daylight">Step 1: Accounting for hours of daylight<a class="anchor-link" href="#Step-1:-Accounting-for-hours-of-daylight">&#182;</a></h2>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The largest component of the variation we see is a seasonal swing. I'm going to hypothesize that that swing is at least partially due to the changing daylight hours. We'll compute the number of hours of daylight and use this to de-trend the data.</p>
+<p>The largest component of the variation we see is a seasonal swing. I&#39;m going to hypothesize that that swing is at least partially due to the changing daylight hours. We&#39;ll compute the number of hours of daylight and use this to de-trend the data.</p>
 <p>Fortunately, my PhD is in Astronomy, so I once-upon-a-time learned how to compute this:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[6]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># Define a function which returns the hours of daylight</span>
 <span class="c"># given the day of the year, from 0 to 365</span>
 
@@ -2949,14 +3048,16 @@ In&nbsp;[6]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[7]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># Plot the daylight curve</span>
 
 <span class="n">weekly</span><span class="p">[</span><span class="s">&#39;daylight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
@@ -2965,15 +3066,16 @@ In&nbsp;[7]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXsAAAEbCAYAAAA7yiRRAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJztnXdYFNfXx78rIhYwGAs2FBO70uxR0VVjSVRsUYNRRNTE
 mpgQY8mb/DQaU401UVNURMXee6JgjQ1F0RiwgA27IiAWyn3/uC4BZdlld2fuzOz5PM8+ySy7M9/j
@@ -3280,25 +3382,33 @@ B3fu3MGwYcOym14nJyejfPnyAIAlS5YgMzMTwMuhn44dO+KXX35BRkYGACAuLg5paWkyqycI49DI
 nrB7Hj9+DF9fX6Snp6Nw4cIIDAzExx9/DAAYMWIEevXqhSVLlqBTp07ZfYO9vb3h4OAAHx8fDBo0
 CB9++CESEhLQoEEDMMZQrlw5rF+/XqRZBJELmqAlCIKwAyiMQxAEYQeQsycIgrADyNkTBEHYAeTs
 CYIg7ABy9gRBEHYAOXuCIAg7gJw9QRCEHUDOniAIwg74f4LUMX0CmlXEAAAAAElFTkSuQmCC
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This looks reasonable: just over 8 hours of daylight in December, and just under 16 hours in June.</p>
-<p>To get a feel for the trend, let's plot the daylight hours versus the weekly bicycle traffic:</p>
+<p>To get a feel for the trend, let&#39;s plot the daylight hours versus the weekly bicycle traffic:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[8]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">weekly</span><span class="p">[</span><span class="s">&#39;daylight&#39;</span><span class="p">],</span> <span class="n">weekly</span><span class="p">[</span><span class="s">&#39;total&#39;</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;daylight hours&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;weekly bicycle traffic&#39;</span><span class="p">);</span>
@@ -3306,15 +3416,16 @@ In&nbsp;[8]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAY4AAAEPCAYAAABV6CMBAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl4TGf7wPHvZLJOIrEHidoSIUQiiKVKCLXV0iJerbW0
 SrV4+6K0JbqgC0VLW6V9VRFbbW1tP5XSktReSxEVWzZrQpLJNnP//khMecmeySQ8n+vKdZlnzjnP
@@ -3698,25 +3809,33 @@ YsQIzp8/z/Dhw6tcv6enJ6+//jphYWH07NkTHx8ffvrTnzoev3md1/8ODg6mYcOGhISEVPrleGXF
 7jp+IgA6rbrIPVi3bh2bNm1yXICqKkVFRTz00EPY7XZiY2MZN24cAwcOrIaUItXDevdZROq3iRMn
 8re//Y2tW7fe0/zTp09n27ZtlJaW0q9fP5WG1Dna4xAREafoOw4REXGKikNERJyi4hAREaeoOERE
 xCkqDhERcYqKQ0REnPL/Hbt9RXgEoLIAAAAASUVORK5CYII=
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We see a clear trend, though it's also apparent from the wide vertical scatter that other effects are at play.</p>
-<p>Let's apply a linear fit to this data. Basically, we'll draw a best-fit line to the points using some convenient tools in the <a href="http://scikit-learn.org">scikit-learn</a> package, which I've been active in developing:</p>
+<p>We see a clear trend, though it&#39;s also apparent from the wide vertical scatter that other effects are at play.</p>
+<p>Let&#39;s apply a linear fit to this data. Basically, we&#39;ll draw a best-fit line to the points using some convenient tools in the <a href="http://scikit-learn.org">scikit-learn</a> package, which I&#39;ve been active in developing:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[9]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
 
 <span class="n">X</span> <span class="o">=</span> <span class="n">weekly</span><span class="p">[[</span><span class="s">&#39;daylight&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_dense</span><span class="p">()</span>
@@ -3737,15 +3856,16 @@ In&nbsp;[9]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZQAAAEZCAYAAACw69OmAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xlczdn/B/DXbe+2b6JCVCKlGJIworGTJWpQMmPNDMaW
 ZRgZgzIylskstkljb1BGikHDkPysQ/Y2upWlfbvd273v3x/pfmsqbfd2i/N8PDwe7ueez/m8z72c
@@ -4220,36 +4340,45 @@ rQ1XV9dSB+VLS0iNGjXCjz/+iKFDh8LZ2RlCoRCTJ08GAMyfPx8zZsxA586dIRQKVcf/s60dO3bA
 0dERbm5uuH79OsaMGVPu74+xN+Hy9YxVwC+//IJ9+/apFvt6k7y8PBgYGEChUGDQoEEICgrCgAED
 aiFKxjRLWP4ujDVs06dPx5EjR3Dw4MEK7b9gwQIcO3YMUqkUffv25WTCGgy+Q2GMMaYWPIbCGGNM
 LTihMMYYUwtOKIwxxtSCEwpjjDG14ITCGGNMLTihMMYYU4v/B1FLEJ3zBIF1AAAAAElFTkSuQmCC
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Once such a linear model is fit, we can look at the model coefficients to see, on average, how the change in one variable affects the change in another:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[10]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">print</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 2056.44964989
 
@@ -4261,18 +4390,31 @@ In&nbsp;[10]:
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This tells us that according to this model, each extra hour of daylight leads to about 2000 more riders per week across the bridge! Of course, in Seattle the length of the day also correlates highly with temperature and precipitation; we'll try to untangle those effects later.</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now that we have fit this trend, let's subtract it off and replace it by the mean:</p>
+<p>This tells us that according to this model, each extra hour of daylight leads to about 2000 more riders per week across the bridge! Of course, in Seattle the length of the day also correlates highly with temperature and precipitation; we&#39;ll try to untangle those effects later.</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now that we have fit this trend, let&#39;s subtract it off and replace it by the mean:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[11]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">trend</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">weekly</span><span class="p">[[</span><span class="s">&#39;daylight&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">as_matrix</span><span class="p">())</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">weekly</span><span class="p">[</span><span class="s">&#39;daylight&#39;</span><span class="p">],</span> <span class="n">weekly</span><span class="p">[</span><span class="s">&#39;total&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">trend</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">trend</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xfit</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">trend</span><span class="p">)</span> <span class="o">+</span> <span class="mi">0</span> <span class="o">*</span> <span class="n">yfit</span><span class="p">,</span> <span class="s">&#39;-k&#39;</span><span class="p">)</span>
@@ -4283,15 +4425,16 @@ In&nbsp;[11]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZQAAAEZCAYAAACw69OmAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XdYU9f/B/B3CCsJG2VPmSoISFHUqijuXQeOOopaldbV
 Oqt172+rdW9t3bRat2K1VkWt4KRacRs2DgSUnfX5/QGk8BMMhISAnNfz+Dzk5J5zPzfg/eSee+45
@@ -4705,40 +4848,49 @@ pUmTJvj5+VX4oXxFgdSsWTM2btzIuHHj6NGjB7a2trzyyisAREZGMmfOHHr37o2tra31+Pvb2rFj
 B97e3vTs2ZNz584RFhZW6c9PiIeR6euFqILPP/+cr776yrrY18Pcvn2bFi1aYLFYCA0NZfr06Ywa
 NaoOqhRCX7aV7yJE4xYREcG3337L3r17q7T/woUL2b9/P0VFRQwbNkzCRDQacoUihBBCE/IZihBC
 CE1IoAghhNCEBIoQQghNSKAIIYTQhASKEEIITUigCCGE0MT/BytvlxTRuMrEAAAAAElFTkSuQmCC
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This is what I mean by &quot;de-trended&quot; data. We've basically removed the component of the data which correlates with the number of hours in a day, so that what is left is in some way agnostic to this quantity. The &quot;adjusted weekly count&quot; plotted here can be thought of as the number of cyclists we'd expect to see if the hours of daylight were not a factor.</p>
-<p>Let's visualize this another way. Instead of plotting the number of riders vs daylight hours, we'll again plot the number of riders vs the day of the year, along with the trend:</p>
+<p>This is what I mean by &quot;de-trended&quot; data. We&#39;ve basically removed the component of the data which correlates with the number of hours in a day, so that what is left is in some way agnostic to this quantity. The &quot;adjusted weekly count&quot; plotted here can be thought of as the number of cyclists we&#39;d expect to see if the hours of daylight were not a factor.</p>
+<p>Let&#39;s visualize this another way. Instead of plotting the number of riders vs daylight hours, we&#39;ll again plot the number of riders vs the day of the year, along with the trend:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[12]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">weekly</span><span class="p">[[</span><span class="s">&#39;total&#39;</span><span class="p">,</span> <span class="s">&#39;daylight_trend&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&quot;total weekly riders&quot;</span><span class="p">);</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAY4AAAEbCAYAAADNr2OMAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXdYVEf3x79LUVQEKdJVFFCDEEAN9gQrNiyxxSiCYqJY
 XjXG+ho1iYktahIVNT+J5jXGErtR0agQjV0ETcSCSpEFFUQQFGl7fn+Mu+yyfWkLzOd5eODOnZk7
@@ -5256,24 +5408,32 @@ ALCVQ5cuXQAAW7duhUgkAtDQvDVy5EisXbsWtbW1AICsrCxUVFQ08+g5HMXwFQeHo2MqKysREBCA
 mpoaWFlZYcaMGXj77bcBAHPmzEFERAS2bt2KUaNGSWvF+/n5wdLSEv7+/pg1axbefPNN5OXloW/f
 viAiODg4YN++fYYUi8ORwp3jHA6Hw9EIbqricDgcjkZwxcHhcDgcjeCKg8PhcDgawRUHh8PhcDSC
 Kw4Oh8PhaARXHBwOh8PRCK44OBwOh6MRXHFwOBwORyP+H7pils9zTbBbAAAAAElFTkSuQmCC
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can similarly view the adjusted total number of riders over time by subtracting this green line from the blue line:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[13]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">weekly</span><span class="p">[</span><span class="s">&#39;daylight_corrected_total&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="n">rms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">weekly</span><span class="p">[</span><span class="s">&#39;daylight_corrected_total&#39;</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&quot;adjusted total weekly riders&quot;</span><span class="p">)</span>
@@ -5282,13 +5442,14 @@ In&nbsp;[13]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 root-mean-square about trend: 3100 riders
 
@@ -5296,10 +5457,10 @@ root-mean-square about trend: 3100 riders
 </div>
 </div>
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_area"><div class="prompt"></div>
 
 
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAY4AAAEbCAYAAADNr2OMAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXlcVdX6/z8HQXIEAcU8RyXlOKCIRiL6y6JbmljagMnF
 cki916G6Tpll91veJryVN7WkEbWscOiaU0oOeUpNKNHUC5mkqHBAURBEmUTW74/FPuxzzh7PzGG9
@@ -5783,45 +5944,67 @@ rq4O7e3tdo6esaHxHgdjVtbR0YHo6Gj09PTA1dUV6enp2Lp1KwBgw4YNSElJwd69e5GUlGS6V3xU
 VBSkUimUSiXWrl2LzZs3Q6vVIiYmBkQEb29vHDx40JFpMWbCk+OMMcbMwkNVjDHGzMKFgzHGmFm4
 cDDGGDMLFw7GGGNm4cLBGGPMLFw4GGOMmYULB2OMMbNw4WCMMWaW/weEdIwGokpMvAAAAABJRU5E
 rkJggg==
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>With the data de-trended, we get a better idea of how bicycling in Seattle has changed over time, corrected for the seasonal variation.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Accounting-for-Day-of-the-Week">Accounting for Day of the Week<a class="anchor-link" href="#Accounting-for-Day-of-the-Week">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Above we've been looking at weekly data. This is because daily data shows a clear swing as a function of the day of the week, which we'll show here.</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Above we&#39;ve been looking at weekly data. This is because daily data shows a clear swing as a function of the day of the week, which we&#39;ll show here.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[14]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">days</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;Mon&#39;</span><span class="p">,</span> <span class="s">&#39;Tues&#39;</span><span class="p">,</span> <span class="s">&#39;Wed&#39;</span><span class="p">,</span> <span class="s">&#39;Thurs&#39;</span><span class="p">,</span> <span class="s">&#39;Fri&#39;</span><span class="p">,</span> <span class="s">&#39;Sat&#39;</span><span class="p">,</span> <span class="s">&#39;Sun&#39;</span><span class="p">]</span>
 <span class="n">daily</span><span class="p">[</span><span class="s">&#39;dayofweek&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">daily</span><span class="p">[</span><span class="s">&#39;total&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">dayofweek</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[15]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">grouped</span> <span class="o">=</span> <span class="n">daily</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s">&#39;dayofweek&#39;</span><span class="p">)[</span><span class="s">&#39;total&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <span class="n">grouped</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">days</span>
 
@@ -5832,15 +6015,16 @@ In&nbsp;[15]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAEKCAYAAAA8QgPpAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XlcVdX6+PEPCuYAiEOogXkMUJkEso7mFN5UHNK0jIIU
 gXL2qmn9stnqm5heb2lFVldzTm0SyyRNwdQEHHDEm6igCDikqagI6lm/P3ac5KIxHs7A8369eOXe
@@ -6171,25 +6355,33 @@ ysoKVVVVqKrKzs7OD4zgaz6ag1LjtpNMJsPMzAzpdJrKykqam5vZ2NhA0zS8Xi+NjY0F666hUIip
 qSmcTicnJydluw7y0bii0SjJZJKJiQnq6uoIBoMlY/Jf5ENCIYQQltiqhCWEEKJ8SAIRQghhiSQQ
 IYQQlkgCEUIIYYkkECGEEJZIAhFCCGGJJBAhhBCWSAIRQghhyR9wZgS0bau/UAAAAABJRU5ErkJg
 gg==
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>As you might expect in a city of bicycle commuters, there is roughly 2.5 times the amount of traffic on weekdays as there is on weekends. Bicycles are not just for entertainment! In Seattle, at least, they are a real means of commuting for thousands of people per day, and the data show this clearly.</p>
-<p>Let's de-trend the daily bike counts based on the daily totals. We'll add a variable for each day of the week, and use each of these within the trend (this is an example of what's sometimes known as &quot;one-hot&quot; encoding).</p>
+<p>Let&#39;s de-trend the daily bike counts based on the daily totals. We&#39;ll add a variable for each day of the week, and use each of these within the trend (this is an example of what&#39;s sometimes known as &quot;one-hot&quot; encoding).</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[16]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># Add one-hot indicators of weekday</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">):</span>
     <span class="n">daily</span><span class="p">[</span><span class="n">days</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="p">(</span><span class="n">daily</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">dayofweek</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
@@ -6205,15 +6397,16 @@ In&nbsp;[16]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXkAAAEbCAYAAAA/P/RsAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsvXl4HNWZ/f+ppVu7JVk7ErbAljEGLywxge+PWIljDxBI
 YBIghnhhJswEJgkkwxYSBphhYicBJkBCMiF+JiQwbAmDDQSziwQINhgcFhFsMF4ktVoty9pa6q3q
@@ -7131,24 +7324,32 @@ ASRLPEuXLsVjjz2GRCIBAGhsbERHR0c/n70HD6nhMXkP5zQ6Ozsxe/ZsxONxGIaBG264Ad/5zncA
 AHfccQdWrlyJ3/72t1i2bJlTm3fWrFkghKC+vh433XQTvv3tb2P//v2YM2cObNtGeXk5nn322YG8
 LA8eHHgLrx48ePAwhOHJNR48ePAwhOEZeQ8ePHgYwvCMvAcPHjwMYXhG3oMHDx6GMDwj78GDBw9D
 GJ6R9+DBg4chDM/Ie/DgwcMQhmfkPXjw4GEI4/8DeZ8pS+e8TZ0AAAAASUVORK5CYII=
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This shows all the daily bicycle counts (in blue) along with the best-fit trend based on the day of the week and the number of daylight hours per day. It's more clear if we plot the de-trended data:</p>
+<p>This shows all the daily bicycle counts (in blue) along with the best-fit trend based on the day of the week and the number of daylight hours per day. It&#39;s more clear if we plot the de-trended data:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[17]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">daily</span><span class="p">[</span><span class="s">&#39;dayofweek_corrected&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">daily</span><span class="p">[</span><span class="s">&#39;total&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">daily</span><span class="p">[</span><span class="s">&#39;dayofweek_trend&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">daily</span><span class="p">[</span><span class="s">&#39;dayofweek_trend&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
 <span class="k">print</span><span class="p">(</span><span class="s">&quot;rms = {0:.0f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">daily</span><span class="p">[</span><span class="s">&#39;dayofweek_corrected&#39;</span><span class="p">])))</span>
 <span class="n">daily</span><span class="p">[</span><span class="s">&#39;dayofweek_corrected&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
@@ -7156,13 +7357,14 @@ In&nbsp;[17]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 rms = 698
 
@@ -7170,10 +7372,10 @@ rms = 698
 </div>
 </div>
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_area"><div class="prompt"></div>
 
 
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYEAAAEbCAYAAAA8pDgBAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXt4FdW5/787yQ4JSSCJQIAEjZDEEE2FotFaL9tiEERt
 vRSLrQStrQd6Tqntz0JpT7Wtz0lse3rxtOnF0mqttdh6ChyrKVDY1gtERamYoATBSy4EyIXc7+v3
@@ -7647,32 +7849,52 @@ GD15JiDEKFy5coXi4mLPC897enqYMmUKAFu3bsXlcgF33kLKy8ujsrKSW7duAWC323E6nX6OXgjv
 5EpACC/6+vowGo0MDg4SERHBihUreO211wBYu3YtFouFrVu3YjabPe+FzsjIQKPRYDAYWLlyJaWl
 pTgcDmbOnInb7SYhIYH6+vpAHpYQI8iDYSGECGNyO0gIIcKYFAEhhAhjUgSEECKMSREQQogwJkVA
 CCHCmBQBIYQIY1IEhBAijEkREEKIMPY3pk6h0W5DyVQAAAAASUVORK5CYII=
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now we're getting somewhere! What we're seeing here is the number of bicycle crossings per day, corrected for the daily and annual trends. In other words, this is what we might expect the data to look like if the day of the week and the hours of light per day did not matter.</p>
-<p>Let's continue on this line of reasoning, and add some more information to the model.</p>
+<p>Now we&#39;re getting somewhere! What we&#39;re seeing here is the number of bicycle crossings per day, corrected for the daily and annual trends.  In other words, this is what we might expect the data to look like if the day of the week and the hours of light per day did not matter.</p>
+<p>Let&#39;s continue on this line of reasoning, and add some more information to the model.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Accounting-for-Temperature-and-Precipitation">Accounting for Temperature and Precipitation<a class="anchor-link" href="#Accounting-for-Temperature-and-Precipitation">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Next we'll account for the NCDC climate data that was described above. The data includes the daily maximum and minimum temperatures, as well as the amount of recorded rainfall at SeaTac airport, about 15 miles to the south. Let's take a look at this data:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Next we&#39;ll account for the NCDC climate data that was described above.  The data includes the daily maximum and minimum temperatures, as well as the amount of recorded rainfall at SeaTac airport, about 15 miles to the south. Let&#39;s take a look at this data:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[18]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># Read the weather file</span>
 <span class="n">weather</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;SeaTacWeather.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s">&#39;DATE&#39;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
 
@@ -7691,15 +7913,16 @@ In&nbsp;[18]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYEAAAElCAYAAAAC1F7cAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXd0VFX397+TRnrvhRRKaKEFkQACISRKEUJQigiJCIgI
 6k8eRIU88UWFIKKAgCJCQJAqEIqIgEkQAWmhBQgppPdk0iY9M/v9Y54ZMpmaZCZTcj9rzVq559x7
@@ -8270,25 +8493,33 @@ YwSlpaWYPXu2qtl5amoq9uzZg/z8fOTn5+PEiRM64wIcjtjh7iAORw/3799HZGQkamtr0axZM0yd
 OhXz589HQUEBrl27hn79+qn29fX1Rbt27fD777+jT58+WueSSCSqmICSJUuWYMKECTbRhcPRBy8l
 zeFwOE0Y7g7icDicJgw3AhwOh9OE4UaAw+FwmjDcCHA4HE4ThhsBDofDacJwI8DhcDhNGG4EOBwO
 pwnDjQCHw+E0Yf4/0iKkowsLUQMAAAAASUVORK5CYII=
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This shows the maximum and minimum temperatures in Seattle. They vary in ways you might expect. For example, you can easily see the late 2013 freeze that killed my artichoke plants last year.</p>
-<p>Now let's look at precipitation:</p>
+<p>Now let&#39;s look at precipitation:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[19]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">weather</span><span class="p">[</span><span class="s">&#39;PRCP&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s">&#39;w&#39;</span><span class="p">,</span> <span class="s">&#39;sum&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Weekly precipitation (in)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&quot;Precipitation in Seattle&quot;</span><span class="p">);</span>
@@ -8296,15 +8527,16 @@ In&nbsp;[19]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAX8AAAElCAYAAAAMUeL2AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXl8FPX9/1+bA0IOEgLhCkdAkHImATQKKOsBFoqKolKr
 QKjVqIiCtVoqtrZa2n4tIGpL8eeBVkUtVQFB8MqCEoFyRFHuMwmSEEhC7mySff/++DCb2d25d2Z3
@@ -8789,39 +9021,49 @@ YBiUdhOEPcj2IQiFtLe34+zZs3jwwQcBAMOGDUNzczMSEhIk35OWloZPP/10sJpIEIqhzJ8gZDh3
 oKGhQdT3JwhfgGwfgrCgt7cXOp0Ot2/fhkajwZo1a7B+/XoYjUa0trYiNTXV/Nro6GiEhobi2LFj
 mDFjxoDPUqlUZs9fYOPGjcjJyRmUvhCEHLSkM0EQxBCEbB+CIIghCIk/QRDEEITEnyAIYghC4k8Q
 BDEEIfEnCIIYgpD4EwRBDEFI/AmCIIYgJP4EQRBDkP8HcDeJH7rPRs8AAAAASUVORK5CYII=
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The precipitation is also as you might expect. Almost none in the summer months, and up to about 4 inches per week in the rainiest parts of the year.</p>
-<p>What we do next will start to look very familiar: we'll add the climate information to our original daily dataset, and then use a linear model to de-trend the data with this new information.</p>
+<p>The precipitation is also as you might expect. Almost none in the summer months, and up to about 4 inches per week in the rainiest parts of the year. </p>
+<p>What we do next will start to look very familiar: we&#39;ll add the climate information to our original daily dataset, and then use a linear model to de-trend the data with this new information.</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[20]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># join the weather data to our daily data</span>
 <span class="n">daily</span> <span class="o">=</span> <span class="n">daily</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">weather</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[21]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">columns</span> <span class="o">=</span> <span class="n">days</span> <span class="o">+</span> <span class="p">[</span><span class="s">&#39;daylight&#39;</span><span class="p">,</span> <span class="s">&#39;TMIN&#39;</span><span class="p">,</span> <span class="s">&#39;TMAX&#39;</span><span class="p">,</span> <span class="s">&#39;PRCP&#39;</span><span class="p">]</span>
 
 <span class="n">X</span> <span class="o">=</span> <span class="n">daily</span><span class="p">[</span><span class="n">columns</span><span class="p">]</span>
@@ -8836,15 +9078,16 @@ In&nbsp;[21]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAEbCAYAAAD0yNLXAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXmYHFW9/j+1dffsmckyk8wkJCQTYAATCARBERASNuHK
 VSJBSYLCfYSLIIIQw0/Be5UEcbmCRq/ecOWiCKICCSFhdVgEwi5LWIJknUwmy2w9vVTXcn5/nKrq
@@ -9811,24 +10054,32 @@ uYZyuQzApk2b6O3tHeGzT5CgNhIFkiDBMCCXy3HsscdSKpWQUnLeeefxpS99CYCLL76YtWvXcsMN
 N3DGGWcEfeyXLl2KEIJly5ZxwQUX8IUvfIGtW7dy3HHH4XkekydP5o477hjNy0qQIIbEiZ4gQYIE
 CQ4KiQkrQYIECRIcFBICSZAgQYIEB4WEQBIkSJAgwUEhIZAECRIkSHBQSAgkQYIECRIcFBICSZAg
 QYIEB4WEQBIkSJAgwUEhIZAECRIkSHBQ+H8INhiVB+CGeAAAAABJRU5ErkJggg==
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This shows the data along with the overall trend, accounting for precipitation and temperature extremes. Let's de-trend the data with this model and see what's left over:</p>
+<p>This shows the data along with the overall trend, accounting for precipitation and temperature extremes. Let&#39;s de-trend the data with this model and see what&#39;s left over:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[22]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">daily</span><span class="p">[</span><span class="s">&#39;overall_corrected&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">daily</span><span class="p">[</span><span class="s">&#39;total&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">daily</span><span class="p">[</span><span class="s">&#39;overall_trend&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">daily</span><span class="p">[</span><span class="s">&#39;overall_trend&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <span class="k">print</span><span class="p">(</span><span class="s">&quot;rms = {0:.0f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">daily</span><span class="p">[</span><span class="s">&#39;overall_corrected&#39;</span><span class="p">])))</span>
 <span class="n">daily</span><span class="p">[</span><span class="s">&#39;overall_corrected&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
@@ -9837,13 +10088,14 @@ In&nbsp;[22]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 rms = 520
 
@@ -9851,10 +10103,10 @@ rms = 520
 </div>
 </div>
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_area"><div class="prompt"></div>
 
 
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYgAAAEbCAYAAADAsRPLAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsfXl8VNXZ/3eSDEkgO0sCiRiWIAYRcEGrtQ7FIOgralVa
 pEKg2Aqt4lIqWqu2VolUrejb2FfFpa6g/SlolSqaqZUKVlCgBCVKQLKwNYTs+/n98eSZe+6de2fu
@@ -10353,25 +10605,33 @@ oLEn0K1bNwDWr19PfX098PCwVFJSEqtXr+bu3bsAFBcXU11d7ebohbBPehBCtNOdO3eIi4ujrq4O
 i8XC5MmTefvttwGYPXs2qamprF+/nuTkZNu9xGNiYjCbzcTGxjJt2jTeeustrFYrgwYNQlEUAgMD
 ycnJ0bJYQtjIJLUQQgi7ZIhJCCGEXZIghBBC2CUJQgghhF2SIIQQQtglCUIIIYRdkiCEEELYJQlC
 CCGEXZIghBBC2PU/iFoAcyNvrT4AAAAASUVORK5CYII=
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>From the reduced RMS, we can see that our model does a fairly good job capturing the trends. But there's still some daily variation that it cannot account for. We could think about what this might be, and try to capture it with more inputs to the model. For example, a person's choice to ride might be affected not just by the weather today, but by the weather yesterday. We also could account for freezing temperatures, which may manifest as a nonlinear effect.</p>
-<p>In order to better see the remaining trend, let's plot a month-long moving-window average over the corrected data:</p>
+<p>From the reduced RMS, we can see that our model does a fairly good job capturing the trends. But there&#39;s still some daily variation that it cannot account for. We could think about what this might be, and try to capture it with more inputs to the model. For example, a person&#39;s choice to ride might be affected not just by the weather today, but by the weather yesterday. We also could account for freezing temperatures, which may manifest as a nonlinear effect.</p>
+<p>In order to better see the remaining trend, let&#39;s plot a month-long moving-window average over the corrected data:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[23]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">pd</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">moments</span><span class="o">.</span><span class="n">rolling_mean</span><span class="p">(</span><span class="n">daily</span><span class="p">[</span><span class="s">&#39;overall_corrected&#39;</span><span class="p">],</span> <span class="mi">30</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Corrected daily bicycle traffic&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;1-month Moving Window Average&#39;</span><span class="p">);</span>
@@ -10379,15 +10639,16 @@ In&nbsp;[23]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYgAAAElCAYAAAD+wXUWAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXlYlGX3x7+D4sImYCw6qKiggCAoiuaSgCsu5VIalkpl
 mfaqZa+ZtllZaG9qWZJLmln6U8vSTHGX3IISd1BEAZFNUUDZtzm/P25nYGD2jYfh/lwXFzz7OfMM
@@ -10838,33 +11099,53 @@ Vpw+fZoqCCIaVEEQYgRnz56FVCqFm5sb3nzzTdx7770oKChAV1cXRo0a1efr8vLyEBsba8ZICRk8
 hPSN7iAIGYbOzk6Eh4fj2rVrsLW1xZw5c/D8888DABYtWoTk5GRs3LgRCQkJ+nXEw8LCIJVKIZPJ
 MG/ePCxZsgR1dXWYOHEiGGNwd3fH9u3bhSwWIT1QJzUhhBCDqImJEEKIQVRBEEIIMYgqCEIIIQZR
 BUEIIcQgqiAIIYQYRBUEIYQQg6iCIIQQYhBVEIQQQgz6P+J5a5egtapPAAAAAElFTkSuQmCC
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This is similar to the moving window we used above, exept we are using de-trended data. What we see is that even after correcting for the length of day, the temperature, the precipitation, and the weekly trends, we still see a huge spike of riders in May 2014.</p>
-<p>I want to remark on one interesting feature: the detrended data hits a low-point in July 2013. This does not mean there were fewer riders in that month, but that there were <strong>fewer riders than the model would expect</strong> given the weather, hours of daylight, and day of the week. This points to the existence of other factors that we've not taken into account. Perhaps the average weather in a given time period affects people's decisions: that is, a warm day in January brings everyone out, while a warm day in July is so unexceptional that people leave their bike in the garage. It would be interesting to do a more detailed analysis and try to eke-out this type of information.</p>
-<p>Nevertheless, if you look at this plot and squint, you can also see what looks like a steady upward trend from left to right. Let's see if we can quantify this.</p>
+<p>I want to remark on one interesting feature: the detrended data hits a low-point in July 2013. This does not mean there were fewer riders in that month, but that there were <strong>fewer riders than the model would expect</strong> given the weather, hours of daylight, and day of the week. This points to the existence of other factors that we&#39;ve not taken into account. Perhaps the average weather in a given time period affects people&#39;s decisions: that is, a warm day in January brings everyone out, while a warm day in July is so unexceptional that people leave their bike in the garage. It would be interesting to do a more detailed analysis and try to eke-out this type of information.</p>
+<p>Nevertheless, if you look at this plot and squint, you can also see what looks like a steady upward trend from left to right.  Let&#39;s see if we can quantify this.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Accounting-for-a-Steady-Increase-or-Decrease-of-Riders">Accounting for a Steady Increase or Decrease of Riders<a class="anchor-link" href="#Accounting-for-a-Steady-Increase-or-Decrease-of-Riders">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>As a final model, we'll add-in the day index to allow our model to account for an overall increase or decrease in the number of riders with time:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As a final model, we&#39;ll add-in the day index to allow our model to account for an overall increase or decrease in the number of riders with time:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[24]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">daily</span><span class="p">[</span><span class="s">&#39;daycount&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">daily</span><span class="p">))</span>
 
 <span class="n">columns</span> <span class="o">=</span> <span class="n">days</span> <span class="o">+</span> <span class="p">[</span><span class="s">&#39;daycount&#39;</span><span class="p">,</span> <span class="s">&#39;daylight&#39;</span><span class="p">,</span> <span class="s">&#39;TMIN&#39;</span><span class="p">,</span> <span class="s">&#39;TMAX&#39;</span><span class="p">,</span> <span class="s">&#39;PRCP&#39;</span><span class="p">]</span>
@@ -10878,29 +11159,32 @@ In&nbsp;[24]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[25]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">daily</span><span class="p">[</span><span class="s">&#39;total&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="n">daily</span><span class="p">[</span><span class="s">&#39;final_trend&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYEAAAEbCAYAAAA8pDgBAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsvXmYXVWd7v/Z0zmnxlTGqlAFBEhFKIwEkeCAEoFwCQqN
 99r0BbsJKt23oVto9QoxrYJ2twk/bW1Q020r3dDYtnqvFwgoQyIUokACYZSCJJCB1JDKUNOpM+xp
@@ -11798,24 +12082,32 @@ sVgMALBr1y50dHT08d0LBKkRmoBAkILOzk7MmDED0WgUiqLg+uuvxx133AEAuOWWW7BkyRL85je/
 waJFi/i60NOmTQMhBNOnT8eNN96I2267Dfv27cNZZ50FwzAwbNgwrF+/vj+bJRA4EI5hgUAgGMQI
 c5BAIBAMYoQQEAgEgkGMEAICgUAwiBFCQCAQCAYxQggIBALBIEYIAYFAIBjECCEgEAgEgxghBAQC
 gWAQ8/8BOOErQ6mjjVcAAAAASUVORK5CYII=
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>And here is the final de-trended data:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[26]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">daily</span><span class="p">[</span><span class="s">&#39;final_corrected&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;corrected ridership&#39;</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="s">&quot;rms = {0:.0f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">daily</span><span class="p">[</span><span class="s">&#39;final_corrected&#39;</span><span class="p">])))</span>
@@ -11823,13 +12115,14 @@ In&nbsp;[26]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 rms = 509
 
@@ -11837,10 +12130,10 @@ rms = 509
 </div>
 </div>
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_area"><div class="prompt"></div>
 
 
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYgAAAEbCAYAAADAsRPLAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsXXl4VNX5fieZLJCdLcEEDKsYjCBoqLbWsRgKVMUVxSpE
 RVvoQm1LQdv+XLokWq1LKy4Vl7ogqFVQEanKuNACFbRYohBBkCwQIGTfk/P74+PLPffOvbNPZjI5
@@ -12322,29 +12615,43 @@ QQFZWVkGRioSGK1BiITAhQsXmDlzJrNmzQKaRwK9evUCYMWKFTQ2NgJ/n5bKzs7m448/pqGhAYDy
 8nJqa2sNjl7EP40gRDro+vXrpKenU19fT3h4OFOmTOGll14C4IUXXiAvL48VK1aQk5Pju5d4amoq
 brebtLQ0pk2bxosvvkhlZSVDhw7F6/XSo0cPiouLzUxLxEeL1CIi4pemmERExC8VCBER8UsFQkRE
 /FKBEBERv1QgRETELxUIERHxSwVCRET8UoEQERG//gteZo5CflWqPwAAAABJRU5ErkJggg==
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="What-Can-The-Final-Model-Tell-Us?">What Can The Final Model Tell Us?<a class="anchor-link" href="#What-Can-The-Final-Model-Tell-Us?">&#182;</a></h2>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Now that we have this model, we can use it to answer some questions about bike ridership in Seattle.</p>
-<p>First we'll compute the error covariance, which contains the error bars on each of the parameters:</p>
+<p>First we&#39;ll compute the error covariance, which contains the error bars on each of the parameters:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[27]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">vy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">daily</span><span class="p">[</span><span class="s">&#39;final_trend&#39;</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="n">X2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">X</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">))])</span>
 <span class="n">C</span> <span class="o">=</span> <span class="n">vy</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X2</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">X2</span><span class="p">))</span>
@@ -12353,21 +12660,35 @@ In&nbsp;[27]:
 
 </div>
 </div>
+</div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Now we can answer some questions...</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="How-Does-Rain-Affect-Ridership?">How Does Rain Affect Ridership?<a class="anchor-link" href="#How-Does-Rain-Affect-Ridership?">&#182;</a></h3>
 </div>
+</div>
+</div>
 
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[28]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">ind</span> <span class="o">=</span> <span class="n">columns</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s">&#39;PRCP&#39;</span><span class="p">)</span>
 <span class="n">slope</span> <span class="o">=</span> <span class="n">final_model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
 <span class="n">error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">var</span><span class="p">[</span><span class="n">ind</span><span class="p">])</span>
@@ -12376,13 +12697,14 @@ In&nbsp;[28]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 828 +/- 79 daily crossings lost per inch of rain
 
@@ -12394,22 +12716,41 @@ In&nbsp;[28]:
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Our model shows that once all other factors are accounted for, <strong>every inch of rain translates, on average, to about 800 cyclists staying home</strong>. Not a surprising result, but it's interesting to see it quantified!</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Our model shows that once all other factors are accounted for, <strong>every inch of rain translates, on average, to about 800 cyclists staying home</strong>. Not a surprising result, but it&#39;s interesting to see it quantified!</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="How-Does-Temperature-Affect-Ridership?">How Does Temperature Affect Ridership?<a class="anchor-link" href="#How-Does-Temperature-Affect-Ridership?">&#182;</a></h3>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>For temperature, we have to be more careful. The minimum and maximum temperature will be highly correlated, so we should average the trends between the two:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[29]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">ind1</span><span class="p">,</span> <span class="n">ind2</span> <span class="o">=</span> <span class="n">columns</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s">&#39;TMIN&#39;</span><span class="p">),</span> <span class="n">columns</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s">&#39;TMAX&#39;</span><span class="p">)</span>
 <span class="n">slope</span> <span class="o">=</span> <span class="n">final_model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="n">ind1</span><span class="p">]</span> <span class="o">+</span> <span class="n">final_model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="n">ind2</span><span class="p">]</span>
 <span class="n">error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">var</span><span class="p">[</span><span class="n">ind1</span><span class="p">]</span> <span class="o">+</span> <span class="n">var</span><span class="p">[</span><span class="n">ind2</span><span class="p">])</span>
@@ -12418,13 +12759,14 @@ In&nbsp;[29]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 246 +/- 63 riders per ten degrees Fahrenheit
 
@@ -12436,19 +12778,32 @@ In&nbsp;[29]:
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We see that for every increase of ten degrees, we add around 250 crossings on the Fremont bridge!</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="How-Does-Daylight-Affect-Ridership?">How Does Daylight Affect Ridership?<a class="anchor-link" href="#How-Does-Daylight-Affect-Ridership?">&#182;</a></h3>
 </div>
+</div>
+</div>
 
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[30]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">ind</span> <span class="o">=</span> <span class="n">columns</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s">&#39;daylight&#39;</span><span class="p">)</span>
 <span class="n">slope</span> <span class="o">=</span> <span class="n">final_model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
 <span class="n">error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">var</span><span class="p">[</span><span class="n">ind</span><span class="p">])</span>
@@ -12457,13 +12812,14 @@ In&nbsp;[30]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 127 +/- 14 daily crossings gained per hour of daylight
 
@@ -12475,22 +12831,41 @@ In&nbsp;[30]:
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We see that, once the effects of rain and temperature are removed, each hour of daylight results in about 125 more crossings at the Fremont Bridge. This is fewer than the ~2000/week (~300/day) that we saw above: this is because our first model did not include precipitation and temperature: apparently the weather is far more important than the darkness in affecting ridership!</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We see that, once the effects of rain and temperature are removed, each hour of daylight results in about 125 more crossings at the Fremont Bridge.  This is fewer than the ~2000/week (~300/day) that we saw above: this is because our first model did not include precipitation and temperature: apparently the weather is far more important than the darkness in affecting ridership!</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Is-Ridership-Increasing?">Is Ridership Increasing?<a class="anchor-link" href="#Is-Ridership-Increasing?">&#182;</a></h3>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Finally, let's try to answer the question we started out with: after correcting for all the above effects, is ridership increasing in Seattle?</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Finally, let&#39;s try to answer the question we started out with: after correcting for all the above effects, is ridership increasing in Seattle?</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[31]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">ind</span> <span class="o">=</span> <span class="n">columns</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s">&#39;daycount&#39;</span><span class="p">)</span>
 <span class="n">slope</span> <span class="o">=</span> <span class="n">final_model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
 <span class="n">error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">var</span><span class="p">[</span><span class="n">ind</span><span class="p">])</span>
@@ -12502,13 +12877,14 @@ In&nbsp;[31]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 0.63 +/- 0.12 new riders per day
 4.4 +/- 0.8 new riders per week
@@ -12522,19 +12898,42 @@ annual change: (10 +/- 2)%
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>By looking at the slope of the daily trend, we see that there are 4.4 new riders per week crossing the Fremont bridge: nearly one new rider per work day! This translates to about <strong>10% growth in bike ridership over the past year, once we correct for all the other effects described above.</strong></p>
+<p>By looking at the slope of the daily trend, we see that there are 4.4 new riders per week crossing the Fremont bridge: nearly one new rider per work day!  This translates to about <strong>10% growth in bike ridership over the past year, once we correct for all the other effects described above.</strong></p>
 <p>Good news for bicycling in Seattle!</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion">&#182;</a></h2>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Is Seattle really seeing an uptick in cycling? The answer appears to be yes: <strong>corrected for seasonal and climate effects, Seattle's Fremont bridge is seeing, on average, about one new bicycle commuter each work day</strong>, and that trend reflects the entire year-and-a-half that the city has been collecting data. Along the way, we saw how rain, temperature, and daylight affect the choices of Seattle's bicycling community.</p>
-<p>This has been an exploration of available cycling data using an incredibly simple linear model based on daily climate trends. This just scrapes the surface, and uses an extremely simplistic linear model to find some broad-brush results. It's clear from the ~500 rider RMS that there are still some factors I've left out: perhaps seasonal effects like Bike-to-work month (happening each May) and summer vacation times have some effect. My hunch is that the difference in weather from one day to the next might be more important than the weather isolated on any given day; we've not taken that into account. Most notably, nonlinear effects might play a role (for example, the trend for cold + precipitation might outweigh the trend for cold and the trend for rain considered separately) but nevertheless, I think these are some interesting results despite the shortcuts taken in the analysis.</p>
+<p>Is Seattle really seeing an uptick in cycling? The answer appears to be yes: <strong>corrected for seasonal and climate effects, Seattle&#39;s Fremont bridge is seeing, on average, about one new bicycle commuter each work day</strong>, and that trend reflects the entire year-and-a-half that the city has been collecting data. Along the way, we saw how rain, temperature, and daylight affect the choices of Seattle&#39;s bicycling community.</p>
+<p>This has been an exploration of available cycling data using an incredibly simple linear model based on daily climate trends. This just scrapes the surface, and uses an extremely simplistic linear model to find some broad-brush results. It&#39;s clear from the ~500 rider RMS that there are still some factors I&#39;ve left out: perhaps seasonal effects like Bike-to-work month (happening each May) and summer vacation times have some effect. My hunch is that the difference in weather from one day to the next might be more important than the weather isolated on any given day; we&#39;ve not taken that into account. Most notably, nonlinear effects might play a role (for example, the trend for cold + precipitation might outweigh the trend for cold and the trend for rain considered separately) but nevertheless, I think these are some interesting results despite the shortcuts taken in the analysis.</p>
 <p>Thanks for reading!</p>
-<p><small> This post was written entirely in the IPython notebook. You can <a href="http://jakevdp.github.io/downloads/notebooks/SeattleCycling.ipynb">download</a> this notebook, or see a static view <a href="http://nbviewer.ipython.org/url/jakevdp.github.io/downloads/notebooks/SeattleCycling.ipynb">here</a>. </small></p>
+<p><small>
+This post was written entirely in the IPython notebook.  You can
+<a href="http://jakevdp.github.io/downloads/notebooks/SeattleCycling.ipynb">download</a>
+this notebook, or see a static view
+<a href="http://nbviewer.ipython.org/url/jakevdp.github.io/downloads/notebooks/SeattleCycling.ipynb">here</a>.
+</small></p>
+</div>
+</div>
 </div></p></div>
     <footer>
 <p class="meta">
@@ -12588,7 +12987,7 @@ annual change: (10 +/- 2)%
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Jake Vanderplas -
+    Copyright &copy;  2012-2014  - Jake Vanderplas -
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
     <script type="text/javascript">
@@ -12616,7 +13015,7 @@ annual change: (10 +/- 2)%
           var disqus_title = 'Is Seattle Really Seeing an Uptick In Cycling?';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-	    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
 	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 	   })();
 	</script>

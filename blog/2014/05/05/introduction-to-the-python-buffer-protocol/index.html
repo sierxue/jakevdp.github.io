@@ -1777,7 +1777,7 @@ jQuery(document).ready(function($) {
 </ul>
 
 
-<form action="http://google.com/search" method="get">
+<form action="//google.com/search" method="get">
   <fieldset role="search">
     <input type="hidden" name="q" value="site:jakevdp.github.io" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
@@ -1798,26 +1798,47 @@ jQuery(document).ready(function($) {
 </header>
 
   <div class="entry-content"><p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 
-<p>This is a bit of a niche topic, but I figured there might be one or two people out there who would find this useful (including my future self)... today I managed to implement a simple Python object which exposes the buffer protocol. If that means nothing to you, you may want to stop reading and instead browse this <a href="http://imgur.com/gallery/zWeJ5">gallery of puppy gifs</a>.</p>
-<p>But if you're the kind of person who becomes mildly excited at the words <em>Python buffer protocol</em>, I hope this short post will help you in your quest...</p>
+This is a bit of a niche topic, but I figured there might be one or two people out there who would find this useful (including my future self)... today I managed to implement a simple Python object which exposes the buffer protocol. If that means nothing to you, you may want to stop reading and instead browse this <a href="http://imgur.com/gallery/zWeJ5">gallery of puppy gifs</a>.
+
+But if you&#39;re the kind of person who becomes mildly excited at the words <em>Python buffer protocol</em>, I hope this short post will help you in your quest...
+
 
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="What-is-the-Python-Buffer-Protocol?">What is the Python Buffer Protocol?<a class="anchor-link" href="#What-is-the-Python-Buffer-Protocol?">&#182;</a></h2>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The Python buffer protocol, also known in the community as <a href="http://legacy.python.org/dev/peps/pep-3118/">PEP 3118</a>, is a framework in which Python objects can expose raw byte arrays to other Python objects. This can be extremely useful for scientific computing, where we often use packages such as <a href="http://numpy.org">NumPy</a> to efficiently store and manipulate large arrays of data. Using the buffer protocol, we can let multiple objects efficiently manipulate views of the same data buffers, without having to make copies of the often large datasets.</p>
-<p>Here, for example, we'll use Python's built-in <code>array</code> object to create an array:</p>
+<p>Here, for example, we&#39;ll use Python&#39;s built-in <code>array</code> object to create an array:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[1]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">array</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s">&#39;i&#39;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
 <span class="n">A</span>
@@ -1825,37 +1846,45 @@ In&nbsp;[1]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[1]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 array(&apos;i&apos;, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
 </pre>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Note that the array object is different than a Python list, in that it stores the data as <strong>a contiguous block</strong> of integers. For this reason, the data are stored much more compactly than a list, and certain operations can be performed much more quickly.</p>
-<p><code>array</code> objects by themselves are not particularly useful, but a similar type of object can be found in the <code>numpy</code> array. Because both Python's <code>array</code> and NumPy's <code>ndarray</code> objects implement the buffer protocol, it's possible to seamlessly pass data between them using views – that is, without the need to copy the raw data:</p>
+<p><code>array</code> objects by themselves are not particularly useful, but a similar type of object can be found in the <code>numpy</code> array.  Because both Python&#39;s <code>array</code> and NumPy&#39;s <code>ndarray</code> objects implement the buffer protocol, it&#39;s possible to seamlessly pass data between them using views – that is, without the need to copy the raw data:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[2]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="n">np_A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 <span class="n">np_A</span>
@@ -1863,150 +1892,222 @@ In&nbsp;[2]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[2]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], dtype=int32)
 </pre>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We can confirm that this is a view of the same buffer by modifying the numpy array: we'll set one of the elements to 555...</p>
+<p>We can confirm that this is a view of the same buffer by modifying the numpy array: we&#39;ll set one of the elements to 555...</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[3]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">np_A</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mi">555</span>
 <span class="n">np_A</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[3]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 array([  0,   1,   2,   3, 555,   5,   6,   7,   8,   9], dtype=int32)
 </pre>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>...and once this is done we see that the original array has been modified as well:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[4]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">A</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[4]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 array(&apos;i&apos;, [0, 1, 2, 3, 555, 5, 6, 7, 8, 9])
 </pre>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This shows that both <code>A</code> and <code>np_A</code> are pointing to the same block of data, and it required nothing special on our part to make that happen! That's the beauty of the buffer protocol.</p>
+<p>This shows that both <code>A</code> and <code>np_A</code> are pointing to the same block of data, and it required nothing special on our part to make that happen!  That&#39;s the beauty of the buffer protocol.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Why-Is-This-Useful?">Why Is This Useful?<a class="anchor-link" href="#Why-Is-This-Useful?">&#182;</a></h2>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>At first glance, this might seem rather trivial. Why is this so useful?</p>
-<p>Well, in scientific computing, most of the interesting algorithms are implemented in compiled code: for example, <a href="http://scipy.org">scipy</a> is essentially a set of wrappers around <a href="http://www.netlib.org/">NetLib</a> utilities, which are well-tested implementations of scientific algorithms written mostly in Fortran and C. The ability for Python to natively share data with these compiled libraries is incredibly important for scientific computing. This is one big reason that NumPy and its predecessors were initially developed, and it's why the buffer protocol was later proposed and added to Python's standard library. The buffer protocol is extremely useful for what scientists do with Python: build intuitive interfaces to compiled legacy code.</p>
-<p>With apologies to the <a href="http://pypy.org/">PyPy</a> project's extremely active community, I should also mention that this is one of the main reasons that scientists don't really pay much attention to it: until PyPy can easily interface to all the C and Fortran code we use on a daily basis, all its JIT-ed performance gain is of very little use to us.</p>
+<p>Well, in scientific computing, most of the interesting algorithms are implemented in compiled code: for example, <a href="http://scipy.org">scipy</a> is essentially a set of wrappers around <a href="http://www.netlib.org/">NetLib</a> utilities, which are well-tested implementations of scientific algorithms written mostly in Fortran and C. The ability for Python to natively share data with these compiled libraries is incredibly important for scientific computing. This is one big reason that NumPy and its predecessors were initially developed, and it&#39;s why the buffer protocol was later proposed and added to Python&#39;s standard library. The buffer protocol is extremely useful for what scientists do with Python: build intuitive interfaces to compiled legacy code.</p>
+<p>With apologies to the <a href="http://pypy.org/">PyPy</a> project&#39;s extremely active community, I should also mention that this is one of the main reasons that scientists don&#39;t really pay much attention to it: until PyPy can easily interface to all the C and Fortran code we use on a daily basis, all its JIT-ed performance gain is of very little use to us.</p>
 <p>This cannot be emphasized enough: <strong>it is fundamentally the Buffer Protocol and related NumPy functionality that make Python useful as a scientific computing platform.</strong></p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Implementing-a-Custom-Buffer-Interface">Implementing a Custom Buffer Interface<a class="anchor-link" href="#Implementing-a-Custom-Buffer-Interface">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Fortunately, most scientists can simply use the buffer protocol via tools like NumPy without knowing too much of the details of what's behind it. Because the buffer protocol is fundamentally a C-API entity, implementing new functionality with it generally requires digging into the guts of Python's C API. For example, the code that enables the above numpy example is found in NumPy's <a href="https://github.com/numpy/numpy/blob/master/numpy/core/src/multiarray/buffer.c">buffer.c</a> file, and reading through it is not particularly enlightening. This is the power of Python in a nutshell: it abstracts away C-level messiness like this and instead gives us the nice, powerful, and clean Python interface we all know and love.</p>
-<p>But sometimes you need to get your hands dirty. Imagine, for instance, that you have a C object that you'd like to wrap and make available to Python. Your first course might be to use something like <a href="http://wiki.scipy.org/Cookbook/F2Py">f2py</a>, <a href="http://cython.org">cython</a>, or <a href="http://www.swig.org/">SWIG</a> to do this: I'd definitely recommend these tools for most problems of this nature.</p>
-<p>But you may, for various reasons, want to go even deeper and implement the buffer protocol directly. (For example, you may be interested in taking data structures from another language, such as Julia, and exposing them to Python in a flexible manner). Below I'll give you an example of how to do this.</p>
 </div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Fortunately, most scientists can simply use the buffer protocol via tools like NumPy without knowing too much of the details of what&#39;s behind it. Because the buffer protocol is fundamentally a C-API entity, implementing new functionality with it generally requires digging into the guts of Python&#39;s C API. For example, the code that enables the above numpy example is found in NumPy&#39;s <a href="https://github.com/numpy/numpy/blob/master/numpy/core/src/multiarray/buffer.c">buffer.c</a> file, and reading through it is not particularly enlightening. This is the power of Python in a nutshell: it abstracts away C-level messiness like this and instead gives us the nice, powerful, and clean Python interface we all know and love.</p>
+<p>But sometimes you need to get your hands dirty. Imagine, for instance, that you have a C object that you&#39;d like to wrap and make available to Python.  Your first course might be to use something like <a href="http://wiki.scipy.org/Cookbook/F2Py">f2py</a>, <a href="http://cython.org">cython</a>, or <a href="http://www.swig.org/">SWIG</a> to do this: I&#39;d definitely recommend these tools for most problems of this nature.</p>
+<p>But you may, for various reasons, want to go even deeper and implement the buffer protocol directly. (For example, you may be interested in taking data structures from another language, such as Julia, and exposing them to Python in a flexible manner). Below I&#39;ll give you an example of how to do this.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Preliminaries">Preliminaries<a class="anchor-link" href="#Preliminaries">&#182;</a></h3>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Before you go on, you should know that this topic is fairly advanced as far as Python tutorials go, and requires more background knowledge than the average Python hacker probably has. To get started, I'd take a look at the following resources:</p>
+<p>Before you go on, you should know that this topic is fairly advanced as far as Python tutorials go, and requires more background knowledge than the average Python hacker probably has.  To get started, I&#39;d take a look at the following resources:</p>
 <ul>
 <li><a href="http://dan.iel.fm/posts/python-c-extensions/">Python Modules in C</a>: a tutorial by Dan Foreman-Mackey. This is a great first intro to writing C-API code.</li>
 <li><a href="https://docs.python.org/3/extending/newtypes.html">Defining New Types</a>: an excellent tutorial from the official Python documentation. This goes through the basics of creating a type (a class) using C, which can then be visible in Python.</li>
 </ul>
 <p>If you get through these tutorials, the following links serve as a really handy reference on the Buffer Protocol itself:</p>
 <ul>
-<li><a href="https://docs.python.org/3/c-api/buffer.html">The Buffer Protocol</a>: Python's official documentation of the Buffer Protocol. I've found this to be a helpful reference, but I must admit that after staring at it for a couple hours I still had no idea where to start in actually <em>doing</em> anything. That's why I'm writing this post.</li>
+<li><a href="https://docs.python.org/3/c-api/buffer.html">The Buffer Protocol</a>: Python&#39;s official documentation of the Buffer Protocol. I&#39;ve found this to be a helpful reference, but I must admit that after staring at it for a couple hours I still had no idea where to start in actually <em>doing</em> anything. That&#39;s why I&#39;m writing this post.</li>
 <li><a href="http://legacy.python.org/dev/peps/pep-3118/">PEP 3118</a>: the Python Enhancement Proposal (PEP) outlining the new buffer interface, introduced in Python 3.3.</li>
 </ul>
-<p>I should emphasize here that <strong>I'll using the syntax of Python 3.3+</strong>; it's possible to modify this to be compatible with older Python versions, but that requires some judicious use of C compiler directives (see the <a href="https://github.com/numpy/numpy/blob/master/numpy/core/src/multiarray/buffer.c">NumPy buffer module</a> for an excellent example of this cross-version approach). If you try to run this notebook under older Python versions, things will probably not go very well for you.</p>
+<p>I should emphasize here that <strong>I&#39;ll using the syntax of Python 3.3+</strong>; it&#39;s possible to modify this to be compatible with older Python versions, but that requires some judicious use of C compiler directives (see the <a href="https://github.com/numpy/numpy/blob/master/numpy/core/src/multiarray/buffer.c">NumPy buffer module</a> for an excellent example of this cross-version approach).  If you try to run this notebook under older Python versions, things will probably not go very well for you.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Setting-the-Stage">Setting the Stage<a class="anchor-link" href="#Setting-the-Stage">&#182;</a></h3>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's imagine that we have a C library which creates a buffer of data that we're interested in wrapping. For simplicity, we'll assume it can be boiled-down to the following structure. Notice throughout that we will use IPython's <code>%%file</code> magic to save the scripts we write to files, from which they will later be compiled:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let&#39;s imagine that we have a C library which creates a buffer of data that we&#39;re interested in wrapping.  For simplicity, we&#39;ll assume it can be boiled-down to the following structure. Notice throughout that we will use IPython&#39;s <code>%%file</code> magic to save the scripts we write to files, from which they will later be compiled:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[5]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%%</span><span class="k">file</span> <span class="n">mylib</span><span class="o">.</span><span class="n">c</span>
 <span class="c">#include &lt;stdlib.h&gt;</span>
 <span class="c">#include &lt;stdio.h&gt;</span>
@@ -2055,13 +2156,14 @@ In&nbsp;[5]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 Overwriting mylib.c
 
@@ -2073,16 +2175,23 @@ Overwriting mylib.c
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This code essentially defines a structure <code>MyArray</code> which contains information about an array of values, and we have functions to allocate, deallocate, and stringify the array. This C code is overly simplistic; in real life there would be a lot more checks to prevent memory errors and other issues, but it will be a useful stand-in for our purposes.</p>
+<p>This code essentially defines a structure <code>MyArray</code> which contains information about an array of values, and we have functions to allocate, deallocate, and stringify the array.  This C code is overly simplistic; in real life there would be a lot more checks to prevent memory errors and other issues, but it will be a useful stand-in for our purposes.</p>
 <p>We can write a quick script to test these functionalities, and compile it using the <code>g++</code> compiler:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[6]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%%</span><span class="k">file</span> <span class="n">test_mylib</span><span class="o">.</span><span class="n">c</span>
 <span class="c">#include &quot;mylib.c&quot;</span>
 
@@ -2096,13 +2205,14 @@ In&nbsp;[6]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 Overwriting test_mylib.c
 
@@ -2114,43 +2224,59 @@ Overwriting test_mylib.c
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now we'll compile it (using the <code>g++</code> compiler; you may have to modify this for your system):</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we&#39;ll compile it (using the <code>g++</code> compiler; you may have to modify this for your system):</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[7]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">!</span>g++ test_mylib.c -o test_mylib
 </pre></div>
 
 </div>
 </div>
+</div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>And running the tests...</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[8]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">!</span>./test_mylib
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 [ 0 1 2 3 4 5 6 7 8 9 ]
 </pre>
@@ -2161,17 +2287,24 @@ In&nbsp;[8]:
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>It worked! This basically creates an array similar to Python's <code>range(10)</code>, but using Python's C API rather than Python itself (aren't you glad you use Python rather than C every day?)</p>
-<p>Our task now is to create a simple wrapper for this <code>MyArray</code> structure which exposes the buffer interface. We'll basically follow the <a href="https://docs.python.org/3/extending/newtypes.html">Noddy</a> example from the Python documentation, with a few little extra enhancements, and see how this looks.</p>
-<p>Let's start by ignoring the Buffer protocol entirely, and simply create a Python wrapper of the <code>MyArray</code> object:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It worked! This basically creates an array similar to Python&#39;s <code>range(10)</code>, but using Python&#39;s C API rather than Python itself (aren&#39;t you glad you use Python rather than C every day?)</p>
+<p>Our task now is to create a simple wrapper for this <code>MyArray</code> structure which exposes the buffer interface.  We&#39;ll basically follow the <a href="https://docs.python.org/3/extending/newtypes.html">Noddy</a> example from the Python documentation, with a few little extra enhancements, and see how this looks.</p>
+<p>Let&#39;s start by ignoring the Buffer protocol entirely, and simply create a Python wrapper of the <code>MyArray</code> object:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[9]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%%</span><span class="k">file</span> <span class="n">pymyarray</span><span class="o">.</span><span class="n">c</span>
 <span class="c">#include &lt;Python.h&gt;</span>
 <span class="c">#include &quot;mylib.c&quot;</span>
@@ -2296,13 +2429,14 @@ In&nbsp;[9]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 Overwriting pymyarray.c
 
@@ -2314,15 +2448,22 @@ Overwriting pymyarray.c
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>That's all there is to it! Now we'll create a quick setup script and run it to compile the module in-place:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>That&#39;s all there is to it!  Now we&#39;ll create a quick setup script and run it to compile the module in-place:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[10]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%%</span><span class="k">file</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span>
 <span class="kn">from</span> <span class="nn">distutils.core</span> <span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">Extension</span>
 <span class="n">setup</span><span class="p">(</span><span class="n">ext_modules</span><span class="o">=</span><span class="p">[</span><span class="n">Extension</span><span class="p">(</span><span class="s">&quot;pymyarray&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s">&quot;pymyarray.c&quot;</span><span class="p">])])</span>
@@ -2330,13 +2471,14 @@ In&nbsp;[10]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 Overwriting setup.py
 
@@ -2348,24 +2490,26 @@ Overwriting setup.py
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[11]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">!</span>python setup.py build_ext --inplace
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 running build_ext
 building &apos;pymyarray&apos; extension
@@ -2380,15 +2524,22 @@ building &apos;pymyarray&apos; extension
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Finally, we can import our new module and create a <code>MyArray</code> object from Python and see what we have:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[12]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">pymyarray</span>
 <span class="n">arr</span> <span class="o">=</span> <span class="n">pymyarray</span><span class="o">.</span><span class="n">PyMyArray</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
@@ -2396,13 +2547,14 @@ In&nbsp;[12]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 [ 0 1 2 3 4 5 6 7 8 9 ]
 
@@ -2414,16 +2566,23 @@ In&nbsp;[12]:
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Yes! It worked!</p>
-<p>But what if we want to use this with NumPy? It turns out that we're out of luck:</p>
+<p>But what if we want to use this with NumPy?  It turns out that we&#39;re out of luck:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[13]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="n">nparr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">nparr</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -2431,13 +2590,14 @@ In&nbsp;[13]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 ()
 
@@ -2449,37 +2609,57 @@ In&nbsp;[13]:
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>NumPy doesn't know what to do with this object, so it just creates a zero-dimensional array (i.e. a scalar), with a value equal to this object. This is not what we want, and addressing this issue is where the Buffer Protocol comes in.</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>NumPy doesn&#39;t know what to do with this object, so it just creates a zero-dimensional array (i.e. a scalar), with a value equal to this object. This is not what we want, and addressing this issue is where the Buffer Protocol comes in.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Adding-the-Buffer-Protocol">Adding the Buffer Protocol<a class="anchor-link" href="#Adding-the-Buffer-Protocol">&#182;</a></h3>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>To add the buffer protocol, we're going to have to re-write most of the above code, adding some specific functionality that NumPy and other tools know how to interface with. The buffer protocol in Python is basically structure which defines a very flexible interface to an offset &amp; strided multi-dimensional array. From the <a href="https://github.com/python/cpython/blob/master/Include/object.h#L178-191">CPython source</a>, we can see what it looks like:</p>
-<pre class="sourceCode C"><code class="sourceCode c"><span class="kw">typedef</span> <span class="kw">struct</span> bufferinfo{
-    <span class="dt">void</span> *buf;
-    PyObject *obj;        <span class="co">/* owned reference */</span>
-    Py_ssize_t len;
-    Py_ssize_t itemsize;
-    <span class="dt">int</span> readonly;
-    <span class="dt">int</span> ndim;
-    <span class="dt">char</span> *format;
-    Py_ssize_t *shape;
-    Py_ssize_t *strides;
-    Py_ssize_t *suboffsets;
-    <span class="dt">void</span> *internal;
-}Py_buffer;</code></pre>
-<p>What the buffer interface does is allow you to define a function which constructs a struct like this that points to your particular data. We see that the array can be multi-dimensional, it can have arbitrary NumPy-style strides along each dimension, as well as arbitrary <a href="http://www.pythonware.com/products/pil/">PIL</a>-style suboffsets for each dimension.</p>
-<p>For our simple 1D array example, we won't be using the full extent of this interface, but it's an easy extension of what we're doing here. Let's create a <code>pymyarray2</code> module, copying and pasting much of the above code, and adding the buffer protocol hooks along the way:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To add the buffer protocol, we&#39;re going to have to re-write most of the above code, adding some specific functionality that NumPy and other tools know how to interface with.  The buffer protocol in Python is basically structure which defines a very flexible interface to an offset &amp; strided multi-dimensional array.  From the <a href="https://github.com/python/cpython/blob/master/Include/object.h#L178-191">CPython source</a>, we can see what it looks like:</p>
+<pre><code class="language-C"><span class="typedef">typedef struct bufferinfo<span class="container">{
+    <span class="title">void</span> *<span class="title">buf</span>;
+    <span class="type">PyObject</span> *<span class="title">obj</span>;        /* <span class="title">owned</span> <span class="title">reference</span> */
+    <span class="type">Py_ssize_t</span> <span class="title">len</span>;
+    <span class="type">Py_ssize_t</span> <span class="title">itemsize</span>;
+    <span class="title">int</span> <span class="title">readonly</span>;
+    <span class="title">int</span> <span class="title">ndim</span>;
+    <span class="title">char</span> *<span class="title">format</span>;
+    <span class="type">Py_ssize_t</span> *<span class="title">shape</span>;
+    <span class="type">Py_ssize_t</span> *<span class="title">strides</span>;
+    <span class="type">Py_ssize_t</span> *<span class="title">suboffsets</span>;
+    <span class="title">void</span> *<span class="title">internal</span>;
+}</span><span class="type">Py_buffer</span>;</span>
+</code></pre>
+<p>What the buffer interface does is allow you to define a function which constructs a struct like this that points to your particular data. We see that the array can be multi-dimensional, it can have arbitrary NumPy-style strides along each dimension, as well as arbitrary <a href="http://www.pythonware.com/products/pil/">PIL</a>-style suboffsets for each dimension.</p>
+<p>For our simple 1D array example, we won&#39;t be using the full extent of this interface, but it&#39;s an easy extension of what we&#39;re doing here.  Let&#39;s create a <code>pymyarray2</code> module, copying and pasting much of the above code, and adding the buffer protocol hooks along the way:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[14]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%%</span><span class="k">file</span> <span class="n">pymyarray2</span><span class="o">.</span><span class="n">c</span>
 <span class="c">#include &lt;Python.h&gt;</span>
 <span class="c">#include &quot;mylib.c&quot;</span>
@@ -2637,13 +2817,14 @@ In&nbsp;[14]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 Overwriting pymyarray2.c
 
@@ -2655,12 +2836,13 @@ Overwriting pymyarray2.c
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[15]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%%</span><span class="k">file</span> <span class="n">setup2</span><span class="o">.</span><span class="n">py</span>
 <span class="kn">from</span> <span class="nn">distutils.core</span> <span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">Extension</span>
 <span class="n">setup</span><span class="p">(</span><span class="n">ext_modules</span><span class="o">=</span><span class="p">[</span><span class="n">Extension</span><span class="p">(</span><span class="s">&quot;pymyarray2&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s">&quot;pymyarray2.c&quot;</span><span class="p">])])</span>
@@ -2668,13 +2850,14 @@ In&nbsp;[15]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 Overwriting setup2.py
 
@@ -2686,24 +2869,26 @@ Overwriting setup2.py
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[16]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">!</span>python setup2.py build_ext --inplace
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 running build_ext
 building &apos;pymyarray2&apos; extension
@@ -2718,15 +2903,22 @@ building &apos;pymyarray2&apos; extension
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's try it out, and see if numpy detects the correct shape</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let&#39;s try it out, and see if numpy detects the correct shape</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[17]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">pymyarray2</span>
 <span class="n">arr</span> <span class="o">=</span> <span class="n">pymyarray2</span><span class="o">.</span><span class="n">PyMyArray</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">nparr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
@@ -2735,13 +2927,14 @@ In&nbsp;[17]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 (10,)
 
@@ -2753,28 +2946,36 @@ In&nbsp;[17]:
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>It worked!</p>
 <p>We can now print the array and make sure it has the data we hope for:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[18]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">print</span><span class="p">(</span><span class="n">nparr</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 [0 1 2 3 4 5 6 7 8 9]
 
@@ -2786,28 +2987,36 @@ In&nbsp;[18]:
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Finally, we'll double-check that the two objects are really pointing to the same data array. We'll change the value of one of the elements in NumPy, and make sure the change is reflected in our <code>PyMyArray</code> object:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Finally, we&#39;ll double-check that the two objects are really pointing to the same data array. We&#39;ll change the value of one of the elements in NumPy, and make sure the change is reflected in our <code>PyMyArray</code> object:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[19]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">nparr</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="mi">555</span>
 <span class="k">print</span><span class="p">(</span><span class="n">nparr</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 [  0   1   2   3   4 555   6   7   8   9]
 
@@ -2819,24 +3028,26 @@ In&nbsp;[19]:
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[20]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">print</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 [ 0 1 2 3 4 555 6 7 8 9 ]
 
@@ -2848,66 +3059,107 @@ In&nbsp;[20]:
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Success!</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Exploring-the-Buffer-Protocol-Code">Exploring the Buffer Protocol Code<a class="anchor-link" href="#Exploring-the-Buffer-Protocol-Code">&#182;</a></h3>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's take a look at the code that was added to the <code>pymyarray2</code> example. It's fairly straightforward, actually: we first define a function which builds a buffer from the object:</p>
-<pre class="sourceCode C"><code class="sourceCode c"><span class="co">/* Here is the buffer interface function */</span>
-<span class="dt">static</span> <span class="dt">int</span>
-PyMyArray_getbuffer(PyObject *obj, Py_buffer *view, <span class="dt">int</span> flags)
+<p>Let&#39;s take a look at the code that was added to the <code>pymyarray2</code> example.  It&#39;s fairly straightforward, actually: we first define a function which builds a buffer from the object:</p>
+<pre><code class="language-C">/* Here is the buffer interface function <span class="variable">*/</span>
+static <span class="keyword">int</span>
+PyMyArray_getbuffer(PyObject <span class="variable">*obj</span>, Py_buffer <span class="variable">*view</span>, <span class="keyword">int</span> flags)
 {
-  <span class="kw">if</span> (view == NULL) {
-    PyErr_SetString(PyExc_ValueError, <span class="st">&quot;NULL view in getbuffer&quot;</span>);
-    <span class="kw">return</span> -<span class="dv">1</span>;
+  <span class="keyword">if</span> (view == NULL) {
+    PyErr_SetString(PyExc_ValueError, <span class="string">"NULL view in getbuffer"</span>);
+    <span class="keyword">return</span> -<span class="number">1</span>;
   }
 
-  PyMyArray* self = (PyMyArray*)obj;
-  view-&gt;obj = (PyObject*)self;
-  view-&gt;buf = (<span class="dt">void</span>*)self-&gt;arr.arr;
-  view-&gt;len = self-&gt;arr.length * <span class="kw">sizeof</span>(<span class="dt">int</span>);
-  view-&gt;readonly = <span class="dv">0</span>;
-  view-&gt;itemsize = <span class="kw">sizeof</span>(<span class="dt">int</span>);
-  view-&gt;format = <span class="st">&quot;i&quot;</span>;  <span class="co">// integer</span>
-  view-&gt;ndim = <span class="dv">1</span>;
-  view-&gt;shape = &amp;self-&gt;arr.length;  <span class="co">// length-1 sequence of dimensions</span>
-  view-&gt;strides = &amp;view-&gt;itemsize;  <span class="co">// for the simple case we can do this</span>
+  PyMyArray* self = (PyMyArray<span class="variable">*)</span>obj;
+  view-&gt;obj = (PyObject<span class="variable">*)</span>self;
+  view-&gt;buf = (void<span class="variable">*)</span>self-&gt;arr.arr;
+  view-&gt;len = self-&gt;arr.<span class="keyword">length</span> * sizeof(<span class="keyword">int</span>);
+  view-&gt;readonly = <span class="number">0</span>;
+  view-&gt;itemsize = sizeof(<span class="keyword">int</span>);
+  view-&gt;format = <span class="string">"i"</span>;  <span class="regexp">//</span> integer
+  view-&gt;ndim = <span class="number">1</span>;
+  view-&gt;shape = &amp;self-&gt;arr.<span class="keyword">length</span>;  <span class="regexp">//</span> <span class="keyword">length</span>-<span class="number">1</span> sequence of dimensions
+  view-&gt;strides = &amp;view-&gt;itemsize;  <span class="regexp">//</span> <span class="keyword">for</span> the simple case we can <span class="keyword">do</span> this
   view-&gt;suboffsets = NULL;
   view-&gt;internal = NULL;
 
-  Py_INCREF(self);  <span class="co">// need to increase the reference count</span>
-  <span class="kw">return</span> <span class="dv">0</span>;
-}</code></pre>
-<p>If you're used to working with multi-dimensional arrays in C, the elements of the structure should be pretty self-explanatory. Here we're using integers so we've used the <code>&quot;i&quot;</code> format code. The item formats are extremely flexible: you can basically use any of the codes within Python's <a href="https://docs.python.org/3/library/struct.html"><code>struct</code></a> module, which gives you nearly endless possibilities for passing around structured data. For more complicated arrays with multiple dimensions, you may have to allocate arrays for the shape, strides, etc. In that case, it's possible to define a <code>release_buffer</code> function which deallocates these arrays when the buffer is no longer needed.</p>
+  Py_INCREF(self);  <span class="regexp">//</span> need to increase the reference count
+  <span class="keyword">return</span> <span class="number">0</span>;
+}
+</code></pre>
+<p>If you&#39;re used to working with multi-dimensional arrays in C, the elements of the structure should be pretty self-explanatory. Here we&#39;re using integers so we&#39;ve used the <code>&quot;i&quot;</code> format code. The item formats are extremely flexible: you can basically use any of the codes within Python&#39;s <a href="https://docs.python.org/3/library/struct.html"><code>struct</code></a> module, which gives you nearly endless possibilities for passing around structured data. For more complicated arrays with multiple dimensions, you may have to allocate arrays for the shape, strides, etc. In that case, it&#39;s possible to define a <code>release_buffer</code> function which deallocates these arrays when the buffer is no longer needed.</p>
 <p>Finally, we put this function in a <code>PyBufferProcs</code> structure,</p>
-<pre class="sourceCode C"><code class="sourceCode c"><span class="dt">static</span> PyBufferProcs PyMyArray_as_buffer = {
-  <span class="co">// this definition is only compatible with Python 3.3 and above</span>
+<pre><code class="language-C">static PyBufferProcs PyMyArray_as_buffer = {
+  <span class="regexp">//</span> <span class="keyword">this</span> definition <span class="keyword">is</span> only compatible <span class="reserved">with</span> Python <span class="number">3.3</span> <span class="keyword">and</span> above
   (getbufferproc)PyMyArray_getbuffer,
-  (releasebufferproc)<span class="dv">0</span>,  <span class="co">// we do not require any special release function</span>
-};</code></pre>
-<p>And then include this structure in the Python Type definition.</p>
-<pre class="sourceCode C"><code class="sourceCode c"><span class="dt">static</span> PyTypeObject PyMyArrayType = {
-    ...
-    &amp;PyMyArray_as_buffer,         <span class="co">/* tp_as_buffer */</span>
-    ...
-}</code></pre>
+  (releasebufferproc)<span class="number">0</span>,  <span class="regexp">//</span> we <span class="keyword">do</span> <span class="keyword">not</span> require any special release <span class="reserved">function</span>
+};
+</code></pre>
+<p>And then include this structure in the Python Type definition. </p>
+<pre><code class="language-C">static PyTypeObject PyMyArrayType = {
+    <span class="keyword">...</span>
+    &amp;PyMyArray_as_buffer,         /* tp_as_buffer */
+    <span class="keyword">...</span>
+}
+</code></pre>
 <p>Simple, right?</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion">&#182;</a></h2>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This was just a simple example of defining the buffer protocol for an object in CPython. It's exactly the kind of description I <em>wished</em> I had had as I tried to figure out how this stuff worked. I hope this is as helpful to you as it would have been to me!</p>
-<p>Now that I've figured it out, my hope is to apply what I've learned to building an interface between <a href="http://julialang.org/">Julia</a> arrays and Python objects. We'll see how far I get on that front...</p>
+<p>This was just a simple example of defining the buffer protocol for an object in CPython. It&#39;s exactly the kind of description I <em>wished</em> I had had as I tried to figure out how this stuff worked.  I hope this is as helpful to you as it would have been to me!</p>
+<p>Now that I&#39;ve figured it out, my hope is to apply what I&#39;ve learned to building an interface between <a href="http://julialang.org/">Julia</a> arrays and Python objects. We&#39;ll see how far I get on that front...</p>
 <p>Thanks for reading, and happy coding!</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><small> <em>This post was composed within an IPython notebook; you can view a static version <a href="http://nbviewer.ipython.org/url/jakevdp.github.com/downloads/notebooks/BufferProtocol.ipynb">here</a> or download the full source <a href="http://jakevdp.github.com/downloads/notebooks/BufferProtocol.ipynb">here</a>.</em> </small></p>
+<p><small>
+<em>This post was composed within an IPython notebook; you can view a static version <a href="http://nbviewer.ipython.org/url/jakevdp.github.com/downloads/notebooks/BufferProtocol.ipynb">here</a> or download the full source <a href="http://jakevdp.github.com/downloads/notebooks/BufferProtocol.ipynb">here</a>.</em>
+</small></p>
+</div>
+</div>
 </div></p></div>
     <footer>
 <p class="meta">
@@ -2961,7 +3213,7 @@ PyMyArray_getbuffer(PyObject *obj, Py_buffer *view, <span class="dt">int</span> 
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Jake Vanderplas -
+    Copyright &copy;  2012-2014  - Jake Vanderplas -
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
     <script type="text/javascript">
@@ -2989,7 +3241,7 @@ PyMyArray_getbuffer(PyObject *obj, Py_buffer *view, <span class="dt">int</span> 
           var disqus_title = 'An Introduction to the Python Buffer Protocol';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-	    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
 	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 	   })();
 	</script>

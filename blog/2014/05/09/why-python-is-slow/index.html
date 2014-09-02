@@ -1777,7 +1777,7 @@ jQuery(document).ready(function($) {
 </ul>
 
 
-<form action="http://google.com/search" method="get">
+<form action="//google.com/search" method="get">
   <fieldset role="search">
     <input type="hidden" name="q" value="site:jakevdp.github.io" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
@@ -1798,61 +1798,82 @@ jQuery(document).ready(function($) {
 </header>
 
   <div class="entry-content"><p>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We've all heard it before: Python is slow.</p>
-<p>When I teach courses on Python for scientific computing, I make this point <a href="http://nbviewer.ipython.org/github/jakevdp/2013_fall_ASTR599/blob/master/notebooks/11_EfficientNumpy.ipynb">very early</a> in the course, and tell the students why: it boils down to Python being a dynamically typed, interpreted language, where values are stored not in dense buffers but in scattered objects. And then I talk about how to get around this by using NumPy, SciPy, and related tools for vectorization of operations and calling into compiled code, and go on from there.</p>
-<p>But I realized something recently: despite the relative accuracy of the above statements, the words &quot;dynamically-typed-interpreted-buffers-vectorization-compiled&quot; probably mean very little to somebody attending an intro programming seminar. The jargon does little to enlighten people about what's actually going on &quot;under the hood&quot;, so to speak.</p>
-<p>So I decided I would write this post, and dive into the details that I usually gloss over. Along the way, we'll take a look at using Python's standard library to introspect the goings-on of CPython itself. So whether you're a novice or experienced programmer, I hope you'll learn something from the following exploration.</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We&#39;ve all heard it before: Python is slow.</p>
+<p>When I teach courses on Python for scientific computing, I make this point <a href="http://nbviewer.ipython.org/github/jakevdp/2013_fall_ASTR599/blob/master/notebooks/11_EfficientNumpy.ipynb">very early</a> in the course, and tell the students why: it boils down to Python being a dynamically typed, interpreted language, where values are stored not in dense buffers but in scattered objects.  And then I talk about how to get around this by using NumPy, SciPy, and related tools for vectorization of operations and calling into compiled code, and go on from there.</p>
+<p>But I realized something recently: despite the relative accuracy of the above statements, the words &quot;dynamically-typed-interpreted-buffers-vectorization-compiled&quot; probably mean very little to somebody attending an intro programming seminar. The jargon does little to enlighten people about what&#39;s actually going on &quot;under the hood&quot;, so to speak.</p>
+<p>So I decided I would write this post, and dive into the details that I usually gloss over. Along the way, we&#39;ll take a look at using Python&#39;s standard library to introspect the goings-on of CPython itself. So whether you&#39;re a novice or experienced programmer, I hope you&#39;ll learn something from the following exploration.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Why-Python-is-Slow">Why Python is Slow<a class="anchor-link" href="#Why-Python-is-Slow">&#182;</a></h2>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Python is slower than Fortran and C for a variety of reasons:</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="python-is-dynamically-typed-rather-than-statically-typed.">1. <strong>Python is Dynamically Typed rather than Statically Typed</strong>.</h3>
-<p>What this means is that at the time the program executes, the interpreter doesn't know the type of the variables that are defined. The difference between a C variable (I'm using C as a stand-in for compiled languages) and a Python variable is summarized by this diagram:</p>
+<h3 id="1-python-is-dynamically-typed-rather-than-statically-typed-">1. <strong>Python is Dynamically Typed rather than Statically Typed</strong>.</h3>
+<p>What this means is that at the time the program executes, the interpreter doesn&#39;t know the type of the variables that are defined.  The difference between a C variable (I&#39;m using C as a stand-in for compiled languages) and a Python variable is summarized by this diagram:</p>
 <p><img src="http://jakevdp.github.io/images/cint_vs_pyint.png" width=45%></p>
-<p>For a variable in C, the compiler knows the type by its very definition. For a variable in Python, all you know at the time the program executes is that it's some sort of Python object.</p>
+<p>For a variable in C, the compiler knows the type by its very definition. For a variable in Python, all you know at the time the program executes is that it&#39;s some sort of Python object.</p>
 <p>So if you write the following in C:</p>
-<pre class="sourceCode C"><code class="sourceCode c"><span class="co">/* C code */</span>
-<span class="dt">int</span> a = <span class="dv">1</span>;
-<span class="dt">int</span> b = <span class="dv">2</span>;
-<span class="dt">int</span> c = a + b;</code></pre>
-<p>the C compiler knows from the start that <code>a</code> and <code>b</code> are integers: they simply can't be anything else! With this knowledge, it can call the routine which adds two integers, returning another integer which is just a simple value in memory. As a rough schematic, the sequence of events looks like this:</p>
+<pre><code class="language-C"><span class="comment">/* C code */</span>
+int a = <span class="number">1</span><span class="comment">;</span>
+int b = <span class="number">2</span><span class="comment">;</span>
+int c = a + b<span class="comment">;</span>
+</code></pre>
+<p>the C compiler knows from the start that <code>a</code> and <code>b</code> are integers: they simply can&#39;t be anything else! With this knowledge, it can call the routine which adds two integers, returning another integer which is just a simple value in memory. As a rough schematic, the sequence of events looks like this:</p>
 <h4 id="c-addition">C Addition</h4>
-<ol style="list-style-type: decimal">
+<ol>
 <li>Assign <code>&lt;int&gt; 1</code> to <code>a</code></li>
 <li>Assign <code>&lt;int&gt; 2</code> to <code>b</code></li>
 <li>call <code>binary_add&lt;int, int&gt;(a, b)</code></li>
 <li>Assign the result to c</li>
 </ol>
 <p>The equivalent code in Python looks like this:</p>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="co"># python code</span>
-a = <span class="dv">1</span>
-b = <span class="dv">2</span>
-c = a + b</code></pre>
-<p>here the interpreter knows only that <code>1</code> and <code>2</code> are objects, but not what type of object they are. So the The interpreter must inspect <code>PyObject_HEAD</code> for each variable to find the type information, and then call the appropriate summation routine for the two types. Finally it must create and initialize a new Python object to hold the return value. The sequence of events looks roughly like this:</p>
+<pre><code class="language-python"><span class="comment"># python code</span>
+a = <span class="number">1</span>
+b = <span class="number">2</span>
+c = a + b
+</code></pre>
+<p>here the interpreter knows only that <code>1</code> and <code>2</code> are objects, but not what type of object they are. So the The interpreter must inspect <code>PyObject_HEAD</code> for each variable to find the type information, and then call the appropriate summation routine for the two types. Finally it must create and initialize a new Python object to hold the return value.  The sequence of events looks roughly like this:</p>
 <h4 id="python-addition">Python Addition</h4>
-<ol style="list-style-type: decimal">
-<li>Assign <code>1</code> to <code>a</code></li>
-</ol>
+<ol>
+<li><p>Assign <code>1</code> to <code>a</code></p>
 <ul>
 <li><strong>1a.</strong> Set <code>a-&gt;PyObject_HEAD-&gt;typecode</code> to integer</li>
 <li><strong>1b.</strong> Set <code>a-&gt;val = 1</code></li>
 </ul>
-<ol start="2" style="list-style-type: decimal">
-<li>Assign <code>2</code> to <code>b</code></li>
-</ol>
+</li>
+<li><p>Assign <code>2</code> to <code>b</code></p>
 <ul>
 <li><strong>2a.</strong> Set <code>b-&gt;PyObject_HEAD-&gt;typecode</code> to integer</li>
 <li><strong>2b.</strong> Set <code>b-&gt;val = 2</code></li>
 </ul>
-<ol start="3" style="list-style-type: decimal">
-<li>call <code>binary_add(a, b)</code></li>
-</ol>
+</li>
+<li><p>call <code>binary_add(a, b)</code></p>
 <ul>
 <li><strong>3a.</strong> find typecode in <code>a-&gt;PyObject_HEAD</code></li>
 <li><strong>3b.</strong> <code>a</code> is an integer; value is <code>a-&gt;val</code></li>
@@ -1861,57 +1882,92 @@ c = a + b</code></pre>
 <li><strong>3e.</strong> call <code>binary_add&lt;int, int&gt;(a-&gt;val, b-&gt;val)</code></li>
 <li><strong>3f.</strong> result of this is <code>result</code>, and is an integer.</li>
 </ul>
-<ol start="4" style="list-style-type: decimal">
-<li>Create a Python object <code>c</code></li>
-</ol>
+</li>
+<li><p>Create a Python object <code>c</code></p>
 <ul>
 <li><strong>4a.</strong> set <code>c-&gt;PyObject_HEAD-&gt;typecode</code> to integer</li>
 <li><strong>4b.</strong> set <code>c-&gt;val</code> to <code>result</code></li>
 </ul>
+</li>
+</ol>
 <p>The dynamic typing means that there are a lot more steps involved with any operation. This is a primary reason that Python is slow compared to C for operations on numerical data.</p>
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="python-is-interpreted-rather-than-compiled.">2. Python is interpreted rather than compiled.</h3>
-<p>We saw above one difference between interpreted and compiled code. A smart compiler can look ahead and optimize for repeated or unneeded operations, which can result in speed-ups. Compiler optimization is its own beast, and I'm personally not qualified to say much about it, so I'll stop there. For some examples of this in action, you can take a look at my <a href="http://jakevdp.github.io/blog/2013/06/15/numba-vs-cython-take-2/">previous post</a> on Numba and Cython.</p>
 </div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="pythons-object-model-can-lead-to-inefficient-memory-access">3. Python's object model can lead to inefficient memory access</h3>
-<p>We saw above the extra type info layer when moving from a C integer to a Python integer. Now imagine you have many such integers and want to do some sort of batch operation on them. In Python you might use the standard <code>List</code> object, while in C you would likely use some sort of buffer-based array.</p>
-<p>A NumPy array in its simplest form is a Python object build around a C array. That is, it has a pointer to a <em>contiguous</em> data buffer of values. A Python list, on the other hand, has a pointer to a contiguous buffer of pointers, each of which points to a Python object which in turn has references to its data (in this case, integers). This is a schematic of what the two might look like:</p>
+<h3 id="2-python-is-interpreted-rather-than-compiled-">2. Python is interpreted rather than compiled.</h3>
+<p>We saw above one difference between interpreted and compiled code. A smart compiler can look ahead and optimize for repeated or unneeded operations, which can result in speed-ups. Compiler optimization is its own beast, and I&#39;m personally not qualified to say much about it, so I&#39;ll stop there.  For some examples of this in action, you can take a look at my <a href="http://jakevdp.github.io/blog/2013/06/15/numba-vs-cython-take-2/">previous post</a> on Numba and Cython.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="3-python-s-object-model-can-lead-to-inefficient-memory-access">3. Python&#39;s object model can lead to inefficient memory access</h3>
+<p>We saw above the extra type info layer when moving from a C integer to a Python integer. Now imagine you have many such integers and want to do some sort of batch operation on them.  In Python you might use the standard <code>List</code> object, while in C you would likely use some sort of buffer-based array.</p>
+<p>A NumPy array in its simplest form is a Python object build around a C array. That is, it has a pointer to a <em>contiguous</em> data buffer of values. A Python list, on the other hand, has a pointer to a contiguous buffer of pointers, each of which points to a Python object which in turn has references to its data (in this case, integers).  This is a schematic of what the two might look like:</p>
 <p><img src="http://jakevdp.github.io/images/array_vs_list.png" width=80%></p>
-<p>It's easy to see that if you're doing some operation which steps through data in sequence, the numpy layout will be much more efficient than the Python layout, both in the cost of storage and the cost of access.</p>
+<p>It&#39;s easy to see that if you&#39;re doing some operation which steps through data in sequence, the numpy layout will be much more efficient than the Python layout, both in the cost of storage and the cost of access.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="so-why-use-python">So Why Use Python?</h3>
-<p>Given this inherent inefficiency, why would we even think about using Python? Well, it comes down to this: Dynamic typing makes Python <strong>easier to use</strong> than C. It's extremely <strong>flexible and forgiving</strong>, this flexibility leads to <strong>efficient use of development time</strong>, and on those occasions that you really need the optimization of C or Fortran, <strong>Python offers easy hooks into compiled libraries</strong>. It's why Python use within many scientific communities has been continually growing. With all that put together, Python ends up being an extremely efficient language for the overall task of doing science with code.</p>
+<h3 id="so-why-use-python-">So Why Use Python?</h3>
+<p>Given this inherent inefficiency, why would we even think about using Python? Well, it comes down to this: Dynamic typing makes Python <strong>easier to use</strong> than C.  It&#39;s extremely <strong>flexible and forgiving</strong>, this flexibility leads to <strong>efficient use of development time</strong>, and on those occasions that you really need the optimization of C or Fortran, <strong>Python offers easy hooks into compiled libraries</strong>. It&#39;s why Python use within many scientific communities has been continually growing. With all that put together, Python ends up being an extremely efficient language for the overall task of doing science with code.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Python-meta-hacking:-Don't-take-my-word-for-it">Python meta-hacking: Don't take my word for it<a class="anchor-link" href="#Python-meta-hacking:-Don't-take-my-word-for-it">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Above I've talked about some of the internal structures that make Python tick, but I don't want to stop there. As I was putting together the above summary, I started hacking around on the internals of the Python language, and found that the process itself is pretty enlightening.</p>
-<p>In the following sections, I'm going to <em>prove</em> to you that the above information is correct, by doing some hacking to expose Python objects using Python itself. Please note that everything below is written using <strong>Python 3.4</strong>. Earlier versions of Python have a slightly different internal object structure, and later versions may tweak this further. Please make sure to use the correct version! Also, most of the code below assumes a 64-bit CPU. If you're on a 32-bit platform, some of the C types below will have to be adjusted to account for this difference.</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Above I&#39;ve talked about some of the internal structures that make Python tick, but I don&#39;t want to stop there. As I was putting together the above summary, I started hacking around on the internals of the Python language, and found that the process itself is pretty enlightening.</p>
+<p>In the following sections, I&#39;m going to <em>prove</em> to you that the above information is correct, by doing some hacking to expose Python objects using Python itself.  Please note that everything below is written using <strong>Python 3.4</strong>. Earlier versions of Python have a slightly different internal object structure, and later versions may tweak this further. Please make sure to use the correct version!  Also, most of the code below assumes a 64-bit CPU. If you&#39;re on a 32-bit platform, some of the C types below will have to be adjusted to account for this difference.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[1]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">sys</span>
 <span class="k">print</span><span class="p">(</span><span class="s">&quot;Python version =&quot;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">version</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 Python version = 3.4.0
 
@@ -1923,32 +1979,46 @@ Python version = 3.4.0
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Digging-into-Python-Integers">Digging into Python Integers<a class="anchor-link" href="#Digging-into-Python-Integers">&#182;</a></h3>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Integers in Python are easy to create and use:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[2]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">x</span> <span class="o">=</span> <span class="mi">42</span>
 <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 42
 
@@ -1960,42 +2030,53 @@ In&nbsp;[2]:
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>But the simplicity of this interface belies the complexity of what is happening under the hood. We briefly discussed the memory layout of Python integers above. Here we'll use Python's built-in <code>ctypes</code> module to introspect Python's integer type from the Python interpreter itself. But first we need to know exactly what a Python integer looks like at the level of the C API.</p>
+<p>But the simplicity of this interface belies the complexity of what is happening under the hood. We briefly discussed the memory layout of Python integers above.  Here we&#39;ll use Python&#39;s built-in <code>ctypes</code> module to introspect Python&#39;s integer type from the Python interpreter itself.  But first we need to know exactly what a Python integer looks like at the level of the C API.</p>
 <p>The actual <code>x</code> variable in CPython is stored in a structure which is defined in the CPython source code, in <a href="http://hg.python.org/cpython/file/3.4/Include/longintrepr.h/#l89">Include/longintrepr.h</a></p>
-<pre class="sourceCode C"><code class="sourceCode c"><span class="kw">struct</span> _longobject {
+<pre><code class="language-C">struct _longobject {
     PyObject_VAR_HEAD
-    digit ob_digit[<span class="dv">1</span>];
-};</code></pre>
+    digit ob_digit[<span class="number">1</span>]<span class="comment">;</span>
+}<span class="comment">;</span>
+</code></pre>
 <p>The <code>PyObject_VAR_HEAD</code> is a macro which starts the object off with the following struct, defined in <a href="http://hg.python.org/cpython/file/3.4/Include/object.h#l111">Include/object.h</a>:</p>
-<pre class="sourceCode C"><code class="sourceCode c"><span class="kw">typedef</span> <span class="kw">struct</span> {
-    PyObject ob_base;
-    Py_ssize_t ob_size; <span class="co">/* Number of items in variable part */</span>
-} PyVarObject;</code></pre>
+<pre><code class="language-C"><span class="typedef">typedef struct <span class="container">{
+    <span class="type">PyObject</span> <span class="title">ob_base</span>;
+    <span class="type">Py_ssize_t</span> <span class="title">ob_size</span>; /* <span class="type">Number</span> <span class="title">of</span> <span class="title">items</span> <span class="title">in</span> <span class="title">variable</span> <span class="title">part</span> */
+}</span> <span class="type">PyVarObject</span>;</span>
+</code></pre>
 <p>... and includes a <code>PyObject</code> element, which is also defined in <a href="http://hg.python.org/cpython/file/3.4/Include/object.h#l105">Include/object.h</a>:</p>
-<pre class="sourceCode C"><code class="sourceCode c"><span class="kw">typedef</span> <span class="kw">struct</span> _object {
-    _PyObject_HEAD_EXTRA
-    Py_ssize_t ob_refcnt;
-    <span class="kw">struct</span> _typeobject *ob_type;
-} PyObject;</code></pre>
+<pre><code class="language-C"><span class="typedef">typedef struct _object <span class="container">{
+    <span class="title">_PyObject_HEAD_EXTRA</span>
+    <span class="type">Py_ssize_t</span> <span class="title">ob_refcnt</span>;
+    <span class="title">struct</span> <span class="title">_typeobject</span> *<span class="title">ob_type</span>;
+}</span> <span class="type">PyObject</span>;</span>
+</code></pre>
 <p>here <code>_PyObject_HEAD_EXTRA</code> is a macro which is not normally used in the Python build.</p>
 <p>With all this put together and typedefs/macros unobfuscated, our integer object works out to something like the following structure:</p>
-<pre class="sourceCode C"><code class="sourceCode c"><span class="kw">struct</span> _longobject {
-    <span class="dt">long</span> ob_refcnt;
-    PyTypeObject *ob_type;
-    size_t ob_size;
-    <span class="dt">long</span> ob_digit[<span class="dv">1</span>];
-};</code></pre>
+<pre><code class="language-C">struct _longobject {
+    long ob_refcnt<span class="comment">;</span>
+    PyTypeObject *ob_type<span class="comment">;</span>
+    size_t ob_size<span class="comment">;</span>
+    long ob_digit[<span class="number">1</span>]<span class="comment">;</span>
+}<span class="comment">;</span>
+</code></pre>
 <p>The <code>ob_refcnt</code> variable is the reference count for the object, the <code>ob_type</code> variable is a pointer to the structure containing all the type information and method definitions for the object, and the <code>ob_digit</code> holds the actual numerical value.</p>
-<p>Armed with this knowledge, we'll use the <code>ctypes</code> module to start looking into the actual object structure and extract some of the above information.</p>
+<p>Armed with this knowledge, we&#39;ll use the <code>ctypes</code> module to start looking into the actual object structure and extract some of the above information.</p>
 <p>We start with defining a Python representation of the C structure:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[3]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">ctypes</span>
 
 <span class="k">class</span> <span class="nc">IntStruct</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">Structure</span><span class="p">):</span>
@@ -2011,55 +2092,71 @@ In&nbsp;[3]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now let's look at the internal representation for some number, say 42. We'll use the fact that in CPython, the <code>id</code> function gives the memory location of the object:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now let&#39;s look at the internal representation for some number, say 42.  We&#39;ll use the fact that in CPython, the <code>id</code> function gives the memory location of the object:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[4]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">num</span> <span class="o">=</span> <span class="mi">42</span>
 <span class="n">IntStruct</span><span class="o">.</span><span class="n">from_address</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="mi">42</span><span class="p">))</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[4]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 IntStruct(ob_digit=42, refcount=35)
 </pre>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The <code>ob_digit</code> attribute points to the correct location in memory!</p>
-<p>But what about <code>refcount</code>? We've only created a single value: why is the reference count so much greater than one?</p>
-<p>Well it turns out that Python uses small integers <em>a lot</em>. If a new <code>PyObject</code> were created for each of these integers, it would take a lot of memory. Because of this, Python implements common integer values as <strong>singletons</strong>: that is, only one copy of these numbers exist in memory. In other words, every time you create a new Python integer in this range, you're simply creating a reference to the singleton with that value:</p>
+<p>But what about <code>refcount</code>? We&#39;ve only created a single value: why is the reference count so much greater than one?</p>
+<p>Well it turns out that Python uses small integers <em>a lot</em>. If a new <code>PyObject</code> were created for each of these integers, it would take a lot of memory. Because of this, Python implements common integer values as <strong>singletons</strong>: that is, only one copy of these numbers exist in memory. In other words, every time you create a new Python integer in this range, you&#39;re simply creating a reference to the singleton with that value:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[5]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">x</span> <span class="o">=</span> <span class="mi">42</span>
 <span class="n">y</span> <span class="o">=</span> <span class="mi">42</span>
 <span class="nb">id</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
@@ -2067,36 +2164,44 @@ In&nbsp;[5]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[5]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 True
 </pre>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Both variables are simply pointers to the same memory address. When you get to much bigger integers (larger than 255 in Python 3.4), this is no longer true:</p>
+<p>Both variables are simply pointers to the same memory address.  When you get to much bigger integers (larger than 255 in Python 3.4), this is no longer true:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[6]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">x</span> <span class="o">=</span> <span class="mi">1234</span>
 <span class="n">y</span> <span class="o">=</span> <span class="mi">1234</span>
 <span class="nb">id</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
@@ -2104,36 +2209,44 @@ In&nbsp;[6]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[6]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 False
 </pre>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Just starting up the Python interpreter will create a lot of integer objects; it can be interesting to take a look at how many references there are to each:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[7]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%</span><span class="k">matplotlib</span> <span class="n">inline</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">sys</span>
@@ -2144,27 +2257,28 @@ In&nbsp;[7]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[7]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 &lt;matplotlib.text.Text at 0x106866ac8&gt;
 </pre>
-
-</div>
 </div>
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+</div>
+
+<div class="output_area"><div class="prompt"></div>
 
 
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYwAAAEWCAYAAAB1xKBvAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XtcVHXeB/DPAN7Fu6ICiQIqKIripSiVVg3NtLJQ0LLE
 VruYXZ96bLfELJO2esrcMtc0V428pGGmlFKk1arrrVRU1MAISxQxFEUEzvPHr8PMwAxzhjkz58zM
@@ -2394,118 +2508,156 @@ EU8++ST69OmDqqoqdOvWDZs2bYLBYKhzO8zIyEhcvnwZQUFBCAgIAABMnjwZY8eORZ8+fTBgwABE
 RETUij84OBgTJkxA79690bVrV/Tv3x8A0KBBA6xfvx6zZs3CH3/8gYqKCjz11FOIjIx04G+QyDoO
 qyWyorS0tLqJ6bHHHkP37t3xxBNPaBwVkXbYJEVkxb/+9S/069cPvXr1QklJCWbMmKF1SESaYoVB
 RESKsMIgIiJFmDCIiEgRJgwiIlKECYOIiBRhwiAiIkX+H2XUNcoEoVOoAAAAAElFTkSuQmCC
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We see that zero is referenced several thousand times, and as you may expect, the frequency of references generally decreases as the value of the integer increases.</p>
-<p>Just to further make sure that this is behaving as we'd expect, let's make sure the <code>ob_digit</code> field holds the correct value:</p>
+<p>Just to further make sure that this is behaving as we&#39;d expect, let&#39;s make sure the <code>ob_digit</code> field holds the correct value:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[8]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="nb">all</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">IntStruct</span><span class="o">.</span><span class="n">from_address</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">i</span><span class="p">))</span><span class="o">.</span><span class="n">ob_digit</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">256</span><span class="p">))</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[8]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 True
 </pre>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>If you go a bit deeper into this, you might notice that this does not hold for numbers larger than 256: it turns out that some bit-shift gymnastics are performed in <a href="http://hg.python.org/cpython/file/3.4/Objects/longobject.c#l232">Objects/longobject.c</a>, and these change the way large integers are represented in memory.</p>
-<p>I can't say that I fully understand why exactly that is happening, but I imagine it has something to do with Python's ability to efficiently handle integers past the overflow limit of the long int data type, as we can see here:</p>
+<p>I can&#39;t say that I fully understand why exactly that is happening, but I imagine it has something to do with Python&#39;s ability to efficiently handle integers past the overflow limit of the long int data type, as we can see here:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[9]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="mi">2</span> <span class="o">**</span> <span class="mi">100</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[9]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 1267650600228229401496703205376
 </pre>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>That number is much too long to be a <code>long</code>, which can only hold 64 bits worth of values (that is, up to <span class="math">\(\sim2^{64}\)</span>)</p>
+<p>That number is much too long to be a <code>long</code>, which can only hold 64 bits worth of values (that is, up to $\sim2^{64}$)</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Digging-into-Python-Lists">Digging into Python Lists<a class="anchor-link" href="#Digging-into-Python-Lists">&#182;</a></h3>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's apply the above ideas to a more complicated type: Python lists. Analogously to integers, we find the definition of the list object itself in <a href="http://hg.python.org/cpython/file/3.4/Include/listobject.h#l23">Include/listobject.h</a>:</p>
-<pre class="sourceCode C"><code class="sourceCode c"><span class="kw">typedef</span> <span class="kw">struct</span> {
-    PyObject_VAR_HEAD
-    PyObject **ob_item;
-    Py_ssize_t allocated;
-} PyListObject;</code></pre>
+<p>Let&#39;s apply the above ideas to a more complicated type: Python lists. Analogously to integers, we find the definition of the list object itself in <a href="http://hg.python.org/cpython/file/3.4/Include/listobject.h#l23">Include/listobject.h</a>:</p>
+<pre><code class="language-C"><span class="typedef">typedef struct <span class="container">{
+    <span class="type">PyObject_VAR_HEAD</span>
+    <span class="type">PyObject</span> **<span class="title">ob_item</span>;
+    <span class="type">Py_ssize_t</span> <span class="title">allocated</span>;
+}</span> <span class="type">PyListObject</span>;</span>
+</code></pre>
 <p>Again, we can expand the macros and de-obfuscate the types to see that the structure is effectively the following:</p>
-<pre class="sourceCode C"><code class="sourceCode c"><span class="kw">typedef</span> <span class="kw">struct</span> {
-    <span class="dt">long</span> ob_refcnt;
-    PyTypeObject *ob_type;
-    Py_ssize_t ob_size;
-    PyObject **ob_item;
-    <span class="dt">long</span> allocated;
-} PyListObject;</code></pre>
+<pre><code class="language-C"><span class="typedef">typedef struct <span class="container">{
+    <span class="title">long</span> <span class="title">ob_refcnt</span>;
+    <span class="type">PyTypeObject</span> *<span class="title">ob_type</span>;
+    <span class="type">Py_ssize_t</span> <span class="title">ob_size</span>;
+    <span class="type">PyObject</span> **<span class="title">ob_item</span>;
+    <span class="title">long</span> <span class="title">allocated</span>;
+}</span> <span class="type">PyListObject</span>;</span>
+</code></pre>
 <p>Here the <code>PyObject **ob_item</code> is what points to the contents of the list, and the <code>ob_size</code> value tells us how many items are in the list.</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[10]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">class</span> <span class="nc">ListStruct</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">Structure</span><span class="p">):</span>
     <span class="n">_fields_</span> <span class="o">=</span> <span class="p">[(</span><span class="s">&quot;ob_refcnt&quot;</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_long</span><span class="p">),</span>
                 <span class="p">(</span><span class="s">&quot;ob_type&quot;</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">),</span>
@@ -2520,90 +2672,114 @@ In&nbsp;[10]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's try it out:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let&#39;s try it out:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[11]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
 <span class="n">ListStruct</span><span class="o">.</span><span class="n">from_address</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">L</span><span class="p">))</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[11]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 ListStruct(len=5, refcount=1)
 </pre>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Just to make sure we've done things correctly, let's create a few extra references to the list, and see how it affects the reference count:</p>
+<p>Just to make sure we&#39;ve done things correctly, let&#39;s create a few extra references to the list, and see how it affects the reference count:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[12]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">tup</span> <span class="o">=</span> <span class="p">[</span><span class="n">L</span><span class="p">,</span> <span class="n">L</span><span class="p">]</span>  <span class="c"># two more references to L</span>
 <span class="n">ListStruct</span><span class="o">.</span><span class="n">from_address</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">L</span><span class="p">))</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[12]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 ListStruct(len=5, refcount=3)
 </pre>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now let's see about finding the actual elements within the list.</p>
-<p>As we saw above, the elements are stored via a contiguous array of <code>PyObject</code> pointers. Using <code>ctypes</code>, we can actually create a compound structure consisting of our <code>IntStruct</code> objects from before:</p>
+<p>Now let&#39;s see about finding the actual elements within the list.</p>
+<p>As we saw above, the elements are stored via a contiguous array of <code>PyObject</code> pointers.  Using <code>ctypes</code>, we can actually create a compound structure consisting of our <code>IntStruct</code> objects from before:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[13]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># get a raw pointer to our list</span>
 <span class="n">Lstruct</span> <span class="o">=</span> <span class="n">ListStruct</span><span class="o">.</span><span class="n">from_address</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">L</span><span class="p">))</span>
 
@@ -2616,32 +2792,41 @@ In&nbsp;[13]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now let's take a look at the values in each of the items:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now let&#39;s take a look at the values in each of the items:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[14]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="p">[</span><span class="n">ptr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">ptr</span> <span class="ow">in</span> <span class="n">L_values</span><span class="p">]</span>  <span class="c"># ptr[0] dereferences the pointer</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[14]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 [IntStruct(ob_digit=1, refcount=5296),
  IntStruct(ob_digit=2, refcount=2887),
@@ -2649,68 +2834,95 @@ In&nbsp;[14]:
  IntStruct(ob_digit=4, refcount=1049),
  IntStruct(ob_digit=5, refcount=808)]
 </pre>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We've recovered the <code>PyObject</code> integers within our list! You might wish to take a moment to look back up to the schematic of the List memory layout above, and make sure you understand how these <code>ctypes</code> operations map onto that diagram.</p>
+<p>We&#39;ve recovered the <code>PyObject</code> integers within our list! You might wish to take a moment to look back up to the schematic of the List memory layout above, and make sure you understand how these <code>ctypes</code> operations map onto that diagram.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Digging-into-NumPy-arrays">Digging into NumPy arrays<a class="anchor-link" href="#Digging-into-NumPy-arrays">&#182;</a></h3>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now, for comparison, let's do the same introspection on a numpy array. I'll skip the detailed walk-through of the NumPy C-API array definition; if you want to take a look at it, you can find it in <a href="https://github.com/numpy/numpy/blob/maintenance/1.8.x/numpy/core/include/numpy/ndarraytypes.h#L646">numpy/core/include/numpy/ndarraytypes.h</a></p>
-<p>Note that I'm using NumPy version 1.8 here; these internals may have changed between versions, though I'm not sure whether this is the case.</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now, for comparison, let&#39;s do the same introspection on a numpy array.  I&#39;ll skip the detailed walk-through of the NumPy C-API array definition; if you want to take a look at it, you can find it in <a href="https://github.com/numpy/numpy/blob/maintenance/1.8.x/numpy/core/include/numpy/ndarraytypes.h#L646">numpy/core/include/numpy/ndarraytypes.h</a></p>
+<p>Note that I&#39;m using NumPy version 1.8 here; these internals may have changed between versions, though I&#39;m not sure whether this is the case.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[15]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="n">np</span><span class="o">.</span><span class="n">__version__</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[15]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 &apos;1.8.1&apos;
 </pre>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's start by creating a structure that represents the numpy array itself. This should be starting to look familiar...</p>
-<p>We'll also add some custom properties to access Python versions of the shape and strides:</p>
+<p>Let&#39;s start by creating a structure that represents the numpy array itself. This should be starting to look familiar...</p>
+<p>We&#39;ll also add some custom properties to access Python versions of the shape and strides:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[16]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">class</span> <span class="nc">NumpyStruct</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">Structure</span><span class="p">):</span>
     <span class="n">_fields_</span> <span class="o">=</span> <span class="p">[(</span><span class="s">&quot;ob_refcnt&quot;</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_long</span><span class="p">),</span>
                 <span class="p">(</span><span class="s">&quot;ob_type&quot;</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">),</span>
@@ -2734,17 +2946,25 @@ In&nbsp;[16]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now let's try it out:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now let&#39;s try it out:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[17]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
 <span class="n">xstruct</span> <span class="o">=</span> <span class="n">NumpyStruct</span><span class="o">.</span><span class="n">from_address</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 <span class="n">xstruct</span>
@@ -2752,72 +2972,88 @@ In&nbsp;[17]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[17]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 NumpyStruct(shape=(10, 20), refcount=1)
 </pre>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We see that we've pulled out the correct shape information. Let's make sure the reference count is correct:</p>
+<p>We see that we&#39;ve pulled out the correct shape information.  Let&#39;s make sure the reference count is correct:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[18]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">]</span>  <span class="c"># add three more references to x</span>
 <span class="n">xstruct</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[18]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 NumpyStruct(shape=(10, 20), refcount=4)
 </pre>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now we can do the tricky part of pulling out the data buffer. For simplicity we'll ignore the strides and assume it's a C-contiguous array; this could be generalized with a bit of work.</p>
+<p>Now we can do the tricky part of pulling out the data buffer. For simplicity we&#39;ll ignore the strides and assume it&#39;s a C-contiguous array; this could be generalized with a bit of work.</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[19]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">xstruct</span> <span class="o">=</span> <span class="n">NumpyStruct</span><span class="o">.</span><span class="n">from_address</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 <span class="n">size</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">xstruct</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -2831,88 +3067,128 @@ In&nbsp;[19]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[19]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 </pre>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The <code>data</code> variable is now a view of the contiguous block of memory defined in the NumPy array! To show this, we'll change a value in the array...</p>
+<p>The <code>data</code> variable is now a view of the contiguous block of memory defined in the NumPy array!  To show this, we&#39;ll change a value in the array...</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[20]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mi">555</span>
 <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">]</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[20]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 [0, 1, 2, 3, 555, 5, 6, 7, 8, 9]
 </pre>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>... and observe that the data view changes as well. Both <code>x</code> and <code>data</code> are pointing to the same contiguous block of memory.</p>
-<p>Comparing the internals of the Python list and the NumPy ndarray, it is clear that NumPy's arrays are <strong>much, much</strong> simpler for representing a list of identically-typed data. That fact is related to what makes it more efficient for the compiler to handle as well.</p>
+<p>... and observe that the data view changes as well.  Both <code>x</code> and <code>data</code> are pointing to the same contiguous block of memory.</p>
+<p>Comparing the internals of the Python list and the NumPy ndarray, it is clear that NumPy&#39;s arrays are <strong>much, much</strong> simpler for representing a list of identically-typed data. That fact is related to what makes it more efficient for the compiler to handle as well.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Just-for-fun:-a-few-&quot;never-use-these&quot;-hacks">Just for fun: a few "never use these" hacks<a class="anchor-link" href="#Just-for-fun:-a-few-&quot;never-use-these&quot;-hacks">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Using <code>ctypes</code> to wrap the C-level data behind Python objects allows you to do some pretty interesting things. With proper attribution to my friend James Powell, I'll say it here: <a href="http://seriously.dontusethiscode.com/">seriously, don't use this code</a>. While nothing below should actually be used (ever), I still find it all pretty interesting!</p>
 </div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Using <code>ctypes</code> to wrap the C-level data behind Python objects allows you to do some pretty interesting things. With proper attribution to my friend James Powell, I&#39;ll say it here: <a href="http://seriously.dontusethiscode.com/">seriously, don&#39;t use this code</a>. While nothing below should actually be used (ever), I still find it all pretty interesting!</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Modifying-the-Value-of-an-Integer">Modifying the Value of an Integer<a class="anchor-link" href="#Modifying-the-Value-of-an-Integer">&#182;</a></h3>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Inspired by <a href="http://www.reddit.com/r/Python/comments/2441cv/can_you_change_the_value_of_1/">this Reddit post</a>, we can actually modify the numerical value of integer objects! If we use a common number like <code>0</code> or <code>1</code>, we're very likely to crash our Python kernel. But if we do it with less important numbers, we can get away with it, at least briefly.</p>
-<p>Note that this is a <em>really, really</em> bad idea. In particular, if you're running this in an IPython notebook, you might corrupt the IPython kernel's very ability to run (because you're screwing with the variables in its runtime). Nevertheless, we'll cross our fingers and give it a shot:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Inspired by <a href="http://www.reddit.com/r/Python/comments/2441cv/can_you_change_the_value_of_1/">this Reddit post</a>, we can actually modify the numerical value of integer objects! If we use a common number like <code>0</code> or <code>1</code>, we&#39;re very likely to crash our Python kernel. But if we do it with less important numbers, we can get away with it, at least briefly.</p>
+<p>Note that this is a <em>really, really</em> bad idea. In particular, if you&#39;re running this in an IPython notebook, you might corrupt the IPython kernel&#39;s very ability to run (because you&#39;re screwing with the variables in its runtime). Nevertheless, we&#39;ll cross our fingers and give it a shot:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[21]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># WARNNG: never do this!</span>
 <span class="n">id113</span> <span class="o">=</span> <span class="nb">id</span><span class="p">(</span><span class="mi">113</span><span class="p">)</span>
 <span class="n">iptr</span> <span class="o">=</span> <span class="n">IntStruct</span><span class="o">.</span><span class="n">from_address</span><span class="p">(</span><span class="n">id113</span><span class="p">)</span>
@@ -2923,147 +3199,185 @@ In&nbsp;[21]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[21]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 True
 </pre>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>But note now that we can't set the value back in a simple manner, because the true value <code>113</code> no longer exists in Python!</p>
+<p>But note now that we can&#39;t set the value back in a simple manner, because the true value <code>113</code> no longer exists in Python!</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[22]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="mi">113</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[22]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 4
 </pre>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[23]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="mi">112</span> <span class="o">+</span> <span class="mi">1</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[23]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 4
 </pre>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>One way to recover is to manipulate the bytes directly. We know that <span class="math">\(113 = 7 \times 16^1 + 1 * 16^0\)</span>, so <strong>on a little-endian 64-bit system running Python 3.4</strong>, the following should work:</p>
+<p>One way to recover is to manipulate the bytes directly. We know that $113 = 7 \times 16^1 + 1 * 16^0$, so <strong>on a little-endian 64-bit system running Python 3.4</strong>, the following should work:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[24]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">ctypes</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">id113</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">POINTER</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char</span><span class="p">))[</span><span class="mi">3</span> <span class="o">*</span> <span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="s">&#39;</span><span class="se">\x71</span><span class="s">&#39;</span>
 <span class="mi">112</span> <span class="o">+</span> <span class="mi">1</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[24]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 113
 </pre>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>and we're back!</p>
-<p>Just in case I didn't stress it enough before: <strong>never do this.</strong></p>
+<p>and we&#39;re back!</p>
+<p>Just in case I didn&#39;t stress it enough before: <strong>never do this.</strong></p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="In-place-Modification-of-List-Contents">In-place Modification of List Contents<a class="anchor-link" href="#In-place-Modification-of-List-Contents">&#182;</a></h3>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Above we did an in-place modification of a value in a numpy array. This is easy, because a numpy array is simply a data buffer. But might we be able to do the same thing for a list? This gets a bit more tricky, because lists store <em>references</em> to values rather than the values themselves. And to not crash Python itself, you need to be very careful to keep track of these reference counts as you muck around. Here's how it can be done:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Above we did an in-place modification of a value in a numpy array. This is easy, because a numpy array is simply a data buffer. But might we be able to do the same thing for a list? This gets a bit more tricky, because lists store <em>references</em> to values rather than the values themselves. And to not crash Python itself, you need to be very careful to keep track of these reference counts as you muck around.  Here&#39;s how it can be done:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[25]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># WARNING: never do this!</span>
 <span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mi">42</span><span class="p">]</span>
 <span class="n">Lwrapper</span> <span class="o">=</span> <span class="n">ListStruct</span><span class="o">.</span><span class="n">from_address</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">L</span><span class="p">))</span>
@@ -3082,13 +3396,14 @@ In&nbsp;[25]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 before: [42]
 after:  [6]
@@ -3101,22 +3416,41 @@ after:  [6]
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Like I said, you should never use this, and I honestly can't think of any reason why you would want to. But it gives you an idea of the types of operations the interpreter has to do when modifying the contents of a list. Compare this to the NumPy example above, and you'll see one reason why Python lists have more overhead than Python arrays.</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Like I said, you should never use this, and I honestly can&#39;t think of any reason why you would want to. But it gives you an idea of the types of operations the interpreter has to do when modifying the contents of a list. Compare this to the NumPy example above, and you&#39;ll see one reason why Python lists have more overhead than Python arrays.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Meta-Goes-Meta:-a-self-wrapping-Python-object">Meta Goes Meta: a self-wrapping Python object<a class="anchor-link" href="#Meta-Goes-Meta:-a-self-wrapping-Python-object">&#182;</a></h3>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Using the above methods, we can start to get even stranger. The <code>Structure</code> class in <code>ctypes</code> is itself a Python object, which can be seen in <a href="http://hg.python.org/cpython/file/3.4/Modules/_ctypes/ctypes.h#l46">Modules/_ctypes/ctypes.h</a>. Just as we wrapped ints and lists, we can wrap structures themselves as follows:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[26]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">class</span> <span class="nc">CStructStruct</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">Structure</span><span class="p">):</span>
     <span class="n">_fields_</span> <span class="o">=</span> <span class="p">[(</span><span class="s">&quot;ob_refcnt&quot;</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_long</span><span class="p">),</span>
                 <span class="p">(</span><span class="s">&quot;ob_type&quot;</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">),</span>
@@ -3130,18 +3464,26 @@ In&nbsp;[26]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now we'll attempt to make a structure that wraps itself. We can't do this directly, because we don't know at what address in memory the new structure will be created. But what we can do is create a <em>second</em> structure wrapping the first, and use this to modify its contents in-place!</p>
-<p>We'll start by making a temporary meta-structure and wrapping it:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we&#39;ll attempt to make a structure that wraps itself. We can&#39;t do this directly, because we don&#39;t know at what address in memory the new structure will be created. But what we can do is create a <em>second</em> structure wrapping the first, and use this to modify its contents in-place!</p>
+<p>We&#39;ll start by making a temporary meta-structure and wrapping it:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[27]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">tmp</span> <span class="o">=</span> <span class="n">IntStruct</span><span class="o">.</span><span class="n">from_address</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
 <span class="n">meta</span> <span class="o">=</span> <span class="n">CStructStruct</span><span class="o">.</span><span class="n">from_address</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">tmp</span><span class="p">))</span>
 
@@ -3150,13 +3492,14 @@ In&nbsp;[27]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 CStructStruct(ptr=0x10023ef00, refcnt=1)
 
@@ -3168,15 +3511,22 @@ CStructStruct(ptr=0x10023ef00, refcnt=1)
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Now we add a third structure, and use it to adjust the memory value of the second in-place:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[28]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">meta_wrapper</span> <span class="o">=</span> <span class="n">CStructStruct</span><span class="o">.</span><span class="n">from_address</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">meta</span><span class="p">))</span>
 <span class="n">meta_wrapper</span><span class="o">.</span><span class="n">ob_ptr</span> <span class="o">=</span> <span class="nb">id</span><span class="p">(</span><span class="n">meta</span><span class="p">)</span>
 
@@ -3186,13 +3536,14 @@ In&nbsp;[28]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 True
 CStructStruct(ptr=0x106d828c8, refcnt=7)
@@ -3205,16 +3556,23 @@ CStructStruct(ptr=0x106d828c8, refcnt=7)
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We now have a self-wrapping Python structure!</p>
-<p>Again, I can't think of any reason you'd ever want to do this. And keep in mind there is noting groundbreaking about this type of self-reference in Python – due to its dynamic typing, it is realatively straightforward to do things like this without directly hacking the memory:</p>
+<p>Again, I can&#39;t think of any reason you&#39;d ever want to do this. And keep in mind there is noting groundbreaking about this type of self-reference in Python – due to its dynamic typing, it is realatively straightforward to do things like this without directly hacking the memory:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[29]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">L</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">L</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
@@ -3222,13 +3580,14 @@ In&nbsp;[29]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 [[...]]
 
@@ -3240,16 +3599,37 @@ In&nbsp;[29]:
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Python is slow. And one big reason for that, as we've seen, is the type indirection under the hood which makes Python quick, easy, and fun for the developer. And as we've seen, Python itself offers tools that can be used to hack into the Python objects themselves.</p>
-<p>I hope that this was made more clear through this exploration of the differences between various objects, and some liberal mucking around in the internals of CPython itself. This exercise was extremely enlightening for me, and I hope it was for you as well... Happy hacking!</p>
 </div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><em>This blog post was written entirely in the IPython Notebook. The full notebook can be downloaded <a href="http://jakevdp.github.io/downloads/notebooks/WhyPythonIsSlow.ipynb">here</a>, or viewed statically <a href="http://nbviewer.ipython.org/url/jakevdp.github.io/downloads/notebooks/WhyPythonIsSlow.ipynb">here</a>.</em></p>
+<p>Python is slow. And one big reason for that, as we&#39;ve seen, is the type indirection under the hood which makes Python quick, easy, and fun for the developer.  And as we&#39;ve seen, Python itself offers tools that can be used to hack into the Python objects themselves.</p>
+<p>I hope that this was made more clear through this exploration of the differences between various objects, and some liberal mucking around in the internals of CPython itself. This exercise was extremely enlightening for me, and I hope it was for you as well...  Happy hacking!</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>This blog post was written entirely in the IPython Notebook.  The full notebook can be downloaded
+<a href="http://jakevdp.github.io/downloads/notebooks/WhyPythonIsSlow.ipynb">here</a>,
+or viewed statically
+<a href="http://nbviewer.ipython.org/url/jakevdp.github.io/downloads/notebooks/WhyPythonIsSlow.ipynb">here</a>.</em></p>
+</div>
+</div>
 </div></p></div>
     <footer>
 <p class="meta">
@@ -3303,7 +3683,7 @@ In&nbsp;[29]:
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Jake Vanderplas -
+    Copyright &copy;  2012-2014  - Jake Vanderplas -
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
     <script type="text/javascript">
@@ -3331,7 +3711,7 @@ In&nbsp;[29]:
           var disqus_title = 'Why Python is Slow: Looking Under the Hood';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-	    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
 	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 	   })();
 	</script>

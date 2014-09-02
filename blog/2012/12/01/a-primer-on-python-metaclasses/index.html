@@ -1777,7 +1777,7 @@ jQuery(document).ready(function($) {
 </ul>
 
 
-<form action="http://google.com/search" method="get">
+<form action="//google.com/search" method="get">
   <fieldset role="search">
     <input type="hidden" name="q" value="site:jakevdp.github.io" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
@@ -1798,20 +1798,37 @@ jQuery(document).ready(function($) {
 </header>
 
   <div class="entry-content"><p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Python,-Classes,-and-Objects">Python, Classes, and Objects<a class="anchor-link" href="#Python,-Classes,-and-Objects">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-
-<p>Most readers are aware that Python is an object-oriented language. By object-oriented, we mean that Python can define <em>classes</em>, which bundle <strong>data</strong> and <strong>functionality</strong> into one entity. For example, we may create a class <code>IntContainer</code> which stores an integer and allows certain operations to be performed:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>
+Most readers are aware that Python is an object-oriented language.  By
+object-oriented, we mean that Python can define <em>classes</em>, which bundle
+<strong>data</strong> and <strong>functionality</strong> into one entity.  For example, we may
+create a class <code>IntContainer</code> which stores an integer and allows
+certain operations to be performed:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[1]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">class</span> <span class="nc">IntContainer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">i</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
@@ -1822,14 +1839,16 @@ In&nbsp;[1]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[2]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">ic</span> <span class="o">=</span> <span class="n">IntContainer</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">ic</span><span class="o">.</span><span class="n">add_one</span><span class="p">()</span>
 <span class="k">print</span><span class="p">(</span><span class="n">ic</span><span class="o">.</span><span class="n">i</span><span class="p">)</span>
@@ -1837,13 +1856,14 @@ In&nbsp;[2]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 3
 
@@ -1855,31 +1875,47 @@ In&nbsp;[2]:
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This is a bit of a silly example, but shows the fundamental nature of classes: their ability to bundle data and operations into a single <em>object</em>, which leads to cleaner, more manageable, and more adaptable code. Additionally, classes can inherit properties from parents and add or specialize attributes and methods. This <em>object-oriented</em> approach to programming can be very intuitive and powerful.</p>
-<p>What many do not realize, though, is that quite literally <a href="http://www.diveintopython.net/getting_to_know_python/everything_is_an_object.html"><em>everything</em></a> in the Python language is an object.</p>
-
-
-<p>For example, integers are simply instances of the built-in <code>int</code> type:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This is a bit of a silly example, but shows the fundamental nature of
+classes: their ability to bundle data and operations into a single
+<em>object</em>, which leads to cleaner, more manageable, and more adaptable code.
+Additionally, classes can inherit properties from parents and add or
+specialize attributes and methods.  This <em>object-oriented</em>
+approach to programming can be very intuitive and powerful.</p>
+<p>What many do not realize, though, is that quite literally
+<a href="http://www.diveintopython.net/getting_to_know_python/everything_is_an_object.html"><em>everything</em></a>
+in the Python language is an object.</p>
+
+
+<p>For example, integers are simply instances of
+the built-in <code>int</code> type:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[3]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">print</span> <span class="nb">type</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 &lt;type &apos;int&apos;&gt;
 
@@ -1891,16 +1927,26 @@ In&nbsp;[3]:
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>To emphasize that the <code>int</code> type really is an object, let's derive from it and specialize the <code>__add__</code> method (which is the machinery underneath the <code>+</code> operator):</p>
-<p><em>(Note: We'll used the</em> <code>super</code> <em>syntax to call methods from the parent class: if you're unfamiliar with this, take a look at</em> <a href="http://stackoverflow.com/questions/576169/understanding-python-super-and-init-methods"><em>this StackOverflow question</em></a><em>).</em></p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To emphasize that the <code>int</code> type really is an object, let&#39;s derive from it
+and specialize the <code>__add__</code> method (which is the machinery underneath
+the <code>+</code> operator):</p>
+<p><em>(Note: We&#39;ll used the</em> <code>super</code> <em>syntax to call methods from the parent class: if you&#39;re unfamiliar with this, take a look at</em>
+<a href="http://stackoverflow.com/questions/576169/understanding-python-super-and-init-methods"><em>this StackOverflow question</em></a><em>).</em></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[4]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">class</span> <span class="nc">MyInt</span><span class="p">(</span><span class="nb">int</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">print</span> <span class="s">&quot;specializing addition&quot;</span>
@@ -1912,13 +1958,14 @@ In&nbsp;[4]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 specializing addition
 4
@@ -1931,227 +1978,328 @@ specializing addition
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Using the <code>+</code> operator on our derived type goes through our <code>__add__</code> method, as expected. We see that <code>int</code> really is an object that can be subclassed and extended just like user-defined classes. The same is true of <code>float</code>s, <code>list</code>s, <code>tuple</code>s, and everything else in the Python language. They're all objects.</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Using the <code>+</code> operator on our derived type goes through our <code>__add__</code>
+method, as expected.
+We see that <code>int</code> really is an object that can be subclassed and extended
+just like user-defined classes.  The same is true
+of <code>float</code>s, <code>list</code>s, <code>tuple</code>s, and everything else in the Python
+language.  They&#39;re all objects.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Down-the-Rabbit-Hole:-Classes-as-Objects">Down the Rabbit Hole: Classes as Objects<a class="anchor-link" href="#Down-the-Rabbit-Hole:-Classes-as-Objects">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We said above that <em>everything</em> in python is an object: it turns out that this is true of <em>classes themselves</em>. Let's look at an example.</p>
-<p>We'll start by defining a class that does nothing</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We said above that <em>everything</em> in python is an object: it turns out that this
+is true of <em>classes themselves</em>.  Let&#39;s look at an example.</p>
+<p>We&#39;ll start by defining a class that does nothing</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[5]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">class</span> <span class="nc">DoNothing</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="k">pass</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>If we instantiate this, we can use the <code>type</code> operator to see the type of object that it is:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If we instantiate this, we can use the <code>type</code> operator to see the type
+of object that it is:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[6]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">d</span> <span class="o">=</span> <span class="n">DoNothing</span><span class="p">()</span>
 <span class="nb">type</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[6]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 __main__.DoNothing
 </pre>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We see that our variable <code>d</code> is an instance of the class <code>__main__.DoNothing</code>.</p>
-<p>We can do this similarly for built-in types:</p>
+<p>We see that our variable <code>d</code> is an instance of the class
+<code>__main__.DoNothing</code>.</p>
+<p>We can do this similarly for built-in  types:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[7]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
 <span class="nb">type</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[7]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 list
 </pre>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>A list is, as you may expect, an object of type <code>list</code>.</p>
-<p>But let's take this a step further: what is the type of <code>DoNothing</code> itself?</p>
+<p>But let&#39;s take this a step further: what is the type
+of <code>DoNothing</code> itself?</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[8]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="nb">type</span><span class="p">(</span><span class="n">DoNothing</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[8]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 type
 </pre>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The type of <code>DoNothing</code> is <code>type</code>. This tells us that the <em>class</em> <code>DoNothing</code> is itself an object, and that object is of type <code>type</code>.</p>
+<p>The type of <code>DoNothing</code> is <code>type</code>.  This tells us that the <em>class</em>
+<code>DoNothing</code> is itself an object, and that object is of type <code>type</code>.</p>
 <p>It turns out that this is the same for built-in datatypes:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[9]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="nb">type</span><span class="p">(</span><span class="nb">tuple</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="nb">list</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[9]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 (type, type, type, type)
 </pre>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>What this shows is that in Python, <em>classes are objects</em>, and they are objects of type <code>type</code>. <code>type</code> is a <em>metaclass</em>: a class which instantiates classes. All <a href="http://www.python.org/doc/newstyle/">new-style classes</a> in Python are instances of the <code>type</code> metaclass, including <code>type</code> itself:</p>
+<p>What this shows is that in Python, <em>classes are objects</em>, and they are objects of
+type <code>type</code>.  <code>type</code> is a <em>metaclass</em>: a class which instantiates classes.
+All <a href="http://www.python.org/doc/newstyle/">new-style classes</a>
+in Python are instances of the <code>type</code> metaclass, including <code>type</code> itself:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[10]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="nb">type</span><span class="p">(</span><span class="nb">type</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[10]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 type
 </pre>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Yes, you read that correctly: the type of <code>type</code> is <code>type</code>. In other words, <code>type</code> is <em>an instance of itself</em>. This sort of circularity cannot (to my knowledge) be duplicated in pure Python, and the behavior is created through a bit of a hack at the implementation level of Python.</p>
+<p>Yes, you read that correctly:
+the type of <code>type</code> is <code>type</code>.  In other words, <code>type</code> is <em>an
+instance of itself</em>.  This sort of circularity cannot (to my knowledge)
+be duplicated in pure Python, and the behavior is created through a bit of a
+hack at the implementation level of Python.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Metaprogramming:-Creating-Classes-on-the-Fly">Metaprogramming: Creating Classes on the Fly<a class="anchor-link" href="#Metaprogramming:-Creating-Classes-on-the-Fly">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now that we've stepped back and considered the fact that classes in Python are simply objects like everything else, we can think about what is known as <em>metaprogramming</em>. You're probably used to creating functions which return objects. We can think of these functions as an object factory: they take some arguments, create an object, and return it. Here is a simple example of a function which creates an <code>int</code> object:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now that we&#39;ve stepped back and considered the fact that classes in Python
+are simply objects like everything else, we can think about what is known
+as <em>metaprogramming</em>.  You&#39;re probably used to creating functions which
+return objects.  We can think of these functions as an object factory: they
+take some arguments, create an object, and return it.  Here is a simple example
+of a function which creates an <code>int</code> object:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[11]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">def</span> <span class="nf">int_factory</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
     <span class="n">i</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">i</span>
@@ -2162,13 +2310,14 @@ In&nbsp;[11]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 100
 
@@ -2180,15 +2329,27 @@ In&nbsp;[11]:
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This is overly-simplistic, but any function you write in the course of a normal program can be boiled down to this: take some arguments, do some operations, and create &amp; return an object. With the above discussion in mind, though, there's nothing to stop us from creating an object of type <code>type</code> (that is, a class), and returning that instead -- this is a <em>metafunction:</em></p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This is overly-simplistic, but any function you write in the course
+of a normal program can be boiled down to this: take some arguments,
+do some operations, and create &amp; return an object.
+With the above discussion in mind, though, there&#39;s nothing to stop
+us from creating an object of type <code>type</code> (that is, a class), 
+and returning that instead -- this is a <em>metafunction:</em></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[12]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">def</span> <span class="nf">class_factory</span><span class="p">():</span>
     <span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
         <span class="k">pass</span>
@@ -2201,13 +2362,14 @@ In&nbsp;[12]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 &lt;class &apos;__main__.Foo&apos;&gt;
 
@@ -2219,16 +2381,29 @@ In&nbsp;[12]:
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Just as the function <code>int_factory</code> constructs an returns an instance of <code>int</code>, the function <code>class_factory</code> constructs and returns an instance of <code>type</code>: that is, a class.</p>
-<p>But the above construction is a bit awkward: especially if we were going to do some more complicated logic when constructing <code>Foo</code>, it would be nice to avoid all the nested indentations and define the class in a more dynamic way. We can accomplish this by instantiating <code>Foo</code> from <code>type</code> directly:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Just as the function <code>int_factory</code> constructs an returns an instance of
+<code>int</code>,
+the function <code>class_factory</code> constructs and returns an instance of <code>type</code>:
+that is, a class.</p>
+<p>But the above construction is a bit awkward: especially if we were going to do some
+more complicated logic when constructing <code>Foo</code>, it would be nice to avoid all the
+nested indentations and define the class in a more dynamic way.
+We can accomplish this by instantiating <code>Foo</code> from <code>type</code> directly:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[13]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">def</span> <span class="nf">class_factory</span><span class="p">():</span>
     <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="s">&#39;Foo&#39;</span><span class="p">,</span> <span class="p">(),</span> <span class="p">{})</span>
 
@@ -2239,13 +2414,14 @@ In&nbsp;[13]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 &lt;class &apos;__main__.Foo&apos;&gt;
 
@@ -2257,45 +2433,77 @@ In&nbsp;[13]:
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In fact, the construct</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[14]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">class</span> <span class="nc">MyClass</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="k">pass</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>is identical to the construct</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[15]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">MyClass</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s">&#39;MyClass&#39;</span><span class="p">,</span> <span class="p">(),</span> <span class="p">{})</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><code>MyClass</code> is an instance of type <code>type</code>, and that can be seen explicitly in the second version of the definition. A potential confusion arises from the more common use of <code>type</code> as a function to determine the type of an object, but you should strive to separate these two uses of the keyword in your mind: here <code>type</code> is a class (more precisely, a <em>metaclass</em>), and <code>MyClass</code> is an instance of <code>type</code>.</p>
+<p><code>MyClass</code> is an instance of type <code>type</code>, and that can be seen
+explicitly in the second version of the definition.
+A potential confusion arises from the more common use of <code>type</code> as
+a function to determine the type of an object, but you should strive
+to separate these two uses of the keyword in your mind:
+here <code>type</code> is a class (more precisely, a <em>metaclass</em>),
+and <code>MyClass</code> is an instance of <code>type</code>.</p>
 <p>The arguments to the <code>type</code> constructor are:</p>
 </div>
-type(name, bases, dct)
-
+</div>
+</div>
+                type(name, bases, dct)
+                
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
 <li><code>name</code> is a string giving the name of the class to be constructed</li>
@@ -2304,12 +2512,15 @@ type(name, bases, dct)
 </ul>
 <p>So, for example, the following two pieces of code have identical results:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[16]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="n">i</span> <span class="o">=</span> <span class="mi">4</span>
 
@@ -2323,13 +2534,14 @@ In&nbsp;[16]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 4
 
@@ -2341,12 +2553,13 @@ In&nbsp;[16]:
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[17]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">Foo</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s">&#39;Foo&#39;</span><span class="p">,</span> <span class="p">(),</span> <span class="nb">dict</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
 
 <span class="n">Bar</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s">&#39;Bar&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">Foo</span><span class="p">,),</span> <span class="nb">dict</span><span class="p">(</span><span class="n">get_i</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">i</span><span class="p">))</span>
@@ -2357,13 +2570,14 @@ In&nbsp;[17]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 4
 
@@ -2375,30 +2589,70 @@ In&nbsp;[17]:
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This perhaps seems a bit over-complicated in the case of this contrived example, but it can be very powerful as a means of dynamically creating new classes on-the-fly.</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This perhaps seems a bit over-complicated in the case of this contrived
+example, but it can be very powerful as a means of dynamically creating
+new classes on-the-fly.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Making-Things-Interesting:-Custom-Metaclasses">Making Things Interesting: Custom Metaclasses<a class="anchor-link" href="#Making-Things-Interesting:-Custom-Metaclasses">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now things get really fun. Just as we can inherit from and extend a class we've created, we can also inherit from and extend the <code>type</code> metaclass, and create custom behavior in our metaclass.</p>
 </div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now things get really fun.  Just as we can inherit from and extend a class we&#39;ve
+created, we can also inherit from and extend the <code>type</code> metaclass, and create
+custom behavior in our metaclass.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Example-1:-Modifying-Attributes">Example 1: Modifying Attributes<a class="anchor-link" href="#Example-1:-Modifying-Attributes">&#182;</a></h3>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's use a simple example where we want to create an API in which the user can create a set of interfaces which contain a file object. Each interface should have a unique string ID, and contain an open file object. The user could then write specialized methods to accomplish certain tasks. There are certainly good ways to do this without delving into metaclasses, but such a simple example will (hopefully) elucidate what's going on.</p>
-<p>First we'll create our interface meta class, deriving from <code>type</code>:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let&#39;s use a simple example where we want to create an API in which the user can
+create a set of interfaces which contain a file object.  Each interface should
+have a unique string ID, and contain an open file object.  The user could then write
+specialized methods to accomplish certain tasks.  There are certainly good
+ways to do this without delving into metaclasses, but such a simple example will
+(hopefully) elucidate what&#39;s going on.</p>
+<p>First we&#39;ll create our interface meta class, deriving from <code>type</code>:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[18]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">class</span> <span class="nc">InterfaceMeta</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">parents</span><span class="p">,</span> <span class="n">dct</span><span class="p">):</span>
         <span class="c"># create a class_id if it&#39;s not specified</span>
@@ -2416,18 +2670,29 @@ In&nbsp;[18]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Notice that we've modified the input dictionary (the attributes and methods of the class) to add a class id if it's not present, and to replace the filename with a file object pointing to that file name.</p>
-<p>Now we'll use our <code>InterfaceMeta</code> class to construct and instantiate an Interface object:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Notice that we&#39;ve modified the input dictionary (the attributes and
+methods of the class) to add a class id if it&#39;s not present, and to
+replace the filename with a file object pointing to that file name.</p>
+<p>Now we&#39;ll use our <code>InterfaceMeta</code> class to construct and instantiate
+an Interface object:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[19]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">Interface</span> <span class="o">=</span> <span class="n">InterfaceMeta</span><span class="p">(</span><span class="s">&#39;Interface&#39;</span><span class="p">,</span> <span class="p">(),</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">file</span><span class="o">=</span><span class="s">&#39;tmp.txt&#39;</span><span class="p">))</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">Interface</span><span class="o">.</span><span class="n">class_id</span><span class="p">)</span>
@@ -2436,13 +2701,14 @@ In&nbsp;[19]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 interface
 &lt;open file &apos;tmp.txt&apos;, mode &apos;w&apos; at 0x21b8810&gt;
@@ -2455,15 +2721,28 @@ interface
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This behaves as we'd expect: the <code>class_id</code> class variable is created, and the <code>file</code> class variable is replaced with an open file object. Still, the creation of the <code>Interface</code> class using <code>InterfaceMeta</code> directly is a bit clunky and difficult to read. This is where <code>__metaclass__</code> comes in and steals the show. We can accomplish the same thing by defining <code>Interface</code> this way:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This behaves as we&#39;d expect: the <code>class_id</code> class variable is created,
+and the <code>file</code> class variable is replaced with an open file object.
+Still, the creation of the <code>Interface</code> class
+using <code>InterfaceMeta</code> directly is a bit clunky and difficult to read.
+This is where <code>__metaclass__</code> comes in
+and steals the show.  We can accomplish the same thing by
+defining <code>Interface</code> this way:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[20]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">class</span> <span class="nc">Interface</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="n">__metaclass__</span> <span class="o">=</span> <span class="n">InterfaceMeta</span>
     <span class="nb">file</span> <span class="o">=</span> <span class="s">&#39;tmp.txt&#39;</span>
@@ -2474,13 +2753,14 @@ In&nbsp;[20]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 interface
 &lt;open file &apos;tmp.txt&apos;, mode &apos;w&apos; at 0x21b8ae0&gt;
@@ -2493,50 +2773,69 @@ interface
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>by defining the <code>__metaclass__</code> attribute of the class, we've told the class that it should be constructed using <code>InterfaceMeta</code> rather than using <code>type</code>. To make this more definite, observe that the type of <code>Interface</code> is now <code>InterfaceMeta</code>:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>by defining the <code>__metaclass__</code> attribute of the class, we&#39;ve told the
+class that it should be constructed using <code>InterfaceMeta</code> rather than
+using <code>type</code>.  To make this more definite, observe that the type of
+<code>Interface</code> is now <code>InterfaceMeta</code>:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[21]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="nb">type</span><span class="p">(</span><span class="n">Interface</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[21]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 __main__.InterfaceMeta
 </pre>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Furthermore, any class derived from <code>Interface</code> will now be constructed using the same metaclass:</p>
+<p>Furthermore, any class derived from <code>Interface</code> will now be constructed
+using the same metaclass:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[22]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">class</span> <span class="nc">UserInterface</span><span class="p">(</span><span class="n">Interface</span><span class="p">):</span>
     <span class="nb">file</span> <span class="o">=</span> <span class="s">&#39;foo.txt&#39;</span>
     
@@ -2546,13 +2845,14 @@ In&nbsp;[22]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 &lt;open file &apos;foo.txt&apos;, mode &apos;w&apos; at 0x21b8c00&gt;
 userinterface
@@ -2565,23 +2865,49 @@ userinterface
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This simple example shows how metaclasses can be used to create powerful and flexible APIs for projects. For example, the <a href="https://www.djangoproject.com/">Django project</a> makes use of these sorts of constructions to allow concise declarations of very powerful extensions to their basic classes.</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This simple example shows how metaclasses can be used to create powerful and
+flexible APIs for projects.  For example, the
+<a href="https://www.djangoproject.com/">Django project</a>
+makes use of these sorts of constructions to allow concise declarations
+of very powerful extensions to their basic classes.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Example-2:-Registering-Subclasses">Example 2: Registering Subclasses<a class="anchor-link" href="#Example-2:-Registering-Subclasses">&#182;</a></h3>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Another possible use of a metaclass is to automatically register all subclasses derived from a given base class. For example, you may have a basic interface to a database and wish for the user to be able to define their own interfaces, which are automatically stored in a master registry.</p>
+<p>Another possible use of a metaclass is to automatically register all
+subclasses derived from a given base class.  For example, you may have
+a basic interface to a database and wish for the user to be able to
+define their own interfaces, which are automatically stored in a master registry.</p>
 <p>You might proceed this way:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[23]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">class</span> <span class="nc">DBInterfaceMeta</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
     <span class="c"># we use __init__ rather than __new__ here because we want</span>
     <span class="c"># to modify attributes of the class *after* they have been</span>
@@ -2600,17 +2926,27 @@ In&nbsp;[23]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Our metaclass simply adds a <code>registry</code> dictionary if it's not already present, and adds the new class to the registry if the registry is already there. Let's see how this works:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Our metaclass simply adds a <code>registry</code> dictionary if it&#39;s not already
+present, and adds the new class to the registry if the registry is already
+there.  Let&#39;s see how this works:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[24]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">class</span> <span class="nc">DBInterface</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="n">__metaclass__</span> <span class="o">=</span> <span class="n">DBInterfaceMeta</span>
     
@@ -2619,13 +2955,14 @@ In&nbsp;[24]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 {}
 
@@ -2637,15 +2974,23 @@ In&nbsp;[24]:
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now let's create some subclasses, and double-check that they're added to the registry:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now let&#39;s create some subclasses, and double-check that they&#39;re added to
+the registry:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[25]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">class</span> <span class="nc">FirstInterface</span><span class="p">(</span><span class="n">DBInterface</span><span class="p">):</span>
     <span class="k">pass</span>
 
@@ -2660,13 +3005,14 @@ In&nbsp;[25]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 {&apos;firstinterface&apos;: &lt;class &apos;__main__.FirstInterface&apos;&gt;, &apos;secondinterface&apos;: &lt;class &apos;__main__.SecondInterface&apos;&gt;, &apos;secondinterfacemodified&apos;: &lt;class &apos;__main__.SecondInterfaceModified&apos;&gt;}
 
@@ -2678,27 +3024,77 @@ In&nbsp;[25]:
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>It works as expected! This could be used in conjunction with a function that chooses implementations from the registry, and any user-defined <code>Interface</code>-derived objects would be automatically accounted for, without the user having to remember to manually register the new types.</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It works as expected!  This could be used in conjunction with
+a function that chooses implementations from the registry,
+and any user-defined <code>Interface</code>-derived objects would be
+automatically accounted for, without the user having to remember
+to manually register the new types.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Conclusion:-When-Should-You-Use-Metaclasses?">Conclusion: When Should You Use Metaclasses?<a class="anchor-link" href="#Conclusion:-When-Should-You-Use-Metaclasses?">&#182;</a></h2>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>I've gone through some examples of what metaclasses are, and some ideas about how they might be used to create very powerful and flexible APIs. Although metaclasses are in the background of everything you do in Python, the average coder rarely has to think about them.</p>
-<p>But the question remains: when should you think about using custom metaclasses in your project? It's a complicated question, but there's a quotation floating around the web that addresses it quite succinctly:</p>
+<p>I&#39;ve gone through some examples of what metaclasses are, and some ideas 
+about how they might be used to create very powerful and flexible APIs. 
+Although metaclasses are in the background of everything you do in Python,
+the average coder rarely has to think about them.</p>
+<p>But the question remains: when should you think about using custom
+metaclasses in your project?  It&#39;s a complicated question, but
+there&#39;s a quotation floating around the web
+that addresses it quite succinctly:</p>
 <blockquote>
-<p>Metaclasses are deeper magic than 99% of users should ever worry about. If you wonder whether you need them, you don’t (the people who actually need them know with certainty that they need them, and don’t need an explanation about why).</p>
+<p>Metaclasses are deeper magic than 99% of users should ever worry about.
+If you wonder whether you need them, you don’t (the people who actually
+need them know with certainty that they need them, and don’t need an
+explanation about why).</p>
 <p>– Tim Peters</p>
 </blockquote>
-<p>In a way, this is a very unsatisfying answer: it's a bit reminiscent of the wistful and cliched explanation of the border between attraction and love: &quot;well, you just... know!&quot;</p>
-<p>But I think Tim is right: in general, I've found that most tasks in Python that can be accomplished through use of custom metaclasses can also be accomplished more cleanly and with more clarity by other means. As programmers, we should always be careful to avoid being clever for the sake of cleverness alone, though it is admittedly an ever-present temptation.</p>
-<p>I personally spent six years doing science with Python, writing code nearly on a daily basis, before I found a problem for which metaclasses were the natural solution. And it turns out Tim was right:</p>
+<p>In a way, this is a very unsatisfying answer: it&#39;s a bit reminiscent of
+the wistful and cliched explanation of the border between attraction
+and love: &quot;well, you just... know!&quot;</p>
+<p>But I think Tim is right: in general,
+I&#39;ve found that most tasks in Python that can be accomplished through
+use of custom metaclasses can also be accomplished more cleanly and with
+more clarity by other means.  As programmers, we should always be careful
+to avoid being clever for the sake of cleverness alone, though
+it is admittedly an ever-present temptation.</p>
+<p>I personally spent six years doing science with Python, writing code
+nearly on a daily basis, before I found a problem for which metaclasses
+were the natural solution.  And it turns out Tim was right:</p>
 <p>I just knew.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This post was written entirely in an IPython Notebook: the notebook file is available for download <a href="http://jakevdp.github.com/downloads/notebooks/MetaClasses.ipynb">here</a>. For more information on blogging with notebooks in octopress, see my <a href="http://jakevdp.github.com/blog/2012/10/04/blogging-with-ipython/">previous post</a> on the subject.</p>
+<p>This post was written entirely in an IPython Notebook: the notebook file is available for
+download <a href="http://jakevdp.github.com/downloads/notebooks/MetaClasses.ipynb">here</a>.
+For more information on blogging with notebooks in octopress, see my
+<a href="http://jakevdp.github.com/blog/2012/10/04/blogging-with-ipython/">previous post</a>
+on the subject.</p>
+</div>
+</div>
 </div></p></div>
     <footer>
 <p class="meta">
@@ -2752,7 +3148,7 @@ In&nbsp;[25]:
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Jake Vanderplas -
+    Copyright &copy;  2012-2014  - Jake Vanderplas -
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
     <script type="text/javascript">
@@ -2780,7 +3176,7 @@ In&nbsp;[25]:
           var disqus_title = 'A Primer on Python Metaclasses';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-	    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
 	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 	   })();
 	</script>

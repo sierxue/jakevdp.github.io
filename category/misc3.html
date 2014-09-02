@@ -1777,7 +1777,7 @@ jQuery(document).ready(function($) {
 </ul>
 
 
-<form action="http://google.com/search" method="get">
+<form action="//google.com/search" method="get">
   <fieldset role="search">
     <input type="hidden" name="q" value="site:jakevdp.github.io" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
@@ -1800,8 +1800,25 @@ jQuery(document).ready(function($) {
 </header>
 
   <div class="entry-content">
-<p>I've spent a lot of time on this blog working with matplotlib animations (see the basic tutorial <a href="http://jakevdp.github.io/blog/2012/08/18/matplotlib-animation-tutorial/">here</a>, as well as my examples of animating <a href="http://jakevdp.github.io/blog/2012/09/05/quantum-python/">a quantum system</a>, <a href="http://jakevdp.github.io/blog/2012/09/26/optical-illusions-in-matplotlib/">an optical illusion</a>, <a href="http://jakevdp.github.io/blog/2013/02/16/animating-the-lorentz-system-in-3d/">the Lorenz system in 3D</a>, and <a href="http://jakevdp.github.io/blog/2013/01/13/hacking-super-mario-bros-with-python/">recreating Super Mario</a>). Up until now, I've not have not combined the animations with IPython notebooks. The problem is that so far the integration of IPython with matplotlib is entirely static, while animations are by their nature dynamic. There are some efforts in the IPython and matplotlib development communities to remedy this, but it's still not an ideal setup.</p>
-<p>I had an idea the other day about how one might get around this limitation in the case of animations. By creating a function which saves an animation and embeds the binary data into an HTML string, you can fairly easily create automatically-embedded animations within a notebook. </div>
+I&#39;ve spent a lot of time on this blog working with matplotlib animations
+(see the basic tutorial
+<a href="http://jakevdp.github.io/blog/2012/08/18/matplotlib-animation-tutorial/">here</a>,
+as well as my examples of animating
+<a href="http://jakevdp.github.io/blog/2012/09/05/quantum-python/">a quantum system</a>,
+<a href="http://jakevdp.github.io/blog/2012/09/26/optical-illusions-in-matplotlib/">an optical illusion</a>,
+<a href="http://jakevdp.github.io/blog/2013/02/16/animating-the-lorentz-system-in-3d/">the Lorenz system in 3D</a>,
+and <a href="http://jakevdp.github.io/blog/2013/01/13/hacking-super-mario-bros-with-python/">recreating Super Mario</a>).
+Up until now, I&#39;ve not have not combined the animations with IPython notebooks.
+The problem is that so far the integration of IPython with matplotlib is
+entirely static, while animations are by their nature dynamic.  There are some
+efforts in the IPython and matplotlib development communities to remedy this,
+but it&#39;s still not an ideal setup.
+
+I had an idea the other day about how one might get around this limitation
+in the case of animations.  By creating a function which saves an animation
+and embeds the binary data into an HTML string, you can fairly easily create
+automatically-embedded animations within a notebook.
+</div>
   <footer>
     <a rel="full-article" href="http://jakevdp.github.io/blog/2013/05/12/embedding-matplotlib-animations/">Read On &crarr;</a>
   </footer>
@@ -1844,7 +1861,13 @@ and <a href="http://getpelican.com">Pelican</a> in particular).</p>
 </header>
 
   <div class="entry-content">
-<p>I recently submitted a scikit-learn <a href="https://github.com/scikit-learn/scikit-learn/pull/1732">pull request</a> containing a brand new ball tree and kd-tree for fast nearest neighbor searches in python. In this post I want to highlight some of the features of the new ball tree and kd-tree code that's part of this pull request, compare it to what's available in the <code>scipy.spatial.cKDTree</code> implementation, and run a few benchmarks showing the performance of these methods on various data sets. </div>
+I recently submitted a scikit-learn <a href="https://github.com/scikit-learn/scikit-learn/pull/1732">pull request</a>
+containing a brand new ball tree and kd-tree for fast nearest neighbor searches in python.
+In this post I want to highlight some of the features of the new ball tree and kd-tree
+code that&#39;s part of this pull request, compare it to what&#39;s available in the
+<code>scipy.spatial.cKDTree</code> implementation, and run a few benchmarks showing the
+performance of these methods on various data sets.
+</div>
   <footer>
     <a rel="full-article" href="http://jakevdp.github.io/blog/2013/04/29/benchmarking-nearest-neighbor-searches-in-python/">Read On &crarr;</a>
   </footer>
@@ -1858,18 +1881,33 @@ and <a href="http://getpelican.com">Pelican</a> in particular).</p>
 </header>
 
   <div class="entry-content">
-<p><em>Edit: based on suggestions from readers, the best solution is down to 162 characters! Read to the end to see how</em></p>
+<em>Edit: based on suggestions from readers, the best solution is down to 162 characters!
+Read to the end to see how</em></p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>A highlight of PyCon each year for me is working on the little coding challenges offered by companies in the expo center. I love testing my Python prowess against the problems they pose (and being rewarded with a branded mug or T-shirt!) This year, several of the challenges involved what's become known as <a href="http://codegolf.com/">code golf</a>: writing a solution with minimal keystrokes.</p>
+<p>A highlight of PyCon each year for me is working on the little coding
+challenges offered by companies in the expo center.
+I love testing my Python prowess against the problems they pose (and
+being rewarded with a branded mug or T-shirt!)
+This year, several of the challenges involved what&#39;s become known as
+<a href="http://codegolf.com/">code golf</a>: writing a solution with minimal keystrokes.</p>
 <p>By way of example, take a look at this function definition:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[1]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">def</span> <span class="nf">S</span><span class="p">(</span><span class="n">p</span><span class="p">):</span><span class="n">i</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;0&#39;</span><span class="p">);</span><span class="k">return</span><span class="p">[(</span><span class="n">s</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span>
 <span class="nb">set</span><span class="p">(</span><span class="sb">`5**18`</span><span class="p">)</span><span class="o">-</span><span class="p">{(</span><span class="n">i</span><span class="o">-</span><span class="n">j</span><span class="p">)</span><span class="o">%</span><span class="k">9</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="mi">9</span><span class="o">^</span><span class="n">j</span><span class="o">/</span><span class="mi">9</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="mi">27</span><span class="o">^</span><span class="n">j</span><span class="o">/</span><span class="mi">27</span><span class="o">|</span><span class="n">i</span><span class="o">%</span><span class="k">9</span><span class="o">/</span><span class="mi">3</span><span class="o">^</span><span class="n">j</span><span class="o">%</span><span class="k">9</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="ow">or</span>
 <span class="n">p</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">81</span><span class="p">)}</span><span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">S</span><span class="p">(</span><span class="n">p</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">v</span><span class="o">+</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:])),[</span><span class="n">p</span><span class="p">]][</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">]</span>
@@ -1877,10 +1915,18 @@ In&nbsp;[1]:
 
 </div>
 </div>
+</div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This is a valid function definition (in Python 2.7) which executes a particular task. I'll give more information on the workings of this script later on, but for now I'll leave it to the reader to ponder over what it might do.</p>
+<p>This is a valid function definition (in Python 2.7) which executes a
+particular task.  I&#39;ll give more information on the workings of this
+script later on, but for now I&#39;ll leave it to the reader to ponder
+over what it might do.</p>
 </div>
   <footer>
     <a rel="full-article" href="http://jakevdp.github.io/blog/2013/04/15/code-golf-in-python-sudoku/">Read On &crarr;</a>
@@ -2110,7 +2156,7 @@ as bad as $\mathcal{O}[N^3]$ in both memory and speed!</p>
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Jake Vanderplas -
+    Copyright &copy;  2012-2014  - Jake Vanderplas -
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
     <script type="text/javascript">
@@ -2135,7 +2181,7 @@ as bad as $\mathcal{O}[N^3]$ in both memory and speed!</p>
 	  var disqus_shortname = 'pythonicperambulations';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-	    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
 	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 	   })();
 	</script>

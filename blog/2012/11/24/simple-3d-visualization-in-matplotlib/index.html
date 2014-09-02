@@ -1777,7 +1777,7 @@ jQuery(document).ready(function($) {
 </ul>
 
 
-<form action="http://google.com/search" method="get">
+<form action="//google.com/search" method="get">
   <fieldset role="search">
     <input type="hidden" name="q" value="site:jakevdp.github.io" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
@@ -1798,29 +1798,80 @@ jQuery(document).ready(function($) {
 </header>
 
   <div class="entry-content"><p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 
-<p>Matplotlib is a powerful framework, but its 3D capabilities still have a lot of room to grow. The <a href="http://matplotlib.org/mpl_toolkits/mplot3d/index.html">mplot3d</a> toolkit allows for several kinds of 3D plotting, but the ability to create and rotate solid 3D objects is hindered by the inflexibility of the <code>zorder</code> attribute: because it is not updated when the view is rotated, things in the &quot;back&quot; will cover things in the &quot;front&quot;, obscuring them and leading to very unnatural-looking results.</p>
-<p>I decided to see if I could create a simple script that addresses this. Though it would be possible to use the built-in <code>mplot3d</code> architecture to take care of rotating and projecting the points, I decided to do it from scratch for the sake of my own education.</p>
-<p>We'll step through it below: by the end of this post we will have created a 3D viewer in matplotlib which I think is quite nice. </p>
+Matplotlib is a powerful framework, but its 3D capabilities still have
+a lot of room to grow. The <a href="http://matplotlib.org/mpl_toolkits/mplot3d/index.html">mplot3d</a>
+toolkit allows for several kinds of 3D plotting, but the ability to create
+and rotate solid 3D objects is hindered by the inflexibility of the <code>zorder</code> attribute:
+because it is not updated when the view is rotated, things in the &quot;back&quot; will cover
+things in the &quot;front&quot;, obscuring them and leading to very unnatural-looking results.
+
+I decided to see if I could create a simple script that addresses this.  Though it would
+be possible to use the built-in <code>mplot3d</code> architecture to take care of rotating and
+projecting the points, I decided to do it from scratch for the sake of my own education.
+
+We&#39;ll step through it below: by the end of this post we will have created a 3D viewer in
+matplotlib which I think is quite nice.
+
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Rotations-in-3D:-Quaternions">Rotations in 3D: Quaternions<a class="anchor-link" href="#Rotations-in-3D:-Quaternions">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The first step to creating an interactive 3D object is to decide on a representation for the orientation of the object. <code>mplot3d</code> uses azimuthal and elevation angles: these are the familiar <span class="math">\(\theta\)</span> and <span class="math">\(\phi\)</span> of spherical coordinate systems. While this is a common system, it has the disadvantage that things get a little funky near the poles.</p>
-<p>Another common framework for mathematical representation of solid-body rotations is a rotation matrix. This is nice because multiple rotations can be composed quickly, but extracting axis and angle information can require matrix decompositions that are relatively expensive.</p>
-<p>Finally, perhaps the best option is the use of <a href="http://en.wikipedia.org/wiki/Quaternion">quaternions</a>, four-dimensional generalizations of complex numbers which can be used to compactly <a href="http://en.wikipedia.org/wiki/Quaternions_and_spatial_rotation">represent 3D rotations</a>. A friend who works in the video game industry (in particular the <em>Halo</em> series) told me that quaternions are what the industry generally prefers in many situations: they are compact, fast to compose, and very powerful. On top of that, they're generally cool enough that I wanted an excuse to play around with them a bit.</p>
-<p>There have been a few attempts to include quaternions natively in the scipy universe, but none have stuck. It's a shame, because it would be a very useful feature. In particular, In particular, I'd love to see something happen with the quaternion dtype, discussed <a href="http://mail.scipy.org/pipermail/numpy-discussion/2011-July/057675.html">here</a> on the numpy-dev email list. It looks promising, but has not yet been included in numpy.</p>
-<p>With the lack of available implementations, I decided to write a basic quaternion class which implements the functionality I need: multiplication of quaternions, and tranformation to and from axis-angle representation:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The first step to creating an interactive 3D object is to decide on a
+representation for the orientation of the object.  <code>mplot3d</code> uses
+azimuthal and elevation angles: these are the familiar $\theta$ and $\phi$
+of spherical coordinate systems.  While this is a common system, it has the 
+disadvantage that things get a little funky near the poles.</p>
+<p>Another common framework for mathematical representation of solid-body rotations
+is a rotation matrix.  This is nice because multiple rotations can be 
+composed quickly, but extracting axis and angle information can require
+matrix decompositions that are relatively expensive.</p>
+<p>Finally, perhaps the best option is the use of
+<a href="http://en.wikipedia.org/wiki/Quaternion">quaternions</a>,
+four-dimensional generalizations of complex numbers which can be used to compactly
+<a href="http://en.wikipedia.org/wiki/Quaternions_and_spatial_rotation">represent 3D rotations</a>.
+A friend who works in the video game industry (in particular the <em>Halo</em> series)
+told me that quaternions are what the industry generally prefers in many situations:
+they are compact, fast to compose, and very powerful.
+On top of that, they&#39;re generally cool enough that I wanted
+an excuse to play around with them a bit.</p>
+<p>There have been a few attempts to include quaternions natively in the scipy universe, but
+none have stuck.  It&#39;s a shame, because it would be a very useful feature. In particular,
+In particular, I&#39;d love to see something happen with the quaternion dtype, discussed
+<a href="http://mail.scipy.org/pipermail/numpy-discussion/2011-July/057675.html">here</a>
+on the numpy-dev email list. It looks promising, but has not yet been included in numpy.</p>
+<p>With the lack of available implementations, I decided to write a basic quaternion class
+which implements the functionality I need: multiplication of quaternions, and tranformation
+to and from axis-angle representation:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[1]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 
 <span class="k">class</span> <span class="nc">Quaternion</span><span class="p">:</span>
@@ -1890,40 +1941,68 @@ In&nbsp;[1]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The mathematics of quaternions (and the use of unit quaternions to represent rotations) is fascinating in itself, but the details beyond this simple implementation are too much for this short post. I'd suggest <a href="http://courses.cms.caltech.edu/cs171/quatut.pdf">this paper</a> for a more complete introduction.</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The mathematics of quaternions (and the use of unit quaternions to represent rotations) is fascinating in itself, but the details beyond this simple implementation are too much for this short post.  I&#39;d suggest
+<a href="http://courses.cms.caltech.edu/cs171/quatut.pdf">this paper</a> for a more complete introduction.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Simple-3D-object:-A-Cube">Simple 3D object: A Cube<a class="anchor-link" href="#Simple-3D-object:-A-Cube">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's use these quaternions to draw a cube in matplotlib.</p>
-<p>A cube is made of six faces, each rotated from the other in multiples of ninety degrees. With this in mind, we'll define a fiducial face, and six rotators which will put the face in place.</p>
-<p>One we have these, we can concatenate a viewing angle to all six, project the results, and display them as polygons on an axes. An important piece here is to get the <code>zorder</code> attribute correct, so that faces in the back do not cover faces in the front. We'll use the z-coordinate from the projection to do this correctly.</p>
-<p>For later use, we'll do this all within a class derived from <code>plt.Axes</code>, and make it so that the set of polygons can be updated if needed:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let&#39;s use these quaternions to draw a cube in matplotlib.</p>
+<p>A cube is made of six faces, each rotated from the other in multiples of ninety degrees.
+With this in mind, we&#39;ll define a fiducial face, and six rotators which will put the
+face in place.</p>
+<p>One we have these, we can concatenate a viewing angle to all six, project the results,
+and display them as polygons on an axes.  An important piece here is to get the <code>zorder</code>
+attribute correct, so that faces in the back do not cover faces in the front.  We&#39;ll use
+the z-coordinate from the projection to do this correctly.</p>
+<p>For later use, we&#39;ll do this all within a class derived from <code>plt.Axes</code>, and make it
+so that the set of polygons can be updated if needed:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[2]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># don&#39;t use %pylab inline, because we want to interact with plots below.</span>
 <span class="o">%</span><span class="k">pylab</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 
 Welcome to pylab, a matplotlib-based Python environment [backend: TkAgg].
@@ -1937,12 +2016,13 @@ For more information, type &apos;help(pylab)&apos;.
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[3]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">class</span> <span class="nc">CubeAxes</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">Axes</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;An Axes for displaying a 3D cube&quot;&quot;&quot;</span>
     <span class="c"># fiducial face is perpendicular to z at z=+1</span>
@@ -1998,17 +2078,25 @@ In&nbsp;[3]:
 
 </div>
 </div>
+</div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>With this in place, we can draw the cube as follows:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[4]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">CubeAxes</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
@@ -2018,15 +2106,16 @@ In&nbsp;[4]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbAAAAGwCAYAAADITjAqAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAAPYQAAD2EBqD+naQAAIABJREFUeJzt3UuLLOmd3/FfRGbdb5lZdep0a2ZaMAO2wB4jsAevvDV4
 Y2/spZHwUsaMG4Z+DWYkJAYM3pgBeUArL+xX0HjrjbY9A7bVre4+p7Iq75l1yYx8Hi8iom6nqk5V
@@ -2197,62 +2286,92 @@ AIBJBAwAYBIBAwCYRMAAACYRMACASQQMAGASAQMAmETAAAAmETAAgEkEDABgEgEDAJhEwAAAJhEw
 AIBJBAwAYBIBAwCYRMAAACYRMACASQQMAGASAQMAmETAAAAmETAAgEkEDABgEgEDAJhEwAAAJhEw
 AIBJBAwAYBIBAwCYRMAAACYRMACASQQMAGASAQMAmETAAAAmETAAgEkEDABgEgEDAJj0/wGDSbX4
 JMXzjwAAAABJRU5ErkJggg==
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Events-and-Callbacks">Events and Callbacks<a class="anchor-link" href="#Events-and-Callbacks">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now comes the fun part. We can add events and callbacks to the axes which will allow us to manipulate the projection by clicking and dragging on the figure.</p>
-<p>We need to add callbacks to the axes: we'll do this in the construction of the class using the <code>mpl_connect</code> method of the canvas. There are several types of callback events that can be hooked: they can be found by typing <code>plt.connect?</code> and seeing the doc-string:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now comes the fun part.  We can add events and callbacks to the axes
+which will allow us to manipulate the projection by clicking and
+dragging on the figure.</p>
+<p>We need to add callbacks to the axes: we&#39;ll do this in the construction
+of the class using the <code>mpl_connect</code> method of the canvas. There are
+several types of callback events that can be hooked:  they can be found
+by typing <code>plt.connect?</code> and seeing the doc-string:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[5]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">plt</span><span class="o">.</span><span class="n">connect</span><span class="err">?</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The available options are:</p>
 <ul>
-<li><code>'button_press_event'</code></li>
-<li><code>'button_release_event'</code></li>
-<li><code>'draw_event'</code></li>
-<li><code>'key_press_event'</code></li>
-<li><code>'key_release_event'</code></li>
-<li><code>'motion_notify_event'</code></li>
-<li><code>'pick_event'</code></li>
-<li><code>'resize_event'</code></li>
-<li><code>'scroll_event'</code></li>
-<li><code>'figure_enter_event'</code></li>
-<li><code>'figure_leave_event'</code></li>
-<li><code>'axes_enter_event'</code></li>
-<li><code>'axes_leave_event'</code></li>
-<li><code>'close_event'</code></li>
+<li><code>&#39;button_press_event&#39;</code></li>
+<li><code>&#39;button_release_event&#39;</code></li>
+<li><code>&#39;draw_event&#39;</code></li>
+<li><code>&#39;key_press_event&#39;</code></li>
+<li><code>&#39;key_release_event&#39;</code></li>
+<li><code>&#39;motion_notify_event&#39;</code></li>
+<li><code>&#39;pick_event&#39;</code></li>
+<li><code>&#39;resize_event&#39;</code></li>
+<li><code>&#39;scroll_event&#39;</code></li>
+<li><code>&#39;figure_enter_event&#39;</code></li>
+<li><code>&#39;figure_leave_event&#39;</code></li>
+<li><code>&#39;axes_enter_event&#39;</code></li>
+<li><code>&#39;axes_leave_event&#39;</code></li>
+<li><code>&#39;close_event&#39;</code></li>
 </ul>
-<p>Each of these can be connected to a function that performs some operation when those events happen. Below, we'll use the button events, the motion event, and the key press event to create an interactive 3D plot. To be as concise as possible, we'll derive from the class we created above:</p>
+<p>Each of these can be connected to a function that performs some operation
+when those events happen.  Below, we&#39;ll use the button events, the motion
+event, and the key press event to create an interactive 3D plot.
+To be as concise as possible, we&#39;ll derive from the class we created above:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[6]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">class</span> <span class="nc">CubeAxesInteractive</span><span class="p">(</span><span class="n">CubeAxes</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;An Axes for displaying an Interactive 3D cube&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -2323,17 +2442,27 @@ In&nbsp;[6]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>To see the interactive cube, run the following code (interactivity will not work within the web browser) You should be able to use the mouse to change the orientation of the cube, and hold the shift key to change the type of rotation used.</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To see the interactive cube, run the following code (interactivity will not work
+within the web browser)  You should be able to use the mouse to change the orientation
+of the cube, and hold the shift key to change the type of rotation used.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[7]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">CubeAxesInteractive</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
@@ -2343,15 +2472,16 @@ In&nbsp;[7]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbAAAAGwCAYAAADITjAqAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAAPYQAAD2EBqD+naQAAIABJREFUeJzt3Xl8VOW9P/DPmSWZrDOZLCwaQBSKiAhoUKxy27gARb3e
 VizVuhJvvYgK9jYU9+KKUqQtUpf0RwBBa60FN1alV21FXNBWLahYFoGQZNZMklnP+f0xC5nMJJks
@@ -2661,26 +2791,59 @@ cAiRiIiEJNQ0eiIiojAGGBERCYkBRkREQmKAERGRkBhgREQkJAYYEREJiQFGRERCYoAREZGQGGBE
 RCQkBhgREQmJAUZEREJigBERkZAYYEREJCQGGBERCYkBRkREQmKAERGRkBhgREQkJAYYEREJiQFG
 RERCYoAREZGQGGBERCQkBhgREQmJAUZEREJigBERkZAYYEREJCQGGBERCYkBRkREQvr/TXpjcBjJ
 IAsAAAAASUVORK5CYII=
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Note that the image above is a static view: To experience the interactivity, <a href="http://jakevdp.github.com/downloads/notebooks/3DCube.ipynb">download the notebook</a> and run it on your own machine.</p>
+<p>Note that the image above is a static view:  To experience
+the interactivity, <a href="http://jakevdp.github.com/downloads/notebooks/3DCube.ipynb">download the notebook</a>
+and run it on your own machine.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion">&#182;</a></h2>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>If you're anything like me, your mind is probably spinning with all the possibilities of these tools. My eventual goal is to make a fully functional Rubik's cube simulator using these sorts of techniques. It will take some thinking, but I think it can be done, and it would be a very cool demonstration of Matplotlib's capabilities! I'll be working on this with David Hogg over at the <a href="https://github.com/jakevdp/MagicCube">Magic Cube github repository</a>: much of the simple script shown above was adapted from code I first wrote there.</p>
+<p>If you&#39;re anything like me, your mind is probably spinning with all the
+possibilities of these tools.  My eventual goal is to make a fully
+functional Rubik&#39;s cube simulator using these sorts of techniques.  It
+will take some thinking, but I think it can be done, and it would be a
+very cool demonstration of Matplotlib&#39;s capabilities!
+I&#39;ll be working on this with David Hogg over at the
+<a href="https://github.com/jakevdp/MagicCube">Magic Cube github repository</a>:
+much of the simple script
+shown above was adapted from code I first wrote there.</p>
 <p>The possibilities are endless, and I hope you have fun with these tools!</p>
-<p>This post was written entirely in an IPython Notebook: the notebook file is available for download <a href="http://jakevdp.github.com/downloads/notebooks/3DCube.ipynb">here</a>. For more information on blogging with notebooks in octopress, see my <a href="http://jakevdp.github.com/blog/2012/10/04/blogging-with-ipython/">previous post</a> on the subject.</p>
+<p>This post was written entirely in an IPython Notebook: the notebook file is available for
+download <a href="http://jakevdp.github.com/downloads/notebooks/3DCube.ipynb">here</a>.
+For more information on blogging with notebooks in octopress, see my
+<a href="http://jakevdp.github.com/blog/2012/10/04/blogging-with-ipython/">previous post</a>
+on the subject.</p>
+</div>
+</div>
 </div></p></div>
     <footer>
 <p class="meta">
@@ -2734,7 +2897,7 @@ IAsAAAAASUVORK5CYII=
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Jake Vanderplas -
+    Copyright &copy;  2012-2014  - Jake Vanderplas -
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
     <script type="text/javascript">
@@ -2762,7 +2925,7 @@ IAsAAAAASUVORK5CYII=
           var disqus_title = 'Quaternions and Key Bindings: Simple 3D Visualization in Matplotlib';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-	    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
 	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 	   })();
 	</script>

@@ -1777,7 +1777,7 @@ jQuery(document).ready(function($) {
 </ul>
 
 
-<form action="http://google.com/search" method="get">
+<form action="//google.com/search" method="get">
   <fieldset role="search">
     <input type="hidden" name="q" value="site:jakevdp.github.io" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
@@ -1798,29 +1798,68 @@ jQuery(document).ready(function($) {
 </header>
 
   <div class="entry-content"><p>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Update, March 2014: there are some major changes and refactorings in mpld3 version 0.1. Because of this, some of the code below will not work with the current release: please see the <a href="http://mpld3.github.io">mpld3 documentation</a> for more information.</strong></p>
-
-
-<p>It's been a few weeks since I introduced <a href="http://github.com/jakevdp/mpld3">mpld3</a>, a toolkit for visualizing matplotlib graphics in-browser via d3, and a lot of progress has been made. I've added a lot of features, and there have also been dozens of pull requests from other users which have made the package much more complete.</p>
-<p>One thing I recognized early was the potential to use mpld3 to add interactive bells and whistles to matplotlib plots. Yesterday, at the <a href="http://twitter.com/search?q=%23HackAAS">#HackAAS</a> event at the American Astronomical Society meeting, I had a solid chunk of time to work this out. The result is what I'll describe and demonstrate below: a general plugin framework for matplotlib plots, which, given some d3 skills, can be utilized to modify your matplotlib plots in almost any imaginable way.</p>
-
-
-<p>As a side note, #HackAAS was really, really awesome. There were about 40-60 astronomers there during the day, working on everything from visualization tools to data analysis methods to visualization of gender-related data to natural language processing. I've been told that a full report will be compiled at the <a href="http://www.astrobetter.com/">AstroBetter</a> website, and it will definitely be worth checking out.</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Update, March 2014: there are some major changes and refactorings in mpld3 version 0.1.
+Because of this, some of the code below will not work with the current release: please
+see the <a href="http://mpld3.github.io">mpld3 documentation</a> for more information.</strong></p>
+
+
+<p>It&#39;s been a few weeks since I introduced <a href="http://github.com/jakevdp/mpld3">mpld3</a>, a
+toolkit for visualizing matplotlib graphics in-browser via d3, and a lot of progress
+has been made.  I&#39;ve added a lot of features, and there have also been dozens of pull
+requests from other users which have made the package much more complete.</p>
+<p>One thing I recognized early was the potential to use mpld3 to add interactive bells
+and whistles to matplotlib plots.  Yesterday, at the <a href="http://twitter.com/search?q=%23HackAAS">#HackAAS</a> event at the
+American Astronomical Society meeting, I had a solid chunk of time to
+work this out.  The result is what I&#39;ll describe and demonstrate below: a general
+plugin framework for matplotlib plots, which, given some d3 skills, can be utilized
+to modify your matplotlib plots in almost any imaginable way.</p>
+
+
+<p>As a side note, #HackAAS was really, really awesome.  There were about 40-60 astronomers
+there during the day, working on everything from visualization tools to data analysis
+methods to visualization of gender-related data to natural language processing.
+I&#39;ve been told that a full report will be compiled at the <a href="http://www.astrobetter.com/">AstroBetter</a> website,
+and it will definitely be worth checking out.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="new-features-of-mpld3">New Features of mpld3</h2>
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Since my <a href="http://jakevdp.github.io/blog/2013/12/19/a-d3-viewer-for-matplotlib/">last post</a>, there have been many new features implemented in mpld3. Most notably, fine-tuned axis and style control, histograms, scatter plots, images, color bars, and tied zooming &amp; panning are now in the package. We'll see some of these below.</p>
-<p>Another nice piece is that IPython notebook integration is now much more convenient. Brian Granger of the IPython team submitted a nice patch which allows IPython to automatically use mpld3 as a backend. It can be accomplished using the <code>enable_notebook</code> function:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Since my <a href="http://jakevdp.github.io/blog/2013/12/19/a-d3-viewer-for-matplotlib/">last post</a>,
+there have been many new features implemented in mpld3.  Most
+notably, fine-tuned axis and style control, histograms, scatter plots, images, color bars,
+and tied zooming &amp; panning are now in the package.  We&#39;ll see some of these below.</p>
+<p>Another nice piece is that IPython notebook integration is now much more convenient.
+Brian Granger of the IPython team submitted a nice patch which allows IPython to
+automatically use mpld3 as a backend.  It can
+be accomplished using the <code>enable_notebook</code> function:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[1]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%</span><span class="k">matplotlib</span> <span class="n">inline</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
@@ -1831,17 +1870,25 @@ In&nbsp;[1]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>As a quick demonstration, let's take a look at a simple scatter plot:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As a quick demonstration, let&#39;s take a look at a simple scatter plot:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[2]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">axisbg</span><span class="o">=</span><span class="s">&#39;#EEEEEE&#39;</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s">&#39;white&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s">&#39;solid&#39;</span><span class="p">)</span>
 
@@ -1858,15 +1905,15 @@ In&nbsp;[2]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_area"><div class="prompt"></div>
 
-<div class="output_html rendered_html">
+<div class="output_html rendered_html output_subarea ">
 
 
 
@@ -2567,27 +2614,51 @@ ax1.add_element(new function(){
 </div>
 
 </div>
-</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>You can use your mouse or trackpad to pan and zoom around the figure, exploring the data. Nearly all of the basic features of matplotlib are supported now, with a few exceptions that I plan to work on as I find the time. I'd encourage you to update the package, try out some of your favorite plots, and see how they turn out!</p>
+<p>You can use your mouse or trackpad to pan and zoom around the figure, exploring the data.
+Nearly all of the basic features of matplotlib are supported now, with a few exceptions that
+I plan to work on as I find the time.  I&#39;d encourage you to update the package, try out some
+of your favorite plots, and see how they turn out!</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="the-brand-new-feature-plugins">The Brand New Feature: Plugins</h2>
-<p>But all of that is now weeks old. The real reason for this post is to introduce the new interactive features I added during HackAAS.</p>
-<p>My goal for the hack day was to create a plugin framework which would allow different interactive d3/javascript/html/css elements to be added to the plots. I implemented a couple plugins, and included one in the current master branch of <code>mpld3</code>: adding more should be pretty straightforward, and would be a great way to contribute! Here I'll show how to use this plugin to annotate the previous scatter plot with information that appears when the mouse hovers over the points.</p>
-<p>Here we'll define a set of labels to associate with our points, and add a list of desired plugins to the figure object. The two extra lines of code at the bottom of this cell are all that are needed to make this happen!</p>
+<p>But all of that is now weeks old.  The real reason for this post is to
+introduce the new interactive features I added during HackAAS.</p>
+<p>My goal for the hack day was to create a plugin framework which would allow different
+interactive d3/javascript/html/css elements to be added to the plots.
+I implemented a couple plugins, and included one in the current master branch
+of <code>mpld3</code>: adding more should be pretty straightforward, and would be a great
+way to contribute!  Here I&#39;ll show how to use this plugin to annotate the previous
+scatter plot with information that appears when the mouse hovers over the points.</p>
+<p>Here we&#39;ll define a set of labels to associate with our points, and add
+a list of desired plugins to the figure object.  The two extra lines of
+code at the bottom of this cell are all that are needed to make this 
+happen!</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[3]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">mpld3</span> <span class="kn">import</span> <span class="n">plugins</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">axisbg</span><span class="o">=</span><span class="s">&#39;#EEEEEE&#39;</span><span class="p">))</span>
@@ -2609,15 +2680,15 @@ In&nbsp;[3]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_area"><div class="prompt"></div>
 
-<div class="output_html rendered_html">
+<div class="output_html rendered_html output_subarea ">
 
 
 
@@ -3348,27 +3419,54 @@ ax1.add_element(new function(){
 </div>
 
 </div>
-</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>As you move your mouse around this plot, you should see the labels pop up as you hover over the points.</p>
+<p>As you move your mouse around this plot, you should see the labels pop up
+as you hover over the points.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="how-this-works">How this works</h2>
-<p>What's going on here is that the plugin object defines some HTML, CSS, and D3/Javascript snippets which together implement the desired behavior. Then when <code>mpld3</code> generates the html for a figure, it identifies the list of plugins and injects the code at the appropriate place in the HTML output. You can take a look at the <a href="https://github.com/jakevdp/mpld3/blob/master/mpld3/plugins.py">mpld3/plugins.py</a> source to get a feel for how a plugin is implemented. I tried to design the API to be flexible and extensible, so that virtually any desired behavior can be added to a matplotlib plot. The design still has a few rough edges, but I think it's on its way to a really usable tool.</p>
-<p>I should warn you that the details of this are likely to change in the near term: the internals of the package are still evolving as we learn how to better represent the plots in D3. But with the current master branch, it is still quite easy to define a new plugin with some custom behavior: as an example of this in action, let's build a basic plugin that will tie-together elements between two different axes.</p>
-<p>We'll start by creating a toy dataset: we'll randomly draw a number of periods and amplitudes, and from these create a sinusoidal time-series. In a typical static matplotlib plot, it might look something like this:</p>
+<p>What&#39;s going on here is that the plugin object defines some HTML, CSS, and D3/Javascript snippets
+which together implement the desired behavior.  Then when <code>mpld3</code> generates the html for a figure,
+it identifies the list of plugins and injects the code at the appropriate place in the
+HTML output.  You can take a look at the
+<a href="https://github.com/jakevdp/mpld3/blob/master/mpld3/plugins.py">mpld3/plugins.py</a>
+source to get a feel for
+how a plugin is implemented.  I tried to design the API to be flexible and extensible,
+so that virtually any desired behavior can be added to a matplotlib plot.  The design still
+has a few rough edges, but I think it&#39;s on its way to a really usable tool.</p>
+<p>I should warn you that the details of this are likely to change in the near term: the internals
+of the package are still evolving as we learn how to better represent the plots in D3.  But with
+the current master branch, it is still quite easy to define a new plugin with some custom behavior:
+as an example of this in action, let&#39;s build a basic plugin that will tie-together elements between
+two different axes.</p>
+<p>We&#39;ll start by creating a toy dataset: we&#39;ll randomly draw a number of periods and amplitudes,
+and from these create a sinusoidal time-series.  In a typical static matplotlib plot, it might
+look something like this:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[4]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
@@ -3393,15 +3491,15 @@ In&nbsp;[4]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_area"><div class="prompt"></div>
 
-<div class="output_html rendered_html">
+<div class="output_html rendered_html output_subarea ">
 
 
 
@@ -4881,22 +4979,34 @@ ax2.add_element(new function(){
 </div>
 
 </div>
-</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We've plotted all the curves, but it's a bit crowded. It would be nice if this were interactive in more than just zooming and panning: the relationships between the data would be much more clear if by hovering over the points in the bottom plot, we could more easily identify the corresponding line in the top plot. There are many ways in which this might be accomplished, but we'll take the approach of showing the desired line after hovering over the associated point.</p>
-<p>To do this, all we need is to create a plugin class deriving from PluginBase, which writes a few extra lines of javascript into the figure rendering:</p>
+<p>We&#39;ve plotted all the curves, but it&#39;s a bit crowded.  It would be nice if
+this were interactive in more than just zooming and panning: the relationships between
+the data would be much more clear if by hovering over the points in the bottom plot,
+we could more easily identify the corresponding line in the top plot.
+There are many ways in which this might be accomplished, but we&#39;ll take the
+approach of showing the desired line after hovering over the associated point.</p>
+<p>To do this, all we need is to create a plugin class deriving from PluginBase,
+which writes a few extra lines of javascript into the figure rendering:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[5]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">mpld3.plugins</span> <span class="kn">import</span> <span class="n">PluginBase</span>
 <span class="kn">import</span> <span class="nn">jinja2</span>
 <span class="kn">import</span> <span class="nn">json</span>
@@ -4936,17 +5046,28 @@ In&nbsp;[5]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now we'll re-create the plot, adding our plugin to the figure. Instead of plotting all the lines here, we plot just a single line instance which the plugin will modify. The result is a much more compelling visualization of the data.</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we&#39;ll re-create the plot, adding our plugin to the figure.  Instead
+of plotting all the lines here, we plot just a single line instance which
+the plugin will modify.  The result is a much more compelling visualization
+of the data.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[6]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="c"># scatter periods and amplitudes</span>
@@ -4972,15 +5093,15 @@ In&nbsp;[6]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_area"><div class="prompt"></div>
 
-<div class="output_html rendered_html">
+<div class="output_html rendered_html output_subarea ">
 
 
 
@@ -5911,25 +6032,87 @@ ax2.add_element(new function(){
 </div>
 
 </div>
-</div>
 
 </div>
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Notice that as you hover over each point, the line in the top plot responds. Once this plugin was defined, it was only a couple extra lines of Python to make this happen! I think that this plugin framework is sufficiently flexible that, with a bit of knowledge of d3 and of the mpld3 javascript object structure, you could do almost anything with this! I'm really excited to see what people can come up with.</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="side-note-why-am-i-doing-this">Side Note: Why Am I Doing This?</h2>
-<p>At the AAS meeting this week, David Hogg of NYU joked that I'm taking the package with the worst interface (matplotlib), the package with the steepest learning curve (d3), and finally doing the world the service of combining them. I've run into several other people who are also incredulous about this whole project. Why force-fit browser compatibility into an old tool like matplotlib, rather than simply switching to a newer tool, something like <a href="http://bokeh.pydata.org/">Bokeh</a> or <a href="https://plot.ly/">plot.ly</a> or <a href="http://www.glueviz.org/">glue</a> or <a href="http://vispy.org/">vispy</a> or <a href="http://d3po.org/">d3po</a> or <a href="https://github.com/mikedewar/d3py">d3py</a> or any of the other approaches that are being developed with this sort of interactivity included from the ground up?</p>
-<p>For me, the answer is two-fold. First of all, matplotlib is extremely well-established in the Scientific Python community, and even if its successor were clear, there are still a lot of people who know the package well and use it regularly. Working within the matplotlib interface will give many, many people a very easy path toward making modern, interactive, web-embeddable visualizations.</p>
-<p>Secondly, even as people move away from matplotlib's interface, there are many newer packages which depend on matplotlib as a core renderer. The creators of projects like <a href="https://github.com/olgabot/prettyplotlib">prettyplotlib</a>, <a href="http://www.stanford.edu/~mwaskom/software/seaborn/">seaborn</a>, <a href="https://github.com/yhat/ggplot/">ggplot-py</a>, and others have recognized the incredible investment that's been made in matplotlib: its variety of backends support nearly any imaginable computing system and file format; its flexible (if sometimes obscure) API has everything that's needed in a good medium-data visualization tool; and over a decade of active development in the presence of a wide-ranging user-base have resulted in an incredibly robust package. For all these reasons, matplotlib provides what is perhaps the ideal foundation on which to build new, more modern and streamlined data visualization interfaces, as the three packages mentioned above have begun doing. With this in mind, a distinct advantage of the mpld3 approach is that, once it is feature-complete, it will <em>automatically</em> provide d3 support to these new library interfaces as well.</p>
-<p>People have also asked me whether what I'm doing here isn't duplicative of the <a href="http://matplotlib.org/users/whats_new.html#webagg-backend">WebAgg backend</a> that the matplotlib developers have put together. An initial version has been released, and there are plans to create a seamless interface between this and the IPython notebook, resulting in an interactive notebook experience with plots <em>tied to the Python kernel</em>. This is extremely exciting, but it has a distinct disadvantage: because of WebAgg's dependence on the Python kernel, the results cannot be simply embedded in web pages like the plots you've seen here. This is a niche that mpld3 will fill even as matplotlib's WebAgg support becomes more mature.</p>
-<p>So, although alternatives do exist, and matplotlib does have some distinct weaknesses, I think work on mpld3 is a worthy investment that will continue to enable good work well into the future.</p>
+<p>Notice that as you hover over each point, the line in the top plot responds.  Once this plugin
+was defined, it was only a couple extra lines of Python to make this happen!
+I think that this plugin framework is sufficiently flexible that, with a bit of knowledge of
+d3 and of the mpld3 javascript object structure, you could do almost anything with this!
+I&#39;m really excited to see what people can come up with.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><small> This post was written entirely in the IPython notebook. You can <a href="http://jakevdp.github.com/downloads/notebooks/mpld3_plugins.ipynb">download</a> this notebook, or see a static view <a href="http://nbviewer.ipython.org/url/jakevdp.github.com/downloads/notebooks/mpld3_plugins.ipynb">here</a>. </small></p>
+<h2 id="side-note-why-am-i-doing-this-">Side Note: Why Am I Doing This?</h2>
+<p>At the AAS meeting this week, David Hogg of NYU joked that I&#39;m taking the package with the worst
+interface (matplotlib), the package with the steepest learning curve (d3),
+and finally doing the world the service of combining them.
+I&#39;ve run into several other people who are also incredulous about this whole project.
+Why force-fit browser compatibility into an old tool like matplotlib, rather than simply
+switching to a newer tool,
+something like <a href="http://bokeh.pydata.org/">Bokeh</a> or <a href="https://plot.ly/">plot.ly</a>
+or <a href="http://www.glueviz.org/">glue</a> or <a href="http://vispy.org/">vispy</a>
+or <a href="http://d3po.org/">d3po</a> or <a href="https://github.com/mikedewar/d3py">d3py</a>
+or any of the other approaches that are being developed with this sort of
+interactivity included from the ground up?</p>
+<p>For me, the answer is two-fold.  First of all, matplotlib is extremely well-established
+in the Scientific Python community, and even if its successor were clear, there are still
+a lot of people who know the package well and use it regularly.  Working within the matplotlib
+interface will give many, many people a very easy path toward making modern, interactive,
+web-embeddable visualizations.</p>
+<p>Secondly, even as people move away from matplotlib&#39;s interface, there are many newer packages which
+depend on matplotlib as a core renderer.  The creators of projects like
+<a href="https://github.com/olgabot/prettyplotlib">prettyplotlib</a>,
+<a href="http://www.stanford.edu/~mwaskom/software/seaborn/">seaborn</a>,
+<a href="https://github.com/yhat/ggplot/">ggplot-py</a>, and others have recognized the incredible investment that&#39;s been made in matplotlib:
+its variety of backends support nearly any imaginable computing system and file format;
+its flexible (if sometimes obscure) API has everything that&#39;s needed in a good medium-data visualization tool;
+and over a decade of active development in the presence of a wide-ranging user-base have resulted
+in an incredibly robust package.  For all these reasons, matplotlib provides what is perhaps
+the ideal foundation on which to build new, more modern and streamlined data visualization
+interfaces, as the three packages mentioned above have begun doing.  With this in mind, a
+distinct advantage of the mpld3 approach is that, once it is feature-complete, it will
+<em>automatically</em> provide d3 support to these new library interfaces as well.</p>
+<p>People have also asked me whether what I&#39;m doing here isn&#39;t duplicative of the <a href="http://matplotlib.org/users/whats_new.html#webagg-backend">WebAgg
+backend</a>
+that the matplotlib developers have put together. An initial version has been released,
+and there are plans
+to create a seamless interface between this and the IPython notebook, resulting in an
+interactive notebook experience with plots <em>tied to the Python kernel</em>.  This is extremely
+exciting, but it has a distinct disadvantage: because of WebAgg&#39;s dependence on the
+Python kernel, the results cannot be simply embedded in web pages like the plots you&#39;ve seen
+here.  This is a niche that mpld3 will fill even as matplotlib&#39;s WebAgg support becomes more mature.</p>
+<p>So, although alternatives do exist, and matplotlib does have some distinct weaknesses,
+I think work on mpld3 is a worthy investment that will continue to enable good work
+well into the future.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><small>
+This post was written entirely in the IPython notebook.  You can
+<a href="http://jakevdp.github.com/downloads/notebooks/mpld3_plugins.ipynb">download</a>
+this notebook, or see a static view
+<a href="http://nbviewer.ipython.org/url/jakevdp.github.com/downloads/notebooks/mpld3_plugins.ipynb">here</a>.
+</small></p>
+</div>
+</div>
 </div></p></div>
     <footer>
 <p class="meta">
@@ -5983,7 +6166,7 @@ ax2.add_element(new function(){
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Jake Vanderplas -
+    Copyright &copy;  2012-2014  - Jake Vanderplas -
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
     <script type="text/javascript">
@@ -6011,7 +6194,7 @@ ax2.add_element(new function(){
           var disqus_title = 'D3 Plugins: Truly Interactive Matplotlib In Your Browser';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-	    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
 	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 	   })();
 	</script>

@@ -1777,7 +1777,7 @@ jQuery(document).ready(function($) {
 </ul>
 
 
-<form action="http://google.com/search" method="get">
+<form action="//google.com/search" method="get">
   <fieldset role="search">
     <input type="hidden" name="q" value="site:jakevdp.github.io" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
@@ -1798,20 +1798,54 @@ jQuery(document).ready(function($) {
 </header>
 
   <div class="entry-content"><p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-
-<p>Last week Michael Lerner posted a <a href="http://www.mglerner.com/blog/?p=28">nice explanation</a> of the relationship between histograms and kernel density estimation (KDE). I've made some attempts in this direction before (both in the <a href="http://scikit-learn.org/stable/modules/density.html">scikit-learn documentation</a> and in our upcoming <a href="http://www.amazon.com/Statistics-Mining-Machine-Learning-Astronomy/dp/0691151687/">textbook</a>), but Michael's use of interactive javascript widgets makes the relationship extremely intuitive. I had been planning to write a similar post on the theory behind KDE and why it's useful, but Michael took care of that part. Instead, I'm going to focus here on comparing the actual <em>implementations</em> of KDE currently available in Python. If you're unsure what kernel density estimation is, read Michael's post and then come back here.</p>
-<p>There are several options available for computing kernel density estimates in Python. The question of the optimal KDE implementation for any situation, however, is not entirely straightforward, and depends a lot on what your particular goals are. Here are the four KDE implementations I'm aware of in the SciPy/Scikits stack:</p>
+<p>
+Last week Michael Lerner posted a <a href="http://www.mglerner.com/blog/?p=28">nice explanation</a>
+of the relationship between histograms and kernel density estimation (KDE).  I&#39;ve made some
+attempts in this direction before
+(both in the <a href="http://scikit-learn.org/stable/modules/density.html">scikit-learn documentation</a>
+and in our upcoming <a href="http://www.amazon.com/Statistics-Mining-Machine-Learning-Astronomy/dp/0691151687/">textbook</a>),
+but Michael&#39;s use of interactive javascript widgets makes the relationship extremely intuitive.
+I had been planning to write a similar post on the theory behind KDE and why it&#39;s useful, but
+Michael took care of that part.  Instead, I&#39;m going to focus here on comparing the actual
+<em>implementations</em> of KDE currently available in Python.  If you&#39;re unsure what kernel density
+estimation is, read Michael&#39;s post and then come back here.</p>
+<p>There are several options available for computing kernel density estimates in Python.
+The question of the optimal KDE implementation for any situation, however,
+is not entirely straightforward, and depends a lot on what your particular goals are.
+Here are the four KDE implementations I&#39;m aware of in the SciPy/Scikits stack:</p>
 <ul>
-<li><p>In <a href="http://scipy.org">SciPy</a>: <a href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.gaussian_kde.html"><code>gaussian_kde</code></a>.</p></li>
-<li><p>In <a href="http://statsmodels.sourceforge.net/">Statsmodels</a>: <a href="http://statsmodels.sourceforge.net/devel/examples/notebooks/generated/kernel_density.html"><code>KDEUnivariate</code></a> and <a href="http://statsmodels.sourceforge.net/devel/generated/statsmodels.nonparametric.kde.KDEUnivariate.html"><code>KDEMultivariate</code></a> (See an example <a href="http://statsmodels.sourceforge.net/devel/generated/statsmodels.nonparametric.kernel_density.KDEMultivariate.html">here</a>).</p></li>
-<li><p>In <a href="http://scikit-learn.org">Scikit-learn</a>: <a href="http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KernelDensity.html"><code>KernelDensity</code></a> (See further examples <a href="http://scikit-learn.org/stable/modules/density.html#kernel-density-estimation">here</a>).</p></li>
+<li><p>In <a href="http://scipy.org">SciPy</a>: <a href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.gaussian_kde.html"><code>gaussian_kde</code></a>.</p>
+</li>
+<li><p>In <a href="http://statsmodels.sourceforge.net/">Statsmodels</a>: <a href="http://statsmodels.sourceforge.net/devel/examples/notebooks/generated/kernel_density.html"><code>KDEUnivariate</code></a> and <a href="http://statsmodels.sourceforge.net/devel/generated/statsmodels.nonparametric.kde.KDEUnivariate.html"><code>KDEMultivariate</code></a> (See an example <a href="http://statsmodels.sourceforge.net/devel/generated/statsmodels.nonparametric.kernel_density.KDEMultivariate.html">here</a>).</p>
+</li>
+<li><p>In <a href="http://scikit-learn.org">Scikit-learn</a>: <a href="http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KernelDensity.html"><code>KernelDensity</code></a> (See further examples <a href="http://scikit-learn.org/stable/modules/density.html#kernel-density-estimation">here</a>).</p>
+</li>
 </ul>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Each has advantages and disadvantages, and each has its area of applicability. I'll start with a table summarizing the strengths and weaknesses of each, before discussing each feature in more detail and running some simple benchmarks to gauge their computational cost:</p>
+<p>Each has advantages and disadvantages, and each has its area of applicability.
+I&#39;ll start with a table summarizing the strengths and weaknesses of each, before
+discussing each feature in more detail and running some simple benchmarks to gauge
+their computational cost:</p>
 
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <style type="text/css">
 table.mytable{
@@ -1822,134 +1856,75 @@ td.green{background-color:#DDFFDD;}
 td.red{background-color:#FFDDDD;}
 </style>
 
-<small>
-<table class="mytable">
-<tr>
+<p><small></p>
+<p><table class="mytable"></p>
+<p><tr>
  <td></td>
- <td>
-Bandwidth<br>Selection
-</td>
- <td>
-Available<br>Kernels
-</td>
- <td>
-Multi-<br>dimension
-</td>
- <td>
-Heterogeneous<br>data
-</td>
- <td>
-FFT-based<br>computation
-</td>
- <td>
-Tree-based<br>computation
-</td>
-</tr>
-<tr>
- <th>
-Scipy
-</th>
- <td class="green">
-Scott &amp;<br>Silverman
-</td>
- <td class="red">
-One (Gauss)
-</td>
- <td class="green">
-Yes
-</td>
- <td class="red">
-No
-</td>
- <td class="red">
-No
-</td>
- <td class="red">
-No
-</td>
-</tr>
-<tr>
- <th>
-Statsmodels<br>KDEUnivariate
-</th>
- <td class="green">
-Scott &amp;<br>Silverman
-</td>
- <td class="green">
-Seven
-</td>
- <td class="red">
-1D only
-</td>
- <td class="red">
-No
-</td>
- <td class="green">
-Yes
-</td>
- <td class="red">
-No
-</td>
-</tr>
-<tr>
- <th>
-Statsmodels<br>KDEMultivariate
-</th>
- <td class="green">
-normal reference<br>cross-validation
-</td>
- <td class="green">
-Seven
-</td>
- <td class="green">
-Yes
-</td>
- <td class="green">
-Yes
-</td>
- <td class="red">
-No
-</td>
- <td class="red">
-No
-</td>
-</tr>
-<tr>
- <th>
-Scikit-Learn
-</th>
- <td class="red">
-None built-in;<br>Cross val. available
-</td>
- <td class="green">
-6 kernels x<br>12 metrics
-</td>
- <td class="green">
-Yes
-</td>
- <td class="red">
-No
-</td>
- <td class="red">
-No
-</td>
- <td class="green">
-Ball Tree<br>or KD Tree
-</td>
+ <td>Bandwidth<br>Selection</td>
+ <td>Available<br>Kernels</td>
+ <td>Multi-<br>dimension</td>
+ <td>Heterogeneous<br>data</td>
+ <td>FFT-based<br>computation</td>
+ <td>Tree-based<br>computation</td>
+</tr></p>
+<p><tr>
+ <th>Scipy</th>
+ <td class="green">Scott &amp;<br>Silverman</td>
+ <td class="red">One (Gauss)</td>
+ <td class="green">Yes</td>
+ <td class="red">No</td>
+ <td class="red">No</td>
+ <td class="red">No</td>
+</tr></p>
+<p><tr>
+ <th>Statsmodels<br>KDEUnivariate</th>
+ <td class="green">Scott &amp;<br>Silverman</td>
+ <td class="green">Seven</td>
+ <td class="red">1D only</td>
+ <td class="red">No</td>
+ <td class="green">Yes</td>
+ <td class="red">No</td>
+</tr></p>
+<p><tr>
+ <th>Statsmodels<br>KDEMultivariate</th>
+ <td class="green">normal reference<br>cross-validation</td>
+ <td class="green">Seven</td>
+ <td class="green">Yes</td>
+ <td class="green">Yes</td>
+ <td class="red">No</td>
+ <td class="red">No</td>
+</tr></p>
+<p><tr>
+ <th>Scikit-Learn</th>
+ <td class="red">None built-in;<br>Cross val. available</td>
+ <td class="green">6 kernels x<br>12 metrics</td>
+ <td class="green">Yes</td>
+ <td class="red">No</td>
+ <td class="red">No</td>
+ <td class="green">Ball Tree<br>or KD Tree</td>
 </tr>
 </table>
-<p></small></p>
+</small></p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="comparing-the-implementations">Comparing the Implementations</h2>
-<p>The four implementations mentioned above have very different interfaces. For the sake of the examples and benchmarks below, we'll start by defining a uniform interface to all four, assuming one-dimensional input data. The following functions should make clear how the interfaces compare:</p>
+<p>The four implementations mentioned above have very different interfaces.  For the sake of the examples and benchmarks below, we&#39;ll start by defining a uniform interface to all four, assuming one-dimensional input data.  The following functions should make clear how the interfaces compare:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[1]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KernelDensity</span>
 <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">gaussian_kde</span>
 <span class="kn">from</span> <span class="nn">statsmodels.nonparametric.kde</span> <span class="kn">import</span> <span class="n">KDEUnivariate</span>
@@ -1999,13 +1974,14 @@ In&nbsp;[1]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 Package Versions:
   scikit-learn: 0.14.1
@@ -2020,16 +1996,28 @@ Package Versions:
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Because several of these are newer functionalities (in particular, the <code>KernelDensity</code> estimator was added in version 0.14 of Scikit-learn), I added an explicit print-out of the versions used in running this notebook.</p>
-<p>Now that we've defined these interfaces, let's look at the results of the four KDE approaches. We'll start with the normal matplotlib backend command, and then plot visualizations of the four results on the same 1 dimensional bimodal data:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Because several of these are newer functionalities (in particular, the <code>KernelDensity</code> estimator
+was added in version 0.14 of Scikit-learn), I added an explicit print-out of the versions used
+in running this notebook.</p>
+<p>Now that we&#39;ve defined these interfaces, let&#39;s look at the results of the four
+KDE approaches. We&#39;ll start with the normal
+matplotlib backend command, and then plot visualizations of the four results on
+the same 1 dimensional bimodal data:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[2]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%</span><span class="k">matplotlib</span> <span class="n">inline</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
@@ -2037,14 +2025,16 @@ In&nbsp;[2]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[3]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">scipy.stats.distributions</span> <span class="kn">import</span> <span class="n">norm</span>
 
 <span class="c"># The grid we&#39;ll use for plotting</span>
@@ -2076,26 +2066,25 @@ In&nbsp;[3]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[3]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
-<div class="output_html rendered_html">
+<div class="output_html rendered_html output_subarea output_pyout">
 <font color='#666666'>Gray = True underlying distribution</font><br><font color='6666ff'>Blue = KDE model distribution (500 pts)</font>
 </div>
 
 </div>
-</div>
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_area"><div class="prompt"></div>
 
 
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAvwAAADQCAYAAAB7qbXrAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXl0HNWV/79Vva/ad8mWZQm8YGNjs0MwYYs5gA1JBkPC
 ZOaXIQ5zyIQzZybB2YAkJznMhMycHGZxAiQhOITJkAEyCR62mMUhdgw2xniVrX3vllq9VXd1Vb3f
@@ -2690,32 +2679,52 @@ Swvbtm0b27ZtG3vxxRdVafe///u/mcfjYXa7nbndbvb000+vuM3Dhw+zTZs2sY0bN7Lvf//7KvSS
 f/11Vdq9EyTTHLXlWm8yzVjh5LrYMs2YfuSaZFqfMs0YzdWLQfoH6R+MMSYwpsK2jCAIgiAIgiCI
 kkRXLj0EQRAEQRAEQSwPUvgJgiAIgiAIwsCQwk8QBEEQBEEQBoYUfoIgCIIgCIIwMKTwEwRBEARB
 EISB+f+44ODrXfL16wAAAABJRU5ErkJggg==
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The results are identical, as we'd expect: all four algorithms are effectively computing the same result by different means.</p>
+<p>The results are identical, as we&#39;d expect: all four algorithms are effectively computing the same result by different means.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="features-of-the-algorithms">Features of the Algorithms</h2>
-<p>Given that the results of the algorithms (for 1 dimensinoal data, at least) are essentially equivalent, why would you use one over another? The answer to that lies a bit deeper in the theory of how KDE is computed and applied. Above I showed a table that summarizes some of the advantages and disadvantages of each algorithm: here' I'll discuss a few of those features in a bit more detail:</p>
+<p>Given that the results of the algorithms (for 1 dimensinoal data, at least) are essentially equivalent, why would you use one over another? The answer to that lies a bit deeper in the theory of how KDE is computed and applied. Above I showed a table that summarizes some of the advantages and disadvantages of each algorithm: here&#39; I&#39;ll discuss a few of those features in a bit more detail:</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="bandwidth-selection">Bandwidth selection</h3>
-<p>The selection of bandwidth is an important piece of KDE. For the same input data, different bandwidths can produce very different results:</p>
+<p>The selection of bandwidth is an important piece of KDE.  For the same input data, different bandwidths can produce very different results:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[4]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">bandwidth</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]:</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_grid</span><span class="p">,</span> <span class="n">kde_sklearn</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x_grid</span><span class="p">,</span> <span class="n">bandwidth</span><span class="o">=</span><span class="n">bandwidth</span><span class="p">),</span>
@@ -2727,27 +2736,28 @@ In&nbsp;[4]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[4]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 &lt;matplotlib.legend.Legend at 0x108b8c3d0&gt;
 </pre>
-
-</div>
 </div>
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+</div>
+
+<div class="output_area"><div class="prompt"></div>
 
 
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXYAAAD9CAYAAACoXlzKAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsvXlwVNeZ//25vaoX7WrtAiEkkFgEQiwGjJEdFkMwNrZn
 bP8ce7KM4zjjeWfyT6ZSmVTsTKZqXFN5Z96JMwkzdpJfxolNMthggk0I2MKADWIX+yK077tavS/3
@@ -3226,31 +3236,59 @@ KGazWdm6dau/TfKhoKBAWbx4sZKWlqb89Kc/9bc5o7Jr1y4lPj5eCQoKUiwWi/Lyyy/726RROX78
 uKJSqZScnBzPNXn48GF/mzWC8+fPKytXrlRycnKU5cuXKz//+c9n5X393mhDIpFIJNPLvHTFSCQS
 yc2MFHaJRCKZZ0hhl0gkknmGFHaJRCKZZ0hhl0gkknmGFHaJRCKZZ/x/Wsp94Razz7cAAAAASUVO
 RK5CYII=
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Using different bandwidths can lead to entirely different ideas of the underlying nature of the data! Given the importance of bandwidth, how might you determine the optimal bandwidth for any given problem?</p>
-<p>There are two classes of approaches to this problem: in the statistics community, it is common to use <strong>reference rules</strong>, where the optimal bandwidth is estimated from theoretical forms based on assumptions about the data distribution. A common reference rule is <em>Silverman's rule</em>, which is derived for univariate KDE and included within both the Scipy and Statsmodels implementations. Other potential reference rules are ones based on Information Criteria, such as the well-known AIC and BIC.</p>
-<p>In the Machine Learning world, the use of reference rules is less common. Instead, an empirical approach such as <strong>cross validation</strong> is often used. In cross validation, the model is fit to part of the data, and then a quantitative metric is computed to determine how well this model fits the remaining data. Such an empirical approach to model parameter selection is very flexible, and can be used regardless of the underlying data distribution.</p>
-<p>Because the various reference rules generally depend on (often dubious) assumptions about the underlying distribution of the data, bandwidth selection based in cross-validation can produce more trustworthy results for real-world datasets. A leave-one-out cross-validation scheme is built-in to the Statsmodels <code>KDEMultivariate</code> class. For large datasets, however, leave-one-out cross-validation can be extremely slow. Scikit-learn does not currently provide built-in cross validation within the <code>KernelDensity</code> estimator, but the standard cross validation tools within the module can be applied quite easily, as shown in the example below.</p>
+<p>Using different bandwidths can lead to entirely different ideas of the underlying nature of the data!
+Given the importance of bandwidth, how might you determine the optimal bandwidth for any given problem?</p>
+<p>There are two classes of approaches to this problem: in the statistics community, it is common to use
+<strong>reference rules</strong>, where the optimal bandwidth is estimated from theoretical forms based on assumptions
+about the data distribution.  A common reference rule is <em>Silverman&#39;s rule</em>, which is derived for univariate
+KDE and included within both the Scipy and Statsmodels implementations.  Other potential reference rules
+are ones based on Information Criteria, such as the well-known AIC and BIC.</p>
+<p>In the Machine Learning world, the use of reference rules is less common. Instead, an empirical approach
+such as <strong>cross validation</strong> is often used.  In cross validation, the model is fit to part of the data,
+and then a quantitative metric is computed to determine how well this model fits the remaining data.  Such an
+empirical approach to model parameter selection is very flexible, and can be used regardless of the
+underlying data distribution.</p>
+<p>Because the various reference rules generally depend on (often dubious) assumptions about the underlying distribution of
+the data, bandwidth selection based in cross-validation can produce more trustworthy results for real-world
+datasets.  A leave-one-out cross-validation scheme is built-in to the Statsmodels <code>KDEMultivariate</code> class.
+For large datasets, however, leave-one-out cross-validation can be extremely slow.  Scikit-learn does not
+currently provide built-in cross validation within the <code>KernelDensity</code> estimator, but the standard cross
+validation tools within the module can be applied quite easily, as shown in the example below.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="bandwidth-cross-validation-in-scikit-learn">Bandwidth Cross-Validation in Scikit-Learn</h4>
 <p>Using cross validation within Scikit-learn is straightforward with the <code>GridSearchCV</code> meta-estimator:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[5]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">sklearn.grid_search</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
 <span class="n">grid</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">KernelDensity</span><span class="p">(),</span>
                     <span class="p">{</span><span class="s">&#39;bandwidth&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">30</span><span class="p">)},</span>
@@ -3261,13 +3299,14 @@ In&nbsp;[5]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 {&apos;bandwidth&apos;: 0.19310344827586207}
 
@@ -3279,15 +3318,23 @@ In&nbsp;[5]:
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>According to the cross-validation score (i.e. the maximum likelihood), the best bandwidth is around 0.19. Let's plot the result:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>According to the cross-validation score (i.e. the maximum likelihood),
+the best bandwidth is around 0.19.  Let&#39;s plot the result:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[6]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">kde</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">best_estimator_</span>
 <span class="n">pdf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">kde</span><span class="o">.</span><span class="n">score_samples</span><span class="p">(</span><span class="n">x_grid</span><span class="p">[:,</span> <span class="bp">None</span><span class="p">]))</span>
 
@@ -3300,15 +3347,16 @@ In&nbsp;[6]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXYAAAD9CAYAAACoXlzKAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3X9U0/e9P/DnhyT8Sgi/QUhAhKAEBERRp9ZKNxWxV1Zt
 v5urt9vpWMvccTvb7s66na13unvdrdt6zrq6e66bbbceW2vvba+4W8tcXanWX9TfPwCNAhKCCMrv
@@ -3584,44 +3632,64 @@ D8ybN89ve8U8+eST3MKFC7nCwkJuy5Yt3P3798UOaVwajYZLT0/nFi1axC1atIjbvn272CGN8f77
 f13skMZ18uRJjmEYrrCw0P5/8sMPPxQ7rDGuXr3KFRUVcYWFhVx+fj7361//2ievK/pCG4QQQjwr
 KEsxhBAym1FiJ4SQIEOJnRBCggwldkIICTKU2AkhJMhQYieEkCDz/wE6IGz8/COUvwAAAABJRU5E
 rkJggg==
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We see that the cross-validation yields a bandwidth which is close to what we might choose by-eye, and the resulting density estimate closely reflects the distribution of the underlying data.</p>
+<p>We see that the cross-validation yields a bandwidth which is close to what we might choose by-eye,
+and the resulting density estimate closely reflects the distribution of the underlying data.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="kernels">Kernels</h3>
-<p>Above we've been using the Gaussian kernel, but this is not the only available option. KDE can be used with any kernel function, and different kernels lead to density estimates with different characteristics.</p>
-<p>The Scipy KDE implementation contains only the common Gaussian Kernel. Statsmodels contains seven kernels, while Scikit-learn contains six kernels, each of which can be used with one of about a dozen distance metrics, resulting in a very flexible range of effective kernel shapes.</p>
-<p>Here is a quick visualization of the six kernel forms available in Scikit-learn. For clarity, the <code>plot_kernels()</code> function used here is defined at the end of the notebook:</p>
+<p>Above we&#39;ve been using the Gaussian kernel, but this is not the only available option.  KDE can be used with any
+kernel function, and different kernels lead to density estimates with different characteristics.</p>
+<p>The Scipy KDE implementation contains only the common Gaussian Kernel.  Statsmodels contains seven kernels,
+while Scikit-learn contains six kernels, each of which can be used with one of about a dozen distance
+metrics, resulting in a very flexible range of effective kernel shapes.</p>
+<p>Here is a quick visualization of the six kernel forms available in Scikit-learn. For clarity, the <code>plot_kernels()</code>
+function used here is defined at the end of the notebook:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[8]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">plot_kernels</span><span class="p">()</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAd8AAAFpCAYAAADdkyIwAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl8VPW5+PHPOWfOLFkmmSQEsofNBbWIIG5A0XIRLGjV
 QhHBDbdaLZba21avFK/a2tbeWmtvr9eqiAt1aXuLaNEfWqwLilLAtQgBQpJJgOzrbOec3x+TTGZI
@@ -4280,66 +4348,120 @@ Z9++fW6bUzBo8XWZN998k1gsxq5du+jo6OD1119326S85/Dhw4TDYbq7u3n00Ud55JFH3DYpL0nv
 p9/e3s5TTz01b1IUzWKeeeYZduzYwblz5wiHw3rcghXw448/8vnnn3P8+HE6Ojro6OjQFeMrQPfz
 1Wg0Go0mx2jPV6PRaDSaHKPFV6PRaDSaHKPFV6PRaDSaHKPFV6PRaDSaHKPFV6PRaDSaHKPFV6PR
 aDSaHPP/eMnToYOAzWIAAAAASUVORK5CYII=
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The various kernel shapes lead to estimators with very different characteristics. For some examples of these in action, see the <a href="http://scikit-learn.org/stable/modules/density.html#kernel-density-estimation">Scikit-learn documentation</a> or the <a href="http://www.astroml.org/book_figures/chapter6/fig_great_wall_KDE.html#book-fig-chapter6-fig-great-wall-kde">AstroML examples</a>.</p>
+<p>The various kernel shapes lead to estimators with very different characteristics.  For some
+examples of these in action, see the
+<a href="http://scikit-learn.org/stable/modules/density.html#kernel-density-estimation">Scikit-learn documentation</a>
+or the <a href="http://www.astroml.org/book_figures/chapter6/fig_great_wall_KDE.html#book-fig-chapter6-fig-great-wall-kde">AstroML examples</a>.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="heterogeneous-data">Heterogeneous Data</h3>
-<p>One advantage that Statsmodels' <code>KDEMultivariate</code> has over the other algorithms is its ability to handle heterogeneous data, i.e. a mix of continuous, ordered discrete, and unordered discrete variables. All of the other implementations require homogeneous datasets. Though the problem of heterogeneous data is interesting, I won't discuss it more here. For more details, see the <a href="http://statsmodels.sourceforge.net/devel/generated/statsmodels.nonparametric.kernel_density.KDEMultivariate.html">KDEMultivariate documentation</a>.</p>
+<p>One advantage that Statsmodels&#39; <code>KDEMultivariate</code> has over the other algorithms is its
+ability to handle heterogeneous data, i.e. a mix of continuous, ordered discrete, and
+unordered discrete variables.  All of the other implementations require homogeneous
+datasets.  Though the problem of heterogeneous data is interesting, I won&#39;t discuss
+it more here.  For more details, see the
+<a href="http://statsmodels.sourceforge.net/devel/generated/statsmodels.nonparametric.kernel_density.KDEMultivariate.html">KDEMultivariate documentation</a>.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="fft-based-computation">FFT-based computation</h3>
-<p>For large datasets, a kernel density estimate can be computed efficiently via the convolution theorem using a fast Fourier transform. This requires binning the data, so the approach quickly becomes inefficient in higher dimensions. Of the four algorithms discussed here, only Statsmodels' <code>KDEUnivariate</code> implements an FFT-based KDE. As we'll see below, the FFT provides some computational gains for large numbers of points, but in most situations is not as effective as tree-based KDE implementations.</p>
+<p>For large datasets, a kernel density estimate can be computed efficiently via the convolution theorem using a fast Fourier transform.  This requires binning the data, so the approach quickly becomes inefficient in higher dimensions.  Of the four algorithms discussed here, only Statsmodels&#39; <code>KDEUnivariate</code> implements an FFT-based KDE.  As we&#39;ll see below, the FFT provides some computational gains for large numbers of points, but in most situations is not as effective as tree-based KDE implementations.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="tree-based-computation">Tree-based computation</h3>
-<p>For <em>M</em> evaluations of <em>N</em> points, the KDE computation naively requires <span class="math">\(\mathcal{O}[MN]\)</span> computations (i.e. a distance computation between each input/output pair). This puts KDE in the same category as Nearest Neighbors, <em>N</em>-point correlation functions, and Gaussian Process Regression, all of which are examples of <a href="http://www.cs.cmu.edu/~agray/nbody.html">Generalized N-body</a> problems which can be efficiently computed using specialized data structures such as a <strong>KD Tree</strong> (I discussed spatial trees in the context of nearest neighbors searches in a <a href="http://jakevdp.github.io/blog/2013/04/29/benchmarking-nearest-neighbor-searches-in-python/">previous blog post</a>).</p>
-<p>The main idea is this: if you can show that a query point <span class="math">\(Q_0\)</span> is geometrically far from a set of training points <span class="math">\(\{T_i\}\)</span>, then you no longer need to compute <em>every</em> kernel weight between <span class="math">\(Q_0\)</span> and the points in <span class="math">\(\{T_i\}\)</span>: it is sufficient to compute one kernel weight at the average distance, and use that as a proxy for the others. With careful consideration of the bounds on the distances and the maximum error tolerance for the final result, it is possible to greatly reduce the number of required operations for a KDE computation.</p>
-<p>For the 0.14 release of Scikit-learn, I wrote an efficient KDE implementation built on a KD Tree and a Ball Tree. By setting the parameters <code>rtol</code> (relative tolerance) and <code>atol</code> (absolute tolerance), it is possible to compute very fast approximate kernel density estimates at any desired degree of accuracy. The final result <span class="math">\(p\)</span> is algorithmically guaranteed to satisfy</p>
-<p><span class="math">\[
+<p>For <em>M</em> evaluations of <em>N</em> points, the KDE computation naively requires $\mathcal{O}[MN]$ computations (i.e. a distance computation between each input/output pair). This puts KDE in the same category as Nearest Neighbors, <em>N</em>-point correlation functions, and Gaussian Process Regression, all of which are examples of <a href="http://www.cs.cmu.edu/~agray/nbody.html">Generalized N-body</a> problems which can be efficiently computed using specialized data structures such as a <strong>KD Tree</strong> (I discussed spatial trees in the context of nearest neighbors searches in a <a href="http://jakevdp.github.io/blog/2013/04/29/benchmarking-nearest-neighbor-searches-in-python/">previous blog post</a>).</p>
+<p>The main idea is this: if you can show that a query point $Q_0$ is geometrically far from a set of training points $\{T_i\}$, then you no longer need to compute <em>every</em> kernel weight between $Q_0$ and the points in $\{T_i\}$: it is sufficient to compute one kernel weight at the average distance, and use that as a proxy for the others.  With careful consideration of the bounds on the distances and the maximum error tolerance for the final result, it is possible to greatly reduce the number of required operations for a KDE computation.</p>
+<p>For the 0.14 release of Scikit-learn, I wrote an efficient KDE implementation built on a KD Tree and a Ball Tree.  By setting the parameters <code>rtol</code> (relative tolerance) and <code>atol</code> (absolute tolerance), it is possible to compute very fast approximate kernel density estimates at any desired degree of accuracy.  The final result $p$ is algorithmically guaranteed to satisfy</p>
+<p>$$
 {\rm abs}\left(p - p_{true}\right) &lt; {\tt atol} + {\tt rtol} \cdot p_{true}
-\]</span></p>
-<p>This scheme effectively sets up a tradeoff between computation time and accuracy. As we'll see below, even marginal reduction in accuracy (say, allowing errors of 1 part in <span class="math">\(10^8\)</span>) can lead to impressive gains in computational efficiency.</p>
+$$</p>
+<p>This scheme effectively sets up a tradeoff between computation time and accuracy.  As we&#39;ll see below, even marginal reduction in accuracy (say, allowing errors of 1 part in $10^8$) can lead to impressive gains in computational efficiency.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="computational-efficiency">Computational Efficiency</h2>
-<p>Next comes the fun part: comparing the computational efficiency of the various algorithms. Here we'll look at the computation time as a function of the number of points in the distribution for a <em>1-dimensional</em> case. As noted above, several of the algorithms also implement multi-dimensional computations: the scaling with the number of points should not change appreciably in the multi-dimensional case.</p>
-<p>Here and throughout, we will compute the KDE for 5000 query points. For clarity, the <code>plot_scaling</code> function used here is defined at the end of the notebook: if you download and run this notebook, please scroll down and execute that cell first.</p>
+<p>Next comes the fun part: comparing the computational efficiency of the various
+algorithms.  Here we&#39;ll look at the computation time as a function of the number
+of points in the distribution for a <em>1-dimensional</em> case.  As noted above, several
+of the algorithms also implement multi-dimensional computations: the scaling with
+the number of points should not change appreciably in the multi-dimensional case.</p>
+<p>Here and throughout, we will compute the KDE for 5000 query points.  For clarity, the
+<code>plot_scaling</code> function used here is defined at the end of the notebook: if you
+download and run this notebook, please scroll down and execute that cell first.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="scaling-with-the-number-of-points">Scaling with the Number of Points</h3>
-<p>First we'll look at the scaling with the number of points in the input distribution, spread from 10 points to 10,000 points:</p>
+<p>First we&#39;ll look at the scaling with the number of points in the input distribution,
+spread from 10 points to 10,000 points:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[9]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">plot_scaling</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
              <span class="n">kwds</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;Statsmodels-U&#39;</span><span class="p">:{</span><span class="s">&#39;fft&#39;</span><span class="p">:</span><span class="bp">False</span><span class="p">}});</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAf4AAAGOCAYAAAB2TWHkAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XlUFFfaP/BvddPN1jsgioBEJSCKSHAUEJS4xCUSGGME
 XKLG+J44Y6KT30zUZGLMOBPHzGvenEwWlyQ6UYNLEmMSIhrCoJK4jI6IO2JkscGIsjUg0Mv9/dFS
@@ -4958,26 +5080,44 @@ OTloaWnB7373O+j1ejzzzDOorq7GwoULwRhDREQEPvzwQ4/P9hQVFYWf/vSnWL58ORhj2LBhAzZu
 +lwkSchExrH+JuIIIURjxcXF+PnPf46PP/7Y100hZMKioX5CyJgZaASBEDI2qMdPCCGETCDU4yeE
 EEImEAr8hBBCyARCgZ8QQgiZQCjwE0IIIRMIBX5CCCFkAqHATwghhEwg/z98LCIkoDGwFAAAAABJ
 RU5ErkJggg==
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The <code>SciPy</code> algorithm (red line) exhibits the expected <span class="math">\(\mathcal{O}[N]\)</span> scaling for a naive KDE implementation. The tree-based implementation in scikit-learn is slightly better for a large number of points (for small datasets, the overhead of building the tree dominates). Both statsmodels implementations are appreciably slower: in particular, the <code>KDEMultivariate</code> implementation displays a relatively large computational overhead.</p>
-<p>However, these benchmarks are not entirely fair to the Statsmodels Univariate algorithm or to the Scikit-learn algorithm. For <code>KDEUnivariate</code>, we have not used the FFT version of the calculation; for Scikit-learn, we've set <code>rtol</code> and <code>atol</code> to zero, effectively asking the algorithm for a perfectly precise computation which allows very few tree nodes to be trimmed from the calculation.</p>
-<p>Let's change this, and use the FFT computation for statsmodels, and set <code>rtol=1E-4</code> for scikit-learn. The latter setting says that we want a faster computation, at the expense of accepting a 0.01% error in the final result:</p>
+<p>The <code>SciPy</code> algorithm (red line) exhibits the expected $\mathcal{O}[N]$ scaling for
+a naive KDE implementation.  The tree-based implementation in scikit-learn is slightly
+better for a large number of points (for small datasets, the overhead of building the
+tree dominates).  Both statsmodels implementations are appreciably slower: in particular,
+the <code>KDEMultivariate</code> implementation displays a relatively large computational overhead.</p>
+<p>However, these benchmarks are not entirely fair to the Statsmodels Univariate algorithm
+or to the Scikit-learn algorithm.  For <code>KDEUnivariate</code>, we have not used the FFT version
+of the calculation; for Scikit-learn, we&#39;ve set <code>rtol</code> and <code>atol</code> to zero, effectively
+asking the algorithm for a perfectly precise computation which allows very few tree nodes
+to be trimmed from the calculation.</p>
+<p>Let&#39;s change this, and use the FFT computation for statsmodels, and set <code>rtol=1E-4</code> for
+scikit-learn.  The latter setting says that we want a faster computation, at the expense of
+accepting a 0.01% error in the final result:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[10]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">plot_scaling</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
              <span class="n">rtol</span><span class="o">=</span><span class="mf">1E-4</span><span class="p">,</span>
              <span class="n">kwds</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;Statsmodels-U&#39;</span><span class="p">:{</span><span class="s">&#39;fft&#39;</span><span class="p">:</span><span class="bp">True</span><span class="p">}});</span>
@@ -4985,15 +5125,16 @@ In&nbsp;[10]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAf4AAAGOCAYAAAB2TWHkAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XlcVPX+P/DXmYV9hplhUzZRRJBFJAxZFVFTS9Lbomia
 lvl9ZNfS272l1s00781Lfe3br9vikunNjMrK7EahIaGigmkq4kaobIOo7MM+y+f3x8SRIyAoDDDy
@@ -5600,29 +5741,51 @@ FuL555/H5cuXcc899+BTn/oUAEz5WdONIox//cQTT+BLX/oSQkND8b//+7/YuXMnrFYrGGNuF0kS
 spBxbKqJOEII8bCqqip8//vfx5///Gd/N4WQBYuG+gkhPjPdCAIhxDeox08IIYQsINTjJ4QQQhYQ
 Cn5CCCFkAaHgJ4QQQhYQCn5CCCFkAaHgJ4QQQhYQCn5CCCFkAfn/j7D5HljWyRwAAAAASUVORK5C
 YII=
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The FFT computation significantly speeds the statsmodels univariate computation in the case of large numbers of points. The real winner here, though, is the Scikit-learn implementation: by allowing errors of 1 part in 10,000, we've sped the computation for the largest datasets by an additional factor of 5 or so, making it an order of magnitude faster than the next best algorithm!</p>
+<p>The FFT computation significantly speeds the statsmodels univariate computation in the case
+of large numbers of points.  The real winner here, though, is the Scikit-learn implementation:
+by allowing errors of 1 part in 10,000, we&#39;ve sped the computation for the largest datasets by
+an additional factor of 5 or so, making it an order of magnitude faster than the next best algorithm!</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="dependence-on-rtol">Dependence on <code>rtol</code></h3>
-<p>You might wonder what the effect of <code>rtol</code> is on the speed of the computation. In most situations for the scikit-learn estimator, increasing <code>rtol</code> will directly lead to an increase in computational efficiency, as distant tree nodes are able to be trimmed earlier in the computation.</p>
-<p>To illustrate this, we'll plot the computation time as a function of <code>rtol</code>, from <span class="math">\(1\)</span> part in <span class="math">\(10^{16}\)</span> (effectively the floating point precision on 64-bit machines) all the way up to <span class="math">\(1\)</span> part in <span class="math">\(10\)</span> (i.e. 10% error on the results):</p>
+<h3 id="dependence-on-rtol-">Dependence on <code>rtol</code></h3>
+<p>You might wonder what the effect of <code>rtol</code> is on the speed of the computation.
+In most situations for the scikit-learn estimator, increasing <code>rtol</code> will directly
+lead to an increase in computational efficiency, as distant tree nodes are able to be
+trimmed earlier in the computation.</p>
+<p>To illustrate this, we&#39;ll plot the computation time as a function of <code>rtol</code>, from
+$1$ part in $10^{16}$ (effectively the floating point precision on 64-bit machines)
+all the way up to $1$ part in $10$ (i.e. 10% error on the results):</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[11]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">plot_scaling</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mf">1E4</span><span class="p">,</span>
              <span class="n">rtol</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">16</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
              <span class="n">bandwidth</span><span class="o">=</span><span class="mf">0.2</span><span class="p">);</span>
@@ -5630,15 +5793,16 @@ In&nbsp;[11]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAGMCAYAAAAsp1AmAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xt8E1XeP/DPTNomaZM0SW/QG4VSy61cLAKFAhVksQjS
 RYWC3BRwZRcV3dWCrgiLgnWf+vi4uNzksiAioCKu1coiglQFflQQQaFLoVDSoqX3a67n90fINNMm
@@ -6103,45 +6267,70 @@ CgDQq1cvPPfcc5gzZw4qKysxadKkFifhZf/8Bx54AJs2bUJlZSV++ctf4vnnn888nz5m4cKF2Lhx
 IyorKzFq1CgsWbKkxdp/8pOf4Pnnn0dVVRV27tzZ5BeDlrpxVVXxyiuv4I477kBVVRWmTZuGWCyG
 W2+9FSNHjsR5552HMWPG4Pbbb8+EO5FTcT90IiIiB2CHTkRE5AAMdCIiIgdgoBMRETkAA52IiMgB
 GOhEREQOwEAnIiJygP8PvKRJXkWs9fgAAAAASUVORK5CYII=
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This plot displays the direct tradeoff between precision and efficiency enabled by Scikit-learn's tree-based algorithms. Any variation in the timing for the other algorithms is simply statistical noise: they cannot take advantage of <code>rtol</code>.</p>
+<p>This plot displays the direct tradeoff between precision and efficiency enabled by Scikit-learn&#39;s tree-based algorithms.
+Any variation in the timing for the other algorithms is simply statistical noise: they cannot take advantage of <code>rtol</code>.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="dependence-on-bandwidth">Dependence on Bandwidth</h3>
-<p>One somewhat counter-intuitive effect of the tree-based approximate KDE is that the bandwidth becomes an important consideration in the time for computation. This is because the bandwidth effectively controls how &quot;close&quot; points are to each other.</p>
-<p>When points are very far apart in relation to the kernel size, their contribution to the density is very close to zero. In this range, whole groups of such points can be removed from the computation. When points are very close together in relation to the kernel size, the distance is effectively zero, and whole groups of such points in the tree can be considered, as a group, to contribute the maximal kernel contribution.</p>
-<p>The tree-based KDE computation in Scikit-learn takes advantage of these situations, leading to a strong dependence of computation time on the bandwidth: for very small and very large bandwidths, it is fast. For bandwidths somewhere in the middle, it can be slower than other algorithms, primarily due to the computational overhead of building and traversing the tree:</p>
+<p>One somewhat counter-intuitive effect of the tree-based approximate KDE is that the bandwidth
+becomes an important consideration in the time for computation.  This is because the bandwidth
+effectively controls how &quot;close&quot; points are to each other.</p>
+<p>When points are very far apart in relation to the kernel size, their contribution to the density
+is very close to zero.  In this range, whole groups of such points can be removed
+from the computation.  When points are very close together in relation to the kernel
+size, the distance is effectively zero, and whole groups of such points in the tree
+can be considered, as a group, to contribute the maximal kernel contribution.</p>
+<p>The tree-based KDE computation in Scikit-learn takes advantage of these situations, leading to
+a strong dependence of computation time on the bandwidth: for very small and very large bandwidths,
+it is fast.  For bandwidths somewhere in the middle, it can be slower than other algorithms, 
+primarily due to the computational overhead of building and traversing the tree:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[12]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">plot_scaling</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mf">1E4</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="mf">1E-4</span><span class="p">,</span>
              <span class="n">bandwidth</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">));</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAf4AAAGMCAYAAAA7hcDvAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XmcE/X9P/DXZyaTY3NtlsWFPRDlUORUKK0IulZbXHWR
 +q0WFayI+tDWerU+kO/3V0trbaXfaq3Fo1bFytfiXbGiSFGxrlZtUaQqiIBcu8ixZzabYzLz+f2R
@@ -6632,31 +6821,57 @@ cuzYMcO2rl27cuvWLVOkKoRoIunxC9HJ1F3jhzs97Q0bNqBUKnn88ceJjY0lKCiIkJAQ/Pz8DK+p
 f6d9/ceZmZk8+eSTKBQKRo4cabRfVFQUe/fupVu3bkRERFBeXk5kZGSDNubOncsTTzyBv78/fn5+
 RqMCTz/9NEFBQQwZMoTXXnvtrnEIIUxHoW/qGJwQQgghLJ4M9QshhBBWRAq/EEIIYUWk8AshhBBW
 RAq/EEIIYUWk8AshhBBWRAq/EEIIYUX+H93ALIwND9smAAAAAElFTkSuQmCC
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Fortunately the inefficient bandwidths are generally too large to be useful in practice, and bandwidths in the faster range are favorable for most problems.</p>
-<p>Notice that only the Scikit-learn results depend strongly on the bandwidth: the other implementations have constant computation time to within random errors. This is due to the tree-based KDE implementation used by Scikit-learn, for the reasons discussed above. The optimal bandwidth near 0.15 lies in a region of relatively fast computation, especially compared to the alternate algorithms.</p>
+<p>Fortunately the inefficient bandwidths are generally too large to be useful in practice, and bandwidths
+in the faster range are favorable for most problems.</p>
+<p>Notice that only the Scikit-learn results depend strongly on the bandwidth: the other implementations
+have constant computation time to within random errors.  This is due to the tree-based KDE implementation
+used by Scikit-learn, for the reasons discussed above.  The optimal bandwidth near 0.15 lies in a region
+of relatively fast computation, especially compared to the alternate algorithms.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="dependence-on-kernel">Dependence on Kernel</h3>
-<p>As you might expect, the same principles that lead to the dependence of computation time on bandwidth also lead to a dependence of computation time on the kernel shape used. For faraway points, some kernels have weights much closer to zero than others: in the case of kernels with &quot;hard&quot; cutoffs (such as the tophat kernel), distant points contribute <em>exactly</em> zero to the density, and thus the speedup will be realized even if <code>rtol</code> and <code>atol</code> are zero.</p>
-<p>At the opposite extreme, for points which are very close compared to the kernel size, Kernels which are very &quot;flat&quot; (e.g. the tophat kernel) will allow whole groups of points to be considered at once, while kernels which are less flat (e.g. the linear or exponential kernel) will not admit such efficiencies.</p>
-<p>We can see this below: here we'll plot the computation time as a function of kernel width for the Scikit-learn implementation, using several kernels:</p>
+<p>As you might expect, the same principles that lead to the dependence of computation time on bandwidth
+also lead to a dependence of computation time on the kernel shape used.  For faraway points, some
+kernels have weights much closer to zero than others: in the case of kernels with &quot;hard&quot; cutoffs (such as the
+tophat kernel), distant points contribute <em>exactly</em> zero to the density, and thus the speedup will be
+realized even if <code>rtol</code> and <code>atol</code> are zero.</p>
+<p>At the opposite extreme, for points which are very close compared to the kernel size, Kernels which
+are very &quot;flat&quot; (e.g. the tophat kernel) will allow whole groups of points to be considered
+at once, while kernels which are less flat (e.g. the linear or exponential kernel) will not admit
+such efficiencies.</p>
+<p>We can see this below: here we&#39;ll plot the computation time as a function of kernel width for the Scikit-learn implementation,
+using several kernels:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[13]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">plot_scaling_vs_kernel</span><span class="p">(</span><span class="n">kernels</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;tophat&#39;</span><span class="p">,</span> <span class="s">&#39;linear&#39;</span><span class="p">,</span> <span class="s">&#39;exponential&#39;</span><span class="p">,</span> <span class="s">&#39;gaussian&#39;</span><span class="p">],</span>
                        <span class="n">bandwidth</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
                        <span class="n">N</span><span class="o">=</span><span class="mf">1E4</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="mf">1E-4</span><span class="p">);</span>
@@ -6664,15 +6879,16 @@ In&nbsp;[13]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAf4AAAGMCAYAAAA7hcDvAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXl8VNXZ+L93tuwzmSwEkhAChEXZC0aBoGFRCBAWLYgs
 Clr6aivF9m1/Fn2l9MW+lVattVrtoqCIVAUhARRpgCCIgFJBRTaBEEhYErJNQpLZzu+PSW5mQkIC
@@ -7338,41 +7554,56 @@ Kyvjx48fVkQVkQLpjl+kxGQ/44dfd9p9fX0sW7aMvXv3smvXLnw+H8FgEK/Xm7tm5jftZ/5869Yt
 Dh48iMvlYseOHb+dFw6HGRwcpKKigqamJpLJJKFQaNYYR44cob29nbq6Orxe72+rAh0dHfh8PgKB
 AOfOnZuzDhGxjsssdA1OREREljwt9YuIiDiIGr+IiIiDqPGLiIg4iBq/iIiIg6jxi4iIOIgav4iI
 iIP8DeuFXqp3LdUsAAAAAElFTkSuQmCC
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Notice the two regions of interest: for very small bandwidths, kernels with a hard cutoff (tophat, linear) out-perform kernels with a broad taper (gaussian, exponential). And tapered kernels which fall off more quickly (gaussian, with <span class="math">\(p \sim \exp(-d^2)\)</span>) are more efficiently computed than kernels which fall off more slowly (exponential, with <span class="math">\(p \sim \exp(-d)\)</span>).</p>
-<p>At the other end, kernels with very flat profiles near zero (tophat, gaussian) show improvement for large bandwidths, while kernels with very steep profiles near zero (linear, exponential) show no improvement: they reach the asymptotic limit in which all of the <span class="math">\(\mathcal{O}[MN]\)</span> distances must be computed.</p>
+<p>Notice the two regions of interest: for very small bandwidths, kernels with a hard cutoff
+(tophat, linear) out-perform kernels with a broad taper (gaussian, exponential).  And tapered
+kernels which fall off more quickly (gaussian, with $p \sim \exp(-d^2)$) are more efficiently
+computed than kernels which fall off more slowly (exponential, with $p \sim \exp(-d)$).</p>
+<p>At the other end, kernels with very flat profiles near zero (tophat, gaussian) show improvement
+for large bandwidths, while kernels with very steep profiles near zero (linear, exponential)
+show no improvement: they reach the asymptotic limit in which all of the $\mathcal{O}[MN]$
+distances must be computed.</p>
 <p>For good measure, here are the scalings of the computations with <code>rtol</code> and with <em>N</em>:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[14]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">plot_scaling_vs_kernel</span><span class="p">(</span><span class="n">kernels</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;tophat&#39;</span><span class="p">,</span> <span class="s">&#39;linear&#39;</span><span class="p">,</span> <span class="s">&#39;exponential&#39;</span><span class="p">,</span> <span class="s">&#39;gaussian&#39;</span><span class="p">],</span>
                        <span class="n">bandwidth</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mf">1E4</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">16</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">));</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAGMCAYAAAAsp1AmAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd41FW++PH3d2bS6ySBQBoloQmhgwIBIqASpbkK0kGK
 P1314nrvPoheWVx0hbVc19W1LUVR0LWCsCJLkw6KAio9SCihBFJIn3Z+f0wyzIQJCSWZJPN5PU+e
@@ -7866,39 +8097,50 @@ Jdi+fTsKCwvx4IMP4rXXXgvN15dZunQptm3bhsLCQlx44YV4/vnno9b9rrvuwmuvvYaioiLs3r07
 bMcg2tG4zWbD2rVrcffdd6OoqAhTp06Fz+fDbbfdhqFDh2LEiBEYNmwY7rzzzlC4E5kV74dORERk
 AjxCJyIiMgEGOhERkQkw0ImIiEyAgU5ERGQCDHQiIiITYKATERGZwP8DmT4ZAi2UUwcAAAAASUVO
 RK5CYII=
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>As we'd expect, for a reasonable kernel size, <code>rtol</code> is not significant for kernels with a hard cutoff, and becomes more significant the wider the &quot;wings&quot; of the kernel are. The scaling with <em>N</em> is also as we'd expect:</p>
+<p>As we&#39;d expect, for a reasonable kernel size, <code>rtol</code> is not significant for kernels with a
+hard cutoff, and becomes more significant the wider the &quot;wings&quot; of the kernel are.
+The scaling with <em>N</em> is also as we&#39;d expect:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[15]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">plot_scaling_vs_kernel</span><span class="p">(</span><span class="n">kernels</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;tophat&#39;</span><span class="p">,</span> <span class="s">&#39;linear&#39;</span><span class="p">,</span> <span class="s">&#39;exponential&#39;</span><span class="p">,</span> <span class="s">&#39;gaussian&#39;</span><span class="p">],</span>
                        <span class="n">bandwidth</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="mf">1E-4</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">));</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAf4AAAGOCAYAAAB2TWHkAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XlYU1f+P/D3zQJZSCARxLKJgrsoCqKyKC4jolLbzmit
 inWp/dVpHTud6Vjbbx06tlPtNk7HTjvTulRrbcdutmLVIqIgCi5V60pdQAUXZE8g+/n9EYm5LIKy
@@ -8519,29 +8761,45 @@ bDb3x33zffN6t2+O42i1WikMQ10uFx0OBy0WC+V5rnEc5fu+jDHyPE/H4/Fh79xyuVTTNIqiSMYY
 bbdb7Xa7t/8WBIGqqtIwDIrjWGmaStLTWq+mCLd1lmUqy1Ku66rrOiVJommaZIz585EkYDPHPLuI
 A4B/1ve92rbV6XT69lEAazHqB/AxryYIAD6Djh8AAIvQ8QMAYBGCHwAAixD8AABYhOAHAMAiBD8A
 ABYh+AEAsMgVCy9dIy0IWR8AAAAASUVORK5CYII=
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This dependence of computation time on bandwidth and kernel shape is an issue to keep in mind as you choose your KDE algorithm: in the case of tree-based approaches, the bandwidth and kernel can matter to the tune of several orders of magnitude in computation time!</p>
+<p>This dependence of computation time on bandwidth and kernel shape is an issue
+to keep in mind as you choose your KDE algorithm: in the case of tree-based approaches,
+the bandwidth and kernel can matter to the tune of several orders of magnitude in computation time!</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="conclusion">Conclusion</h2>
-<p>I hope all this has been helpful to you: my main takeaway is that under most situations that are applicable to my own research, the Scikit-learn KDE is far superior to the other implementations that are available. There are situations where other choices are appropriate (namely, Statsmodels' <code>KDEMultivariate</code> when your data is heterogeneous, or Scipy's <code>gaussian_kde</code> for exact results with fewer than about 500 points), but scikit-learn will be much faster for most other relevant settings.</p>
-<p>Finally, here are some of the functions I used to generate the above plots. If you download this notebook, you'll have to execute this cell before running any of the above cells that use these:</p>
+<p>I hope all this has been helpful to you: my main takeaway is that under most situations that are applicable to my own research, the Scikit-learn KDE is far superior to the other implementations that are available.  There are situations where other choices are appropriate (namely, Statsmodels&#39; <code>KDEMultivariate</code> when your data is heterogeneous, or Scipy&#39;s <code>gaussian_kde</code> for exact results with fewer than about 500 points), but scikit-learn will be much faster for most other relevant settings.</p>
+<p>Finally, here are some of the functions I used to generate the above plots.  If you download this notebook, you&#39;ll have to execute this cell before running any of the above cells that use these:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[7]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">matplotlib</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 <span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
@@ -8688,11 +8946,23 @@ In&nbsp;[7]:
 
 </div>
 </div>
+</div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>I hope you found this post useful - Happy coding!</p>
-<p><small> This post was written entirely in the IPython notebook. You can <a href="http://jakevdp.github.com/downloads/notebooks/KDEBench.ipynb">download</a> this notebook, or see a static view <a href="http://nbviewer.ipython.org/url/jakevdp.github.com/downloads/notebooks/KDEBench.ipynb">here</a>. </small></p>
+<p><small>
+This post was written entirely in the IPython notebook.  You can
+<a href="http://jakevdp.github.com/downloads/notebooks/KDEBench.ipynb">download</a>
+this notebook, or see a static view
+<a href="http://nbviewer.ipython.org/url/jakevdp.github.com/downloads/notebooks/KDEBench.ipynb">here</a>.
+</small></p>
+</div>
+</div>
 </div></p></div>
     <footer>
 <p class="meta">
@@ -8746,7 +9016,7 @@ In&nbsp;[7]:
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Jake Vanderplas -
+    Copyright &copy;  2012-2014  - Jake Vanderplas -
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
     <script type="text/javascript">
@@ -8774,7 +9044,7 @@ In&nbsp;[7]:
           var disqus_title = 'Kernel Density Estimation in Python';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-	    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
 	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 	   })();
 	</script>

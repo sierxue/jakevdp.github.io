@@ -1777,7 +1777,7 @@ jQuery(document).ready(function($) {
 </ul>
 
 
-<form action="http://google.com/search" method="get">
+<form action="//google.com/search" method="get">
   <fieldset role="search">
     <input type="hidden" name="q" value="site:jakevdp.github.io" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
@@ -1798,51 +1798,100 @@ jQuery(document).ready(function($) {
 </header>
 
   <div class="entry-content"><p>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><em>This post is part of a 4-part series: <a href="http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/">Part I</a> <a href="http://jakevdp.github.io/blog/2014/06/06/frequentism-and-bayesianism-2-when-results-differ/">Part II</a> <a href="http://jakevdp.github.io/blog/2014/06/12/frequentism-and-bayesianism-3-confidence-credibility/">Part III</a> <a href="http://jakevdp.github.io/blog/2014/06/14/frequentism-and-bayesianism-4-bayesian-in-python/">Part IV</a></em></p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>This post is part of a 4-part series: <a href="http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/">Part I</a>  <a href="http://jakevdp.github.io/blog/2014/06/06/frequentism-and-bayesianism-2-when-results-differ/">Part II</a>  <a href="http://jakevdp.github.io/blog/2014/06/12/frequentism-and-bayesianism-3-confidence-credibility/">Part III</a>  <a href="http://jakevdp.github.io/blog/2014/06/14/frequentism-and-bayesianism-4-bayesian-in-python/">Part IV</a></em></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>I've been spending a lot of time recently writing about frequentism and Bayesianism.</p>
+<p>I&#39;ve been spending a lot of time recently writing about frequentism and Bayesianism.</p>
 <ul>
 <li>In <a href="http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/">Frequentism and Bayesianism I: a Practical Introduction</a> I gave an introduction to the main philosophical differences between frequentism and Bayesianism, and showed that for many common problems the two methods give basically the same point estimates.</li>
 <li>In <a href="http://jakevdp.github.io/blog/2014/06/06/frequentism-and-bayesianism-2-when-results-differ/">Frequentism and Bayesianism II: When Results Differ</a> I went into a bit more depth on when frequentism and Bayesianism start to diverge, particularly when it comes to the handling of nuisance parameters.</li>
-<li>In <a href="http://jakevdp.github.io/blog/2014/06/12/frequentism-and-bayesianism-3-confidence-credibility/">Frequentism and Bayesianism III: Confidence, Credibility, and why Frequentism and Science Don't Mix</a> I talked about the subtle difference between frequentist confidence intervals and Bayesian credible intervals, and argued that in most scientific settings frequentism answers the wrong question.</li>
+<li>In <a href="http://jakevdp.github.io/blog/2014/06/12/frequentism-and-bayesianism-3-confidence-credibility/">Frequentism and Bayesianism III: Confidence, Credibility, and why Frequentism and Science Don&#39;t Mix</a> I talked about the subtle difference between frequentist confidence intervals and Bayesian credible intervals, and argued that in most scientific settings frequentism answers the wrong question.</li>
 </ul>
 <p>Here I want to back away from the philosophical debate and go back to more practical issues: in particular, demonstrating how you can apply these Bayesian ideas in Python. The workhorse of modern Bayesianism is the <a href="http://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo">Markov Chain Monte Carlo</a> (MCMC), a class of algorithms used to efficiently sample posterior distributions.</p>
-<p>Below I'll explore three mature Python packages for performing Bayesian analysis via MCMC:</p>
+<p>Below I&#39;ll explore three mature Python packages for performing Bayesian analysis via MCMC:</p>
 <ul>
 <li><a href="http://dan.iel.fm/emcee">emcee</a>: the MCMC Hammer</li>
 <li><a href="http://pymc-devs.github.io/pymc/">pymc</a>: Bayesian Statistical Modeling in Python</li>
 <li><a href="https://pystan.readthedocs.org/en/latest/">pystan</a>: The Python Interface to Stan</li>
 </ul>
-<p>I won't be so much concerned with speed benchmarks between the three, as much as a comparison of their respective APIs. This post is not meant to be a tutorial in any of the three; each of them is well documented and the links above include introductory tutorials for that purpose. Rather, what I want to do here is a side-by-side comparison which will give a feel for how each package is used. I'll propose a single relatively non-trivial test problem, and show the implementation and results of this problem using all three packages. Hopefully by seeing the three approaches side-by-side, you can choose which package might be best suited for your particular application.</p>
+<p>I won&#39;t be so much concerned with speed benchmarks between the three, as much as a comparison of their respective APIs. This post is not meant to be a tutorial in any of the three; each of them is well documented and the links above include introductory tutorials for that purpose. Rather, what I want to do here is a side-by-side comparison which will give a feel for how each package is used.  I&#39;ll propose a single relatively non-trivial test problem, and show the implementation and results of this problem using all three packages. Hopefully by seeing the three approaches side-by-side, you can choose which package might be best suited for your particular application.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Test-Problem:-Line-of-Best-Fit">Test Problem: Line of Best Fit<a class="anchor-link" href="#Test-Problem:-Line-of-Best-Fit">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>For our test problem, we'll do a three-parameter model which fits a straight line to data. The parameters will be the slope, the intercept, and the scatter about the line; the scatter in this case will be treated as a nuisance parameter.</p>
 </div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For our test problem, we&#39;ll do a three-parameter model which fits a straight line to data. The parameters will be the slope, the intercept, and the scatter about the line; the scatter in this case will be treated as a nuisance parameter.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="The-Data">The Data<a class="anchor-link" href="#The-Data">&#182;</a></h3>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's define some data that we'll work with:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let&#39;s define some data that we&#39;ll work with:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[1]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%</span><span class="k">matplotlib</span> <span class="n">inline</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
@@ -1859,14 +1908,16 @@ In&nbsp;[1]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[2]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">,</span> <span class="s">&#39;ok&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;y&#39;</span><span class="p">);</span>
@@ -1874,15 +1925,16 @@ In&nbsp;[2]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYQAAAEPCAYAAABCyrPIAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAG5NJREFUeJzt3XtwVOXhxvFnoTRRq0aQ7KqAcVaTkAQhijq1F5fGzU4F
 YkQmVRzcWusf7QxBx5G0nekY2tEsRacmae0finVbZ0ozU4YGFplAdVFHFC1qvdHYGEyUzba6rMol
@@ -2009,57 +2061,96 @@ S/X39+vgwYOaPn26GhoaUh0JGDMUAjAMhw4d0ty5c3XWWWdp+/btab0cMjBcnDIChuHTTz/V/v37
 tW/fPh08eDDVcYAxxRECMAw1NTVasmSJPvzwQ4VCIbW2tqY6EjBmxv0BOUCm+tOf/qS8vDzddttt
 Onr0qK6//noFg0G5XK5URwPGBEcIAABJXEMAAMRQCAAASRQCACCGQgAASKIQAAAxFAIAQBKFAACI
 oRAAAJKk/wOj/+ZieGCQFgAAAABJRU5ErkJggg==
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The data are clearly correlated, and we'll assume that we don't know the errors. Let's construct a linear model to fit this data.</p>
+<p>The data are clearly correlated, and we&#39;ll assume that we don&#39;t know the errors. Let&#39;s construct a linear model to fit this data.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="The-Model:-Slope,-Intercept,-&amp;-Unknown-Scatter">The Model: Slope, Intercept, &amp; Unknown Scatter<a class="anchor-link" href="#The-Model:-Slope,-Intercept,-&amp;-Unknown-Scatter">&#182;</a></h3>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Recall that Bayes' theorem gives</p>
-<p><span class="math">\[
+<p>Recall that Bayes&#39; theorem gives</p>
+<p>$$
 P(\theta~|~D) \propto P(D~|~\theta) P(\theta)
-\]</span></p>
-<p>Where <span class="math">\(D\)</span> represents the observed data, and <span class="math">\(\theta\)</span> represents the model.</p>
+$$</p>
+<p>Where $D$ represents the observed data, and $\theta$ represents the model.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We'll assume a linear model for our data, parametrized by a slope <span class="math">\(\beta\)</span> and a y-intercept <span class="math">\(\alpha\)</span>:</p>
-<p><span class="math">\[
+<p>We&#39;ll assume a linear model for our data, parametrized by a slope $\beta$ and a y-intercept $\alpha$:</p>
+<p>$$
 \hat{y}(x_i~|~\alpha,\beta) = \alpha + \beta x_i
-\]</span></p>
+$$</p>
 <p>Assuming gaussian errors on the observed y values, the probability for any data point under this model is given by:</p>
-<p><span class="math">\[
+<p>$$
 P(x_i, y_i~|~\alpha, \beta, \sigma) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left[\frac{-[y_i - \hat{y}(x_i~|~\alpha, \beta)]^2}{2\sigma^2}\right]
-\]</span></p>
-<p>where <span class="math">\(\sigma\)</span> here is an unknown measurement error, which we'll treat as a nuisance parameter</p>
-<p>Multiplying these for all <span class="math">\(i\)</span> gives the likelihood: <span class="math">\[
+$$</p>
+<p>where $\sigma$ here is an unknown measurement error, which we&#39;ll treat as a nuisance parameter</p>
+<p>Multiplying these for all $i$ gives the likelihood:
+$$
 P(\{x_i\}, \{y_i\}~|~\alpha, \beta, \sigma) \propto (2\pi\sigma^2)^{-N/2} \exp\left[- \frac{1}{2\sigma^2} \sum_{i-1}^N [y_i - \hat{y}(x_i~|~\alpha,\beta)]^2\right]
-\]</span></p>
+$$</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="The-Prior">The Prior<a class="anchor-link" href="#The-Prior">&#182;</a></h3>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Here we're going to be a bit more careful about the choice of prior than we've been in the previous posts. We could simply choose flat priors on <span class="math">\(\alpha\)</span>, <span class="math">\(\beta\)</span>, and <span class="math">\(\sigma\)</span>, but we must keep in mind that <strong>flat priors are not always uninformative priors!</strong> A better choice is to follow Jeffreys and use symmetry and/or maximum entropy to choose maximally noninformative priors. This is the kind of exercise in choosing priors is one that frequentists often complain about as overly subjective, but the approach is well-founded and very well-supported from an information theoretic standpoint.</p>
-<p>Why might a flat prior a bad choice? This is perhaps easiest to see in the case of slope. Let's visualize this by plotting some lines with slopes evenly-spaced between 0 and 10:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here we&#39;re going to be a bit more careful about the choice of prior than we&#39;ve been in the previous posts. We could simply choose flat priors on $\alpha$, $\beta$, and $\sigma$, but we must keep in mind that <strong>flat priors are not always uninformative priors!</strong> A better choice is to follow Jeffreys and use symmetry and/or maximum entropy to choose maximally noninformative priors. This is the kind of exercise in choosing priors is one that frequentists often complain about as overly subjective, but the approach is well-founded and very well-supported from an information theoretic standpoint.</p>
+<p>Why might a flat prior a bad choice? This is perhaps easiest to see in the case of slope.  Let&#39;s visualize this by plotting some lines with slopes evenly-spaced between 0 and 10:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[3]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">aspect</span><span class="o">=</span><span class="s">&#39;equal&#39;</span><span class="p">))</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
@@ -2071,15 +2162,16 @@ In&nbsp;[3]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ8AAAEACAYAAACtefPrAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXlcVPX+/99swz4Msw/bsCogmyAgcEFFWUQwQTRzl5ui
 paBidVNLM1Pc73XJJTUtzUrzZiCmlpiZu5lLqZlUmimm4gLKNvP6/dHvnO/MMAMzo+bkPc/Hw4eK
@@ -2664,91 +2756,147 @@ AQDnzp1Dbm4ue92nn36Kli1bIiIiAkVFRf/ErTaIK1euICMjA1FRUcjMzGSHI5t/vjNnzkCv10Ov
 1yM+Pv6B+Hz21uP111/H66+/zl4zbtw4REREICEhoc45L02R+j7f8uXLER8fD71ej9TUVOzbt++f
 vF2XGDBgABQKBby8vKBSqVBSUtLoteNMYhwcHA3iHw9bODg4Hkw48eDg4GgQnHhwcHA0CE48ODg4
 GgQnHhwcHA2CEw8ODo4GwYkHBwdHg+DEg4ODo0H8f++TRLtdySAdAAAAAElFTkSuQmCC
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>These lines have evenly-spaced slopes in units of 0.1, yet the higher slopes are bunched together. With a flat prior, you're essentially saying that any one of these slopes is just as likely as another. Due to this bunching seen above, it's clear that a flat prior on slope will highly favor very steep slopes! A flat prior on slope is not a minimally informative prior, and may end up biasing your result (though with enough data the effect is almost zero).</p>
-<p>You might imagine coming up with a better scheme by-hand (perhaps use a flat prior on the angle <span class="math">\(\theta\)</span> between the line and the x-axis) but we can be even more rigorous. The following problem has been well-explored in the Bayesian literature; the best resource I've found is a paper by Jaynes: <em>Straight Line Fitting: A Bayesian Solution</em> <a href="http://exordio.qfb.umich.mx/archivos%20pdf%20de%20trabajo%20umsnh/aphilosofia/bayesian%20importantes/leapz.pdf">(pdf)</a></p>
+<p>These lines have evenly-spaced slopes in units of 0.1, yet the higher slopes are bunched together. With a flat prior, you&#39;re essentially saying that any one of these slopes is just as likely as another. Due to this bunching seen above, it&#39;s clear that a flat prior on slope will highly favor very steep slopes!  A flat prior on slope is not a minimally informative prior, and may end up biasing your result (though with enough data the effect is almost zero).</p>
+<p>You might imagine coming up with a better scheme by-hand (perhaps use a flat prior on the angle $\theta$ between the line and the x-axis) but we can be even more rigorous.  The following problem has been well-explored in the Bayesian literature; the best resource I&#39;ve found is a paper by Jaynes: <em>Straight Line Fitting: A Bayesian Solution</em> <a href="http://exordio.qfb.umich.mx/archivos%20pdf%20de%20trabajo%20umsnh/aphilosofia/bayesian%20importantes/leapz.pdf">(pdf)</a></p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Prior-on-Slope-and-Intercept">Prior on Slope and Intercept<a class="anchor-link" href="#Prior-on-Slope-and-Intercept">&#182;</a></h4>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>If our model is given by</p>
-<p><span class="math">\[
+<p>$$
 y = \alpha + \beta x
-\]</span></p>
-<p>then we can construct a parameter-space probability element <span class="math">\(P(\alpha, \beta) ~d\alpha ~d\beta\)</span>.</p>
-<p>Because <span class="math">\(x\)</span> and <span class="math">\(y\)</span> are symmetric, we could just as easily use another set of parameters</p>
-<p><span class="math">\[
+$$</p>
+<p>then we can construct a parameter-space probability element $P(\alpha, \beta) ~d\alpha ~d\beta$.</p>
+<p>Because $x$ and $y$ are symmetric, we could just as easily use another set of parameters</p>
+<p>$$
 x = \alpha^\prime + \beta^\prime y
-\]</span></p>
-<p>with probability element <span class="math">\(Q(\alpha^\prime, \beta^\prime)d\alpha^\prime d\beta^\prime\)</span>, where it's easy to show that</p>
-<p><span class="math">\[
+$$</p>
+<p>with probability element $Q(\alpha^\prime, \beta^\prime)d\alpha^\prime d\beta^\prime$, where it&#39;s easy to show that</p>
+<p>$$
 (\alpha^\prime,~\beta^\prime) = (- \beta^{-1}\alpha,~\beta^{-1}).
-\]</span></p>
+$$</p>
 <p>From the Jacobian of the transformation, we can show that</p>
-<p><span class="math">\[
+<p>$$
 Q(\alpha^\prime, \beta^\prime) = \beta^3 P(\alpha, \beta).
-\]</span></p>
+$$</p>
 <p>Maintaining the symmetry of the problem requires that this change of variables should not affect the prior probability, so we can write:</p>
-<p><span class="math">\[
+<p>$$
 \beta^3 P(\alpha, \beta) = P(- \beta^{-1}\alpha, \beta^{-1}).
-\]</span></p>
+$$</p>
 <p>This is a functional equation which is satisfied by</p>
-<p><span class="math">\[
+<p>$$
 P(\alpha, \beta) \propto (1 + \beta^2)^{-3/2}.
-\]</span></p>
-<p>which is equivalent to saying that <span class="math">\(\alpha\)</span> is uniformly distributed, and <span class="math">\(\beta\)</span> is distributed uniformly in <span class="math">\(\sin\theta\)</span> where <span class="math">\(\theta = \tan^{-1}\beta\)</span>.</p>
-<p>This might surprise you that the slopes are distributed according to <span class="math">\(\sin\theta\)</span> rather than uniformly in <span class="math">\(\theta\)</span>. This <span class="math">\(\sin\theta\)</span> term, though, can actually be thought of as coming from the intercept! If we change variables from <span class="math">\(\alpha\)</span> to <span class="math">\(\alpha_\perp = \alpha\cos\theta\)</span>, then it's straightforward to show that our variables are uniformly distributed in <span class="math">\((\alpha_\perp,~\theta)\)</span>. We'll make use of this fact in the PyStan solution below.</p>
+$$</p>
+<p>which is equivalent to saying that $\alpha$ is uniformly distributed, and $\beta$ is distributed uniformly in $\sin\theta$ where $\theta = \tan^{-1}\beta$.</p>
+<p>This might surprise you that the slopes are distributed according to $\sin\theta$ rather than uniformly in $\theta$. This $\sin\theta$ term, though, can actually be thought of as coming from the intercept!  If we change variables from $\alpha$ to $\alpha_\perp = \alpha\cos\theta$, then it&#39;s straightforward to show that our variables are uniformly distributed in $(\alpha_\perp,~\theta)$. We&#39;ll make use of this fact in the PyStan solution below.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Prior-on-\(\sigma\)">Prior on <span class="math">\(\sigma\)</span><a class="anchor-link" href="#Prior-on-\(\sigma\)">&#182;</a></h4>
+<h4 id="Prior-on-$\sigma$">Prior on $\sigma$<a class="anchor-link" href="#Prior-on-$\sigma$">&#182;</a></h4>
+</div>
+</div>
 </div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Similarly, we want the prior on <span class="math">\(\sigma\)</span> to be invariant to rescalings of the problem (i.e. changing units). So our probability must satisfy</p>
-<p><span class="math">\[
+<p>Similarly, we want the prior on $\sigma$ to be invariant to rescalings of the problem (i.e. changing units). So our probability must satisfy</p>
+<p>$$
 P(\sigma)d\sigma = P(\sigma / c)d\sigma / c.
-\]</span></p>
-<p>This is a functional equation satisfied by</p>
-<p><span class="math">\[
+$$</p>
+<p>This is a functional equation satisfied by </p>
+<p>$$
 P(\sigma) \propto 1 / \sigma.
-\]</span></p>
+$$</p>
 <p>This is known as the <a href="http://en.wikipedia.org/wiki/Jeffreys_prior">Jeffreys Prior</a>, after Harold Jeffreys.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Putting-our-Priors-Together">Putting our Priors Together<a class="anchor-link" href="#Putting-our-Priors-Together">&#182;</a></h4>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Putting these together, we see that symmetry arguments have led to the following minimally informative prior on our model:</p>
-<p><span class="math">\[
+<p>$$
 P(\alpha, \beta, \sigma) \propto \frac{1}{\sigma}(1 + \beta^2)^{-3/2}
-\]</span></p>
-<p>As alluded to above, you could equivalently address this by using flat priors on transformed parameters, namely <span class="math">\((\alpha, \beta, \sigma) \to (\alpha_\perp, \theta, \log\sigma)\)</span>, but I personally think the symmetry/maximum entropy approach is cleaner and clearer – it also gives us a chance to demonstrate the definition of nontrivial custom priors within the three packages.</p>
+$$</p>
+<p>As alluded to above, you could equivalently address this by using flat priors on transformed parameters, namely $(\alpha, \beta, \sigma) \to (\alpha_\perp, \theta, \log\sigma)$, but I personally think the symmetry/maximum entropy approach is cleaner and clearer – it also gives us a chance to demonstrate the definition of nontrivial custom priors within the three packages.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Solving-This-Problem-in-Python">Solving This Problem in Python<a class="anchor-link" href="#Solving-This-Problem-in-Python">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now that we have the data, the likelihood, and the prior, let's show how to solve this problem in Python using emcee, PyMC, and PyStan. First, though, let's quickly define some convenience routines which will help us visualize the results:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now that we have the data, the likelihood, and the prior, let&#39;s show how to solve this problem in Python using emcee, PyMC, and PyStan. First, though, let&#39;s quickly define some convenience routines which will help us visualize the results:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[4]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># Create some convenience routines for plotting</span>
 
 <span class="k">def</span> <span class="nf">compute_sigma_level</span><span class="p">(</span><span class="n">trace1</span><span class="p">,</span> <span class="n">trace2</span><span class="p">,</span> <span class="n">nbins</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
@@ -2809,39 +2957,60 @@ In&nbsp;[4]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Without further ado, let's do some MCMC.</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Without further ado, let&#39;s do some MCMC.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Emcee">Emcee<a class="anchor-link" href="#Emcee">&#182;</a></h2>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The <a href="http://dan.iel.fm/emcee/current/">emcee</a> package (also known as MCMC Hammer, which is in the running for best Python package name in history) is a Pure Python package written by Astronomer <a href="http://dan.iel.fm/">Dan Foreman-Mackey</a>. It is a lightweight package which implements a fairly sophisticated Affine-invariant Hamiltonian MCMC. Because the package is pure Python (i.e. it contains no compiled extensions) it is extremely easy to install; with pip, simply type at the command-line</p>
-<pre><code>[~]$ pip install emcee</code></pre>
-<p>Emcee does not have much specific boilerplate code; it simply requires you to pass it a Python function which returns a value proportional to the log-posterior probability, and returns samples from that posterior. Here's how we solve the above problem with <code>emcee</code>:</p>
+<pre><code>[~]$ pip install emcee
+</code></pre><p>Emcee does not have much specific boilerplate code; it simply requires you to pass it a Python function which returns a value proportional to the log-posterior probability, and returns samples from that posterior. Here&#39;s how we solve the above problem with <code>emcee</code>:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[5]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">emcee</span>
 <span class="k">print</span><span class="p">(</span><span class="n">emcee</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 2.0.0
 
@@ -2853,12 +3022,13 @@ In&nbsp;[5]:
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[6]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># Define our posterior using Python functions</span>
 <span class="c"># for clarity, I&#39;ve separated-out the prior and likelihood</span>
 <span class="c"># but this is not necessary. Note that emcee requires log-posterior</span>
@@ -2881,14 +3051,16 @@ In&nbsp;[6]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[7]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># Here we&#39;ll set up the computation. emcee combines multiple &quot;walkers&quot;,</span>
 <span class="c"># each of which is its own MCMC chain. The number of trace results will</span>
 <span class="c"># be nwalkers * nsteps</span>
@@ -2905,14 +3077,16 @@ In&nbsp;[7]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[8]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># Here&#39;s the function call where all the work happens:</span>
 <span class="c"># we&#39;ll time it using IPython&#39;s %time magic</span>
 
@@ -2923,13 +3097,14 @@ In&nbsp;[8]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 CPU times: user 5.73 s, sys: 13 ms, total: 5.75 s
 Wall time: 5.76 s
@@ -2943,12 +3118,13 @@ done
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[9]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># sampler.chain is of shape (nwalkers, nsteps, ndim)</span>
 <span class="c"># we&#39;ll throw-out the burn-in points and reshape:</span>
 <span class="n">emcee_trace</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">chain</span><span class="p">[:,</span> <span class="n">nburn</span><span class="p">:,</span> <span class="p">:]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">ndim</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
@@ -2957,15 +3133,16 @@ In&nbsp;[9]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAmoAAAEPCAYAAADyA+gLAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XlcVGX7+PEPiAsaKJvggCgJiBKRhJVlOZI+I5UpucZj
 D7lUXxccq1+R2Z5maKVoaD2ZRPXgWuQWjCuWSSlShJqhYIKMAyOyyc4wvz98nRMIGso+3u/Xq1cw
@@ -3654,45 +3831,67 @@ c/77778IDQ3F008/rXFURESzU1pairfffhtFRUUc9iS/LdI6ACJfSkpKcOLECbjdbiiKguzsbHz2
 2WcoKCjQOjQionv6+OOP8dBDD6GwsBC3b99GdnY22tra4HQ6tQ6NdILXqBERERFJikOfRERERJJi
 oUZEREQkKRZqRERERJJioUZEREQkKRZqRERERJJioUZEREQkKRZqRERERJJioUZEREQkqf8A18jT
 QKydgQcAAAAASUVORK5CYII=
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>On the left we show the resulting traces marginalized over the nuisance parameter <span class="math">\(\sigma\)</span>. On the right, we show the line of best-fit along with the 2-<span class="math">\(\sigma\)</span> uncertainty region. This is exactly the type of result we expect from MCMC: marginalized uncertainty contours around a model which provides a good by-eye fit to the data.</p>
+<p>On the left we show the resulting traces marginalized over the nuisance parameter $\sigma$. On the right, we show the line of best-fit along with the 2-$\sigma$ uncertainty region. This is exactly the type of result we expect from MCMC: marginalized uncertainty contours around a model which provides a good by-eye fit to the data.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="PyMC">PyMC<a class="anchor-link" href="#PyMC">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The <a href="http://pymc-devs.github.io/pymc/">PyMC</a> package has many more features than emcee, including built-in support for efficient sampling of common prior distributions. PyMC by default uses the classic <a href="http://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm">Metropolis-Hastings</a> sampler, one of the earliest MCMC algorithms. For performance, it uses compiled fortran libraries, so it is less trivial to install using tools like pip. My machine has a working fortran compiler, so <code>pip install pymc</code> worked without a problem (but from working with students, colleagues, and tutorial attendees, I can tell you that few scientists today have a system setup such that this will work out-of-the-box). For folks who don't have a fortran compiler installed, PyMC binaries for many systems can be quite easily <a href="https://conda.binstar.org/pymc">installed with conda</a>.</p>
-<p>I should mention that the future <a href="https://github.com/pymc-devs/pymc">PyMC version 3</a> removes fortran dependence and makes the installation much more streamlined; I've also been told that the API of PyMC 3 is much cleaner, and that performance is much better. Because PyMC 3 is still listed as an alpha release, I've decided to stick with the current supported release for this post:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <a href="http://pymc-devs.github.io/pymc/">PyMC</a> package has many more features than emcee, including built-in support for efficient sampling of common prior distributions. 
+PyMC by default uses the classic <a href="http://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm">Metropolis-Hastings</a> sampler, one of the earliest MCMC algorithms. For performance, it uses compiled fortran libraries, so it is less trivial to install using tools like pip. My machine has a working fortran compiler, so <code>pip install pymc</code> worked without a problem (but from working with students, colleagues, and tutorial attendees, I can tell you that few scientists today have a system setup such that this will work out-of-the-box). For folks who don&#39;t have a fortran compiler installed, PyMC binaries for many systems can be quite easily <a href="https://conda.binstar.org/pymc">installed with conda</a>.</p>
+<p>I should mention that the future <a href="https://github.com/pymc-devs/pymc">PyMC version 3</a> removes fortran dependence and makes the installation much more streamlined; I&#39;ve also been told that the API of PyMC 3 is much cleaner, and that performance is much better. Because PyMC 3 is still listed as an alpha release, I&#39;ve decided to stick with the current supported release for this post:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[10]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">pymc</span>
 <span class="k">print</span><span class="p">(</span><span class="n">pymc</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 2.3
 
@@ -3704,12 +3903,13 @@ In&nbsp;[10]:
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[11]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># Define the variables needed for the routine, with their prior distributions</span>
 <span class="n">alpha</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="s">&#39;alpha&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 
@@ -3735,14 +3935,16 @@ In&nbsp;[11]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[12]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># run the basic MCMC: we&#39;ll do 100000 iterations to match emcee above</span>
 <span class="n">S</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">MCMC</span><span class="p">(</span><span class="n">model1</span><span class="p">)</span>
 <span class="n">S</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">iter</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span> <span class="n">burn</span><span class="o">=</span><span class="mi">50000</span><span class="p">)</span>
@@ -3750,15 +3952,16 @@ In&nbsp;[12]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
- [-                 3%                  ] 3506 of 100000 complete in 0.5 sec [--                6%                  ] 6801 of 100000 complete in 1.0 sec [---              10%                  ] 10108 of 100000 complete in 1.5 sec [-----            13%                  ] 13510 of 100000 complete in 2.0 sec [------           16%                  ] 16684 of 100000 complete in 2.5 sec [-------          20%                  ] 20018 of 100000 complete in 3.0 sec [--------         23%                  ] 23384 of 100000 complete in 3.5 sec [----------       26%                  ] 26671 of 100000 complete in 4.0 sec [-----------      30%                  ] 30000 of 100000 complete in 4.5 sec [------------     33%                  ] 33252 of 100000 complete in 5.0 sec [-------------    36%                  ] 36635 of 100000 complete in 5.5 sec [---------------  40%                  ] 40046 of 100000 complete in 6.0 sec [---------------- 43%                  ] 43430 of 100000 complete in 6.5 sec [-----------------46%                  ] 46732 of 100000 complete in 7.0 sec [-----------------50%                  ] 50059 of 100000 complete in 7.5 sec [-----------------52%                  ] 52746 of 100000 complete in 8.0 sec [-----------------55%-                 ] 55446 of 100000 complete in 8.5 sec [-----------------58%--                ] 58070 of 100000 complete in 9.0 sec [-----------------60%--                ] 60486 of 100000 complete in 9.5 sec [-----------------63%---               ] 63079 of 100000 complete in 10.0 sec [-----------------65%----              ] 65668 of 100000 complete in 10.5 sec [-----------------68%-----             ] 68369 of 100000 complete in 11.0 sec [-----------------71%------            ] 71008 of 100000 complete in 11.5 sec [-----------------73%-------           ] 73672 of 100000 complete in 12.0 sec [-----------------76%--------          ] 76262 of 100000 complete in 12.5 sec [-----------------78%---------         ] 78660 of 100000 complete in 13.0 sec [-----------------81%----------        ] 81231 of 100000 complete in 13.5 sec [-----------------83%-----------       ] 83790 of 100000 complete in 14.0 sec [-----------------86%------------      ] 86407 of 100000 complete in 14.5 sec [-----------------89%-------------     ] 89101 of 100000 complete in 15.0 sec [-----------------91%--------------    ] 91789 of 100000 complete in 15.5 sec [-----------------94%---------------   ] 94391 of 100000 complete in 16.0 sec [-----------------97%----------------  ] 97081 of 100000 complete in 16.5 sec [-----------------99%----------------- ] 99649 of 100000 complete in 17.0 sec [-----------------100%-----------------] 100000 of 100000 complete in 17.1 sec
+ [-----------------100%-----------------] 100000 of 100000 complete in 17.1 sec
 </pre>
 </div>
 </div>
@@ -3767,12 +3970,13 @@ In&nbsp;[12]:
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[13]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># extract the traces and plot the results</span>
 <span class="n">pymc_trace</span> <span class="o">=</span> <span class="p">[</span><span class="n">S</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s">&#39;alpha&#39;</span><span class="p">)[:],</span>
               <span class="n">S</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s">&#39;beta&#39;</span><span class="p">)[:],</span>
@@ -3783,15 +3987,16 @@ In&nbsp;[13]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAmoAAAEPCAYAAADyA+gLAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXtYVFX3xz8opogiF9FpwAuKiBdEkSx8vSBqE15C3jSV
 LNIsC0Ls7UKGlZWmZBcQ0TQT7bVR8leIl3DUdEySMpoyUglRFGQYRQQ1UUCc3x8+57zcRJQ77s/z
@@ -4547,47 +4752,68 @@ uBEzZswAAPTq1QsnTpyAt7e3k6MiIrLO9evXUVVVhdu3b+Pu3bvODodcDBM1Ur2amhplmvPOnTvw
 lCnODo2IqFmffPIJunTpgunTp+PHH3/E6NGjUVRUhPj4eGeHRi6Ca9SIiIiIVIpTn0REREQqxUSN
 iIiISKWYqBERERGpFBM1IiIiIpViokZERESkUkzUiIiIiFSKiRoRERGRSjFRIyIiIlKp/wML6Mjb
 uLnJDwAAAABJRU5ErkJggg==
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We get traces very similar to those provided by emcee.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="PyStan">PyStan<a class="anchor-link" href="#PyStan">&#182;</a></h2>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The <a href="http://mc-stan.org/pystan.html">PyStan</a> project is the official Python wrapper of the <a href="http://mc-stan.org/">Stan</a> Probabilistic programming language, which is implemented in C++. It uses a <a href="http://arxiv.org/abs/1111.4246">No U-Turn Sampler</a>, which is more sophisticated than classic Metropolis-Hastings or Gibbs sampling. As far as API goes, the important difference between PyStan as compared to emcee and PyMC is that it requires you to <strong>write and compile non-Python code</strong> within your Python script when defining your model.</p>
-<p>Because PyStan depends on the Stan package, installation can be difficult. In particular, you need the full Stan library to be installed in order to use the python wrapper. If you have a well-set-up environment for compiling C/C++ code, this shouldn't be a problem – using <code>pip install pystan</code> downloaded, compiled, and installed everything necessary on my system.</p>
-<p>From what I could find online, it doesn't appear that the Stan team provides pre-built binaries, including for conda. Because of this, if you don't have your system set up for C/C++ compilation, installation will probably be more difficult.</p>
-<p>I'm using version 2.2 of PyStan:</p>
+<p>Because PyStan depends on the Stan package, installation can be difficult. In particular, you need the full Stan library to be installed in order to use the python wrapper. If you have a well-set-up environment for compiling C/C++ code, this shouldn&#39;t be a problem – using <code>pip install pystan</code> downloaded, compiled, and installed everything necessary on my system.</p>
+<p>From what I could find online, it doesn&#39;t appear that the Stan team provides pre-built binaries, including for conda. Because of this, if you don&#39;t have your system set up for C/C++ compilation, installation will probably be more difficult.</p>
+<p>I&#39;m using version 2.2 of PyStan:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[14]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">pystan</span>
 <span class="k">print</span><span class="p">(</span><span class="n">pystan</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 2.2.0.1
 
@@ -4599,15 +4825,22 @@ In&nbsp;[14]:
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>There is one more hiccup with this package: for some reason, PyStan runs extremely slowly and crashes my computer when I run it in the IPython notebook itself, but works without issues when I run it as an executable Python file. I'm not sure why this is but it may have something to do with <a href="https://github.com/stan-dev/pystan/issues/3">this issue</a>. To get around this, I'll save the PyStan script as a standalone Python file and execute it from the command-line, writing the resulting traces to disk:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>There is one more hiccup with this package: for some reason, PyStan runs extremely slowly and crashes my computer when I run it in the IPython notebook itself, but works without issues when I run it as an executable Python file. I&#39;m not sure why this is but it may have something to do with <a href="https://github.com/stan-dev/pystan/issues/3">this issue</a>.  To get around this, I&#39;ll save the PyStan script as a standalone Python file and execute it from the command-line, writing the resulting traces to disk:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[15]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%%</span><span class="k">file</span> <span class="n">pystan_example</span><span class="o">.</span><span class="n">py</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
@@ -4674,13 +4907,14 @@ In&nbsp;[15]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 Overwriting pystan_example.py
 
@@ -4692,52 +4926,54 @@ Overwriting pystan_example.py
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[16]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># run the code we&#39;ve created on the command-line</span>
 <span class="o">!</span>python pystan_example.py
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 INFO:pystan:COMPILING THE C++ CODE FOR MODEL anon_model_c1dba2ed7f485b674d7ce5eb738ffe05 NOW.
 INFO:pystan:NOW ON CHAIN 0
 INFO:pystan:NOW ON CHAIN 1
 INFO:pystan:NOW ON CHAIN 2
 INFO:pystan:NOW ON CHAIN 3
-Iteration:     1 / 25000 [  0%]  (Warmup)Iteration:     1 / 25000 [  0%]  (Warmup)Iteration:     1 / 25000 [  0%]  (Warmup)
+Iteration:     1 / 25000 [  0%]  (Warmup)
 Informational Message: The current Metropolis proposal is about to be rejected becuase of the following issue:
 Error in function stan::prob::normal_log(N4stan5agrad3varE): Scale parameter is 0:0, but must be &gt; 0!
 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
-Iteration:     1 / 25000 [  0%]  (Warmup)Iteration:  2500 / 25000 [ 10%]  (Warmup)Iteration:  2500 / 25000 [ 10%]  (Warmup)Iteration:  2500 / 25000 [ 10%]  (Warmup)Iteration:  2500 / 25000 [ 10%]  (Warmup)Iteration:  5000 / 25000 [ 20%]  (Warmup)Iteration:  5000 / 25000 [ 20%]  (Warmup)Iteration:  5000 / 25000 [ 20%]  (Warmup)Iteration:  5000 / 25000 [ 20%]  (Warmup)Iteration:  7500 / 25000 [ 30%]  (Warmup)Iteration:  7500 / 25000 [ 30%]  (Warmup)Iteration:  7500 / 25000 [ 30%]  (Warmup)Iteration:  7500 / 25000 [ 30%]  (Warmup)Iteration: 10000 / 25000 [ 40%]  (Warmup)Iteration: 10000 / 25000 [ 40%]  (Warmup)Iteration: 10000 / 25000 [ 40%]  (Warmup)Iteration: 10000 / 25000 [ 40%]  (Warmup)Iteration: 12500 / 25000 [ 50%]  (Warmup)Iteration: 12500 / 25000 [ 50%]  (Warmup)Iteration: 12500 / 25000 [ 50%]  (Warmup)Iteration: 12500 / 25000 [ 50%]  (Warmup)Iteration: 15000 / 25000 [ 60%]  (Sampling)Iteration: 15000 / 25000 [ 60%]  (Sampling)Iteration: 15000 / 25000 [ 60%]  (Sampling)Iteration: 15000 / 25000 [ 60%]  (Sampling)Iteration: 17500 / 25000 [ 70%]  (Sampling)Iteration: 17500 / 25000 [ 70%]  (Sampling)Iteration: 17500 / 25000 [ 70%]  (Sampling)Iteration: 17500 / 25000 [ 70%]  (Sampling)Iteration: 20000 / 25000 [ 80%]  (Sampling)Iteration: 20000 / 25000 [ 80%]  (Sampling)Iteration: 20000 / 25000 [ 80%]  (Sampling)Iteration: 20000 / 25000 [ 80%]  (Sampling)Iteration: 22500 / 25000 [ 90%]  (Sampling)Iteration: 22500 / 25000 [ 90%]  (Sampling)Iteration: 22500 / 25000 [ 90%]  (Sampling)Iteration: 22500 / 25000 [ 90%]  (Sampling)Iteration: 25000 / 25000 [100%]  (Sampling)
+Iteration: 25000 / 25000 [100%]  (Sampling)
 Elapsed Time: 0.664267 seconds (Warm-up)
               0.724006 seconds (Sampling)
               1.38827 seconds (Total)
 
-Iteration: 25000 / 25000 [100%]  (Sampling)
+Iteration: 25000 / 25000 [100%]  (Sampling)
 Elapsed Time: 0.6626 seconds (Warm-up)
               0.781297 seconds (Sampling)
               1.4439 seconds (Total)
 
-Iteration: 25000 / 25000 [100%]  (Sampling)
+Iteration: 25000 / 25000 [100%]  (Sampling)
 Elapsed Time: 0.669715 seconds (Warm-up)
               0.799694 seconds (Sampling)
               1.46941 seconds (Total)
 
-Iteration: 25000 / 25000 [100%]  (Sampling)
+Iteration: 25000 / 25000 [100%]  (Sampling)
 Elapsed Time: 0.667423 seconds (Warm-up)
               0.795613 seconds (Sampling)
               1.46304 seconds (Total)
@@ -4751,15 +4987,22 @@ Elapsed Time: 0.667423 seconds (Warm-up)
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>As we can see, the execution takes ~6 sec in serial to draw 100,000 samples. Additionally, on my machine, the compilation phase takes about ~20 seconds before the model is run.</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[17]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># load the results from file; plot as above</span>
 <span class="n">pystan_trace</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s">&#39;pystan_trace.npy&#39;</span><span class="p">)</span>
 <span class="n">plot_MCMC_results</span><span class="p">(</span><span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">,</span> <span class="n">pystan_trace</span><span class="p">)</span>
@@ -4767,15 +5010,16 @@ In&nbsp;[17]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAmoAAAEPCAYAAADyA+gLAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XlclOX6+PEP+yY7yMgmKCJqpBItmBUthkupVJrZ4jEt
 K0uz5fhrO9k5ddTyaKhZmke/VgfTOocyCTEzLI+kkoWIooyg4OAgDMvAAAPDzO8PXs9zAAEXtmG8
@@ -5337,31 +5581,51 @@ Cj/99BOcnZ1NHBUhhPROVVUVFAoF6uvr0djYaOpwyCBDiRrhPaVSyQ1zNjQ0QCAQ4JFHHjFxVIQQ
 X3wBa2trLFmyBK2trZg2bRrS09MhkUhMHRoZJGiOGiGEEEIIT9HQJyGEEEIIT1GiRgghhBDCU5So
 EUIIIYTwFCVqhBBCCCE8RYkaIYQQQghPUaJGCCGEEMJTlKgRQgghhPAUJWqEEEIIITz1/wBjjQSF
 KIHrwQAAAABJRU5ErkJggg==
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Again, the results look similar to what we've seen above.</p>
+<p>Again, the results look similar to what we&#39;ve seen above.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Summary:-Comparing-the-Three-Methods">Summary: Comparing the Three Methods<a class="anchor-link" href="#Summary:-Comparing-the-Three-Methods">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>As a more direct comparison of the results, let's quickly over-plot the contours derived by the three methods:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As a more direct comparison of the results, let&#39;s quickly over-plot the contours derived by the three methods:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[18]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="n">plot_MCMC_trace</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">,</span> <span class="n">emcee_trace</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span>
                 <span class="n">colors</span><span class="o">=</span><span class="s">&#39;blue&#39;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
@@ -5374,15 +5638,16 @@ In&nbsp;[18]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfIAAAHpCAYAAAB5gL6IAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XlYVGX7wPHvIO6iIqLjqOUuLrggWfS64Iqmr0WZKJZb
 aiqZZqW545bZYlFQLihZiUv2Q3NjzFdJTdNkyshEsyiNCUNEc5fl+f0xneMMmxuy6P25Li6ZM2d5
@@ -6300,122 +6565,103 @@ gWs4depUdHZ2xp49e+L8+fPx4osvxoYNG4QcSoStdeCqOjs746mnnoqIiNtuuy2++uqruP3224u8
 KuAyIQeuamxsbOLs+9KlS1FeXh73339/kVcFXOa3nwFXderUqejq6oqVK1dGLpeL7u7uWLNmTWzY
 sKHYSwNCyAEgabbWASBhQg4ACRNyAEiYkANAwoQcABIm5ACQMCEHgIT9B7nNDjNMchW1AAAAAElF
 TkSuQmCC
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>As we would expect, the results agree! This indicates that we've defined the models consistently in all three packages. Additionally, we see that the &quot;true&quot; values used to generate the distribution of points (25, 0.5) fall within the 1-<span class="math">\(\sigma\)</span> error ellipse.</p>
+<p>As we would expect, the results agree! This indicates that we&#39;ve defined the models consistently in all three packages. Additionally, we see that the &quot;true&quot; values used to generate the distribution of points (25, 0.5) fall within the 1-$\sigma$ error ellipse.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Evaluating-the-Packages">Evaluating the Packages<a class="anchor-link" href="#Evaluating-the-Packages">&#182;</a></h3>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>So which package is the best? The answer to that will likely depend on what your problem is. Here's a quick table summarizing my own impressions of the three packages:</p>
+<p>So which package is the best? The answer to that will likely depend on what your problem is. Here&#39;s a quick table summarizing my own impressions of the three packages:</p>
 <table>
 <tr>
 <th></th>
-<th>
-Complexity
-</th>
-<th>
-Execution time (100,000 samples; includes burn-in)
-</th>
-<th>
-Ease of Installation
-</th>
-<th>
-Learning Curve/Ease of Use
-</th>
-<th>
-Number of Features
-</th>
+<th>Complexity</th>
+<th>Execution time (100,000 samples; includes burn-in)</th>
+<th>Ease of Installation</th>
+<th>Learning Curve/Ease of Use</th>
+<th>Number of Features</th>
 </tr>
 
 <tr>
-<th>
-emcee
-</th>
-<td bgcolor='#CCFFCC'>
-Very lightweight
-</td>
-<td bgcolor='#CCFFCC'>
-~6 sec
-</td>
-<td bgcolor='#CCFFCC'>
-Pure python; installs easily with pip
-</td>
-<td bgcolor='#CCFFCC'>
-Straightforward &amp; Pythonic
-</td>
-<td bgcolor='#FFCCCC'>
-not much built-in beyond basic MCMC sampling
-</td>
+<th>emcee</th>
+<td bgcolor='#CCFFCC'>Very lightweight</td>
+<td bgcolor='#CCFFCC'>~6 sec</td>
+<td bgcolor='#CCFFCC'>Pure python; installs easily with pip</td>
+<td bgcolor='#CCFFCC'>Straightforward &amp; Pythonic</td>
+<td bgcolor='#FFCCCC'>not much built-in beyond basic MCMC sampling</td>
 </tr>
 
 <tr>
-<th>
-pymc2
-</th>
-<td bgcolor='#FFFFCC'>
-Lots of functionality &amp; options
-</td>
-<td bgcolor="#FFCCCC">
-~17 sec
-</td>
-<td bgcolor="#EEFFCC">
-Requires fortran compiler; binaries available via conda
-</td>
-<td bgcolor="#FFFFCC">
-Pythonic, but lots of pymc-specific boilerplate
-</td>
-<td bgcolor='#CCFFCC'>
-Lots of built-in functionality in Python
-</td>
+<th>pymc2</th>
+<td bgcolor='#FFFFCC'>Lots of functionality &amp; options</td>
+<td bgcolor="#FFCCCC">~17 sec</td>
+<td bgcolor="#EEFFCC">Requires fortran compiler; binaries available via conda</td>
+<td bgcolor="#FFFFCC">Pythonic, but lots of pymc-specific boilerplate</td>
+<td bgcolor='#CCFFCC'>Lots of built-in functionality in Python</td>
 </tr>
 
 <tr>
-<th>
-pystan
-</th>
-<td bgcolor='#FFCCCC'>
-Large package; requires coding in Stan language
-</td>
-<td bgcolor="#FFFFCC">
-~20 sec compilation + ~6 sec computation
-</td>
-<td bgcolor="#FFCCCC">
-Requires C compiler + Stan installation; no binaries available
-</td>
-<td bgcolor="#FFCCCC">
-Not pure Python; must learn Stan model specification language
-</td>
-<td bgcolor='#EEFFCC'>
-Lots of built-in functionality in Stan-specific language
-</td>
+<th>pystan</th>
+<td bgcolor='#FFCCCC'>Large package; requires coding in Stan language</td>
+<td bgcolor="#FFFFCC">~20 sec compilation + ~6 sec computation</td>
+<td bgcolor="#FFCCCC">Requires C compiler + Stan installation; no binaries available</td>
+<td bgcolor="#FFCCCC">Not pure Python; must learn Stan model specification language</td>
+<td bgcolor='#EEFFCC'>Lots of built-in functionality in Stan-specific language</td>
 </tr>
 
 </table>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>More verbosely:</p>
-<p><strong>emcee</strong> is extremely lightweight, and that gives it a lot of power. All you need to do is define your log-posterior (in Python) and emcee will sample from that distribution. Because it's pure-Python and does not have specially-defined objects for various common distributions (i.e. uniform, normal, etc.) I thought it might be slower than the others, but its performance on this problem is impressive. This is perhaps due to the more sophisticated default sampling scheme, so the benchmark may not be a fair comparison.</p>
+<p><strong>emcee</strong> is extremely lightweight, and that gives it a lot of power. All you need to do is define your log-posterior (in Python) and emcee will sample from that distribution. Because it&#39;s pure-Python and does not have specially-defined objects for various common distributions (i.e. uniform, normal, etc.) I thought it might be slower than the others, but its performance on this problem is impressive. This is perhaps due to the more sophisticated default sampling scheme, so the benchmark may not be a fair comparison.</p>
 <p><strong>pymc</strong> is more full-featured, and once you get the hang of the decorator syntax for defining variables, distributions, and derived quantities, it is very easy to use. Its performance lagged the other two: the same query took several times longer, despite having optimized objects for sampling from various priors. From what I hear, though, the still-in-alpha PyMC version 3 – a complete rewrite of the package – blows PyMC version 2 out of the water.</p>
-<p><strong>pystan</strong> is the most difficult of the three to use, but that's because it's not really a Python package. Models are specified not in Python, but in a custom statistical expression language. This language is very powerful, but has a steep learning curve. The ~20sec compilation time for each model is annoying, but I suspect that as models get more complicated and sample sizes grow, this won't seem like such an issue. The fact that Stan is specifically designed for this type of operation, and the fact that all its models compile directly to byte code, makes it seem like a reasonable choice for large, specialized computations.</p>
-<p>I wouldn't put much weight on the timings here; as mentioned above, the packages use very different default sampling schemes (Metropolis-Hastings for PyMC, no U-Turn sampling for PyStan, and affine-invariant ensemble sampling for emcee) so the times are not directly comparable. Each of these sampling schemes has its advantages and disadvantages, which you can read about in the links in above sections.</p>
-<p>I hope that I've given a fair comparison of these packages here. Note that I'm not an expert or contributor to any of these packages: I've simply read the online documentation and adapted the tutorial examples to the specific problem I proposed here. If any power users or package developers are reading this and have feedback about how to better use or represent any of these packages, I'd love to hear your response! I'd say two things:</p>
-<ol style="list-style-type: decimal">
+<p><strong>pystan</strong> is the most difficult of the three to use, but that&#39;s because it&#39;s not really a Python package. Models are specified not in Python, but in a custom statistical expression language. This language is very powerful, but has a steep learning curve. The ~20sec compilation time for each model is annoying, but I suspect that as models get more complicated and sample sizes grow, this won&#39;t seem like such an issue. The fact that Stan is specifically designed for this type of operation, and the fact that all its models compile directly to byte code, makes it seem like a reasonable choice for large, specialized computations.</p>
+<p>I wouldn&#39;t put much weight on the timings here; as mentioned above, the packages use very different default sampling schemes (Metropolis-Hastings for PyMC, no U-Turn sampling for PyStan, and affine-invariant ensemble sampling for emcee) so the times are not directly comparable. Each of these sampling schemes has its advantages and disadvantages, which you can read about in the links in above sections.</p>
+<p>I hope that I&#39;ve given a fair comparison of these packages here. Note that I&#39;m not an expert or contributor to any of these packages: I&#39;ve simply read the online documentation and adapted the tutorial examples to the specific problem I proposed here. If any power users or package developers are reading this and have feedback about how to better use or represent any of these packages, I&#39;d love to hear your response! I&#39;d say two things:</p>
+<ol>
 <li>Please write a blog comment and let me know how to use your package more effectively!</li>
-<li>Please realize that <em>the average user likely uses your package as I did here</em>: by reading the intro tutorials, and adapting those examples to their own problems. If that has led me to do something silly, it's likely that many of your users are making the same silly mistake!</li>
+<li>Please realize that <em>the average user likely uses your package as I did here</em>: by reading the intro tutorials, and adapting those examples to their own problems. If that has led me to do something silly, it&#39;s likely that many of your users are making the same silly mistake!</li>
 </ol>
 <p>Thanks for reading!</p>
-<p><small> This post was written entirely in the IPython notebook. You can <a href="http://jakevdp.github.io/downloads/notebooks/FreqBayes4.ipynb">download</a> this notebook, or see a static view on <a href="http://nbviewer.ipython.org/url/jakevdp.github.io/downloads/notebooks/FreqBayes4.ipynb">nbviewer</a>. </small></p>
+<p><small>
+This post was written entirely in the IPython notebook.  You can <a href="http://jakevdp.github.io/downloads/notebooks/FreqBayes4.ipynb">download</a> this notebook, or see a static view on <a href="http://nbviewer.ipython.org/url/jakevdp.github.io/downloads/notebooks/FreqBayes4.ipynb">nbviewer</a>.
+</small></p>
+</div>
+</div>
 </div></p></div>
     <footer>
 <p class="meta">
@@ -6469,7 +6715,7 @@ Lots of built-in functionality in Stan-specific language
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Jake Vanderplas -
+    Copyright &copy;  2012-2014  - Jake Vanderplas -
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
     <script type="text/javascript">
@@ -6497,7 +6743,7 @@ Lots of built-in functionality in Stan-specific language
           var disqus_title = 'Frequentism and Bayesianism IV: How to be a Bayesian in Python';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-	    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
 	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 	   })();
 	</script>

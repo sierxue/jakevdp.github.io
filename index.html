@@ -1777,7 +1777,7 @@ jQuery(document).ready(function($) {
 </ul>
 
 
-<form action="http://google.com/search" method="get">
+<form action="//google.com/search" method="get">
   <fieldset role="search">
     <input type="hidden" name="q" value="site:jakevdp.github.io" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
@@ -1819,22 +1819,34 @@ jQuery(document).ready(function($) {
 
   <div class="entry-content">
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>I've been spending a lot of time recently writing about frequentism and Bayesianism.</p>
+<p>I&#39;ve been spending a lot of time recently writing about frequentism and Bayesianism.</p>
 <ul>
 <li>In <a href="http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/">Frequentism and Bayesianism I: a Practical Introduction</a> I gave an introduction to the main philosophical differences between frequentism and Bayesianism, and showed that for many common problems the two methods give basically the same point estimates.</li>
 <li>In <a href="http://jakevdp.github.io/blog/2014/06/06/frequentism-and-bayesianism-2-when-results-differ/">Frequentism and Bayesianism II: When Results Differ</a> I went into a bit more depth on when frequentism and Bayesianism start to diverge, particularly when it comes to the handling of nuisance parameters.</li>
-<li>In <a href="http://jakevdp.github.io/blog/2014/06/12/frequentism-and-bayesianism-3-confidence-credibility/">Frequentism and Bayesianism III: Confidence, Credibility, and why Frequentism and Science Don't Mix</a> I talked about the subtle difference between frequentist confidence intervals and Bayesian credible intervals, and argued that in most scientific settings frequentism answers the wrong question.</li>
+<li>In <a href="http://jakevdp.github.io/blog/2014/06/12/frequentism-and-bayesianism-3-confidence-credibility/">Frequentism and Bayesianism III: Confidence, Credibility, and why Frequentism and Science Don&#39;t Mix</a> I talked about the subtle difference between frequentist confidence intervals and Bayesian credible intervals, and argued that in most scientific settings frequentism answers the wrong question.</li>
 </ul>
 <p>Here I want to back away from the philosophical debate and go back to more practical issues: in particular, demonstrating how you can apply these Bayesian ideas in Python. The workhorse of modern Bayesianism is the <a href="http://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo">Markov Chain Monte Carlo</a> (MCMC), a class of algorithms used to efficiently sample posterior distributions.</p>
-<p>Below I'll explore three mature Python packages for performing Bayesian analysis via MCMC:</p>
+<p>Below I&#39;ll explore three mature Python packages for performing Bayesian analysis via MCMC:</p>
 <ul>
 <li><a href="http://dan.iel.fm/emcee">emcee</a>: the MCMC Hammer</li>
 <li><a href="http://pymc-devs.github.io/pymc/">pymc</a>: Bayesian Statistical Modeling in Python</li>
 <li><a href="https://pystan.readthedocs.org/en/latest/">pystan</a>: The Python Interface to Stan</li>
 </ul>
-<p>I won't be so much concerned with speed benchmarks between the three, as much as a comparison of their respective APIs. This post is not meant to be a tutorial in any of the three; each of them is well documented and the links above include introductory tutorials for that purpose. Rather, what I want to do here is a side-by-side comparison which will give a feel for how each package is used. I'll propose a single relatively non-trivial test problem, and show the implementation and results of this problem using all three packages. Hopefully by seeing the three approaches side-by-side, you can choose which package might be best suited for your particular application.</p>
+<p>I won&#39;t be so much concerned with speed benchmarks between the three, as much as a comparison of their respective APIs. This post is not meant to be a tutorial in any of the three; each of them is well documented and the links above include introductory tutorials for that purpose. Rather, what I want to do here is a side-by-side comparison which will give a feel for how each package is used.  I&#39;ll propose a single relatively non-trivial test problem, and show the implementation and results of this problem using all three packages. Hopefully by seeing the three approaches side-by-side, you can choose which package might be best suited for your particular application.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 </div>
   <footer>
@@ -1851,12 +1863,12 @@ jQuery(document).ready(function($) {
 
   <div class="entry-content">
 
-<p>In Douglas Adams' classic <em>Hitchhiker's Guide to the Galaxy</em>, hyper-intelligent pan-dimensional beings build a computer named <em>Deep Thought</em> in order to calculate &quot;the Answer to the Ultimate Question of Life, the Universe, and Everything&quot;. After seven and a half million years spinning its hyper-dimensional gears, before an excited crowd, Deep Thought finally outputs the answer:</p>
+<p>In Douglas Adams&#39; classic <em>Hitchhiker&#39;s Guide to the Galaxy</em>, hyper-intelligent pan-dimensional beings build a computer named <em>Deep Thought</em> in order to calculate &quot;the Answer to the Ultimate Question of Life, the Universe, and Everything&quot;. After seven and a half million years spinning its hyper-dimensional gears, before an excited crowd, Deep Thought finally outputs the answer:</p>
 <p><strong>42</strong></p>
-<p>The disappointed technicians, who trained a lifetime for this moment, are stupefied. They probe Deep Though for more information, and after some back-and-forth, the computer responds: &quot;once you do know what the question actually is, you'll know what the answer means.&quot;</p>
-<p>An answer does you no good if you don't know the question.</p>
+<p>The disappointed technicians, who trained a lifetime for this moment, are stupefied. They probe Deep Though for more information, and after some back-and-forth, the computer responds: &quot;once you do know what the question actually is, you&#39;ll know what the answer means.&quot;</p>
+<p>An answer does you no good if you don&#39;t know the question.</p>
 <p>I find this story be an apt metaphor for statistics as sometimes used in the scientific literature. When trying to estimate the value of an unknown parameter, the frequentist approach generally relies on a <strong>confidence interval</strong> (CI), while the Bayesian approach relies on a <strong>credible region</strong> (CR). While these concepts sound and look very similar, their subtle difference can be extremely important, as they answer essentially different questions.</p>
-<p>Like the poor souls hoping for enlightenment in Douglas Adams' universe, scientists often turn the crank of frequentism hoping for useful answers, but in the process overlook the fact that in science, <strong>frequentism is generally answering the wrong question.</strong> This is far from simple philosophical navel-gazing: as I'll show, it can have real consequences for the conclusions we draw from observed data.</p>
+<p>Like the poor souls hoping for enlightenment in Douglas Adams&#39; universe, scientists often turn the crank of frequentism hoping for useful answers, but in the process overlook the fact that in science, <strong>frequentism is generally answering the wrong question.</strong> This is far from simple philosophical navel-gazing: as I&#39;ll show, it can have real consequences for the conclusions we draw from observed data.</p>
 </div>
   <footer>
     <a rel="full-article" href="http://jakevdp.github.io/blog/2014/06/12/frequentism-and-bayesianism-3-confidence-credibility/">Read On &crarr;</a>
@@ -1871,10 +1883,14 @@ jQuery(document).ready(function($) {
 </header>
 
   <div class="entry-content">
-<p>Cycling in Seattle seems to be taking off. This can be seen qualitatively in the increased visibility of advocacy groups like <a href="http://seattlegreenways.org/">Seattle Neighborhood Greenways</a> and <a href="http://www.cascade.org/">Cascade Bicycle Club</a>, the excellent reporting of sites like the <a href="http://www.seattlebikeblog.com/">Seattle Bike Blog</a>, and the investment by the city in high-profile traffic safety projects such as <a href="http://www.seattle.gov/transportation/PBL.htm">Protected Bike Lanes</a>, <a href="http://www.seattle.gov/transportation/pedestrian_masterplan/pedestrian_toolbox/tools_deua_diets.htm">Road diets/Rechannelizations</a> and the <a href="http://www.seattle.gov/transportation/bikemaster.htm">Seattle Bicycle Master Plan</a>.</p>
-<p>But, qualitative arguments aside, there is also an increasing array of quantitative data available, primarily from the <a href="http://www.seattle.gov/transportation/bikecounter.htm">Bicycle counters</a> installed at key locations around the city. The first was the <a href="http://www.seattle.gov/transportation/bikecounter_fremont.htm">Fremont Bridge Bicycle Counter</a>, installed in October 2012, which gives daily updates on the number of bicycles crossing the bridge: currently upwards of 5000-6000 per day during sunny commute days.</p>
-<p>Bicycle advocates have been <a href="http://www.seattlebikeblog.com/2014/05/14/fremont-bridge-smashes-bike-count-record-for-real-this-time-bike-use-rises-all-over-town/">pointing out</a> the upward trend of the counter, and I must admit I've been excited as anyone else to see this surge in popularity of cycling (Most days, I bicycle 22 miles round trip, crossing both the Spokane St. and Fremont bridge each way).</p>
-<p>But anyone who looks closely at the data must admit: there is a large weekly and monthly swing in the bicycle counts, and people seem most willing to ride on dry, sunny summer days. Given the warm streak we've had in Seattle this spring, I wondered: <strong>are we really seeing an increase in cycling, or can it just be attributed to good weather?</strong></p>
+Cycling in Seattle seems to be taking off. This can be seen qualitatively in the increased visibility of advocacy groups like <a href="http://seattlegreenways.org/">Seattle Neighborhood Greenways</a> and <a href="http://www.cascade.org/">Cascade Bicycle Club</a>, the excellent reporting of sites like the <a href="http://www.seattlebikeblog.com/">Seattle Bike Blog</a>, and the investment by the city in high-profile traffic safety projects such as <a href="http://www.seattle.gov/transportation/PBL.htm">Protected Bike Lanes</a>, <a href="http://www.seattle.gov/transportation/pedestrian_masterplan/pedestrian_toolbox/tools_deua_diets.htm">Road diets/Rechannelizations</a> and the <a href="http://www.seattle.gov/transportation/bikemaster.htm">Seattle Bicycle Master Plan</a>.
+
+But, qualitative arguments aside, there is also an increasing array of quantitative data available, primarily from the <a href="http://www.seattle.gov/transportation/bikecounter.htm">Bicycle counters</a> installed at key locations around the city. The first was the <a href="http://www.seattle.gov/transportation/bikecounter_fremont.htm">Fremont Bridge Bicycle Counter</a>, installed in October 2012, which gives daily updates on the number of bicycles crossing the bridge: currently upwards of 5000-6000 per day during sunny commute days.
+
+Bicycle advocates have been <a href="http://www.seattlebikeblog.com/2014/05/14/fremont-bridge-smashes-bike-count-record-for-real-this-time-bike-use-rises-all-over-town/">pointing out</a> the upward trend of the counter, and I must admit I&#39;ve been excited as anyone else to see this surge in popularity of cycling (Most days, I bicycle 22 miles round trip, crossing both the Spokane St. and Fremont bridge each way).
+
+But anyone who looks closely at the data must admit: there is a large weekly and monthly swing in the bicycle counts, and people seem most willing to ride on dry, sunny summer days. Given the warm streak we&#39;ve had in Seattle this spring, I wondered: <strong>are we really seeing an increase in cycling, or can it just be attributed to good weather?</strong>
+
 </div>
   <footer>
     <a rel="full-article" href="http://jakevdp.github.io/blog/2014/06/10/is-seattle-really-seeing-an-uptick-in-cycling/">Read On &crarr;</a>
@@ -1889,13 +1905,15 @@ jQuery(document).ready(function($) {
 </header>
 
   <div class="entry-content">
-<p>In a <a href="http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/">previous post</a> I gave a brief practical introduction to frequentism and Bayesianism as they relate to the analysis of scientific data. In it, I discussed the fundamental philosophical difference between frequentism and Bayesianism, and showed several simple problems where the two approaches give basically the same results.</p>
-<p>While it is easy to show that the two approaches are often equivalent for simple problems, it is also true that they can diverge greatly for more complicated problems. I've found that in practice, this divergence makes itself most clear in two different situations:</p>
-<ol style="list-style-type: decimal">
-<li>The handling of nuisance parameters</li>
-<li>The subtle (and often overlooked) difference between frequentist confidence intervals and Bayesian credible intervals</li>
-</ol>
-<p>The second point is a bit more philosophical and in-depth, and I'm going to save it for a later post and focus here on the first point: the difference between frequentist and Bayesian treatment of nuisance parameters. Though I tried my best to stay impartial in the previous post, here you'll start to see my leanings toward the Bayesian approach. Consider this a warmup for when I get around to addressing point number 2: that will likely get downright polemical. </div>
+In a <a href="http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/">previous post</a> I gave a brief practical introduction to frequentism and Bayesianism as they relate to the analysis of scientific data. In it, I discussed the fundamental philosophical difference between frequentism and Bayesianism, and showed several simple problems where the two approaches give basically the same results.
+
+While it is easy to show that the two approaches are often equivalent for simple problems, it is also true that they can diverge greatly for more complicated problems. I&#39;ve found that in practice, this divergence makes itself most clear in two different situations:
+
+1. The handling of nuisance parameters
+2. The subtle (and often overlooked) difference between frequentist confidence intervals and Bayesian credible intervals
+
+The second point is a bit more philosophical and in-depth, and I&#39;m going to save it for a later post and focus here on the first point: the difference between frequentist and Bayesian treatment of nuisance parameters. Though I tried my best to stay impartial in the previous post, here you&#39;ll start to see my leanings toward the Bayesian approach. Consider this a warmup for when I get around to addressing point number 2: that will likely get downright polemical.
+</div>
   <footer>
     <a rel="full-article" href="http://jakevdp.github.io/blog/2014/06/06/frequentism-and-bayesianism-2-when-results-differ/">Read On &crarr;</a>
   </footer>
@@ -1909,9 +1927,13 @@ jQuery(document).ready(function($) {
 </header>
 
   <div class="entry-content"><p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We've all heard it before: Python is slow.</p>
-<p>When I teach courses on Python for scientific computing, I make this point <a href="http://nbviewer.ipython.org/github/jakevdp/2013_fall_ASTR599/blob/master/notebooks/11_EfficientNumpy.ipynb">very early</a> in the course, and tell the students why: it boils down to Python being a dynamically typed, interpreted language, where values are stored not in dense ...</p></div></p></div>
+<p>We&#39;ve all heard it before: Python is slow.</p>
+<p>When I teach courses on Python for scientific computing, I make this point <a href="http://nbviewer.ipython.org/github/jakevdp/2013_fall_ASTR599/blob/master/notebooks/11_EfficientNumpy.ipynb">very early</a> in the course, and tell the students why: it boils down to Python being a dynamically typed, interpreted language, where values are stored not in dense ...</p></div></div></div></p></div>
   <footer>
     <a rel="full-article" href="http://jakevdp.github.io/blog/2014/05/09/why-python-is-slow/">Read On &crarr;</a>
   </footer>
@@ -1925,8 +1947,10 @@ jQuery(document).ready(function($) {
 </header>
 
   <div class="entry-content">
-<p>This is a bit of a niche topic, but I figured there might be one or two people out there who would find this useful (including my future self)... today I managed to implement a simple Python object which exposes the buffer protocol. If that means nothing to you, you may want to stop reading and instead browse this <a href="http://imgur.com/gallery/zWeJ5">gallery of puppy gifs</a>.</p>
-<p>But if you're the kind of person who becomes mildly excited at the words <em>Python buffer protocol</em>, I hope this short post will help you in your quest...</p>
+This is a bit of a niche topic, but I figured there might be one or two people out there who would find this useful (including my future self)... today I managed to implement a simple Python object which exposes the buffer protocol. If that means nothing to you, you may want to stop reading and instead browse this <a href="http://imgur.com/gallery/zWeJ5">gallery of puppy gifs</a>.
+
+But if you&#39;re the kind of person who becomes mildly excited at the words <em>Python buffer protocol</em>, I hope this short post will help you in your quest...
+
 </div>
   <footer>
     <a rel="full-article" href="http://jakevdp.github.io/blog/2014/05/05/introduction-to-the-python-buffer-protocol/">Read On &crarr;</a>
@@ -1941,8 +1965,10 @@ jQuery(document).ready(function($) {
 </header>
 
   <div class="entry-content">
-<p>One of the first things a scientist hears about statistics is that there is are two different approaches: frequentism and Bayesianism. Despite their importance, many scientific researchers never have opportunity to learn the distinctions between them and the different practical approaches that result. The purpose of this post is to synthesize the philosophical and pragmatic aspects of the frequentist and Bayesian approaches, so that scientists like myself might be better prepared to understand the types of data analysis people do.</p>
-<p>I'll start by addressing the philosophical distinctions between the views, and from there move to discussion of how these ideas are applied in practice, with some Python code snippets demonstrating the difference between the approaches. </div>
+One of the first things a scientist hears about statistics is that there is are two different approaches: frequentism and Bayesianism. Despite their importance, many scientific researchers never have opportunity to learn the distinctions between them and the different practical approaches that result. The purpose of this post is to synthesize the philosophical and pragmatic aspects of the frequentist and Bayesian approaches, so that scientists like myself might be better prepared to understand the types of data analysis people do.
+
+I&#39;ll start by addressing the philosophical distinctions between the views, and from there move to discussion of how these ideas are applied in practice, with some Python code snippets demonstrating the difference between the approaches.
+</div>
   <footer>
     <a rel="full-article" href="http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/">Read On &crarr;</a>
   </footer>
@@ -1957,8 +1983,16 @@ jQuery(document).ready(function($) {
 
   <div class="entry-content">
 
-<p>It's been a few weeks since I introduced <a href="http://github.com/jakevdp/mpld3">mpld3</a>, a toolkit for visualizing matplotlib graphics in-browser via d3, and a lot of progress has been made. I've added a lot of features, and there have also been dozens of pull requests from other users which have made the package much more complete.</p>
-<p>One thing I recognized early was the potential to use mpld3 to add interactive bells and whistles to matplotlib plots. Yesterday, at the <a href="http://twitter.com/search?q=%23HackAAS">#HackAAS</a> event at the American Astronomical Society meeting, I had a solid chunk of time to work this out. The result is what I'll describe and demonstrate below: a general plugin framework for matplotlib plots, which, given some d3 skills, can be utilized to modify your matplotlib plots in almost any imaginable way.</p>
+<p>It&#39;s been a few weeks since I introduced <a href="http://github.com/jakevdp/mpld3">mpld3</a>, a
+toolkit for visualizing matplotlib graphics in-browser via d3, and a lot of progress
+has been made.  I&#39;ve added a lot of features, and there have also been dozens of pull
+requests from other users which have made the package much more complete.</p>
+<p>One thing I recognized early was the potential to use mpld3 to add interactive bells
+and whistles to matplotlib plots.  Yesterday, at the <a href="http://twitter.com/search?q=%23HackAAS">#HackAAS</a> event at the
+American Astronomical Society meeting, I had a solid chunk of time to
+work this out.  The result is what I&#39;ll describe and demonstrate below: a general
+plugin framework for matplotlib plots, which, given some d3 skills, can be utilized
+to modify your matplotlib plots in almost any imaginable way.</p>
 </div>
   <footer>
     <a rel="full-article" href="http://jakevdp.github.io/blog/2014/01/10/d3-plugins-truly-interactive/">Read On &crarr;</a>
@@ -1974,10 +2008,10 @@ jQuery(document).ready(function($) {
 
   <div class="entry-content">
 
-<p>I've spent a lot of time recently attempting to push the boundaries of tools for interactive data exploration within the IPython notebook. I have worked on animations, including an <a href="http://jakevdp.github.io/blog/2013/05/12/embedding-matplotlib-animations/">HTML5 embedding</a> and a <a href="http://jakevdp.github.io/blog/2013/05/19/a-javascript-viewer-for-matplotlib-animations/">Javascript Viewer</a>. I have worked on <a href="http://jakevdp.github.io/blog/2013/06/01/ipython-notebook-javascript-python-communication/">javascript/python kernel interaction</a> and <a href="http://jakevdp.github.io/blog/2013/12/05/static-interactive-widgets/">static javascript widgets</a>. But I would say that the holy grail of interactive data visualization in the IPython notebook is, as I've <a href="http://jakevdp.github.io/blog/2013/03/23/matplotlib-and-the-future-of-visualization-in-python/">mentioned previously</a>, a truly interactive in-browser matplotlib display.</p>
-<p>There are many people pushing in this direction in the Python world. <a href="http://continuum.io/blog/painless_streaming_plots_w_bokeh">Bokeh</a> and <a href="https://plot.ly/">Plotly</a> are new visualization packages which have built Python APIs from scratch. The demos are beautiful and impressive, and the APIs are clean and intuitive. But, because matplotlib is so well-established in the Python world, it would be nice to be able to continue using it even in the age of browser-based visualization. To this end, some of the matplotlib core devs have been working on a <a href="http://mdboom.github.io/blog/2012/10/11/matplotlib-in-the-browser-its-coming/">WebGL viewer</a> for matplotlib figures. I've seen a working demo, and it's very cool, but last I heard it still has a long way to go.</p>
-<p>I've been wondering for a while whether it might be possible to create a solution using D3.js. D3 (short for <a href="http://d3js.org/">data-driven documents</a>) is a framework which facilitates the easy creation and manipulation of groups of HTML objects. Combined with the native SVG support of modern web browsers, it provides an extremely powerful and flexible low-level interface to creating interactive graphics on the web. I've long wondered what it would take to write a D3 backend or frontend for matplotlib, but I'd never experimented with the idea. It was a couple weeks ago at <a href="http://seattle.beerandcode.org/">Seattle Beer &amp;&amp; Code</a> meetup that I chatted with some expert Javascript hackers who pointed out where I might start.</p>
-<p>I started to try things out, and over the course of a few late nights, came up with a first attempt at a partial interactive D3 viewer for matplotlib images: the result is the <code>mpld3</code> package, available on <a href="http://github.com/jakevdp/mpld3">my GitHub page</a>.</p>
+<p>I&#39;ve spent a lot of time recently attempting to push the boundaries of tools for interactive data exploration within the IPython notebook.  I have worked on animations, including an <a href="http://jakevdp.github.io/blog/2013/05/12/embedding-matplotlib-animations/">HTML5 embedding</a> and a <a href="http://jakevdp.github.io/blog/2013/05/19/a-javascript-viewer-for-matplotlib-animations/">Javascript Viewer</a>.  I have worked on <a href="http://jakevdp.github.io/blog/2013/06/01/ipython-notebook-javascript-python-communication/">javascript/python kernel interaction</a> and <a href="http://jakevdp.github.io/blog/2013/12/05/static-interactive-widgets/">static javascript widgets</a>.  But I would say that the holy grail of interactive data visualization in the IPython notebook is, as I&#39;ve <a href="http://jakevdp.github.io/blog/2013/03/23/matplotlib-and-the-future-of-visualization-in-python/">mentioned previously</a>, a truly interactive in-browser matplotlib display.</p>
+<p>There are many people pushing in this direction in the Python world. <a href="http://continuum.io/blog/painless_streaming_plots_w_bokeh">Bokeh</a> and <a href="https://plot.ly/">Plotly</a> are new visualization packages which have built Python APIs from scratch.  The demos are beautiful and impressive, and the APIs are clean and intuitive.  But, because matplotlib is so well-established in the Python world, it would be nice to be able to continue using it even in the age of browser-based visualization. To this end, some of the matplotlib core devs have been working on a <a href="http://mdboom.github.io/blog/2012/10/11/matplotlib-in-the-browser-its-coming/">WebGL viewer</a> for matplotlib figures.  I&#39;ve seen a working demo, and it&#39;s very cool, but last I heard it still has a long way to go.</p>
+<p>I&#39;ve been wondering for a while whether it might be possible to create a solution using D3.js.  D3 (short for <a href="http://d3js.org/">data-driven documents</a>) is a framework which facilitates the easy creation and manipulation of groups of HTML objects.  Combined with the native SVG support of modern web browsers, it provides an extremely powerful and flexible low-level interface to creating interactive graphics on the web.  I&#39;ve long wondered what it would take to write a D3 backend or frontend for matplotlib, but I&#39;d never experimented with the idea. It was a couple weeks ago at <a href="http://seattle.beerandcode.org/">Seattle Beer &amp;&amp; Code</a> meetup that I chatted with some expert Javascript hackers who pointed out where I might start.</p>
+<p>I started to try things out, and over the course of a few late nights, came up with a first attempt at a partial interactive D3 viewer for matplotlib images: the result is the <code>mpld3</code> package, available on <a href="http://github.com/jakevdp/mpld3">my GitHub page</a>.  </p>
 </div>
   <footer>
     <a rel="full-article" href="http://jakevdp.github.io/blog/2013/12/19/a-d3-viewer-for-matplotlib/">Read On &crarr;</a>
@@ -2024,7 +2058,7 @@ jQuery(document).ready(function($) {
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Jake Vanderplas -
+    Copyright &copy;  2012-2014  - Jake Vanderplas -
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
     <script type="text/javascript">
@@ -2049,7 +2083,7 @@ jQuery(document).ready(function($) {
 	  var disqus_shortname = 'pythonicperambulations';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-	    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
 	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 	   })();
 	</script>

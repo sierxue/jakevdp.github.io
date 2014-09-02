@@ -1777,7 +1777,7 @@ jQuery(document).ready(function($) {
 </ul>
 
 
-<form action="http://google.com/search" method="get">
+<form action="//google.com/search" method="get">
   <fieldset role="search">
     <input type="hidden" name="q" value="site:jakevdp.github.io" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
@@ -1798,33 +1798,43 @@ jQuery(document).ready(function($) {
 </header>
 
   <div class="entry-content"><p>
-<div class="text_cell_render border-box-sizing rendered_html">
-
-<p><em>Update: the matplotlib pull request has been merged! See</em> <a href="http://jakevdp.github.io/blog/2013/07/10/XKCD-plots-in-matplotlib/"><em>This post</em></a> <em>for a description of the XKCD functionality now built-in to matplotlib!</em></p>
-<p>One of the problems I've had with typical matplotlib figures is that everything in them is so precise, so perfect. For an example of what I mean, take a look at this figure:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>
+<em>Update: the matplotlib pull request has been merged!  See</em>
+<a href="http://jakevdp.github.io/blog/2013/07/10/XKCD-plots-in-matplotlib/"><em>This post</em></a>
+<em>for a description of the XKCD functionality now built-in to matplotlib!</em></p>
+<p>One of the problems I&#39;ve had with typical matplotlib figures is that everything in them is so precise, so perfect.  For an example of what I mean, take a look at this figure:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[1]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
 <span class="n">Image</span><span class="p">(</span><span class="s">&#39;http://jakevdp.github.com/figures/xkcd_version.png&#39;</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[1]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_png output_subarea output_pyout">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbAAAAEgCAYAAADVKCZpAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXd4FGXXxu/ZTYP0RkvoJKH3IvAivQsiINIEgUAsgPIJ
 Cq8IAgroqxRRUJpSpCO9ifQSpEgNvYYSCJDek93z/XEyuwkkIWV3Zjd5fte11yxbZu5ZsnvPc57z
@@ -2321,39 +2331,49 @@ s2rk5MmTpNFo6PPPPyciotOnT9cq5L8+YETiVK1S0ENLHQKB4OnIy8tDZGQkAgIC0K9fP7XNeSw2
 b96M3NxcvP3222qb0mARAiYQCASCBokIoxcIBAJBg0QImEAgEAgaJELABAKBQNAgEQImEAgEggaJ
 EDCBQCAQNEiEgAkEAoGgQSIETCAQCAQNEiFgAoFAIGiQCAETCAQCQYPk/wEPvRJNIO9OCwAAAABJ
 RU5ErkJggg==
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Sometimes when showing schematic plots, this is the type of figure I want to display. But drawing it by hand is a pain: I'd rather just use matplotlib. The problem is, matplotlib is a bit too precise. Attempting to duplicate this figure in matplotlib leads to something like this: </p>
+<p>Sometimes when showing schematic plots, this is the type of figure I want to display.  But drawing it by hand is a pain: I&#39;d rather just use matplotlib.  The problem is, matplotlib is a bit too precise.  Attempting to duplicate this figure in matplotlib leads to something like this:
+</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[2]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">Image</span><span class="p">(</span><span class="s">&#39;http://jakevdp.github.com/figures/mpl_version.png&#39;</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[2]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_png output_subarea output_pyout">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbAAAAEgCAYAAADVKCZpAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3Xl4zFcXB/DvhNSaPURksQURO0FFkbe11ZLal9q3KkWp
 Fm1p6WIpqkW19p0Q+5ZYm1BEbC2VEkEWiS1EZJVkct8/DkNIyDIzd34z5/M8edokk5kzkfmdufee
@@ -2690,36 +2710,77 @@ f/75JyIjIzXfi4qKQnBwMABg48aNaN68OapXr4779+9rvp6RkfHaNTbGTBUnMMbyae3atShWrBh6
 m2Pr1q2YNGkS6tWrh/r16+PUqVOv3C9jpo6LOBhjjCkSj8AYY4wpEicwxhhjisQJjDHGmCJxAmOM
 MaZInMAYY4wpEicwxhhjisQJjDHGmCJxAmOMMaZInMAYY4wpEicwxhhjivR/vfqsjLsSRhIAAAAA
 SUVORK5CYII=
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>It just doesn't have the same effect. Matplotlib is great for scientific plots, but sometimes you don't want to be so precise.</p>
-<p>This subject has recently come up on the matplotlib mailing list, and started some interesting discussions. As near as I can tell, this started with a thread on a <a href="http://mathematica.stackexchange.com/questions/11350/xkcd-style-graphs">mathematica list</a> which prompted a thread on the <a href="http://matplotlib.1069221.n5.nabble.com/XKCD-style-graphs-td39226.html">matplotlib list</a> wondering if the same could be done in matplotlib.</p>
-<p>Damon McDougall offered a quick <a href="http://www.mail-archive.com/matplotlib-users@lists.sourceforge.net/msg25499.html">solution</a> which was improved by Fernando Perez in <a href="http://nbviewer.ipython.org/3835181/">this notebook</a>, and within a few days there was a <a href="https://github.com/matplotlib/matplotlib/pull/1329">matplotlib pull request</a> offering a very general way to create sketch-style plots in matplotlib. Only a few days from a cool idea to a working implementation: this is one of the most incredible aspects of package development on github.</p>
-<p>The pull request looks really nice, but will likely not be included in a released version of matplotlib until at least version 1.3. In the mean-time, I wanted a way to play around with these types of plots in a way that is compatible with the current release of matplotlib. To do that, I created the following code:</p>
+<p>It just doesn&#39;t have the same effect.  Matplotlib is great for scientific plots, but sometimes you don&#39;t want to be so precise.</p>
+<p>This subject has recently come up on the matplotlib mailing list, and started some interesting discussions.
+As near as I can tell, this started with a thread on a
+<a href="http://mathematica.stackexchange.com/questions/11350/xkcd-style-graphs">mathematica list</a>
+which prompted a thread on the <a href="http://matplotlib.1069221.n5.nabble.com/XKCD-style-graphs-td39226.html">matplotlib list</a>
+wondering if the same could be done in matplotlib.</p>
+<p>Damon McDougall offered a quick
+<a href="http://www.mail-archive.com/matplotlib-users@lists.sourceforge.net/msg25499.html">solution</a>
+which was improved by Fernando Perez in <a href="http://nbviewer.ipython.org/3835181/">this notebook</a>, and
+within a few days there was a <a href="https://github.com/matplotlib/matplotlib/pull/1329">matplotlib pull request</a> offering a very general
+way to create sketch-style plots in matplotlib.  Only a few days from a cool idea to a
+working implementation: this is one of the most incredible aspects of package development on github.</p>
+<p>The pull request looks really nice, but will likely not be included in a released version of
+matplotlib until at least version 1.3.  In the mean-time, I wanted a way to play around with
+these types of plots in a way that is compatible with the current release of matplotlib.  To do that,
+I created the following code:</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="The-Code:-XKCDify">The Code: XKCDify<a class="anchor-link" href="#The-Code:-XKCDify">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>XKCDify will take a matplotlib <code>Axes</code> instance, and modify the plot elements in-place to make them look hand-drawn. First off, we'll need to make sure we have the Humor Sans font. It can be downloaded using the command below.</p>
-<p>Next we'll create a function <code>xkcd_line</code> to add jitter to lines. We want this to be very general, so we'll normalize the size of the lines, and use a low-pass filter to add correlated noise, perpendicular to the direction of the line. There are a few parameters for this filter that can be tweaked to customize the appearance of the jitter.</p>
-<p>Finally, we'll create a function which accepts a matplotlib axis, and calls <code>xkcd_line</code> on all lines in the axis. Additionally, we'll switch the font of all text in the axes, and add some background lines for a nice effect where lines cross. We'll also draw axes, and move the axes labels and titles to the appropriate location.</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>XKCDify will take a matplotlib <code>Axes</code> instance, and modify the plot elements in-place to make
+them look hand-drawn.
+First off, we&#39;ll need to make sure we have the Humor Sans font.
+It can be downloaded using the command below.</p>
+<p>Next we&#39;ll create a function <code>xkcd_line</code> to add jitter to lines.  We want this to be very general, so
+we&#39;ll normalize the size of the lines, and use a low-pass filter to add correlated noise, perpendicular
+to the direction of the line.  There are a few parameters for this filter that can be tweaked to
+customize the appearance of the jitter.</p>
+<p>Finally, we&#39;ll create a function which accepts a matplotlib axis, and calls <code>xkcd_line</code> on
+all lines in the axis.  Additionally, we&#39;ll switch the font of all text in the axes, and add
+some background lines for a nice effect where lines cross.  We&#39;ll also draw axes, and move the
+axes labels and titles to the appropriate location.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[3]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">XKCD plot generator</span>
 <span class="sd">-------------------</span>
@@ -2985,33 +3046,49 @@ In&nbsp;[3]:
 
 </div>
 </div>
+</div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Testing-it-Out">Testing it Out<a class="anchor-link" href="#Testing-it-Out">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's test this out with a simple plot. We'll plot two curves, add some labels, and then call <code>XKCDify</code> on the axis. I think the results are pretty nice!</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let&#39;s test this out with a simple plot.  We&#39;ll plot two curves, add some labels,
+and then call <code>XKCDify</code> on the axis.  I think the results are pretty nice!</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[4]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%</span><span class="k">pylab</span> <span class="n">inline</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 
 Welcome to pylab, a matplotlib-based Python environment [backend: module://IPython.zmq.pylab.backend_inline].
@@ -3025,12 +3102,13 @@ For more information, type &apos;help(pylab)&apos;.
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[5]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="n">ax</span> <span class="o">=</span> <span class="n">pylab</span><span class="o">.</span><span class="n">axes</span><span class="p">()</span>
@@ -3056,27 +3134,28 @@ In&nbsp;[5]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[5]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 &lt;matplotlib.axes.AxesSubplot at 0x2fecbd0&gt;
 </pre>
-
-</div>
 </div>
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+</div>
+
+<div class="output_area"><div class="prompt"></div>
 
 
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAb4AAAEvCAYAAAA6t6QPAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXd4FNXXx7+zm00PSSAhhIQivTcpAkpvAhEQBQWkSywg
 oij40lTqT0GsqFSlSe+R3luQXgKE0EtCT+/ZPe8fJ7ObQIBssrszm9zP8+wzk+zu3DPJ7nznnnuK
@@ -3577,43 +3656,59 @@ nY3IyEj4+/sjICBA6XAeyVdffYVbt27h7bffVjqUJw4nPsYYY3UKT2dgjDFWp3DiY4wxVqdw4mOM
 MVancOJjjDFWp3DiY4wxVqdw4mOMMVancOJjjDFWp3DiY4wxVqdw4mOMMVancOJjjDFWp3DiY4wx
 Vqdw4mOMMVancOJjjDFWp3DiY4wxVqdw4mOMMVancOJjjDFWp/w/8uJgOFS3f4YAAAAASUVORK5C
 YII=
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Duplicating-an-XKCD-Comic">Duplicating an XKCD Comic<a class="anchor-link" href="#Duplicating-an-XKCD-Comic">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now let's see if we can use this to replicated an XKCD comic in matplotlib. This is a good one:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now let&#39;s see if we can use this to replicated an XKCD comic in matplotlib.
+This is a good one:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[6]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">Image</span><span class="p">(</span><span class="s">&#39;http://imgs.xkcd.com/comics/front_door.png&#39;</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[6]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_png output_subarea output_pyout">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcoAAAEzCAIAAAA+Y9RaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAK
 T2lDQ1BQaG90b3Nob3AgSUNDIHByb2ZpbGUAAHjanVNnVFPpFj333vRCS4iAlEtvUhUIIFJCi4AU
 kSYqIQkQSoghodkVUcERRUUEG8igiAOOjoCMFVEsDIoK2AfkIaKOg6OIisr74Xuja9a89+bN/rXX
@@ -4361,24 +4456,33 @@ GZobzbnaPAMDo1cGBgYGRq+MXhkYGBgYvTIwMDAwemVgYGBg9MrolYGBgYHRKwMDAwOjVwYGBgZG
 r4xeGRgYGBi9MjAwMDB6ZWBgYGD0yuiVgYGBgdErAwMDA6NXBgYGBkavDAyOivLyclYIDIxeGRgY
 GBgYvTIwMDAwemVgYGBg9MrAwMDA6PUmvT711FO9GBgYGBgaCc8880wVtw4bNuwlBgYGBoZGxdCh
 Q/8f50+l/lmW+7QAAAAASUVORK5CYII=
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>With the new <code>XKCDify</code> function, this is relatively easy to replicate. The results are not exactly identical, but I think it definitely gets the point across!</p>
+<p>With the new <code>XKCDify</code> function, this is relatively easy to replicate.  The results
+are not exactly identical, but I think it definitely gets the point across!</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[7]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># Some helper functions</span>
 <span class="k">def</span> <span class="nf">norm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">sigma</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
@@ -4426,27 +4530,28 @@ In&nbsp;[7]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[7]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 &lt;matplotlib.axes.AxesSubplot at 0x2fef210&gt;
 </pre>
-
-</div>
 </div>
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+</div>
+
+<div class="output_area"><div class="prompt"></div>
 
 
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAdsAAAE2CAYAAAApoDhoAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXdYVMfXx793KUsvCkgRBRTEgiY27GJDwQK2aDSK7WeM
 NRpNTExiNORVkxg1iTEmigWN2EVBAQsiVixRjA0rIlWQqnTO+8fl3uzCIgssLJr5PM8+u3vv3Jkz
@@ -5176,19 +5281,35 @@ CCGEcDPpRhZCCCHcTMJWCCGEcDMJWyGEEMLNJGyFEEIIN5OwFUIIIdxMwlYIIYRwMwlbIYQQws0k
 bIUQQgg3k7AVQggh3EzCVgghhHAzCVshhBDCzSRshRBCCDeTsBVCCCHcTMJWCCGEcDMJWyGEEMLN
 JGyFEEIIN5OwFUIIIdxMwlYIIYRwMwlbIYQQws0kbIUQQgg3k7AVQggh3EzCVgghhHAzCVshhBDC
 zSRshRBCCDeTsBVCCCHc7P8ALqdZZsQ8/nwAAAAASUVORK5CYII=
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Pretty good for a couple hours's work!</p>
-<p>I think the possibilities here are pretty limitless: this is going to be a hugely useful and popular feature in matplotlib, especially when the sketch artist PR is mature and part of the main package. I imagine using this style of plot for schematic figures in presentations where the normal crisp matplotlib lines look a bit too &quot;scientific&quot;. I'm giving a few talks at the end of the month... maybe I'll even use some of this code there.</p>
-<p>This post was written entirely in an IPython Notebook: the notebook file is available for download <a href="http://jakevdp.github.com/downloads/notebooks/XKCD_plots.ipynb">here</a>. For more information on blogging with notebooks in octopress, see my <a href="http://jakevdp.github.com/blog/2012/10/04/blogging-with-ipython/">previous post</a> on the subject.</p>
+<p>Pretty good for a couple hours&#39;s work!</p>
+<p>I think the possibilities here are pretty limitless: this is going to be a hugely
+useful and popular feature in matplotlib, especially when the sketch artist PR is mature
+and part of the main package.  I imagine using this style of plot for schematic figures
+in presentations where the normal crisp matplotlib lines look a bit too &quot;scientific&quot;.
+I&#39;m giving a few talks at the end of the month... maybe I&#39;ll even use some of
+this code there.</p>
+<p>This post was written entirely in an IPython Notebook: the notebook file is available for
+download <a href="http://jakevdp.github.com/downloads/notebooks/XKCD_plots.ipynb">here</a>.
+For more information on blogging with notebooks in octopress, see my
+<a href="http://jakevdp.github.com/blog/2012/10/04/blogging-with-ipython/">previous post</a>
+on the subject.</p>
+</div>
+</div>
 </div></p></div>
     <footer>
 <p class="meta">
@@ -5242,7 +5363,7 @@ zSRshRBCCDeTsBVCCCHc7P8ALqdZZsQ8/nwAAAAASUVORK5CYII=
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Jake Vanderplas -
+    Copyright &copy;  2012-2014  - Jake Vanderplas -
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
     <script type="text/javascript">
@@ -5270,7 +5391,7 @@ zSRshRBCCDeTsBVCCCHc7P8ALqdZZsQ8/nwAAAAASUVORK5CYII=
           var disqus_title = 'XKCD-style plots in Matplotlib';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-	    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
 	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 	   })();
 	</script>

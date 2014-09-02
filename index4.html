@@ -1777,7 +1777,7 @@ jQuery(document).ready(function($) {
 </ul>
 
 
-<form action="http://google.com/search" method="get">
+<form action="//google.com/search" method="get">
   <fieldset role="search">
     <input type="hidden" name="q" value="site:jakevdp.github.io" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
@@ -1828,14 +1828,21 @@ the process takes some logic and quick thinking.</p>
 </header>
 
   <div class="entry-content">
-<p>Most readers are aware that Python is an object-oriented language. By object-oriented, we mean that Python can define <em>classes</em>, which bundle <strong>data</strong> and <strong>functionality</strong> into one entity. For example, we may create a class <code>IntContainer</code> which stores an integer and allows certain operations to be performed:</p>
+Most readers are aware that Python is an object-oriented language.  By
+object-oriented, we mean that Python can define <em>classes</em>, which bundle
+<strong>data</strong> and <strong>functionality</strong> into one entity.  For example, we may
+create a class <code>IntContainer</code> which stores an integer and allows
+certain operations to be performed:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[1]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">class</span> <span class="nc">IntContainer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">i</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
@@ -1846,14 +1853,16 @@ In&nbsp;[1]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[2]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">ic</span> <span class="o">=</span> <span class="n">IntContainer</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">ic</span><span class="o">.</span><span class="n">add_one</span><span class="p">()</span>
 <span class="k">print</span><span class="p">(</span><span class="n">ic</span><span class="o">.</span><span class="n">i</span><span class="p">)</span>
@@ -1861,13 +1870,14 @@ In&nbsp;[2]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 3
 
@@ -1879,9 +1889,20 @@ In&nbsp;[2]:
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This is a bit of a silly example, but shows the fundamental nature of classes: their ability to bundle data and operations into a single <em>object</em>, which leads to cleaner, more manageable, and more adaptable code. Additionally, classes can inherit properties from parents and add or specialize attributes and methods. This <em>object-oriented</em> approach to programming can be very intuitive and powerful.</p>
-<p>What many do not realize, though, is that quite literally <a href="http://www.diveintopython.net/getting_to_know_python/everything_is_an_object.html"><em>everything</em></a> in the Python language is an object.</p>
+<p>This is a bit of a silly example, but shows the fundamental nature of
+classes: their ability to bundle data and operations into a single
+<em>object</em>, which leads to cleaner, more manageable, and more adaptable code.
+Additionally, classes can inherit properties from parents and add or
+specialize attributes and methods.  This <em>object-oriented</em>
+approach to programming can be very intuitive and powerful.</p>
+<p>What many do not realize, though, is that quite literally
+<a href="http://www.diveintopython.net/getting_to_know_python/everything_is_an_object.html"><em>everything</em></a>
+in the Python language is an object.</p>
 </div>
   <footer>
     <a rel="full-article" href="http://jakevdp.github.io/blog/2012/12/01/a-primer-on-python-metaclasses/">Read On &crarr;</a>
@@ -1918,9 +1939,20 @@ interaction.  Check out the demonstration here:</p>
 </header>
 
   <div class="entry-content">
-<p>Matplotlib is a powerful framework, but its 3D capabilities still have a lot of room to grow. The <a href="http://matplotlib.org/mpl_toolkits/mplot3d/index.html">mplot3d</a> toolkit allows for several kinds of 3D plotting, but the ability to create and rotate solid 3D objects is hindered by the inflexibility of the <code>zorder</code> attribute: because it is not updated when the view is rotated, things in the &quot;back&quot; will cover things in the &quot;front&quot;, obscuring them and leading to very unnatural-looking results.</p>
-<p>I decided to see if I could create a simple script that addresses this. Though it would be possible to use the built-in <code>mplot3d</code> architecture to take care of rotating and projecting the points, I decided to do it from scratch for the sake of my own education.</p>
-<p>We'll step through it below: by the end of this post we will have created a 3D viewer in matplotlib which I think is quite nice. </div>
+Matplotlib is a powerful framework, but its 3D capabilities still have
+a lot of room to grow. The <a href="http://matplotlib.org/mpl_toolkits/mplot3d/index.html">mplot3d</a>
+toolkit allows for several kinds of 3D plotting, but the ability to create
+and rotate solid 3D objects is hindered by the inflexibility of the <code>zorder</code> attribute:
+because it is not updated when the view is rotated, things in the &quot;back&quot; will cover
+things in the &quot;front&quot;, obscuring them and leading to very unnatural-looking results.
+
+I decided to see if I could create a simple script that addresses this.  Though it would
+be possible to use the built-in <code>mplot3d</code> architecture to take care of rotating and
+projecting the points, I decided to do it from scratch for the sake of my own education.
+
+We&#39;ll step through it below: by the end of this post we will have created a 3D viewer in
+matplotlib which I think is quite nice.
+</div>
   <footer>
     <a rel="full-article" href="http://jakevdp.github.io/blog/2012/11/24/simple-3d-visualization-in-matplotlib/">Read On &crarr;</a>
   </footer>
@@ -1934,8 +1966,15 @@ interaction.  Check out the demonstration here:</p>
 </header>
 
   <div class="entry-content">
-<p>The recent <a href="http://sourceforge.net/projects/scipy/files/">0.11 release</a> of scipy includes several new features, one of which is the <a href="http://docs.scipy.org/doc/scipy/reference/sparse.csgraph.html">sparse graph submodule</a> which I contributed, with help from other developers. I'm pretty excited about this: there are some classic algorithms implemented, and it will open up whole new realms of computational possibilities in Python.</p>
-<p>Before we start, I should say: this post is based on a <a href="http://pyvideo.org/video/1346/lightning-talks-wednesday">lightning talk</a> I gave at Scipy 2012, and some of the material below comes from a <a href="http://docs.scipy.org/doc/scipy/reference/tutorial/csgraph.html">tutorial</a> I wrote for the scipy documentation. </div>
+The recent <a href="http://sourceforge.net/projects/scipy/files/">0.11 release</a> of scipy includes several new features,
+one of which is the <a href="http://docs.scipy.org/doc/scipy/reference/sparse.csgraph.html">sparse graph submodule</a>
+which I contributed, with help from other developers.  I&#39;m pretty excited about this: there are some
+classic algorithms implemented, and it will open up whole new realms of computational possibilities in Python.
+
+Before we start, I should say: this post is based on a <a href="http://pyvideo.org/video/1346/lightning-talks-wednesday">lightning talk</a> I gave
+at Scipy 2012, and some of the material below comes from a <a href="http://docs.scipy.org/doc/scipy/reference/tutorial/csgraph.html">tutorial</a>
+I wrote for the scipy documentation.
+</div>
   <footer>
     <a rel="full-article" href="http://jakevdp.github.io/blog/2012/10/14/scipy-sparse-graph-module-word-ladders/">Read On &crarr;</a>
   </footer>
@@ -1949,31 +1988,37 @@ interaction.  Check out the demonstration here:</p>
 </header>
 
   <div class="entry-content">
-<p><em>Update: the matplotlib pull request has been merged! See</em> <a href="http://jakevdp.github.io/blog/2013/07/10/XKCD-plots-in-matplotlib/"><em>This post</em></a> <em>for a description of the XKCD functionality now built-in to matplotlib!</em></p>
-<p>One of the problems I've had with typical matplotlib figures is that everything in them is so precise, so perfect. For an example of what I mean, take a look at this figure:</p>
+<em>Update: the matplotlib pull request has been merged!  See</em>
+<a href="http://jakevdp.github.io/blog/2013/07/10/XKCD-plots-in-matplotlib/"><em>This post</em></a>
+<em>for a description of the XKCD functionality now built-in to matplotlib!</em></p>
+<p>One of the problems I&#39;ve had with typical matplotlib figures is that everything in them is so precise, so perfect.  For an example of what I mean, take a look at this figure:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[1]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
 <span class="n">Image</span><span class="p">(</span><span class="s">&#39;http://jakevdp.github.com/figures/xkcd_version.png&#39;</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[1]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_png output_subarea output_pyout">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbAAAAEgCAYAAADVKCZpAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXd4FGXXxu/ZTYP0RkvoJKH3IvAivQsiINIEgUAsgPIJ
 Cq8IAgroqxRRUJpSpCO9ifQSpEgNvYYSCJDek93z/XEyuwkkIWV3Zjd5fte11yxbZu5ZsnvPc57z
@@ -2470,17 +2515,23 @@ s2rk5MmTpNFo6PPPPyciotOnT9cq5L8+YETiVK1S0ENLHQKB4OnIy8tDZGQkAgIC0K9fP7XNeSw2
 b96M3NxcvP3222qb0mARAiYQCASCBokIoxcIBAJBg0QImEAgEAgaJELABAKBQNAgEQImEAgEggaJ
 EDCBQCAQNEiEgAkEAoGgQSIETCAQCAQNEiFgAoFAIGiQCAETCAQCQYPk/wEPvRJNIO9OCwAAAABJ
 RU5ErkJggg==
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Sometimes when showing schematic plots, this is the type of figure I want to display. But drawing it by hand is a pain: I'd rather just use matplotlib. The problem is, matplotlib is a bit too precise. Attempting to duplicate this figure in matplotlib leads to something like this: </div>
+<p>Sometimes when showing schematic plots, this is the type of figure I want to display.  But drawing it by hand is a pain: I&#39;d rather just use matplotlib.  The problem is, matplotlib is a bit too precise.  Attempting to duplicate this figure in matplotlib leads to something like this:
+</div>
   <footer>
     <a rel="full-article" href="http://jakevdp.github.io/blog/2012/10/07/xkcd-style-plots-in-matplotlib/">Read On &crarr;</a>
   </footer>
@@ -2494,10 +2545,15 @@ RU5ErkJggg==
 </header>
 
   <div class="entry-content">
-<p>A few weeks ago, Fernando Perez, the creator of IPython, wrote a <a href="http://blog.fperez.org/2012/09/blogging-with-ipython-notebook.html">post</a> about blogging with IPython notebooks. I decided to take a stab at making this work in Octopress.</p>
-<p>I started by following Fernando's outline: I first went to <a href="http://github.com/ipython/nbconvert">http://github.com/ipython/nbconvert</a> and obtained the current version of the notebook converter. Running <code>nbconvert.py -f blogger-html filename.ipynb</code> produces a separate html and header file with the notebook content. I inserted the stylesheet info into my header (in octopress, the default location is <code>source/_includes/custom/head.html</code>) and copied the html directly into my post.</p>
-<p>I immediately encountered a problem. <code>nbconvert</code> uses global CSS classes and style markups, and some of these (notably the &quot;hightlight&quot; class and the <code>&lt;pre&gt;</code> tag formatting) conflict with styles defined in my octopress theme. The result was that every post in my blog ended up looking like an ugly hybrid of octopress and an ipython notebook. Not very nice.</p>
-<p>So I did some surgery. Admittedly, this is a terrible hack, but the following code takes the files output by nbconvert, slices them up, and creates a specific set of CSS classes for the notebook markup, such that there's no longer a conflict with the native octopress styles (you can download this script <a href="http://jakevdp.github.com/downloads/code/convert_notebook.py">here</a>): </div>
+A few weeks ago, Fernando Perez, the creator of IPython, wrote a <a href="http://blog.fperez.org/2012/09/blogging-with-ipython-notebook.html">post</a> about blogging with IPython notebooks.  I decided to take a stab at making this work in Octopress.
+
+I started by following Fernando&#39;s outline:  I first went to <a href="http://github.com/ipython/nbconvert"><a href="http://github.com/ipython/nbconvert">http://github.com/ipython/nbconvert</a></a> and obtained the current version of the notebook converter.  Running <code>nbconvert.py -f blogger-html filename.ipynb</code> produces a separate html and header file with the notebook content.  I inserted the stylesheet info into my header (in octopress, the default location is <code>source/_includes/custom/head.html</code>) and copied the html directly into my post.
+
+I immediately encountered a problem.  <code>nbconvert</code> uses global CSS classes and style markups, and some of these (notably the &quot;hightlight&quot; class and the <code>&lt;pre&gt;</code> tag formatting) conflict with styles defined in my octopress theme.  The result was that every post in my blog ended up looking like an ugly hybrid of octopress and an ipython notebook.  Not very nice.
+
+So I did some surgery.  Admittedly, this is a terrible hack, but the following code takes the files output by nbconvert, slices them up, and creates a specific set of CSS classes for the notebook markup, such that there&#39;s no longer a conflict with the native octopress styles
+(you can download this script <a href="http://jakevdp.github.com/downloads/code/convert_notebook.py">here</a>):
+</div>
   <footer>
     <a rel="full-article" href="http://jakevdp.github.io/blog/2012/10/04/blogging-with-ipython/">Read On &crarr;</a>
   </footer>
@@ -2628,7 +2684,7 @@ more to it than that: here we'll focus on histograms for simplicity).</p>
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Jake Vanderplas -
+    Copyright &copy;  2012-2014  - Jake Vanderplas -
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
     <script type="text/javascript">
@@ -2653,7 +2709,7 @@ more to it than that: here we'll focus on histograms for simplicity).</p>
 	  var disqus_shortname = 'pythonicperambulations';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-	    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
 	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 	   })();
 	</script>

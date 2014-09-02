@@ -1777,7 +1777,7 @@ jQuery(document).ready(function($) {
 </ul>
 
 
-<form action="http://google.com/search" method="get">
+<form action="//google.com/search" method="get">
   <fieldset role="search">
     <input type="hidden" name="q" value="site:jakevdp.github.io" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
@@ -1798,9 +1798,17 @@ jQuery(document).ready(function($) {
 </header>
 
   <div class="entry-content"><p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-
-<p>In 1970 the British Mathematician John Conway created his &quot;Game of Life&quot; -- a set of rules that mimics the chaotic yet patterned growth of a colony of biological organisms. The &quot;game&quot; takes place on a two-dimensional grid consisting of &quot;living&quot; and &quot;dead&quot; cells, and the rules to step from generation to generation are simple:</p>
+<p>
+In 1970 the British Mathematician John Conway created his &quot;Game of Life&quot; -- 
+a set of rules that mimics the chaotic yet
+patterned growth of a colony of biological organisms.  The &quot;game&quot; takes place on
+a two-dimensional grid consisting of &quot;living&quot; and &quot;dead&quot; cells, and
+the rules to step from generation to generation are simple:</p>
 <ul>
 <li><strong>Overpopulation:</strong> if a living cell is surrounded by more than three living cells, it dies.</li>
 <li><strong>Stasis:</strong> if a living cell is surrounded by two or three living cells, it survives.</li>
@@ -1809,19 +1817,46 @@ jQuery(document).ready(function($) {
 </ul>
 <p>By enforcing these rules in sequential steps, beautiful and unexpected patterns can appear.</p>
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>I was thinking about classic problems that could be used to demonstrate the effectiveness of Python for computing and visualizing dynamic phenomena, and thought back to a high school course I took where we had an assignment to implement a Game Of Life computation in C++. If only I'd had access to IPython and associated tools back then, my homework assignment would have been a whole lot easier!</p>
-<p>Here I'll use Python and NumPy to compute generational steps for the game of life, and use my <a href="http://github.com/jakevdp/JSAnimation">JSAnimation</a> package to animate the results. </p>
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Because the Game of Life is so simple, the time step can be computed rather tersely in Python. Here I implement two possibilities: one using generator expressions, and one using the <code>convolve2d</code> function from <code>scipy</code>. Note that neither of these are extremely performant: they involve creating several temporary arrays, and will not work well for large problems with many time steps. Nevertheless, the simplicity makes these functions very attractive, and they are absolutely sufficient for the small examples we'll consider here:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>I was thinking about classic problems that could be used to demonstrate the effectiveness
+of Python for computing and visualizing dynamic phenomena, and thought back to a high school
+course I took where we had an assignment to implement a Game Of Life computation in C++.
+If only I&#39;d had access to IPython and associated tools back then, my homework assignment
+would have been a whole lot easier!</p>
+<p>Here I&#39;ll use Python and NumPy to compute generational steps for the game of life, and use
+my <a href="http://github.com/jakevdp/JSAnimation">JSAnimation</a> package to animate the results.
+</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Because the Game of Life is so simple, the time step can be computed rather
+tersely in Python.  Here I implement two possibilities: one using generator expressions,
+and one using the <code>convolve2d</code> function from <code>scipy</code>.  Note that neither of
+these are extremely performant: they involve creating several temporary arrays,
+and will not work well for large problems with many time steps.  Nevertheless,
+the simplicity makes these functions very attractive, and they are absolutely sufficient
+for the small examples we&#39;ll consider here:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[1]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 
 <span class="k">def</span> <span class="nf">life_step_1</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
@@ -1842,32 +1877,53 @@ In&nbsp;[1]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Note that we've made a choice here about the game boundary. Classically, the game takes place on an infinite, flat plane. Here, for simplicity, we've used a torroidal geometry (likely familiar to players of 1980s computer games like Asteroids), where the grid wraps from top to bottom and left to right.</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now we'll use the matplotlib animation submodule to visualize the results (for a tutorial on matplotlib animations, see my <a href="http://jakevdp.github.io/">previous post</a> on the subject). We'll make use of my <code>JSAnimation</code> package, which you can read about <a href="http://jakevdp.github.io">here</a>.</p>
+<p>Note that we&#39;ve made a choice here about the game boundary.  Classically, the
+game takes place on an infinite, flat plane.  Here, for simplicity, we&#39;ve used
+a torroidal geometry (likely familiar to players of 1980s computer games like
+Asteroids), where the grid wraps from top to bottom and left to right.</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we&#39;ll use the matplotlib animation submodule to visualize the results
+(for a tutorial on matplotlib animations, see my <a href="http://jakevdp.github.io/">previous post</a>
+on the subject).  We&#39;ll make use of my <code>JSAnimation</code> package, which you
+can read about <a href="http://jakevdp.github.io">here</a>.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[2]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%</span><span class="k">pylab</span> <span class="n">inline</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 Populating the interactive namespace from numpy and matplotlib
 
@@ -1879,12 +1935,13 @@ Populating the interactive namespace from numpy and matplotlib
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[3]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># JSAnimation import available at https://github.com/jakevdp/JSAnimation</span>
 <span class="kn">from</span> <span class="nn">JSAnimation.IPython_display</span> <span class="kn">import</span> <span class="n">display_animation</span><span class="p">,</span> <span class="n">anim_to_html</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">animation</span>
@@ -1939,17 +1996,25 @@ In&nbsp;[3]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's give this a try with a random starting field:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let&#39;s give this a try with a random starting field:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[4]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
 <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
@@ -1959,16 +2024,16 @@ In&nbsp;[4]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[4]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
-<div class="output_html rendered_html">
+<div class="output_html rendered_html output_subarea output_pyout">
 
 <script language="javascript">
   /* Define the Animation class */
@@ -2912,28 +2977,51 @@ gg==\
 </div>
 
 </div>
-</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>With the above random seed, the cells die off after about 40 generations. In the process, some very interesting patterns show up: there are static patterns, oscillating patterns, and a lot of spontaneous symmetry. Let's explore a few of the well-known patterns here:</p>
+<p>With the above random seed, the cells die off after about 40 generations.
+In the process, some very interesting patterns show up: there are static
+patterns, oscillating patterns, and a lot of spontaneous symmetry.  Let&#39;s
+explore a few of the well-known patterns here:</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Static-Configurations">Static Configurations<a class="anchor-link" href="#Static-Configurations">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Several static configurations are known: some of the smallest static units are shown here. We'll generate a few frames just to show that they are in fact static.</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Several static configurations are known: some of the smallest static units
+are shown here.  We&#39;ll generate a few frames just to show that they are
+in fact static.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[5]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">6</span><span class="p">,</span> <span class="mi">21</span><span class="p">))</span>
 <span class="n">X</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span><span class="mi">9</span><span class="p">]</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
@@ -2952,16 +3040,16 @@ In&nbsp;[5]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[5]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
-<div class="output_html rendered_html">
+<div class="output_html rendered_html output_subarea output_pyout">
 
 <script language="javascript">
   /* Define the Animation class */
@@ -3224,25 +3312,39 @@ OcIF5AgXkCNcQI5wATnCBeQIF5DzAqMgPaCuw6/dAAAAAElFTkSuQmCC\
 </div>
 
 </div>
-</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Some-simple-oscillators-(The-&quot;Blinker&quot;-and-the-&quot;Toad&quot;)">Some simple oscillators (The "Blinker" and the "Toad")<a class="anchor-link" href="#Some-simple-oscillators-(The-&quot;Blinker&quot;-and-the-&quot;Toad&quot;)">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>An oscillator is a pattern that returns to its initial configuration after some number of steps. The static patterns shown above could be thought of as oscillators with a period of one. Here are two commonly-seen period-two oscillators:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>An oscillator is a pattern that returns to its initial configuration after some number
+of steps.  The static patterns shown above could be thought of as oscillators with a
+period of one.  Here are two commonly-seen period-two oscillators:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[6]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">blinker</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
 <span class="n">toad</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
         <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
@@ -3255,16 +3357,16 @@ In&nbsp;[6]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[6]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
-<div class="output_html rendered_html">
+<div class="output_html rendered_html output_subarea output_pyout">
 
 <script language="javascript">
   /* Define the Animation class */
@@ -3529,25 +3631,38 @@ CI+E8EgIj4TwSAiPhPBICI+E8EgIj4TwSAiPxAGqfRo68SxeBQAAAABJRU5ErkJggg==\
 </div>
 
 </div>
-</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Another-Oscillator:-The-&quot;Pulsar&quot;">Another Oscillator: The "Pulsar"<a class="anchor-link" href="#Another-Oscillator:-The-&quot;Pulsar&quot;">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>More complicated oscillators exist. Here's a period-three oscillator known as &quot;The Pulsar&quot;, which displays some appealing symmetry.</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>More complicated oscillators exist.  Here&#39;s a period-three oscillator known as
+&quot;The Pulsar&quot;, which displays some appealing symmetry.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[7]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">17</span><span class="p">,</span> <span class="mi">17</span><span class="p">))</span>
 <span class="n">X</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">X</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
@@ -3559,16 +3674,16 @@ In&nbsp;[7]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[7]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
-<div class="output_html rendered_html">
+<div class="output_html rendered_html output_subarea output_pyout">
 
 <script language="javascript">
   /* Define the Animation class */
@@ -3867,25 +3982,40 @@ YII=\
 </div>
 
 </div>
-</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="The-&quot;Glider&quot;">The "Glider"<a class="anchor-link" href="#The-&quot;Glider&quot;">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>There are other classes of object which oscillate, but also move while oscillating. One of the earliest seen is the &quot;Glider&quot;, which after 4 steps returns to its initial configuration, but shifted by one cell in both the x and y direction. This is a configuration that often emerges from random starting points.</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>There are other classes of object which oscillate, but also move while oscillating.
+One of the earliest seen is the &quot;Glider&quot;, which after 4 steps returns to its
+initial configuration, but shifted by one cell in both the x and y direction.
+This is a configuration that often emerges from random starting points.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[8]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">glider</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
           <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
           <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span>
@@ -3896,16 +4026,16 @@ In&nbsp;[8]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[8]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
-<div class="output_html rendered_html">
+<div class="output_html rendered_html output_subarea output_pyout">
 
 <script language="javascript">
   /* Define the Animation class */
@@ -4426,25 +4556,42 @@ MUPEDHkBpR0OmbRbt2cAAAAASUVORK5CYII=\
 </div>
 
 </div>
-</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Unbounded-Growth">Unbounded Growth<a class="anchor-link" href="#Unbounded-Growth">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>An early question posed about the Game of Life was whether any configurations exist which result in asymptotically unbounded growth. It was quickly found that the answer was yes. Though it wasn't the first discovered, the following is one of the most compact configurations which display unbounded growth. Note that this claim is precisely true only on an infinite game board: using a torroidal (i.e. wrapping) geometry like we do here will lead to different results, but the first several hundred generations are unaffected:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>An early question posed about the Game of Life was whether any configurations exist which
+result in asymptotically unbounded growth.  It was quickly found that the answer was yes.  Though
+it wasn&#39;t the first discovered, the following is one of the most compact configurations which
+display unbounded growth.  Note that this claim is precisely true only on an infinite game
+board: using a torroidal (i.e. wrapping) geometry like we do here will lead to different
+results, but the first several hundred generations are unaffected:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[9]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">unbounded</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
              <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
              <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
@@ -4457,16 +4604,16 @@ In&nbsp;[9]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[9]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
-<div class="output_html rendered_html">
+<div class="output_html rendered_html output_subarea output_pyout">
 
 <script language="javascript">
   /* Define the Animation class */
@@ -6600,25 +6747,41 @@ AAEZAQIyAgRkBAjICBCQESAgI0BARoCAjAABGQECMl9zc3poEjtaVgAAAABJRU5ErkJggg==\
 </div>
 
 </div>
-</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="The-&quot;Gosper-Glider-Gun&quot;">The "Gosper Glider Gun"<a class="anchor-link" href="#The-&quot;Gosper-Glider-Gun&quot;">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The earliest known instance of unbounded growth is one of my favorite configurations: the &quot;Glider Gun&quot; discovered by Bill Gosper. It is an oscillating pattern that creates an infinite series of gliders. It still amazes me that something like this can even emerge from Conway's simple rules, but here it is. We'll stop after a couple hundred frames, but given an infinite game board this action would go on forever:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The earliest known instance of unbounded growth is one of my favorite configurations:
+the &quot;Glider Gun&quot; discovered by Bill Gosper.  It is an oscillating pattern that creates
+an infinite series of gliders.  It still amazes me that something like this can even
+emerge from Conway&#39;s simple rules, but here it is.  We&#39;ll stop after a couple hundred
+frames, but given an infinite game board this action would go on forever:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[10]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">glider_gun</span> <span class="o">=</span>\
 <span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
  <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
@@ -6638,16 +6801,16 @@ In&nbsp;[10]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[10]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
-<div class="output_html rendered_html">
+<div class="output_html rendered_html output_subarea output_pyout">
 
 <script language="javascript">
   /* Define the Animation class */
@@ -10763,36 +10926,82 @@ RAIKEP0CByGiHMnTTSIAAAAASUVORK5CYII=\
 </div>
 
 </div>
-</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Going-Further">Going Further<a class="anchor-link" href="#Going-Further">&#182;</a></h2>
 </div>
+</div>
+</div>
 
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Note that while the code above is well-suited for small explorations, it is probably not sufficient to do very large and long game of life computations. For that, I'd recommend <a href="http://golly.sourceforge.net/">Golly</a>, an open-source cross-platform package for computing and visualizing the Game of Life. It has some nice optimizations, including a blazing fast hash-based computation of generational steps for long-lived problems.</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Diving further in, you might come across other very cool patterns. One pattern, known as a &quot;Breeder&quot;, moves through space creating glider guns, which in turn create an endless series of gliders. Wikipedia has a <a href="http://en.wikipedia.org/wiki/File:Conways_game_of_life_breeder_animation.gif">great animation</a> of this in action:</p>
+<p>Note that while the code above is well-suited for small explorations,
+it is probably not sufficient to do very large and long game of life
+computations.  For that, I&#39;d recommend <a href="http://golly.sourceforge.net/">Golly</a>, an
+open-source cross-platform package for computing and visualizing the Game of Life.
+It has some nice optimizations, including a blazing fast hash-based computation of
+generational steps for long-lived problems.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Diving further in, you might come across other very cool patterns.  One pattern, known as a &quot;Breeder&quot;,
+moves through space creating glider guns, which in turn create an endless series of
+gliders.  Wikipedia has a <a href="http://en.wikipedia.org/wiki/File:Conways_game_of_life_breeder_animation.gif">great animation</a>
+of this in action:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><img src="http://upload.wikimedia.org/wikipedia/commons/e/e6/Conways_game_of_life_breeder_animation.gif"></p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Notice the series of glider guns, similar to the one we built above. While this animation could certainly be created using the above Python code, I'm just not sure I'd have the patience!</p>
-<p>Despite (or perhaps because of) its simplicity, the Game of Life has inspired an entire community of people who study its properties. It has influenced fields as diverse as mathematics, computer science, biology, epidemiology, and sociology. This interest has led to the discovery of configurations with some very surprising properties. Incredibly, it has even been shown that a Universal Turing Machine can be created within the rules of the game of life. That is, a computer which can compute game of life steps could, in theory, use this process to compute just about anything!</p>
+<p>Notice the series of glider guns, similar to the one we built above.
+While this animation could certainly be created using the above Python code,
+I&#39;m just not sure I&#39;d have the patience!</p>
+<p>Despite (or perhaps because of) its simplicity, the Game of Life
+has inspired an entire community of people who study its properties.  It has influenced fields
+as diverse as mathematics, computer science, biology, epidemiology, and sociology.
+This interest has led to the discovery of configurations with some very surprising properties.
+Incredibly, it has even been shown that a Universal Turing Machine can be created within
+the rules of the game of life.  That is, a computer which can compute game of life steps
+could, in theory, use this process to compute just about anything!</p>
 <p>Here are another few patterns you might try embedding in a game board, to see what will happen.</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[11]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">diehard</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
            <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
            <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
@@ -10829,11 +11038,24 @@ In&nbsp;[11]:
 
 </div>
 </div>
+</div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>I hope you enjoyed this quick exploration! For more information on the wealth of information about this game, you can browse the discussions and forums at <a href="http://conwaylife.com/">Conway's Game of Life</a></p>
-<p><em>This post was written in an IPython notebook, which can be downloaded</em> <a href="http://jakevdp.github.io/downloads/notebooks/GameOfLife.ipynb"><em>here</em></a>, <em>or viewed statically</em> <a href="http://nbviewer.ipython.org/url/jakevdp.github.io/downloads/notebooks/GameOfLife.ipynb"><em>here</em></a>.</p>
+<p>I hope you enjoyed this quick exploration! 
+For more information on the wealth of information about this
+game, you can browse the discussions and forums at
+<a href="http://conwaylife.com/">Conway&#39;s Game of Life</a></p>
+<p><em>This post was written in an IPython notebook, which can be downloaded</em>
+<a href="http://jakevdp.github.io/downloads/notebooks/GameOfLife.ipynb"><em>here</em></a>,
+<em>or viewed statically</em>
+<a href="http://nbviewer.ipython.org/url/jakevdp.github.io/downloads/notebooks/GameOfLife.ipynb"><em>here</em></a>.</p>
+</div>
+</div>
 </div></p></div>
     <footer>
 <p class="meta">
@@ -10887,7 +11109,7 @@ In&nbsp;[11]:
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Jake Vanderplas -
+    Copyright &copy;  2012-2014  - Jake Vanderplas -
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
     <script type="text/javascript">
@@ -10915,7 +11137,7 @@ In&nbsp;[11]:
           var disqus_title = 'The Game of Life in Python';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-	    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
 	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 	   })();
 	</script>

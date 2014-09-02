@@ -1777,7 +1777,7 @@ jQuery(document).ready(function($) {
 </ul>
 
 
-<form action="http://google.com/search" method="get">
+<form action="//google.com/search" method="get">
   <fieldset role="search">
     <input type="hidden" name="q" value="site:jakevdp.github.io" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
@@ -1798,48 +1798,107 @@ jQuery(document).ready(function($) {
 </header>
 
   <div class="entry-content"><p>
-<div class="text_cell_render border-box-sizing rendered_html">
-
-<p>The Fast Fourier Transform (FFT) is one of the most important algorithms in signal processing and data analysis. I've used it for years, but having no formal computer science background, It occurred to me this week that I've never thought to ask <em>how</em> the FFT computes the discrete Fourier transform so quickly. I dusted off an old algorithms book and looked into it, and enjoyed reading about the deceptively simple computational trick that JW Cooley and John Tukey outlined in their classic <a href="http://www.ams.org/journals/mcom/1965-19-090/S0025-5718-1965-0178586-1/">1965 paper</a> introducing the subject.</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The goal of this post is to dive into the Cooley-Tukey FFT algorithm, explaining the symmetries that lead to it, and to show some straightforward Python implementations putting the theory into practice. My hope is that this exploration will give data scientists like myself a more complete picture of what's going on in the background of the algorithms we use. </p>
+<p>
+The Fast Fourier Transform (FFT) is one of the most important algorithms in signal processing and data analysis. I&#39;ve used it for years, but having no formal computer science background, It occurred to me this week that I&#39;ve never thought to ask <em>how</em> the FFT computes the discrete Fourier transform so quickly.  I dusted off an old algorithms book and looked into it, and enjoyed reading about the deceptively simple computational trick that JW Cooley and John Tukey outlined in their classic <a href="http://www.ams.org/journals/mcom/1965-19-090/S0025-5718-1965-0178586-1/">1965 paper</a> introducing the subject.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The goal of this post is to dive into the Cooley-Tukey FFT algorithm, explaining the symmetries that lead to it, and to show some straightforward Python implementations putting the theory into practice.  My hope is that this exploration will give data scientists like myself a more complete picture of what&#39;s going on in the background of the algorithms we use.
+</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="The-Discrete-Fourier-Transform">The Discrete Fourier Transform<a class="anchor-link" href="#The-Discrete-Fourier-Transform">&#182;</a></h2>
 </div>
+</div>
+</div>
 
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The FFT is a fast, <span class="math">\(\mathcal{O}[N\log N]\)</span> algorithm to compute the Discrete Fourier Transform (DFT), which naively is an <span class="math">\(\mathcal{O}[N^2]\)</span> computation. The DFT, like the more familiar continuous version of the Fourier transform, has a forward and inverse form which are defined as follows:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Forward Discrete Fourier Transform (DFT):</strong> <span class="math">\[X_k = \sum_{n=0}^{N-1} x_n \cdot e^{-i~2\pi~k~n~/~N}\]</span></p>
+<p>The FFT is a fast, $\mathcal{O}[N\log N]$ algorithm to compute the Discrete Fourier Transform (DFT), which
+naively is an $\mathcal{O}[N^2]$ computation.  The DFT, like the more familiar continuous version of the Fourier transform, has a forward and inverse form which are defined as follows:</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Inverse Discrete Fourier Transform (IDFT):</strong> <span class="math">\[x_n = \frac{1}{N}\sum_{k=0}^{N-1} X_k e^{i~2\pi~k~n~/~N}\]</span></p>
+<p><strong>Forward Discrete Fourier Transform (DFT):</strong>
+$$X_k = \sum_{n=0}^{N-1} x_n \cdot e^{-i~2\pi~k~n~/~N}$$</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The transformation from <span class="math">\(x_n \to X_k\)</span> is a translation from configuration space to frequency space, and can be very useful in both exploring the power spectrum of a signal, and also for transforming certain problems for more efficient computation. For some examples of this in action, you can check out Chapter 10 of our upcoming Astronomy/Statistics book, with figures and Python source code available <a href="http://www.astroml.org/book_figures/chapter10/">here</a>. For an example of the FFT being used to simplify an otherwise difficult differential equation integration, see my post on <a href="http://jakevdp.github.io/blog/2012/09/05/quantum-python/">Solving the Schrodinger Equation in Python</a>.</p>
-<p>Because of the importance of the FFT in so many fields, Python contains many standard tools and wrappers to compute this. Both NumPy and SciPy have wrappers of the extremely well-tested FFTPACK library, found in the submodules <code>numpy.fft</code> and <code>scipy.fftpack</code> respectively. The fastest FFT I am aware of is in the <a href="http://www.fftw.org/">FFTW</a> package, which is also available in Python via the <a href="https://pypi.python.org/pypi/pyFFTW">PyFFTW</a> package.</p>
-<p>For the moment, though, let's leave these implementations aside and ask how we might compute the FFT in Python from scratch.</p>
+<p><strong>Inverse Discrete Fourier Transform (IDFT):</strong>
+$$x_n = \frac{1}{N}\sum_{k=0}^{N-1} X_k e^{i~2\pi~k~n~/~N}$$</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The transformation from $x_n \to X_k$ is a translation from configuration space to frequency space, and can be very useful in both exploring the power spectrum of a signal, and also for transforming certain problems for more efficient computation.  For some examples of this in action, you can check out Chapter 10 of our upcoming Astronomy/Statistics book, with figures and Python source code available <a href="http://www.astroml.org/book_figures/chapter10/">here</a>.  For an example of the FFT being used to simplify an otherwise difficult differential equation integration, see my post on <a href="http://jakevdp.github.io/blog/2012/09/05/quantum-python/">Solving the Schrodinger Equation in Python</a>.</p>
+<p>Because of the importance of the FFT in so many fields, Python contains many standard tools and wrappers to compute this.  Both NumPy and SciPy have wrappers of the extremely well-tested FFTPACK library, found in the submodules <code>numpy.fft</code> and <code>scipy.fftpack</code> respectively.  The fastest FFT I am aware of is in the <a href="http://www.fftw.org/">FFTW</a> package, which is also available in Python via the <a href="https://pypi.python.org/pypi/pyFFTW">PyFFTW</a> package.</p>
+<p>For the moment, though, let&#39;s leave these implementations aside and ask how we might compute the FFT in Python from scratch.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Computing-the-Discrete-Fourier-Transform">Computing the Discrete Fourier Transform<a class="anchor-link" href="#Computing-the-Discrete-Fourier-Transform">&#182;</a></h2>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>For simplicity, we'll concern ourself only with the forward transform, as the inverse transform can be implemented in a very similar manner. Taking a look at the DFT expression above, we see that it is nothing more than a straightforward linear operation: a matrix-vector multiplication of <span class="math">\(\vec{x}\)</span>,</p>
-<p><span class="math">\[\vec{X} = M \cdot \vec{x}\]</span></p>
-<p>with the matrix <span class="math">\(M\)</span> given by</p>
-<p><span class="math">\[M_{kn} = e^{-i~2\pi~k~n~/~N}.\]</span></p>
+<p>For simplicity, we&#39;ll concern ourself only with the forward transform, as the inverse transform can be implemented in a very similar manner.  Taking a look at the DFT expression above, we see that it is nothing more than a straightforward linear operation: a matrix-vector multiplication of $\vec{x}$,</p>
+<p>$$\vec{X} = M \cdot \vec{x}$$</p>
+<p>with the matrix $M$ given by</p>
+<p>$$M_{kn} = e^{-i~2\pi~k~n~/~N}.$$</p>
 <p>With this in mind, we can compute the DFT using simple matrix multiplication as follows:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[1]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="k">def</span> <span class="nf">DFT_slow</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Compute the discrete Fourier Transform of the 1D array x&quot;&quot;&quot;</span>
@@ -1853,66 +1912,84 @@ In&nbsp;[1]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We can double-check the result by comparing to numpy's built-in FFT function:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can double-check the result by comparing to numpy&#39;s built-in FFT function:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[2]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
 <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">DFT_slow</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[2]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 True
 </pre>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Just to confirm the sluggishness of our algorithm, we can compare the execution times of these two approaches:</p>
+<p>Just to confirm the sluggishness of our algorithm, we can compare the execution times
+of these two approaches:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[3]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%</span><span class="k">timeit</span> <span class="n">DFT_slow</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="o">%</span><span class="k">timeit</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 10 loops, best of 3: 75.4 ms per loop
 10000 loops, best of 3: 25.5 µs per loop
@@ -1925,63 +2002,120 @@ In&nbsp;[3]:
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We are over 1000 times slower, which is to be expected for such a simplistic implementation. But that's not the worst of it. For an input vector of length <span class="math">\(N\)</span>, the FFT algorithm scales as <span class="math">\(\mathcal{O}[N\log N]\)</span>, while our slow algorithm scales as <span class="math">\(\mathcal{O}[N^2]\)</span>. That means that for <span class="math">\(N=10^6\)</span> elements, we'd expect the FFT to complete in somewhere around 50 ms, while our slow algorithm would take nearly 20 hours!</p>
-<p>So how does the FFT accomplish this speedup? The answer lies in exploiting symmetry.</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We are over 1000 times slower, which is to be expected for such a simplistic implementation.  But that&#39;s not the worst of it.  For an input vector of length $N$, the FFT algorithm scales as $\mathcal{O}[N\log N]$, while our slow algorithm scales as $\mathcal{O}[N^2]$.  That means that for $N=10^6$ elements, we&#39;d expect the FFT to complete in somewhere around 50 ms, while our slow algorithm would take nearly 20 hours!</p>
+<p>So how does the FFT accomplish this speedup?  The answer lies in exploiting symmetry.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Symmetries-in-the-Discrete-Fourier-Transform">Symmetries in the Discrete Fourier Transform<a class="anchor-link" href="#Symmetries-in-the-Discrete-Fourier-Transform">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>One of the most important tools in the belt of an algorithm-builder is to exploit symmetries of a problem. If you can show analytically that one piece of a problem is simply related to another, you can compute the subresult only once and save that computational cost. Cooley and Tukey used exactly this approach in deriving the FFT.</p>
-<p>We'll start by asking what the value of <span class="math">\(X_{N+k}\)</span> is. From our above expression:</p>
 </div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><span class="math">\[
+<p>One of the most important tools in the belt of an algorithm-builder is to exploit symmetries of a problem.  If you can show analytically that one piece of a problem is simply related to another, you can compute the subresult
+only once and save that computational cost.  Cooley and Tukey used exactly this approach in deriving the FFT.</p>
+<p>We&#39;ll start by asking what the value of $X_{N+k}$ is. From our above expression:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$$
 \begin{align*}
 X_{N + k} &amp;=  \sum_{n=0}^{N-1} x_n \cdot e^{-i~2\pi~(N + k)~n~/~N}\\
           &amp;= \sum_{n=0}^{N-1} x_n \cdot e^{- i~2\pi~n} \cdot e^{-i~2\pi~k~n~/~N}\\
           &amp;= \sum_{n=0}^{N-1} x_n \cdot e^{-i~2\pi~k~n~/~N}
 \end{align*}
-\]</span></p>
+$$</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>where we've used the identity <span class="math">\(\exp[2\pi~i~n] = 1\)</span> which holds for any integer <span class="math">\(n\)</span>.</p>
+<p>where we&#39;ve used the identity $\exp[2\pi~i~n] = 1$ which holds for any integer $n$.</p>
 <p>The last line shows a nice symmetry property of the DFT:</p>
-<p><span class="math">\[X_{N+k} = X_k.\]</span></p>
+<p>$$X_{N+k} = X_k.$$</p>
 <p>By a simple extension,</p>
-<p><span class="math">\[X_{k + i \cdot N} = X_k\]</span></p>
-<p>for any integer <span class="math">\(i\)</span>. As we'll see below, this symmetry can be exploited to compute the DFT much more quickly.</p>
+<p>$$X_{k + i \cdot N} = X_k$$</p>
+<p>for any integer $i$.  As we&#39;ll see below, this symmetry can be exploited to compute the DFT much more quickly.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="DFT-to-FFT:-Exploiting-Symmetry">DFT to FFT: Exploiting Symmetry<a class="anchor-link" href="#DFT-to-FFT:-Exploiting-Symmetry">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Cooley and Tukey showed that it's possible to divide the DFT computation into two smaller parts. From the definition of the DFT we have:</p>
 </div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><span class="math">\[
+<p>Cooley and Tukey showed that it&#39;s possible to divide the DFT computation into two smaller parts.  From
+the definition of the DFT we have:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$$
 \begin{align}
 X_k &amp;= \sum_{n=0}^{N-1} x_n \cdot e^{-i~2\pi~k~n~/~N} \\
     &amp;= \sum_{m=0}^{N/2 - 1} x_{2m} \cdot e^{-i~2\pi~k~(2m)~/~N} + \sum_{m=0}^{N/2 - 1} x_{2m + 1} \cdot e^{-i~2\pi~k~(2m + 1)~/~N} \\
     &amp;= \sum_{m=0}^{N/2 - 1} x_{2m} \cdot e^{-i~2\pi~k~m~/~(N/2)} + e^{-i~2\pi~k~/~N} \sum_{m=0}^{N/2 - 1} x_{2m + 1} \cdot e^{-i~2\pi~k~m~/~(N/2)}
 \end{align}
-\]</span></p>
+$$</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We've split the single Discrete Fourier transform into two terms which themselves look very similar to smaller Discrete Fourier Transforms, one on the odd-numbered values, and one on the even-numbered values. So far, however, we haven't saved any computational cycles. Each term consists of <span class="math">\((N/2)*N\)</span> computations, for a total of <span class="math">\(N^2\)</span>.</p>
-<p>The trick comes in making use of symmetries in each of these terms. Because the range of <span class="math">\(k\)</span> is <span class="math">\(0 \le k &lt; N\)</span>, while the range of <span class="math">\(n\)</span> is <span class="math">\(0 \le n &lt; M \equiv N/2\)</span>, we see from the symmetry properties above that we need only perform half the computations for each sub-problem. Our <span class="math">\(\mathcal{O}[N^2]\)</span> computation has become <span class="math">\(\mathcal{O}[M^2]\)</span>, with <span class="math">\(M\)</span> half the size of <span class="math">\(N\)</span>.</p>
-<p>But there's no reason to stop there: as long as our smaller Fourier transforms have an even-valued <span class="math">\(M\)</span>, we can reapply this divide-and-conquer approach, halving the computational cost each time, until our arrays are small enough that the strategy is no longer beneficial. In the asymptotic limit, this recursive approach scales as <span class="math">\(\mathcal{O}[N\log N]\)</span>.</p>
+<p>We&#39;ve split the single Discrete Fourier transform into two terms which themselves look very similar to smaller Discrete Fourier Transforms, one on the odd-numbered values, and one on the even-numbered values. So far, however, we haven&#39;t saved any computational cycles.  Each term consists of $(N/2)*N$ computations, for a total of $N^2$.</p>
+<p>The trick comes in making use of symmetries in each of these terms.  Because the range of $k$ is $0 \le k &lt; N$, while the range of $n$ is $0 \le n &lt; M \equiv N/2$, we see from the symmetry properties above that we need only perform half the computations for each sub-problem.  Our $\mathcal{O}[N^2]$ computation has become $\mathcal{O}[M^2]$, with $M$ half the size of $N$.</p>
+<p>But there&#39;s no reason to stop there: as long as our smaller Fourier transforms have an even-valued $M$, we can reapply this divide-and-conquer approach, halving the computational cost each time, until our arrays are small enough that the strategy is no longer beneficial.  In the asymptotic limit, this recursive approach scales as $\mathcal{O}[N\log N]$.</p>
 <p>This recursive algorithm can be implemented very quickly in Python, falling-back on our slow DFT code when the size of the sub-problem becomes suitably small:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[4]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">def</span> <span class="nf">FFT</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A recursive implementation of the 1D Cooley-Tukey FFT&quot;&quot;&quot;</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
@@ -2001,53 +2135,69 @@ In&nbsp;[4]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Here we'll do a quick check that our algorithm produces the correct result:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here we&#39;ll do a quick check that our algorithm produces the correct result:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[5]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
 <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">FFT</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[5]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 True
 </pre>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>And we'll time this algorithm against our slow version:</p>
+<p>And we&#39;ll time this algorithm against our slow version:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[6]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%</span><span class="k">timeit</span> <span class="n">DFT_slow</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="o">%</span><span class="k">timeit</span> <span class="n">FFT</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="o">%</span><span class="k">timeit</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -2055,13 +2205,14 @@ In&nbsp;[6]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 10 loops, best of 3: 77.6 ms per loop
 100 loops, best of 3: 4.07 ms per loop
@@ -2075,24 +2226,43 @@ In&nbsp;[6]:
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Our calculation is faster than the naive version by over an order of magnitude! What's more, our recursive algorithm is asymptotically <span class="math">\(\mathcal{O}[N\log N]\)</span>: we've implemented the Fast Fourier Transform.</p>
-<p>Note that we still haven't come close to the speed of the built-in FFT algorithm in numpy, and this is to be expected. The FFTPACK algorithm behind numpy's <code>fft</code> is a Fortran implementation which has received years of tweaks and optimizations. Furthermore, our NumPy solution involves both Python-stack recursions and the allocation of many temporary arrays, which adds significant computation time.</p>
-<p>A good strategy to speed up code when working with Python/NumPy is to vectorize repeated computations where possible. We can do this, and in the process remove our recursive function calls, and make our Python FFT even more efficient.</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Our calculation is faster than the naive version by over an order of magnitude!  What&#39;s more, our recursive algorithm is asymptotically $\mathcal{O}[N\log N]$: we&#39;ve implemented the Fast Fourier Transform.</p>
+<p>Note that we still haven&#39;t come close to the speed of the built-in FFT algorithm in numpy, and this is to be expected.  The FFTPACK algorithm behind numpy&#39;s <code>fft</code> is a Fortran implementation which has received years of tweaks and optimizations.  Furthermore, our NumPy solution involves both Python-stack recursions and the allocation of many temporary arrays, which adds significant computation time.</p>
+<p>A good strategy to speed up code when working with Python/NumPy is to vectorize repeated computations where possible.  We can do this, and in the process remove our recursive function calls, and make our Python FFT even more efficient.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Vectorized-Numpy-Version">Vectorized Numpy Version<a class="anchor-link" href="#Vectorized-Numpy-Version">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Notice that in the above recursive FFT implementation, at the lowest recursion level we perform <span class="math">\(N~/~32\)</span> identical matrix-vector products. The efficiency of our algorithm would benefit by computing these matrix-vector products all at once as a single matrix-matrix product. At each subsequent level of recursion, we also perform duplicate operations which can be vectorized. NumPy excels at this sort of operation, and we can make use of that fact to create this vectorized version of the Fast Fourier Transform:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Notice that in the above recursive FFT implementation, at the lowest recursion level we perform $N~/~32$ identical matrix-vector products.  The efficiency of our algorithm would benefit by computing these matrix-vector products all at once as a single matrix-matrix product.  At each subsequent level of recursion, we also perform duplicate operations which can be vectorized.  NumPy excels at this sort of operation, and we can make use of that fact to create this vectorized version of the Fast Fourier Transform:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[7]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">def</span> <span class="nf">FFT_vectorized</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A vectorized, non-recursive version of the Cooley-Tukey FFT&quot;&quot;&quot;</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
@@ -2125,53 +2295,70 @@ In&nbsp;[7]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Though the algorithm is a bit more opaque, it is simply a rearrangement of the operations used in the recursive version with one exception: we exploit a symmetry in the <code>factor</code> computation and construct only half of the array. Again, we'll confirm that our function yields the correct result:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Though the algorithm is a bit more opaque, it is simply a rearrangement of the operations used in the recursive version with one exception: we exploit a symmetry in the <code>factor</code> computation and construct only half of the array.  Again, we&#39;ll confirm that our function yields the correct result:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[8]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
 <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">FFT_vectorized</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[8]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 True
 </pre>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Because our algorithms are becoming much more efficient, we can use a larger array to compare the timings, leaving out <code>DFT_slow</code>:</p>
+<p>Because our algorithms are becoming much more efficient, we can use a larger array to compare the timings,
+leaving out <code>DFT_slow</code>:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[9]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">1024</span> <span class="o">*</span> <span class="mi">16</span><span class="p">)</span>
 <span class="o">%</span><span class="k">timeit</span> <span class="n">FFT</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="o">%</span><span class="k">timeit</span> <span class="n">FFT_vectorized</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -2180,13 +2367,14 @@ In&nbsp;[9]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 10 loops, best of 3: 72.8 ms per loop
 100 loops, best of 3: 4.11 ms per loop
@@ -2200,17 +2388,44 @@ In&nbsp;[9]:
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We've improved our implementation by another order of magnitude! We're now within about a factor of 10 of the FFTPACK benchmark, using only a couple dozen lines of pure Python + NumPy. Though it's still no match computationally speaking, readibility-wise the Python version is far superior to the FFTPACK source, which you can browse <a href="http://www.netlib.org/fftpack/fft.c">here</a>.</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>So how does FFTPACK attain this last bit of speedup? Well, mainly it's just a matter of detailed bookkeeping. FFTPACK spends a lot of time making sure to reuse any sub-computation that can be reused. Our numpy version still involves an excess of memory allocation and copying; in a low-level language like Fortran it's easier to control and minimize memory use. In addition, the Cooley-Tukey algorithm can be extended to use splits of size other than 2 (what we've implemented here is known as the <em>radix-2</em> Cooley-Tukey FFT). Also, other more sophisticated FFT algorithms may be used, including fundamentally distinct approaches based on convolutions (see, e.g. Bluestein's algorithm and Rader's algorithm). The combination of the above extensions and techniques can lead to very fast FFTs even on arrays whose size is not a power of two.</p>
+<p>We&#39;ve improved our implementation by another order of magnitude!  We&#39;re now within about a factor of 10 of the FFTPACK benchmark, using only a couple dozen lines of pure Python + NumPy.  Though it&#39;s still no match computationally speaking, readibility-wise the Python version is far superior to the FFTPACK source, which you can browse <a href="http://www.netlib.org/fftpack/fft.c">here</a>.</p>
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Though the pure-Python functions are probably not useful in practice, I hope they've provided a bit of an intuition into what's going on in the background of FFT-based data analysis. As data scientists, we can make-do with black-box implementations of fundamental tools constructed by our more algorithmically-minded colleagues, but I am a firm believer that the more understanding we have about the low-level algorithms we're applying to our data, the better practitioners we'll be.</p>
 </div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><em>This blog post was written entirely in the IPython Notebook. The full notebook can be downloaded <a href="http://jakevdp.github.io/downloads/notebooks/UnderstandingTheFFT.ipynb">here</a>, or viewed statically <a href="http://nbviewer.ipython.org/url/jakevdp.github.io/downloads/notebooks/UnderstandingTheFFT.ipynb">here</a>.</em></p>
+<p>So how does FFTPACK attain this last bit of speedup?  Well, mainly it&#39;s just a matter of detailed bookkeeping.  FFTPACK spends a lot of time making sure to reuse any sub-computation that can be reused.  Our numpy version still involves an excess of memory allocation and copying; in a low-level language like Fortran it&#39;s easier to control and minimize memory use.  In addition, the Cooley-Tukey algorithm can be extended to use splits of size other than 2 (what we&#39;ve implemented here is known as the <em>radix-2</em> Cooley-Tukey FFT).  Also, other more sophisticated FFT algorithms may be used, including fundamentally distinct approaches based on convolutions (see, e.g. Bluestein&#39;s algorithm and Rader&#39;s algorithm).  The combination of the above extensions and techniques can lead to very fast FFTs even on arrays whose size is not a power of two.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Though the pure-Python functions are probably not useful in practice, I hope they&#39;ve provided a bit of an intuition into what&#39;s going on in the background of FFT-based data analysis.  As data scientists, we can make-do with black-box implementations of fundamental tools constructed by our more algorithmically-minded colleagues, but I am a firm believer that the more understanding we have about the low-level algorithms we&#39;re applying to our data, the better practitioners we&#39;ll be.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>This blog post was written entirely in the IPython Notebook.  The full notebook can be downloaded
+<a href="http://jakevdp.github.io/downloads/notebooks/UnderstandingTheFFT.ipynb">here</a>,
+or viewed statically
+<a href="http://nbviewer.ipython.org/url/jakevdp.github.io/downloads/notebooks/UnderstandingTheFFT.ipynb">here</a>.</em></p>
+</div>
+</div>
 </div></p></div>
     <footer>
 <p class="meta">
@@ -2264,7 +2479,7 @@ In&nbsp;[9]:
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Jake Vanderplas -
+    Copyright &copy;  2012-2014  - Jake Vanderplas -
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
     <script type="text/javascript">
@@ -2292,7 +2507,7 @@ In&nbsp;[9]:
           var disqus_title = 'Understanding the FFT Algorithm';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-	    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
 	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 	   })();
 	</script>

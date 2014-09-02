@@ -1777,7 +1777,7 @@ jQuery(document).ready(function($) {
 </ul>
 
 
-<form action="http://google.com/search" method="get">
+<form action="//google.com/search" method="get">
   <fieldset role="search">
     <input type="hidden" name="q" value="site:jakevdp.github.io" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
@@ -1802,9 +1802,11 @@ jQuery(document).ready(function($) {
   <div class="entry-content">
 
 <p>The inspiration of my previous <a href="http://jakevdp.github.io/blog/2013/12/01/kernel-density-estimation/">kernel density estimation post</a> was a blog post by <a href="http://www.mglerner.com/blog/?p=28">Michael Lerner</a>, who used my <a href="http://jakevdp.github.io/blog/2013/05/19/a-javascript-viewer-for-matplotlib-animations/">JSAnimation</a> tools to do a nice interactive demo of the relationship between kernel density estimation and histograms.</p>
-<p>This was on the heels of <a href="https://twitter.com/ellisonbg">Brian Granger</a>'s excellent <a href="http://vimeo.com/79832657">PyData NYC Keynote</a> where he live-demoed the brand new IPython interactive tools. This new functionality is very cool. Wes McKinney <a href="https://twitter.com/wesmckinn/status/399560987415965696">remarked</a> that day on Twitter that &quot;IPython's interact machinery is going to be a huge deal&quot;. I completely agree: the ability to quickly generate interactive widgets to explore your data is going to change the way a lot of people do their daily scientific computing work.</p>
-<p>But there's one issue with the new widget framework as it currently stands: unless you're connected to an IPython kernel (i.e. actually running IPython to view your notebook), the widgets are useless. Don't get me wrong: they're incredibly cool when you're actually interacting with data. But the bread-and-butter of this blog and many others is static notebook views: for this purpose, widgets with callbacks to the Python kernel aren't so helpful.</p>
-<p>This is where <code>ipywidgets</code> comes in. </div>
+<p>This was on the heels of <a href="https://twitter.com/ellisonbg">Brian Granger</a>&#39;s excellent <a href="http://vimeo.com/79832657">PyData NYC Keynote</a> where he live-demoed the brand new IPython interactive tools.  This new functionality is very cool.  Wes McKinney <a href="https://twitter.com/wesmckinn/status/399560987415965696">remarked</a> that day on Twitter that &quot;IPython&#39;s interact machinery is going to be a huge deal&quot;.
+I completely agree: the ability to quickly generate interactive widgets to explore your data is going to change the way a lot of people do their daily scientific computing work.</p>
+<p>But there&#39;s one issue with the new widget framework as it currently stands: unless you&#39;re connected to an IPython kernel (i.e. actually running IPython to view your notebook), the widgets are useless.  Don&#39;t get me wrong: they&#39;re incredibly cool when you&#39;re actually interacting with data.  But the bread-and-butter of this blog and many others is static notebook views: for this purpose, widgets with callbacks to the Python kernel aren&#39;t so helpful.</p>
+<p>This is where <code>ipywidgets</code> comes in.
+</div>
   <footer>
     <a rel="full-article" href="http://jakevdp.github.io/blog/2013/12/05/static-interactive-widgets/">Read On &crarr;</a>
   </footer>
@@ -1818,16 +1820,40 @@ jQuery(document).ready(function($) {
 </header>
 
   <div class="entry-content">
-<p>Last week Michael Lerner posted a <a href="http://www.mglerner.com/blog/?p=28">nice explanation</a> of the relationship between histograms and kernel density estimation (KDE). I've made some attempts in this direction before (both in the <a href="http://scikit-learn.org/stable/modules/density.html">scikit-learn documentation</a> and in our upcoming <a href="http://www.amazon.com/Statistics-Mining-Machine-Learning-Astronomy/dp/0691151687/">textbook</a>), but Michael's use of interactive javascript widgets makes the relationship extremely intuitive. I had been planning to write a similar post on the theory behind KDE and why it's useful, but Michael took care of that part. Instead, I'm going to focus here on comparing the actual <em>implementations</em> of KDE currently available in Python. If you're unsure what kernel density estimation is, read Michael's post and then come back here.</p>
-<p>There are several options available for computing kernel density estimates in Python. The question of the optimal KDE implementation for any situation, however, is not entirely straightforward, and depends a lot on what your particular goals are. Here are the four KDE implementations I'm aware of in the SciPy/Scikits stack:</p>
+Last week Michael Lerner posted a <a href="http://www.mglerner.com/blog/?p=28">nice explanation</a>
+of the relationship between histograms and kernel density estimation (KDE).  I&#39;ve made some
+attempts in this direction before
+(both in the <a href="http://scikit-learn.org/stable/modules/density.html">scikit-learn documentation</a>
+and in our upcoming <a href="http://www.amazon.com/Statistics-Mining-Machine-Learning-Astronomy/dp/0691151687/">textbook</a>),
+but Michael&#39;s use of interactive javascript widgets makes the relationship extremely intuitive.
+I had been planning to write a similar post on the theory behind KDE and why it&#39;s useful, but
+Michael took care of that part.  Instead, I&#39;m going to focus here on comparing the actual
+<em>implementations</em> of KDE currently available in Python.  If you&#39;re unsure what kernel density
+estimation is, read Michael&#39;s post and then come back here.</p>
+<p>There are several options available for computing kernel density estimates in Python.
+The question of the optimal KDE implementation for any situation, however,
+is not entirely straightforward, and depends a lot on what your particular goals are.
+Here are the four KDE implementations I&#39;m aware of in the SciPy/Scikits stack:</p>
 <ul>
-<li><p>In <a href="http://scipy.org">SciPy</a>: <a href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.gaussian_kde.html"><code>gaussian_kde</code></a>.</p></li>
-<li><p>In <a href="http://statsmodels.sourceforge.net/">Statsmodels</a>: <a href="http://statsmodels.sourceforge.net/devel/examples/notebooks/generated/kernel_density.html"><code>KDEUnivariate</code></a> and <a href="http://statsmodels.sourceforge.net/devel/generated/statsmodels.nonparametric.kde.KDEUnivariate.html"><code>KDEMultivariate</code></a> (See an example <a href="http://statsmodels.sourceforge.net/devel/generated/statsmodels.nonparametric.kernel_density.KDEMultivariate.html">here</a>).</p></li>
-<li><p>In <a href="http://scikit-learn.org">Scikit-learn</a>: <a href="http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KernelDensity.html"><code>KernelDensity</code></a> (See further examples <a href="http://scikit-learn.org/stable/modules/density.html#kernel-density-estimation">here</a>).</p></li>
+<li><p>In <a href="http://scipy.org">SciPy</a>: <a href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.gaussian_kde.html"><code>gaussian_kde</code></a>.</p>
+</li>
+<li><p>In <a href="http://statsmodels.sourceforge.net/">Statsmodels</a>: <a href="http://statsmodels.sourceforge.net/devel/examples/notebooks/generated/kernel_density.html"><code>KDEUnivariate</code></a> and <a href="http://statsmodels.sourceforge.net/devel/generated/statsmodels.nonparametric.kde.KDEUnivariate.html"><code>KDEMultivariate</code></a> (See an example <a href="http://statsmodels.sourceforge.net/devel/generated/statsmodels.nonparametric.kernel_density.KDEMultivariate.html">here</a>).</p>
+</li>
+<li><p>In <a href="http://scikit-learn.org">Scikit-learn</a>: <a href="http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KernelDensity.html"><code>KernelDensity</code></a> (See further examples <a href="http://scikit-learn.org/stable/modules/density.html#kernel-density-estimation">here</a>).</p>
+</li>
 </ul>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Each has advantages and disadvantages, and each has its area of applicability. I'll start with a table summarizing the strengths and weaknesses of each, before discussing each feature in more detail and running some simple benchmarks to gauge their computational cost:</p>
+<p>Each has advantages and disadvantages, and each has its area of applicability.
+I&#39;ll start with a table summarizing the strengths and weaknesses of each, before
+discussing each feature in more detail and running some simple benchmarks to gauge
+their computational cost:</p>
 </div>
   <footer>
     <a rel="full-article" href="http://jakevdp.github.io/blog/2013/12/01/kernel-density-estimation/">Read On &crarr;</a>
@@ -1859,10 +1885,17 @@ jQuery(document).ready(function($) {
 </header>
 
   <div class="entry-content">
-<p>The Fast Fourier Transform (FFT) is one of the most important algorithms in signal processing and data analysis. I've used it for years, but having no formal computer science background, It occurred to me this week that I've never thought to ask <em>how</em> the FFT computes the discrete Fourier transform so quickly. I dusted off an old algorithms book and looked into it, and enjoyed reading about the deceptively simple computational trick that JW Cooley and John Tukey outlined in their classic <a href="http://www.ams.org/journals/mcom/1965-19-090/S0025-5718-1965-0178586-1/">1965 paper</a> introducing the subject.</p>
+The Fast Fourier Transform (FFT) is one of the most important algorithms in signal processing and data analysis. I&#39;ve used it for years, but having no formal computer science background, It occurred to me this week that I&#39;ve never thought to ask <em>how</em> the FFT computes the discrete Fourier transform so quickly.  I dusted off an old algorithms book and looked into it, and enjoyed reading about the deceptively simple computational trick that JW Cooley and John Tukey outlined in their classic <a href="http://www.ams.org/journals/mcom/1965-19-090/S0025-5718-1965-0178586-1/">1965 paper</a> introducing the subject.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The goal of this post is to dive into the Cooley-Tukey FFT algorithm, explaining the symmetries that lead to it, and to show some straightforward Python implementations putting the theory into practice. My hope is that this exploration will give data scientists like myself a more complete picture of what's going on in the background of the algorithms we use. </div>
+<p>The goal of this post is to dive into the Cooley-Tukey FFT algorithm, explaining the symmetries that lead to it, and to show some straightforward Python implementations putting the theory into practice.  My hope is that this exploration will give data scientists like myself a more complete picture of what&#39;s going on in the background of the algorithms we use.
+</div>
   <footer>
     <a rel="full-article" href="http://jakevdp.github.io/blog/2013/08/28/understanding-the-fft/">Read On &crarr;</a>
   </footer>
@@ -1876,7 +1909,11 @@ jQuery(document).ready(function($) {
 </header>
 
   <div class="entry-content">
-<p>In 1970 the British Mathematician John Conway created his &quot;Game of Life&quot; -- a set of rules that mimics the chaotic yet patterned growth of a colony of biological organisms. The &quot;game&quot; takes place on a two-dimensional grid consisting of &quot;living&quot; and &quot;dead&quot; cells, and the rules to step from generation to generation are simple:</p>
+In 1970 the British Mathematician John Conway created his &quot;Game of Life&quot; -- 
+a set of rules that mimics the chaotic yet
+patterned growth of a colony of biological organisms.  The &quot;game&quot; takes place on
+a two-dimensional grid consisting of &quot;living&quot; and &quot;dead&quot; cells, and
+the rules to step from generation to generation are simple:</p>
 <ul>
 <li><strong>Overpopulation:</strong> if a living cell is surrounded by more than three living cells, it dies.</li>
 <li><strong>Stasis:</strong> if a living cell is surrounded by two or three living cells, it survives.</li>
@@ -1885,9 +1922,21 @@ jQuery(document).ready(function($) {
 </ul>
 <p>By enforcing these rules in sequential steps, beautiful and unexpected patterns can appear.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>I was thinking about classic problems that could be used to demonstrate the effectiveness of Python for computing and visualizing dynamic phenomena, and thought back to a high school course I took where we had an assignment to implement a Game Of Life computation in C++. If only I'd had access to IPython and associated tools back then, my homework assignment would have been a whole lot easier!</p>
-<p>Here I'll use Python and NumPy to compute generational steps for the game of life, and use my <a href="http://github.com/jakevdp/JSAnimation">JSAnimation</a> package to animate the results. </div>
+<p>I was thinking about classic problems that could be used to demonstrate the effectiveness
+of Python for computing and visualizing dynamic phenomena, and thought back to a high school
+course I took where we had an assignment to implement a Game Of Life computation in C++.
+If only I&#39;d had access to IPython and associated tools back then, my homework assignment
+would have been a whole lot easier!</p>
+<p>Here I&#39;ll use Python and NumPy to compute generational steps for the game of life, and use
+my <a href="http://github.com/jakevdp/JSAnimation">JSAnimation</a> package to animate the results.
+</div>
   <footer>
     <a rel="full-article" href="http://jakevdp.github.io/blog/2013/08/07/conways-game-of-life/">Read On &crarr;</a>
   </footer>
@@ -1901,27 +1950,35 @@ jQuery(document).ready(function($) {
 </header>
 
   <div class="entry-content">
-<p>One of the most consistently popular posts on this blog has been my <a href="http://jakevdp.github.io/blog/2012/10/07/xkcd-style-plots-in-matplotlib/">XKCDify</a> post, where I followed in the footsteps of others to write a little hack for xkcd-style plotting in matplotlib. In it, I mentioned the <a href="https://github.com/matplotlib/matplotlib/pull/1329">Sketch Path Filter</a> pull request that would eventually supersede my ugly little hack.</p>
-<p>Well, &quot;eventually&quot; has finally come. Observe:</p>
+One of the most consistently popular posts on this blog has been my
+<a href="http://jakevdp.github.io/blog/2012/10/07/xkcd-style-plots-in-matplotlib/">XKCDify</a> post,
+where I followed in the footsteps of others to write a little hack for xkcd-style plotting
+in matplotlib.  In it, I mentioned the <a href="https://github.com/matplotlib/matplotlib/pull/1329">Sketch Path Filter</a>
+pull request that would eventually supersede my ugly little hack.</p>
+<p>Well, &quot;eventually&quot; has finally come.  Observe:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[1]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%</span><span class="k">pylab</span> <span class="n">inline</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 
 Welcome to pylab, a matplotlib-based Python environment [backend: module://IPython.kernel.zmq.pylab.backend_inline].
@@ -1935,12 +1992,13 @@ For more information, type &apos;help(pylab)&apos;.
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[2]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">plt</span><span class="o">.</span><span class="n">xkcd</span><span class="p">()</span>  <span class="c"># Yes...</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Whoo Hoo!!!&#39;</span><span class="p">)</span>
@@ -1948,27 +2006,28 @@ In&nbsp;[2]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[2]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 &lt;matplotlib.text.Text at 0x2fade10&gt;
 </pre>
-
-</div>
 </div>
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+</div>
+
+<div class="output_area"><div class="prompt"></div>
 
 
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYAAAAELCAYAAADQsFGkAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXl4U1X6x79pkqZJ2qRNWkpBZFMEURAYRhRBlF0BBwEF
 AUVUFJQZl5lxmZ9SdwF1ABdAAQHZlwER2RSKbLIjiCIim1hoaZM2zd4kPb8/DuemoXuW3pvkfJ6n
@@ -2359,17 +2418,25 @@ QEpPTye9Xv9/610yG8Ecna6uLhgMBkilUoeZ/P5v7t69i/b2dkilUkxNTaGjowMXLlyAj48P29I4
 lgi3b99GWloavn379kcfH/9Pqa+vR3JyMgAgJCQEAwMDCAwMREdHx7+aB+MCAAcHxx/Dly9f0NPT
 A5lMxrYUm2I2m9HW1oYXL16gpaUFAQEBKCsr+9e7nrkAwMHBweGgsL4MlIODg4ODHbgAwMHBweGg
 cAGAg4ODw0HhAgAHBweHg8IFAA4ODg4HhQsAHBwcHA7KX60VJk94SH9vAAAAAElFTkSuQmCC
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The <code>plt.xkcd()</code> function enables some rcParam settings which can automatically convert <strong>any</strong> matplotlib plot into XKCD style. You can peruse the matplotlib xkcd gallery <a href="http://matplotlib.org/xkcd/gallery.html">here</a> for inspiration, or read on where I'll show off some of my favorite of the possibilities.</p>
+<p>The <code>plt.xkcd()</code> function enables some rcParam settings which can automatically convert
+<strong>any</strong> matplotlib plot into XKCD style.  You can peruse the matplotlib xkcd gallery
+<a href="http://matplotlib.org/xkcd/gallery.html">here</a> for inspiration, or read on where I&#39;ll
+show off some of my favorite of the possibilities.</p>
 </div>
   <footer>
     <a rel="full-article" href="http://jakevdp.github.io/blog/2013/07/10/XKCD-plots-in-matplotlib/">Read On &crarr;</a>
@@ -2384,9 +2451,27 @@ cAGAg4ODw0HhAgAHBweHg8IFAA4ODg4HhQsAHBwcHA7KX60VJk94SH9vAAAAAElFTkSuQmCC
 </header>
 
   <div class="entry-content">
-<p>Last summer I wrote a <a href="http://jakevdp.github.io/blog/2012/08/24/numba-vs-cython/">post</a> comparing the performance of <a href="http://numba.pydata.org/">Numba</a> and <a href="http://cython.org/">Cython</a> for optimizing array-based computation. Since posting, the page has received thousands of hits, and resulted in a number of interesting discussions. But in the meantime, the Numba package has come a long way both in its interface and its performance.</p>
-<p>Here I want to revisit those timing comparisons with a more recent Numba release, using the newer and more convenient <code>autojit</code> syntax, and also add in a few additional benchmarks for completeness. I've also written this post entirely within an IPython notebook, so it can be easily downloaded and modified.</p>
-<p>As before, I'll use a <strong>pairwise distance</strong> function. This will take an array representing <code>M</code> points in <code>N</code> dimensions, and return the <code>M x M</code> matrix of pairwise distances. This is a nice test function for a few reasons. First of all, it's a very clean and well-defined test. Second of all, it illustrates the kind of array-based operation that is common in statistics, datamining, and machine learning. Third, it is a function that results in large memory consumption if the standard numpy broadcasting approach is used (it requires a temporary array containing <code>M * M * N</code> elements), making it a good candidate for an alternate approach.</p>
+Last summer I wrote a <a href="http://jakevdp.github.io/blog/2012/08/24/numba-vs-cython/">post</a>
+comparing the performance of <a href="http://numba.pydata.org/">Numba</a> and <a href="http://cython.org/">Cython</a>
+for optimizing array-based computation.  Since posting, the page has received thousands of hits,
+and resulted in a number of interesting discussions.
+But in the meantime, the Numba package has come a long way both in its interface and its
+performance.
+
+Here I want to revisit those timing comparisons with a more recent Numba release, using the newer
+and more convenient <code>autojit</code> syntax, and also add in a few additional benchmarks for
+completeness.  I&#39;ve also written this post entirely within an IPython notebook, so it can be
+easily downloaded and modified.
+
+As before, I&#39;ll use a <strong>pairwise distance</strong> function.  This will take an array representing
+<code>M</code> points in <code>N</code> dimensions, and return the <code>M x M</code> matrix of pairwise distances.
+This is a nice test function for a few reasons.  First of all, it&#39;s a very clean and
+well-defined test.  Second of all, it illustrates the kind of array-based operation that
+is common in statistics, datamining, and machine learning.  Third, it is a function that
+results in large memory consumption if the standard numpy broadcasting approach is used
+(it requires a temporary array containing <code>M * M * N</code>  elements), making it a good
+candidate for an alternate approach.
+
 </div>
   <footer>
     <a rel="full-article" href="http://jakevdp.github.io/blog/2013/06/15/numba-vs-cython-take-2/">Read On &crarr;</a>
@@ -2401,8 +2486,23 @@ cAGAg4ODw0HhAgAHBweHg8IFAA4ODg4HhQsAHBwcHA7KX60VJk94SH9vAAAAAElFTkSuQmCC
 </header>
 
   <div class="entry-content">
-<p>I've been working with javascript and the IPython notebook recently, and found myself in need of a way to pass data back and forth between the Javascript runtime and the IPython kernel. There's a bit of information about this floating around on various mailing lists and forums, but no real organized tutorial on the subject. Partly this is because the tools are relatively specialized, and partly it's because the functionality I'll outline here is planned to be <a href="https://github.com/ipython/ipython/wiki/Roadmap:-IPython">obsolete</a> in the 2.0 release of IPython.</p>
-<p>Nevertheless, I thought folks might be interested to hear what I've learned. What follows are a few basic examples of moving data back and forth between the IPython kernel and the browser's javascript. Note that if you're viewing this statically (i.e. on the blog or on nbviewer) then the javascript calls below will not work: to see the code in action, you'll need to <a href="http://jakevdp.github.io/downloads/notebooks/JSInteraction.ipynb">download</a> the notebook and open it in IPython. </div>
+I&#39;ve been working with javascript and the IPython notebook recently, and found myself
+in need of a way to pass data back and forth between the Javascript runtime and the
+IPython kernel.  There&#39;s a bit of information about this floating around on various
+mailing lists and forums, but no real organized tutorial on the subject.
+Partly this is because the tools are relatively specialized,
+and partly it&#39;s because the functionality I&#39;ll outline here is planned to
+be <a href="https://github.com/ipython/ipython/wiki/Roadmap:-IPython">obsolete</a>
+in the 2.0 release of IPython.
+
+Nevertheless, I thought folks might be interested to hear what I&#39;ve learned.
+What follows are a few basic examples of moving data back and forth between
+the IPython kernel and the browser&#39;s javascript. 
+Note that if you&#39;re viewing this statically (i.e. on the blog or on nbviewer) then
+the javascript calls below will not work: to see the code in action, you&#39;ll need
+to <a href="http://jakevdp.github.io/downloads/notebooks/JSInteraction.ipynb">download</a>
+the notebook and open it in IPython.
+</div>
   <footer>
     <a rel="full-article" href="http://jakevdp.github.io/blog/2013/06/01/ipython-notebook-javascript-python-communication/">Read On &crarr;</a>
   </footer>
@@ -2416,13 +2516,28 @@ cAGAg4ODw0HhAgAHBweHg8IFAA4ODg4HhQsAHBwcHA7KX60VJk94SH9vAAAAAElFTkSuQmCC
 </header>
 
   <div class="entry-content">
-<p>I've been spending a lot of time lately playing with animations in IPython notebook. Here's my latest one - a slightly puzzling rearrangement of shapes into two different triangles:</p>
+I&#39;ve been spending a lot of time lately playing with animations in
+IPython notebook.  Here&#39;s my latest one - a slightly puzzling
+rearrangement of shapes into two different triangles:</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><img src="http://jakevdp.github.io/images/MagicTriangle.gif"></p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Where does the extra block go? Look close and you might be able to figure it out. </div>
+<p>Where does the extra block go?  Look close and you might be able to figure it out.
+</div>
   <footer>
     <a rel="full-article" href="http://jakevdp.github.io/blog/2013/05/28/a-simple-animation-the-magic-triangle/">Read On &crarr;</a>
   </footer>
@@ -2436,26 +2551,34 @@ cAGAg4ODw0HhAgAHBweHg8IFAA4ODg4HhQsAHBwcHA7KX60VJk94SH9vAAAAAElFTkSuQmCC
 </header>
 
   <div class="entry-content">
-<p>I'll cut to the chase: here's what I've created: a javascript-based animation viewer, with hooks to embed it in IPython. It's best viewed in a modern browser (unfortunately Firefox does not currently qualify as &quot;modern&quot; due to its lack of HTML5 support)</p>
+I&#39;ll cut to the chase: here&#39;s what I&#39;ve created: a
+javascript-based animation viewer, with hooks to embed
+it in IPython.  It&#39;s best viewed in a modern browser
+(unfortunately Firefox does not currently qualify as
+&quot;modern&quot; due to its lack of HTML5 support)</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[1]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%</span><span class="k">pylab</span> <span class="n">inline</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 
 Welcome to pylab, a matplotlib-based Python environment [backend: module://IPython.kernel.zmq.pylab.backend_inline].
@@ -2469,12 +2592,13 @@ For more information, type &apos;help(pylab)&apos;.
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[2]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># get the JSAnimation import at https://github.com/jakevdp/JSAnimation</span>
 <span class="kn">from</span> <span class="nn">JSAnimation</span> <span class="kn">import</span> <span class="n">examples</span>
 <span class="n">examples</span><span class="o">.</span><span class="n">basic_animation</span><span class="p">()</span>
@@ -2482,16 +2606,16 @@ In&nbsp;[2]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[2]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
-<div class="output_html rendered_html">
+<div class="output_html rendered_html output_subarea output_pyout">
 
 <script language="javascript">
   /* Define the Animation class */
@@ -20328,14 +20452,18 @@ AElFTkSuQmCC\
 </div>
 
 </div>
-</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>I think the result is pretty good, if I do say so myself. </div>
+<p>I think the result is pretty good, if I do say so myself.
+</div>
   <footer>
     <a rel="full-article" href="http://jakevdp.github.io/blog/2013/05/19/a-javascript-viewer-for-matplotlib-animations/">Read On &crarr;</a>
   </footer>
@@ -20382,7 +20510,7 @@ AElFTkSuQmCC\
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Jake Vanderplas -
+    Copyright &copy;  2012-2014  - Jake Vanderplas -
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
     <script type="text/javascript">
@@ -20407,7 +20535,7 @@ AElFTkSuQmCC\
 	  var disqus_shortname = 'pythonicperambulations';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-	    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
 	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 	   })();
 	</script>

@@ -1777,7 +1777,7 @@ jQuery(document).ready(function($) {
 </ul>
 
 
-<form action="http://google.com/search" method="get">
+<form action="//google.com/search" method="get">
   <fieldset role="search">
     <input type="hidden" name="q" value="site:jakevdp.github.io" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
@@ -1798,64 +1798,113 @@ jQuery(document).ready(function($) {
 </header>
 
   <div class="entry-content"><p>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><em>This post is part of a 4-part series: <a href="http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/">Part I</a> <a href="http://jakevdp.github.io/blog/2014/06/06/frequentism-and-bayesianism-2-when-results-differ/">Part II</a> <a href="http://jakevdp.github.io/blog/2014/06/12/frequentism-and-bayesianism-3-confidence-credibility/">Part III</a> <a href="http://jakevdp.github.io/blog/2014/06/14/frequentism-and-bayesianism-4-bayesian-in-python/">Part IV</a></em></p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>This post is part of a 4-part series: <a href="http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/">Part I</a>  <a href="http://jakevdp.github.io/blog/2014/06/06/frequentism-and-bayesianism-2-when-results-differ/">Part II</a>  <a href="http://jakevdp.github.io/blog/2014/06/12/frequentism-and-bayesianism-3-confidence-credibility/">Part III</a>  <a href="http://jakevdp.github.io/blog/2014/06/14/frequentism-and-bayesianism-4-bayesian-in-python/">Part IV</a></em></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 
 
-<p>In Douglas Adams' classic <em>Hitchhiker's Guide to the Galaxy</em>, hyper-intelligent pan-dimensional beings build a computer named <em>Deep Thought</em> in order to calculate &quot;the Answer to the Ultimate Question of Life, the Universe, and Everything&quot;. After seven and a half million years spinning its hyper-dimensional gears, before an excited crowd, Deep Thought finally outputs the answer:</p>
+<p>In Douglas Adams&#39; classic <em>Hitchhiker&#39;s Guide to the Galaxy</em>, hyper-intelligent pan-dimensional beings build a computer named <em>Deep Thought</em> in order to calculate &quot;the Answer to the Ultimate Question of Life, the Universe, and Everything&quot;. After seven and a half million years spinning its hyper-dimensional gears, before an excited crowd, Deep Thought finally outputs the answer:</p>
 <p><strong>42</strong></p>
-<p>The disappointed technicians, who trained a lifetime for this moment, are stupefied. They probe Deep Though for more information, and after some back-and-forth, the computer responds: &quot;once you do know what the question actually is, you'll know what the answer means.&quot;</p>
-<p>An answer does you no good if you don't know the question.</p>
+<p>The disappointed technicians, who trained a lifetime for this moment, are stupefied. They probe Deep Though for more information, and after some back-and-forth, the computer responds: &quot;once you do know what the question actually is, you&#39;ll know what the answer means.&quot;</p>
+<p>An answer does you no good if you don&#39;t know the question.</p>
 <p>I find this story be an apt metaphor for statistics as sometimes used in the scientific literature. When trying to estimate the value of an unknown parameter, the frequentist approach generally relies on a <strong>confidence interval</strong> (CI), while the Bayesian approach relies on a <strong>credible region</strong> (CR). While these concepts sound and look very similar, their subtle difference can be extremely important, as they answer essentially different questions.</p>
-<p>Like the poor souls hoping for enlightenment in Douglas Adams' universe, scientists often turn the crank of frequentism hoping for useful answers, but in the process overlook the fact that in science, <strong>frequentism is generally answering the wrong question.</strong> This is far from simple philosophical navel-gazing: as I'll show, it can have real consequences for the conclusions we draw from observed data.</p>
+<p>Like the poor souls hoping for enlightenment in Douglas Adams&#39; universe, scientists often turn the crank of frequentism hoping for useful answers, but in the process overlook the fact that in science, <strong>frequentism is generally answering the wrong question.</strong> This is far from simple philosophical navel-gazing: as I&#39;ll show, it can have real consequences for the conclusions we draw from observed data.</p>
 
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Confidence-vs.-Credibility">Confidence vs. Credibility<a class="anchor-link" href="#Confidence-vs.-Credibility">&#182;</a></h2>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In <a href="http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/">part I</a> of this series, we discussed the basic philosophical difference between frequentism and Bayesianism: frequentists consider probability a measure of <strong>the frequency of (perhaps hypothetical) repeated events</strong>; Bayesians consider probability as a measure of <strong>the degree of certainty about values</strong>. As a result of this, speaking broadly, frequentists consider <strong>model parameters to be fixed and data to be random</strong>, while Bayesians consider <strong>model parameters to be random and data to be fixed</strong>.</p>
-<p>These philosophies fundamenally affect the way that each approach seeks bounds on the value of a model parameter. Because the differences here are subtle, I'll go right into a simple example to illustrate the difference between a frequentist confidence interval and a Bayesian credible region.</p>
+<p>These philosophies fundamenally affect the way that each approach seeks bounds on the value of a model parameter. Because the differences here are subtle, I&#39;ll go right into a simple example to illustrate the difference between a frequentist confidence interval and a Bayesian credible region.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Example-1:-The-Mean-of-a-Gaussian">Example 1: The Mean of a Gaussian<a class="anchor-link" href="#Example-1:-The-Mean-of-a-Gaussian">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's start by again examining an extremely simple problem; this is the same problem we saw in <a href="http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/">part I</a> of this series: finding the mean of a Gaussian distribution. Previously we simply looked at the (frequentist) maximum likelihood and (Bayesian) maximum a posteriori estimates; here we'll extend this and look at confidence intervals and credibile regions.</p>
-<p>Here is the problem: imagine you're observing a star that you assume has a constant brightness. Simplistically, we can think of this brightness as the number of photons reaching our telescope in one second. Any given measurement of this number will be subject to measurement errors: the source of those errors is not important right now, but let's assume the observations <span class="math">\(x_i\)</span> are drawn from a normal distribution about the true brightness value with a known standard deviation <span class="math">\(\sigma_x\)</span>.</p>
-<p>Given a series of measurements, what are the 95% (i.e. <span class="math">\(2\sigma\)</span>) limits that we would place on the brightness of the star?</p>
 </div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let&#39;s start by again examining an extremely simple problem; this is the same problem we saw in <a href="http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/">part I</a> of this series: finding the mean of a Gaussian distribution. Previously we simply looked at the (frequentist) maximum likelihood and (Bayesian) maximum a posteriori estimates; here we&#39;ll extend this and look at confidence intervals and credibile regions.</p>
+<p>Here is the problem: imagine you&#39;re observing a star that you assume has a constant brightness. Simplistically, we can think of this brightness as the number of photons reaching our telescope in one second.  Any given measurement of this number will be subject to measurement errors: the source of those errors is not important right now, but let&#39;s assume the observations $x_i$ are drawn from a normal distribution about the true brightness value with a known standard deviation $\sigma_x$.</p>
+<p>Given a series of measurements, what are the 95% (i.e. $2\sigma$) limits that we would place on the brightness of the star?</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="1.-The-Frequentist-Approach">1. The Frequentist Approach<a class="anchor-link" href="#1.-The-Frequentist-Approach">&#182;</a></h3>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The frequentist approach to this problem is well-known, and is as follows:</p>
-<p>For any set of <span class="math">\(N\)</span> values <span class="math">\(D = \{x_i\}_{i=1}^N\)</span>, an unbiased estimate of the mean <span class="math">\(\mu\)</span> of the distribution is given by</p>
-<p><span class="math">\[
+<p>For any set of $N$ values $D = \{x_i\}_{i=1}^N$, an unbiased estimate of the mean $\mu$ of the distribution is given by</p>
+<p>$$
 \bar{x} = \frac{1}{N}\sum_{i=1}^N x_i
-\]</span></p>
+$$</p>
 <p>The <strong>sampling distribution</strong> describes the observed frequency of the estimate of the mean; by the central limit theorem we can show that the sampling distribution is normal; i.e.</p>
-<p><span class="math">\[
+<p>$$
 f(\bar{x}~||~\mu) \propto \exp\left[\frac{-(\bar{x} - \mu)^2}{2\sigma_\mu^2}\right]
-\]</span></p>
-<p>where we've used the <strong>standard error of the mean</strong>,</p>
-<p><span class="math">\[
+$$</p>
+<p>where we&#39;ve used the <strong>standard error of the mean</strong>,</p>
+<p>$$
 \sigma_\mu = \sigma_x / \sqrt{N}
-\]</span></p>
-<p>The central limit theorem tells us that this is a reasonable approximation for any generating distribution if <span class="math">\(N\)</span> is large; if our generating distribution happens to be Gaussian, it also holds for <span class="math">\(N\)</span> as small as 2.</p>
-<p>Let's quickly check this empirically, by looking at <span class="math">\(10^6\)</span> samples of the mean of 5 numbers:</p>
+$$</p>
+<p>The central limit theorem tells us that this is a reasonable approximation for any generating distribution if $N$ is large; if our generating distribution happens to be Gaussian, it also holds for $N$ as small as 2.</p>
+<p>Let&#39;s quickly check this empirically, by looking at $10^6$ samples of the mean of 5 numbers:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[20]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 
 <span class="n">N</span> <span class="o">=</span> <span class="mi">5</span>
@@ -1872,13 +1921,14 @@ In&nbsp;[20]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 0.894 should equal 0.894
 
@@ -1890,23 +1940,36 @@ In&nbsp;[20]:
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>It checks out: the standard deviation of the observed means is equal to <span class="math">\(\sigma_x N^{-1/2}\)</span>, as expected.</p>
+<p>It checks out: the standard deviation of the observed means is equal to $\sigma_x N^{-1/2}$, as expected.</p>
 <p>From this normal sampling distribution, we can quickly write the 95% confidence interval by recalling that two standard deviations is roughly equivalent to 95% of the area under the curve. So our confidence interval is</p>
-<p><span class="math">\[
+<p>$$
 CI_{\mu} =  \left(\bar{x} - 2\sigma_\mu,~\bar{x} + 2\sigma_\mu\right)
-\]</span></p>
+$$</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's try this with a quick example: say we have three observations with an error (i.e. <span class="math">\(\sigma_x\)</span>) of 10. What is our 95% confidence interval on the mean?</p>
-<p>We'll generate our observations assuming a true value of 100:</p>
+<p>Let&#39;s try this with a quick example: say we have three observations with an error (i.e. $\sigma_x$) of 10. What is our 95% confidence interval on the mean?</p>
+<p>We&#39;ll generate our observations assuming a true value of 100:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[21]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">true_B</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">sigma_x</span> <span class="o">=</span> <span class="mi">10</span>
 
@@ -1917,13 +1980,14 @@ In&nbsp;[21]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 [ 116.24345364   93.88243586   94.71828248]
 
@@ -1935,15 +1999,22 @@ In&nbsp;[21]:
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Next let's create a function which will compute the confidence interval:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Next let&#39;s create a function which will compute the confidence interval:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[22]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">erfinv</span>
 
 <span class="k">def</span> <span class="nf">freq_CI_mu</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">frac</span><span class="o">=</span><span class="mf">0.95</span><span class="p">):</span>
@@ -1959,13 +2030,14 @@ In&nbsp;[22]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 95% Confidence Interval: [90, 113]
 
@@ -1977,41 +2049,67 @@ In&nbsp;[22]:
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Note here that we've assumed <span class="math">\(\sigma_x\)</span> is a known quantity; this could also be estimated from the data along with <span class="math">\(\mu\)</span>, but here we kept things simple for sake of example.</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note here that we&#39;ve assumed $\sigma_x$ is a known quantity; this could also be estimated from the data along with $\mu$, but here we kept things simple for sake of example.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="2.-The-Bayesian-Approach">2. The Bayesian Approach<a class="anchor-link" href="#2.-The-Bayesian-Approach">&#182;</a></h3>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>For the Bayesian approach, we start with Bayes' theorem:</p>
-<p><span class="math">\[
-P(\mu~|~D) = \frac{P(D~|~\mu)P(\mu)}{P(D)}
-\]</span></p>
-<p>We'll use a flat prior on <span class="math">\(\mu\)</span> (i.e. <span class="math">\(P(\mu) \propto 1\)</span> over the region of interest) and use the likelihood</p>
-<p><span class="math">\[
-P(D~|~\mu) = \prod_{i=1}^N \frac{1}{\sqrt{2\pi\sigma_x^2}}\exp\left[\frac{(\mu - x_i)^2}{2\sigma_x^2}\right]
-\]</span></p>
-<p>Computing this product and manipulating the terms, it's straightforward to show that this gives</p>
-<p><span class="math">\[
-P(\mu~|~D) \propto \exp\left[\frac{-(\mu - \bar{x})^2}{2\sigma_\mu^2}\right]
-\]</span></p>
-<p>which is recognizable as a normal distribution with mean <span class="math">\(\bar{x}\)</span> and standard deviation <span class="math">\(\sigma_\mu\)</span>. That is, <strong>the Bayesian posterior on <span class="math">\(\mu\)</span> in this case is exactly equal to the frequentist sampling distribution for <span class="math">\(\mu\)</span></strong>.</p>
 </div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For the Bayesian approach, we start with Bayes&#39; theorem:</p>
+<p>$$
+P(\mu~|~D) = \frac{P(D~|~\mu)P(\mu)}{P(D)}
+$$</p>
+<p>We&#39;ll use a flat prior on $\mu$ (i.e. $P(\mu) \propto 1$ over the region of interest) and use the likelihood</p>
+<p>$$
+P(D~|~\mu) = \prod_{i=1}^N \frac{1}{\sqrt{2\pi\sigma_x^2}}\exp\left[\frac{(\mu - x_i)^2}{2\sigma_x^2}\right]
+$$</p>
+<p>Computing this product and manipulating the terms, it&#39;s straightforward to show that this gives</p>
+<p>$$
+P(\mu~|~D) \propto \exp\left[\frac{-(\mu - \bar{x})^2}{2\sigma_\mu^2}\right]
+$$</p>
+<p>which is recognizable as a normal distribution with mean $\bar{x}$ and standard deviation $\sigma_\mu$.
+That is, <strong>the Bayesian posterior on $\mu$ in this case is exactly equal to the frequentist sampling distribution for $\mu$</strong>.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>From this posterior, we can compute the Bayesian credible region, which is the shortest interval that contains 95% of the probability. Here, it looks exactly like the frequentist confidence interval:</p>
-<p><span class="math">\[
+<p>$$
 CR_{\mu} =  \left(\bar{x} - 2\sigma_\mu,~\bar{x} + 2\sigma_\mu\right)
-\]</span></p>
-<p>For completeness, we'll also create a function to compute the Bayesian credible region:</p>
+$$</p>
+<p>For completeness, we&#39;ll also create a function to compute the Bayesian credible region:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[23]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">def</span> <span class="nf">bayes_CR_mu</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">frac</span><span class="o">=</span><span class="mf">0.95</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Compute the credible region on the mean&quot;&quot;&quot;</span>
     <span class="n">Nsigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">erfinv</span><span class="p">(</span><span class="n">frac</span><span class="p">)</span>
@@ -2024,13 +2122,14 @@ In&nbsp;[23]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 95% Credible Region: [90, 113]
 
@@ -2042,43 +2141,68 @@ In&nbsp;[23]:
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="So-What's-the-Difference?">So What's the Difference?<a class="anchor-link" href="#So-What's-the-Difference?">&#182;</a></h3>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The above derivation is one reason why the frequentist confidence interval and the Bayesian credible region are so often confused. In many simple problems, they correspond exactly. But we must be clear that <strong>even though the two are numerically equivalent, their interpretation is very different</strong>.</p>
-<p>Recall that in Bayesianism, the probability distributions reflect our degree of belief. So when we computed the credible region above, it's equivalent to saying</p>
+<p>Recall that in Bayesianism, the probability distributions reflect our degree of belief. So when we computed the credible region above, it&#39;s equivalent to saying</p>
 <blockquote>
-<p>&quot;Given our observed data, there is a 95% probability that the true value of <span class="math">\(\mu\)</span> falls within <span class="math">\(CR_\mu\)</span>&quot; - Bayesians</p>
+<p>&quot;Given our observed data, there is a 95% probability that the true value of $\mu$ falls within $CR_\mu$&quot; - Bayesians</p>
 </blockquote>
-<p>In frequentism, on the other hand, <span class="math">\(\mu\)</span> is considered a fixed value and the data (and all quantities derived from the data, including the bounds of the confidence interval) are random variables. So the frequentist confidence interval is equivalent to saying</p>
+<p>In frequentism, on the other hand, $\mu$ is considered a fixed value and the data (and all quantities derived from the data, including the bounds of the confidence interval) are random variables. So the frequentist confidence interval is equivalent to saying</p>
 <blockquote>
-<p>&quot;There is a 95% probability that when I compute <span class="math">\(CI_\mu\)</span> from data of this sort, the true mean will fall within <span class="math">\(CI_\mu\)</span>.&quot; - Frequentists</p>
+<p>&quot;There is a 95% probability that when I compute $CI_\mu$ from data of this sort, the true mean will fall within $CI_\mu$.&quot; - Frequentists</p>
 </blockquote>
 <p>Note the difference: the Bayesian solution is a statement of probability about the parameter value given fixed bounds. The frequentist solution is a probability about the bounds given a fixed parameter value. This follows directly from the philosophical definitions of probability that the two approaches are based on.</p>
-<p>The difference is subtle, but, as I'll discuss below, it has drastic consequences. First, let's further clarify these notions by running some simulations to confirm the interpretation.</p>
+<p>The difference is subtle, but, as I&#39;ll discuss below, it has drastic consequences. First, let&#39;s further clarify these notions by running some simulations to confirm the interpretation.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Confirming-the-Bayesian-Credible-Region">Confirming the Bayesian Credible Region<a class="anchor-link" href="#Confirming-the-Bayesian-Credible-Region">&#182;</a></h4>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>To confirm what the Bayesian credible region is claiming, we must do the following:</p>
-<ol style="list-style-type: decimal">
-<li>sample random <span class="math">\(\mu\)</span> values from the prior</li>
-<li>sample random sets of points given each <span class="math">\(\mu\)</span></li>
+<ol>
+<li>sample random $\mu$ values from the prior</li>
+<li>sample random sets of points given each $\mu$</li>
 <li>select the sets of points which match our observed data</li>
-<li>ask what fraction of these <span class="math">\(\mu\)</span> values are within the credible region we've constructed.</li>
+<li>ask what fraction of these $\mu$ values are within the credible region we&#39;ve constructed.</li>
 </ol>
 <p>In code, that looks like this:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[24]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># first define some quantities that we need </span>
 <span class="n">Nsamples</span> <span class="o">=</span> <span class="mf">2E7</span>
 <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
@@ -2109,13 +2233,14 @@ In&nbsp;[24]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 number of suitable samples: 528
 
@@ -2127,12 +2252,13 @@ number of suitable samples: 528
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[25]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># Now we ask how many of these mu values fall in our credible region</span>
 <span class="n">mu_good</span> <span class="o">=</span> <span class="n">mu</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 <span class="n">CR</span> <span class="o">=</span> <span class="n">bayes_CR_mu</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
@@ -2142,13 +2268,14 @@ In&nbsp;[25]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 Fraction of means in Credible Region: 0.949
 
@@ -2160,29 +2287,48 @@ Fraction of means in Credible Region: 0.949
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We see that, as predicted, roughly 95% of <span class="math">\(\mu\)</span> values with data matching ours lie in the Credible Region.</p>
-<p>The important thing to note here is which of the variables is random, and which are fixed. In the Bayesian approach, we compute <strong>a single credible region from our observed data</strong>, and we consider it in terms of <strong>multiple random draws of <span class="math">\(\mu\)</span></strong>.</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We see that, as predicted, roughly 95% of $\mu$ values with data matching ours lie in the Credible Region.</p>
+<p>The important thing to note here is which of the variables is random, and which are fixed. In the Bayesian approach, we compute <strong>a single credible region from our observed data</strong>, and we consider it in terms of <strong>multiple random draws of $\mu$</strong>.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Confirming-the-frequentist-Confidence-Interval">Confirming the frequentist Confidence Interval<a class="anchor-link" href="#Confirming-the-frequentist-Confidence-Interval">&#182;</a></h4>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Confirmation of the interpretation of the frequentist confidence interval is a bit less involved. We do the following:</p>
-<ol style="list-style-type: decimal">
-<li>draw sets of values from the distribution defined by the single true value of <span class="math">\(\mu\)</span>.</li>
+<ol>
+<li>draw sets of values from the distribution defined by the single true value of $\mu$.</li>
 <li>for each set of values, compute a new confidence interval.</li>
-<li>determine what fraction of these confidence intervals contain <span class="math">\(\mu\)</span>.</li>
+<li>determine what fraction of these confidence intervals contain $\mu$.</li>
 </ol>
 <p>In code, it looks like this:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[26]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># define some quantities we need</span>
 <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
 <span class="n">Nsamples</span> <span class="o">=</span> <span class="mf">1E4</span>
@@ -2203,13 +2349,14 @@ In&nbsp;[26]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 Fraction of Confidence Intervals containing the mean: 0.951
 
@@ -2221,55 +2368,87 @@ Fraction of Confidence Intervals containing the mean: 0.951
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We see that, as predicted, 95% of the confidence intervals contain the true value of <span class="math">\(\mu\)</span>.</p>
-<p>Again, the important thing to note here is which of the variables is random. We use <strong>a single value of <span class="math">\(\mu\)</span></strong>, and consider it in relation to <strong>multiple confidence intervals constructed from multiple random data samples</strong>.</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We see that, as predicted, 95% of the confidence intervals contain the true value of $\mu$.</p>
+<p>Again, the important thing to note here is which of the variables is random. We use <strong>a single value of $\mu$</strong>, and consider it in relation to <strong>multiple confidence intervals constructed from multiple random data samples</strong>.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Discussion">Discussion<a class="anchor-link" href="#Discussion">&#182;</a></h3>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We should remind ourselves again of the difference between the two types of constraints:</p>
 <ul>
-<li>The Bayesian approach fixes the credible region, and guarantees 95% of possible values of <span class="math">\(\mu\)</span> will fall within it.</li>
+<li>The Bayesian approach fixes the credible region, and guarantees 95% of possible values of $\mu$ will fall within it.</li>
 <li>The frequentist approach fixes the parameter, and guarantees that 95% of possible confidence intervals will contain it.</li>
 </ul>
 <p>Comparing the frequentist confirmation and the Bayesian confirmation above, we see that the distinctions which stem from the very definition of probability mentioned above:</p>
 <ul>
-<li>Bayesianism treats parameters (e.g. <span class="math">\(\mu\)</span>) as random variables, while frequentism treats parameters as fixed.</li>
-<li>Bayesianism treats observed data (e.g. <span class="math">\(D\)</span>) as fixed, while frequentism treats data as random variables.</li>
-<li>Bayesianism treats its parameter constraints (e.g. <span class="math">\(CR_\mu\)</span>) as fixed, while frequentism treats its constraints (e.g. <span class="math">\(CI_\mu\)</span>) as random variables.</li>
+<li>Bayesianism treats parameters (e.g. $\mu$) as random variables, while frequentism treats parameters as fixed.</li>
+<li>Bayesianism treats observed data (e.g. $D$) as fixed, while frequentism treats data as random variables.</li>
+<li>Bayesianism treats its parameter constraints (e.g. $CR_\mu$) as fixed, while frequentism treats its constraints (e.g. $CI_\mu$) as random variables.</li>
 </ul>
-<p>In the above example, as in many simple problems, the confidence interval and the credibility region overlap exactly, so the distinction is not especially important. But scientific analysis is rarely this simple; next we'll consider an example in which the choice of approach makes a big difference.</p>
+<p>In the above example, as in many simple problems, the confidence interval and the credibility region overlap exactly, so the distinction is not especially important. But scientific analysis is rarely this simple; next we&#39;ll consider an example in which the choice of approach makes a big difference.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Example-2:-Jaynes'-Truncated-Exponential">Example 2: Jaynes' Truncated Exponential<a class="anchor-link" href="#Example-2:-Jaynes'-Truncated-Exponential">&#182;</a></h2>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>For an example of a situation in which the frequentist confidence interval and the Bayesian credibility region <em>do not</em> overlap, I'm going to turn to an example given by E.T. Jaynes, a 20th century physicist who wrote extensively on statistical inference in Physics. In the fifth example of his <em>Confidence Intervals vs. Bayesian Intervals</em> (<a href="http://bayes.wustl.edu/etj/articles/confidence.pdf">pdf</a>), he considers a truncated exponential model. Here is the problem, in his words:</p>
+<p>For an example of a situation in which the frequentist confidence interval and the Bayesian credibility region <em>do not</em> overlap, I&#39;m going to turn to an example given by E.T. Jaynes, a 20th century physicist who wrote extensively on statistical inference in Physics.  In the fifth example of his <em>Confidence Intervals vs. Bayesian Intervals</em> (<a href="http://bayes.wustl.edu/etj/articles/confidence.pdf">pdf</a>), he considers a truncated exponential model. Here is the problem, in his words:</p>
 <blockquote>
-<p>A device will operate without failure for a time <span class="math">\(\theta\)</span> because of a protective chemical inhibitor injected into it; but at time <span class="math">\(\theta\)</span> the supply of the chemical is exhausted, and failures then commence, following the exponential failure law. It is not feasible to observe the depletion of this inhibitor directly; one can observe only the resulting failures. From data on actual failure times, estimate the time <span class="math">\(\theta\)</span> of guaranteed safe operation...</p>
+<p>A device will operate without failure for a time $\theta$ because of a protective chemical inhibitor injected into it; but at time $\theta$ the supply of the chemical is exhausted, and failures then commence, following the exponential failure law. It is not feasible to observe the depletion of this inhibitor directly; one can observe only the resulting failures. From data on actual failure times, estimate the time $\theta$ of guaranteed safe operation...</p>
 </blockquote>
-<p>Essentially, we have data <span class="math">\(D\)</span> drawn from the following model:</p>
-<p><span class="math">\[
+<p>Essentially, we have data $D$ drawn from the following model:</p>
+<p>$$
 p(x~|~\theta) = \left\{
 \begin{array}{lll}
 \exp(\theta - x) &amp;,&amp; x &gt; \theta\\
 0                &amp;,&amp; x &lt; \theta
 \end{array}
 \right\}
-\]</span></p>
-<p>where <span class="math">\(p(x~|~\theta)\)</span> gives the probability of failure at time <span class="math">\(x\)</span>, given an inhibitor which lasts for a time <span class="math">\(\theta\)</span>. Given some observed data <span class="math">\(D = \{x_i\}\)</span>, we want to estimate <span class="math">\(\theta\)</span>.</p>
-<p>Let's start by plotting this model for a particular value of <span class="math">\(\theta\)</span>, so we can see what we're working with:</p>
+$$</p>
+<p>where $p(x~|~\theta)$ gives the probability of failure at time $x$, given an inhibitor which lasts for a time $\theta$.
+Given some observed data $D = \{x_i\}$, we want to estimate $\theta$.</p>
+<p>Let&#39;s start by plotting this model for a particular value of $\theta$, so we can see what we&#39;re working with:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[27]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%</span><span class="k">matplotlib</span> <span class="n">inline</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
@@ -2286,15 +2465,16 @@ In&nbsp;[27]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+<div class="output_wrapper">
+<div class="output">
 
 
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYQAAAEPCAYAAABCyrPIAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3X1QFPfhP/D3HffIHcKBinB3ERUMGBA1GDXG5prGmPE3
 0sTaFJ2O+aoxDq2Tpk0yTtPJVDLTRJPJ9EFmOnaiMWks2kmTYhJyaXw4TTAIShUrVEFBDhQIzwLy
@@ -2451,62 +2631,94 @@ n76iFpE3WAhEo9TT04OUlBTo9Xp8++23fntqbaLbuMmIaJTq6+vR3t6OtrY23Lx5U+o4RGPGEQLR
 KKWmpmLdunW4cuUKrl+/jl27dkkdiWhMVFIHIPJHH3zwAbRaLdLS0tDX14eHH34YDocDNptN6mhE
 o8YRAhERAeA+BCIi6sdCICIiACwEIiLqx0IgIiIALAQiIurHQiAiIgAsBCIi6sdCICIiAMD/BzCv
 cUpzJdl2AAAAAElFTkSuQmCC
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Imagine now that we've observed some data, <span class="math">\(D = \{10, 12, 15\}\)</span>, and we want to infer the value of <span class="math">\(\theta\)</span> from this data. We'll explore four approaches to this below.</p>
+<p>Imagine now that we&#39;ve observed some data, $D = \{10, 12, 15\}$, and we want to infer the value of $\theta$ from this data. We&#39;ll explore four approaches to this below.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="1.-Common-Sense-Approach">1. Common Sense Approach<a class="anchor-link" href="#1.-Common-Sense-Approach">&#182;</a></h3>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>One general tip that I'd always recommend: in any problem, before computing anything, think about what you're computing and guess what a reasonable solution might be. We'll start with that here. Thinking about the problem, the hard cutoff in the probability distribution leads to one simple observation: <strong><span class="math">\(\theta\)</span> must be smaller than the smallest observed value</strong>.</p>
-<p>This is immediately obvious on examination: the probability of seeing a value less than <span class="math">\(\theta\)</span> is zero. Thus, a model with <span class="math">\(\theta\)</span> greater than any observed value is impossible, assuming our model specification is correct. Our fundamental assumption in both Bayesianism and frequentism is that the model is correct, so in this case, we can immediately write our common sense condition:</p>
-<p><span class="math">\[
-\theta &lt; \min(D)
-\]</span></p>
-<p>or, in the particular case of <span class="math">\(D = \{10, 12, 15\}\)</span>,</p>
-<p><span class="math">\[
-\theta &lt; 10
-\]</span></p>
-<p>Any reasonable constraint on <span class="math">\(\theta\)</span> given this data should meet this criterion. With this in mind, let's go on to some quantitative approaches based on Frequentism and Bayesianism.</p>
 </div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>One general tip that I&#39;d always recommend: in any problem, before computing anything, think about what you&#39;re computing and guess what a reasonable solution might be. We&#39;ll start with that here. Thinking about the problem, the hard cutoff in the probability distribution leads to one simple observation: <strong>$\theta$ must be smaller than the smallest observed value</strong>.</p>
+<p>This is immediately obvious on examination: the probability of seeing a value less than $\theta$ is zero.  Thus, a model with $\theta$ greater than any observed value is impossible, assuming our model specification is correct. Our fundamental assumption in both Bayesianism and frequentism is that the model is correct, so in this case, we can immediately write our common sense condition:</p>
+<p>$$
+\theta &lt; \min(D)
+$$</p>
+<p>or, in the particular case of $D = \{10, 12, 15\}$,</p>
+<p>$$
+\theta &lt; 10
+$$</p>
+<p>Any reasonable constraint on $\theta$ given this data should meet this criterion. With this in mind, let&#39;s go on to some quantitative approaches based on Frequentism and Bayesianism.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="2.-Frequentist-approach-#1:-Sampling-Distribution-via-the-Normal-Approximation">2. Frequentist approach #1: Sampling Distribution via the Normal Approximation<a class="anchor-link" href="#2.-Frequentist-approach-#1:-Sampling-Distribution-via-the-Normal-Approximation">&#182;</a></h3>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In the frequentist paradigm, we'd like to compute a confidence interval on the value of <span class="math">\(\theta\)</span>. We can start by observing that the population mean is given by</p>
-<p><span class="math">\[
+<p>In the frequentist paradigm, we&#39;d like to compute a confidence interval on the value of $\theta$. We can start by observing that the population mean is given by</p>
+<p>$$
 \begin{array}{ll}
 E(x) &amp;= \int_0^\infty xp(x)dx\\
      &amp;= \theta + 1
      \end{array}
-\]</span></p>
-<p>So, using the sample mean as the point estimate of <span class="math">\(E(x)\)</span>, we have an unbiased estimator for <span class="math">\(\theta\)</span> given by</p>
-<p><span class="math">\[
+$$</p>
+<p>So, using the sample mean as the point estimate of $E(x)$, we have an unbiased estimator for $\theta$ given by</p>
+<p>$$
 \hat{\theta} = \frac{1}{N} \sum_{i=1}^N x_i - 1
-\]</span></p>
-<p>The exponential distribution has a standard deviation of 1, so in the limit of large <span class="math">\(N\)</span>, we can use the standard error of the mean (as above) to show that the sampling distribution of <span class="math">\(\hat{\theta}\)</span> will approach normal with variance <span class="math">\(\sigma^2 = 1 / N\)</span>. Given this, we can write our 95% (i.e. 2<span class="math">\(\sigma\)</span>) confidence interval as</p>
-<p><span class="math">\[
+$$</p>
+<p>The exponential distribution has a standard deviation of 1, so in the limit of large $N$, we can use the standard error of the mean (as above) to show that the sampling distribution of $\hat{\theta}$ will approach normal with variance $\sigma^2 = 1 / N$. Given this, we can write our 95% (i.e. 2$\sigma$) confidence interval as</p>
+<p>$$
 CI_{\rm large~N} = \left(\hat{\theta} - 2 N^{-1/2},~\hat{\theta} + 2 N^{-1/2}\right)
-\]</span></p>
-<p>Let's write a function which will compute this, and evaluate it for our data:</p>
+$$</p>
+<p>Let&#39;s write a function which will compute this, and evaluate it for our data:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[28]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">erfinv</span>
 
 <span class="k">def</span> <span class="nf">approx_CI</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">sig</span><span class="o">=</span><span class="mf">0.95</span><span class="p">):</span>
@@ -2522,27 +2734,30 @@ In&nbsp;[28]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[29]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">D</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">15</span><span class="p">]</span>
 <span class="k">print</span><span class="p">(</span><span class="s">&quot;approximate CI: ({0:.1f}, {1:.1f})&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">approx_CI</span><span class="p">(</span><span class="n">D</span><span class="p">)))</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 approximate CI: (10.2, 12.5)
 
@@ -2554,17 +2769,33 @@ approximate CI: (10.2, 12.5)
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We immediately see an issue. By our simple common sense argument, we've determined that it is impossible for <span class="math">\(\theta\)</span> to be greater than 10, yet the entirety of the 95% confidence interval is above this range! Perhaps this issue is due to the small sample size: the above computation is based on a large-<span class="math">\(N\)</span> approximation, and we have a relatively paltry <span class="math">\(N = 3\)</span>. Maybe this will be improved if we do the more computationally intensive exact approach. Let's try it:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We immediately see an issue. By our simple common sense argument, we&#39;ve determined that it is impossible for $\theta$ to be greater than 10, yet the entirety of the 95% confidence interval is above this range!  Perhaps this issue is due to the small sample size: the above computation is based on a large-$N$ approximation, and we have a relatively paltry $N = 3$. Maybe this will be improved if we do the more computationally intensive exact approach. Let&#39;s try it:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="3.-Frequentist-approach-#2:-Exact-Sampling-Distribution">3. Frequentist approach #2: Exact Sampling Distribution<a class="anchor-link" href="#3.-Frequentist-approach-#2:-Exact-Sampling-Distribution">&#182;</a></h3>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Computing the confidence interval from the exact sampling distribution takes a bit more work.</p>
-<p>For small <span class="math">\(N\)</span>, the normal approximation will not apply, and we must instead compute the confidence integral from the actual sampling distribution, which is the distribution of the mean of <span class="math">\(N\)</span> variables each distributed according to <span class="math">\(p(\theta)\)</span>. The sum of random variables is distributed according to the convolution of the distributions for individual variables, so we can exploit the <a href="http://en.wikipedia.org/wiki/Convolution_theorem">convolution theorem</a> and use the method of [characteristic functions](http://en.wikipedia.org/wiki/Characteristic_function_(probability_theory) to find the following sampling distribution for the sum of <span class="math">\(N\)</span> variables distributed according to our particular <span class="math">\(p(x~|~\theta)\)</span>:</p>
-<p><span class="math">\[
+<p>For small $N$, the normal approximation will not apply, and we must instead compute the confidence integral from the actual sampling distribution, which is the distribution of the mean of $N$ variables each distributed according to $p(\theta)$. The sum of random variables is distributed according to the convolution of the distributions for individual variables, so we can exploit the <a href="http://en.wikipedia.org/wiki/Convolution_theorem">convolution theorem</a> and use the method of <a href="http://en.wikipedia.org/wiki/Characteristic_function_(probability_theory">characteristic functions</a> to find the following sampling distribution for the sum of $N$ variables distributed according to our particular $p(x~|~\theta)$:</p>
+<p>$$
 f(\theta~|~D) \propto
 \left\{
 \begin{array}{lll}
@@ -2573,36 +2804,52 @@ z^{N - 1}\exp(-z) &amp;,&amp; z &gt; 0\\
 \end{array}
 \right\}
 ;~ z = N(\hat{\theta} + 1 - \theta)
-\]</span></p>
+$$</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>To compute the 95% confidence interval, we can start by computing the cumulative distribution: we integrate <span class="math">\(f(\theta~|~D)\)</span> from <span class="math">\(0\)</span> to <span class="math">\(\theta\)</span>. This is relatively painless if we make use of the expression for the <a href="http://en.wikipedia.org/wiki/Incomplete_gamma_function">incomplete gamma function</a>:</p>
-<p><span class="math">\[
+<p>To compute the 95% confidence interval, we can start by computing the cumulative distribution: we integrate $f(\theta~|~D)$ from $0$ to $\theta$. This is relatively painless if we make use of the expression for the <a href="http://en.wikipedia.org/wiki/Incomplete_gamma_function">incomplete gamma function</a>:</p>
+<p>$$
 \Gamma(a, x) = \int_x^\infty t^{a - 1}e^{-t} dt
-\]</span></p>
-<p>which looks strikingly similar to our <span class="math">\(f(\theta)\)</span>.</p>
+$$</p>
+<p>which looks strikingly similar to our $f(\theta)$.</p>
 <p>Using this to perform the integral, we find that the cumulative distribution is given by</p>
-<p><span class="math">\[
+<p>$$
 F(\theta~|~D) = \frac{1}{\Gamma(N)}\left[ \Gamma\left(N, \max[0, N(\hat{\theta} + 1 - \theta)]\right) - \Gamma\left(N,~N(\hat{\theta} + 1)\right)\right]
-\]</span></p>
+$$</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>A contiguous 95% confidence interval <span class="math">\((\theta_1, \theta_2)\)</span> satisfies the following equation:</p>
-<p><span class="math">\[
+<p>A contiguous 95% confidence interval $(\theta_1, \theta_2)$ satisfies the following equation:</p>
+<p>$$
 F(\theta_2~|~D) - F(\theta_1~|~D) = 0.95
-\]</span></p>
-<p>There are in fact an infinite set of solutions to this; what we want is the shortest of these. We'll add the constraint that the probability density is equal at either side of the interval:</p>
-<p><span class="math">\[
+$$</p>
+<p>There are in fact an infinite set of solutions to this; what we want is the shortest of these. We&#39;ll add the constraint that the probability density is equal at either side of the interval:</p>
+<p>$$
 f(\theta_2~|~D) = f(\theta_1~|~D)
-\]</span></p>
-<p>(Jaynes claims that this criterion ensures the shortest possible interval, but I'm not sure how to prove that). Solving this system of two nonlinear equations will give us the desired confidence interval. Let's compute this numerically:</p>
+$$</p>
+<p>(Jaynes claims that this criterion ensures the shortest possible interval, but I&#39;m not sure how to prove that).
+Solving this system of two nonlinear equations will give us the desired confidence interval. Let&#39;s compute this numerically:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[30]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">gammaincc</span>
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">optimize</span>
 
@@ -2635,17 +2882,25 @@ In&nbsp;[30]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>As a sanity check, let's make sure that the exact and approximate confidence intervals match for a large number of points:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As a sanity check, let&#39;s make sure that the exact and approximate confidence intervals match for a large number of points:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[31]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">Dlarge</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
 <span class="k">print</span> <span class="s">&quot;approx: ({0:.3f}, {1:.3f})&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">approx_CI</span><span class="p">(</span><span class="n">Dlarge</span><span class="p">))</span>
@@ -2654,13 +2909,14 @@ In&nbsp;[31]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 approx: (9.409, 9.584)
 exact: (9.408, 9.584)
@@ -2673,29 +2929,37 @@ exact: (9.408, 9.584)
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>As expected, the approximate solution is very close to the exact solution for large <span class="math">\(N\)</span>, which gives us confidence that we're computing the right thing.</p>
-<p>Let's return to our 3-point dataset and see the results:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As expected, the approximate solution is very close to the exact solution for large $N$, which gives us confidence that we&#39;re computing the right thing.</p>
+<p>Let&#39;s return to our 3-point dataset and see the results:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[32]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">print</span><span class="p">(</span><span class="s">&quot;approximate CI: ({0:.1f}, {1:.1f})&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">approx_CI</span><span class="p">(</span><span class="n">D</span><span class="p">)))</span>
 <span class="k">print</span><span class="p">(</span><span class="s">&quot;exact CI:       ({0:.1f}, {1:.1f})&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">exact_CI</span><span class="p">(</span><span class="n">D</span><span class="p">)))</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 approximate CI: (10.2, 12.5)
 exact CI:       (10.2, 12.2)
@@ -2708,52 +2972,72 @@ exact CI:       (10.2, 12.2)
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The exact confidence interval is slightly different than the approximate one, but still reflects the same problem: <strong>we know from common-sense reasoning that <span class="math">\(\theta\)</span> can't be greater than 10, yet the 95% confidence interval is entirely in this forbidden region</strong>! The confidence interval seems to be giving us unreliable results.</p>
-<p>We'll discuss this in more depth further below, but first let's see if Bayes can do better.</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The exact confidence interval is slightly different than the approximate one, but still reflects the same problem: <strong>we know from common-sense reasoning that $\theta$ can&#39;t be greater than 10, yet the 95% confidence interval is entirely in this forbidden region</strong>! The confidence interval seems to be giving us unreliable results.</p>
+<p>We&#39;ll discuss this in more depth further below, but first let&#39;s see if Bayes can do better.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="4.-Bayesian-Credibility-Interval">4. Bayesian Credibility Interval<a class="anchor-link" href="#4.-Bayesian-Credibility-Interval">&#182;</a></h3>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>For the Bayesian solution, we start by writing Bayes' rule:</p>
-<p><span class="math">\[
+<p>For the Bayesian solution, we start by writing Bayes&#39; rule:</p>
+<p>$$
 p(\theta~|~D) = \frac{p(D~|~\theta)p(\theta)}{P(D)}
-\]</span></p>
-<p>Using a constant prior <span class="math">\(p(\theta)\)</span>, and with the likelihood</p>
-<p><span class="math">\[
+$$</p>
+<p>Using a constant prior $p(\theta)$, and with the likelihood</p>
+<p>$$
 p(D~|~\theta) = \prod_{i=1}^N p(x~|~\theta)
-\]</span></p>
+$$</p>
 <p>we find</p>
-<p><span class="math">\[
+<p>$$
 p(\theta~|~D) \propto \left\{
 \begin{array}{lll}
 N\exp\left[N(\theta - \min(D))\right] &amp;,&amp; \theta &lt; \min(D)\\
 0                &amp;,&amp; \theta &gt; \min(D)
 \end{array}
 \right\}
-\]</span></p>
-<p>where <span class="math">\(\min(D)\)</span> is the smallest value in the data <span class="math">\(D\)</span>, which enters because of the truncation of <span class="math">\(p(x~|~\theta)\)</span>. Because <span class="math">\(p(\theta~|~D)\)</span> increases exponentially up to the cutoff, the shortest 95% credibility interval <span class="math">\((\theta_1, \theta_2)\)</span> will be given by</p>
-<p><span class="math">\[
+$$</p>
+<p>where $\min(D)$ is the smallest value in the data $D$, which enters because of the truncation of $p(x~|~\theta)$.
+ Because $p(\theta~|~D)$ increases exponentially up to the cutoff, the shortest 95% credibility interval $(\theta_1, \theta_2)$ will be given by</p>
+<p>$$
 \theta_2 = \min(D)
-\]</span></p>
-<p>and <span class="math">\(\theta_1\)</span> given by the solution to the equation</p>
-<p><span class="math">\[
+$$</p>
+<p>and $\theta_1$ given by the solution to the equation</p>
+<p>$$
 \int_{\theta_1}^{\theta_2} N\exp[N(\theta - \theta_2)]d\theta = f
-\]</span></p>
+$$</p>
 <p>this can be solved analytically by evaluating the integral, which gives</p>
-<p><span class="math">\[
+<p>$$
 \theta_1 = \theta_2 + \frac{\log(1 - f)}{N}
-\]</span></p>
-<p>Let's write a function which computes this:</p>
+$$</p>
+<p>Let&#39;s write a function which computes this:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[33]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">def</span> <span class="nf">bayes_CR</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">frac</span><span class="o">=</span><span class="mf">0.95</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Bayesian Credibility Region&quot;&quot;&quot;</span>
     <span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
@@ -2765,17 +3049,25 @@ In&nbsp;[33]:
 
 </div>
 </div>
+</div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Now that we have this Bayesian method, we can compare the results of the four methods:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[34]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">print</span><span class="p">(</span><span class="s">&quot;common sense:         theta &lt; {0:.1f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">D</span><span class="p">)))</span>
 <span class="k">print</span><span class="p">(</span><span class="s">&quot;frequentism (approx): 95% CI = ({0:.1f}, {1:.1f})&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">approx_CI</span><span class="p">(</span><span class="n">D</span><span class="p">)))</span>
 <span class="k">print</span><span class="p">(</span><span class="s">&quot;frequentism (exact):  95% CI = ({0:.1f}, {1:.1f})&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">exact_CI</span><span class="p">(</span><span class="n">D</span><span class="p">)))</span>
@@ -2784,13 +3076,14 @@ In&nbsp;[34]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 common sense:         theta &lt; 10.0
 frequentism (approx): 95% CI = (10.2, 12.5)
@@ -2805,22 +3098,41 @@ Bayesian:             95% CR = (9.0, 10.0)
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>What we find is that the Bayesian result agrees with our common sense, while the frequentist approach does not. The problem is that <strong>frequentism is answering the wrong question</strong>. I'll discuss this more below, but first let's do some simulations to make sure the CI and CR in this case are correct.</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>What we find is that the Bayesian result agrees with our common sense, while the frequentist approach does not. The problem is that <strong>frequentism is answering the wrong question</strong>.  I&#39;ll discuss this more below, but first let&#39;s do some simulations to make sure the CI and CR in this case are correct.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Numerical-Confirmation">Numerical Confirmation<a class="anchor-link" href="#Numerical-Confirmation">&#182;</a></h3>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>To try to quell any doubts about the math here, I want to repeat the exercise we did above and show that <em>the confidence interval derived above is, in fact, correct</em>. We'll use the same approach as before, assuming a &quot;true&quot; value for <span class="math">\(\theta\)</span> and sampling data from the associated distribution:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To try to quell any doubts about the math here, I want to repeat the exercise we did above and show that <em>the confidence interval derived above is, in fact, correct</em>.  We&#39;ll use the same approach as before, assuming a &quot;true&quot; value for $\theta$ and sampling data from the associated distribution:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[35]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">expon</span>
 
 <span class="n">Nsamples</span> <span class="o">=</span> <span class="mi">1000</span>
@@ -2838,13 +3150,14 @@ In&nbsp;[35]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 Fraction of Confidence Intervals containing theta: 0.953
 
@@ -2856,16 +3169,23 @@ Fraction of Confidence Intervals containing theta: 0.953
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>As is promised by frequentism, 95% of the computed confidence intervals contain the true value. The procedure we used to compute the confidence intervals is, in fact, correct: our data just happened to be among the 5% where the method breaks down. But here's the thing: <strong>we know from the data themselves that we are in the 5% where the CI fails</strong>. The fact that the standard frequentist confidence interval ignores this common-sense information should give you pause about blind reliance on the confidence interval for any nontrivial problem.</p>
-<p>For good measure, let's check that the Bayesian credible region also passes its test:</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As is promised by frequentism, 95% of the computed confidence intervals contain the true value. The procedure we used to compute the confidence intervals is, in fact, correct: our data just happened to be among the 5% where the method breaks down. But here&#39;s the thing: <strong>we know from the data themselves that we are in the 5% where the CI fails</strong>. The fact that the standard frequentist confidence interval ignores this common-sense information should give you pause about blind reliance on the confidence interval for any nontrivial problem.</p>
+<p>For good measure, let&#39;s check that the Bayesian credible region also passes its test:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[38]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">N</span> <span class="o">=</span> <span class="mf">1E7</span>
 <span class="n">eps</span> <span class="o">=</span> <span class="mf">0.1</span>
@@ -2881,13 +3201,14 @@ In&nbsp;[38]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 Number of good samples: 65
 
@@ -2899,12 +3220,13 @@ Number of good samples: 65
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[39]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">theta_good</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="n">i_good</span><span class="p">]</span>
 <span class="n">theta1</span><span class="p">,</span> <span class="n">theta2</span> <span class="o">=</span> <span class="n">bayes_CR</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
 
@@ -2914,13 +3236,14 @@ In&nbsp;[39]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 Fraction of thetas in Credible Region: 0.954
 
@@ -2932,54 +3255,99 @@ Fraction of thetas in Credible Region: 0.954
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Again, we have confirmed that, as promised, ~95% of the suitable values of <span class="math">\(\theta\)</span> fall in the credible region we computed from our single observed sample.</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Again, we have confirmed that, as promised, ~95% of the suitable values of $\theta$ fall in the credible region we computed from our single observed sample.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Frequentism-Answers-the-Wrong-Question">Frequentism Answers the Wrong Question<a class="anchor-link" href="#Frequentism-Answers-the-Wrong-Question">&#182;</a></h2>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We've shown that the frequentist approach in the second example is <em>technically correct</em>, but it disagrees with our common sense. What are we to take from this?</p>
-<p>Here's the crux of the problem: <strong>The frequentist confidence interval, while giving the correct answer, is usually answering the wrong question.</strong> And this wrong-question approach is the result of a probability definition which is <em>fundamental</em> to the frequentist paradigm!</p>
+<p>We&#39;ve shown that the frequentist approach in the second example is <em>technically correct</em>, but it disagrees with our common sense. What are we to take from this?</p>
+<p>Here&#39;s the crux of the problem: <strong>The frequentist confidence interval, while giving the correct answer, is usually answering the wrong question.</strong> And this wrong-question approach is the result of a probability definition which is <em>fundamental</em> to the frequentist paradigm!</p>
 <p>Recall the statements about confidence intervals and credible regions that I made above. From the Bayesians:</p>
 <blockquote>
-<p>&quot;Given our observed data, there is a 95% probability that the true value of <span class="math">\(\theta\)</span> falls within the credible region&quot; - Bayesians</p>
+<p>&quot;Given our observed data, there is a 95% probability that the true value of $\theta$ falls within the credible region&quot; - Bayesians</p>
 </blockquote>
 <p>And from the frequentists:</p>
 <blockquote>
-<p>&quot;There is a 95% probability that when I compute a confidence interval from data of this sort, the true value of <span class="math">\(\theta\)</span> will fall within it.&quot; - Frequentists</p>
+<p>&quot;There is a 95% probability that when I compute a confidence interval from data of this sort, the true value of $\theta$ will fall within it.&quot; - Frequentists</p>
 </blockquote>
-<p>Now think about what this means. Suppose you've measured three failure times of your device, and you want to estimate <span class="math">\(\theta\)</span>. I would assert that &quot;data of this sort&quot; is not your primary concern: you should be concerned with what you can learn from <strong>those particular three observations</strong>, not the entire hypothetical space of observations like them. As we saw above, if you follow the frequentists in considering &quot;data of this sort&quot;, you are in danger at arriving at an answer that tells you nothing meaningful about the particular data you have measured.</p>
-<p>Suppose you attempt to change the question and ask what the frequentist confidence interval can tell you <em>given the particular data that you've observed</em>. Here's what it has to say:</p>
+<p>Now think about what this means. Suppose you&#39;ve measured three failure times of your device, and you want to estimate $\theta$. I would assert that &quot;data of this sort&quot; is not your primary concern: you should be concerned with what you can learn from <strong>those particular three observations</strong>, not the entire hypothetical space of observations like them. As we saw above, if you follow the frequentists in considering &quot;data of this sort&quot;, you are in danger at arriving at an answer that tells you nothing meaningful about the particular data you have measured.</p>
+<p>Suppose you attempt to change the question and ask what the frequentist confidence interval can tell you <em>given the particular data that you&#39;ve observed</em>. Here&#39;s what it has to say:</p>
 <blockquote>
-<p>&quot;<em>Given this observed data</em>, the true value of <span class="math">\(\theta\)</span> is either in our confidence interval or it isn't&quot; - Frequentists</p>
+<p>&quot;<em>Given this observed data</em>, the true value of $\theta$ is either in our confidence interval or it isn&#39;t&quot; - Frequentists</p>
 </blockquote>
-<p>That's all the confidence interval means – and all it can mean! – for <strong>this particular data</strong> that you have observed. Really. I'm not making this up. You might notice that this is simply a tautology, and can be put more succinctly:</p>
+<p>That&#39;s all the confidence interval means – and all it can mean! – for <strong>this particular data</strong> that you have observed. Really. I&#39;m not making this up. You might notice that this is simply a tautology, and can be put more succinctly:</p>
 <blockquote>
-<p>&quot;<em>Given this observed data</em>, I can put no constraint on the value of <span class="math">\(\theta\)</span>&quot; - Frequentists</p>
+<p>&quot;<em>Given this observed data</em>, I can put no constraint on the value of $\theta$&quot; - Frequentists</p>
 </blockquote>
-<p>If you're interested in what your particular, observed data are telling you, frequentism is useless.</p>
+<p>If you&#39;re interested in what your particular, observed data are telling you, frequentism is useless.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Hold-on...-isn't-that-a-bit-harsh?">Hold on... isn't that a bit harsh?<a class="anchor-link" href="#Hold-on...-isn't-that-a-bit-harsh?">&#182;</a></h4>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This might be a harsh conclusion for some to swallow, but I want to emphasize that it is not simply a matter of opinion or idealogy; it's an undeniable fact based on the very philosophical stance underlying frequentism and the very definition of the confidence interval. If what you're interested in are conclusions drawn from the particular data you observed, frequentism's standard answers (i.e. the confidence interval and the closely-related <span class="math">\(p\)</span>-values) are entirely useless.</p>
-<p>Unfortunately, most people using frequentist principles in practice don't seem to realize this. I'd point out specific examples from the astronomical literature, but I'm not in the business of embarassing people directly (and they're easy enough to find now that you know what to look for). Many scientists operate as if the confidence interval is a Bayesian credible region, <strong>but it demonstrably is not.</strong> This oversight can perhaps be forgiven for the statistical layperson, as even trained statisticians will often mistake the interpretation of the confidence interval.</p>
-<p>I think the reason this mistake is so common is that in many simple cases (as I showed in the first example above) the confidence interval and the credible region happen to coincide. Frequentism, in this case, correctly answers the question you ask, <strong>but only because of the happy accident that Bayesianism gives the same result for that problem.</strong></p>
-<p>Now, I should point out that I am certainly not the first person to state things this way, or even this strongly. The Physicist <a href="http://en.wikipedia.org/wiki/Edwin_Thompson_Jaynes">E.T. Jaynes</a> was known as an ardent defender of Bayesianism in science; one of my primary inspirations for this post was his 1976 paper, <em>Confidence Intervals vs. Bayesian Intervals</em> (<a href="http://bayes.wustl.edu/etj/articles/confidence.pdf">pdf</a>). More recently, statistician and blogger <a href="http://wmbriggs.com/">W.M. Briggs</a> posted a diatribe on arXiv called <a href="http://arxiv.org/abs/1201.2590"><em>It's Time To Stop Teaching Frequentism to Non-Statisticians</em></a> which brings up this same point. It's in the same vein of argument that <a href="http://en.wikipedia.org/wiki/Leonard_Jimmie_Savage">Savage</a>, <a href="http://en.wikipedia.org/wiki/Jerome_Cornfield">Cornfield</a>, and other outspoken 20th-century Bayesian practitioners made throughout their writings, talks, and correspondance.</p>
-<p>So should you ever use confidence intervals at all? Perhaps in situations (such as analyzing gambling odds) where multiple data realizations are the reality, frequentism makes sense. But in most scientific applications where you're concerned with what one particular observed set of data is telling you, <strong>frequentism simply answers the wrong question</strong>.</p>
 </div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This might be a harsh conclusion for some to swallow, but I want to emphasize that it is not simply a matter of opinion or idealogy; it&#39;s an undeniable fact based on the very philosophical stance underlying frequentism and the very definition of the confidence interval. If what you&#39;re interested in are conclusions drawn from the particular data you observed, frequentism&#39;s standard answers (i.e. the confidence interval and the closely-related $p$-values) are entirely useless.</p>
+<p>Unfortunately, most people using frequentist principles in practice don&#39;t seem to realize this. I&#39;d point out specific examples from the astronomical literature, but I&#39;m not in the business of embarassing people directly (and they&#39;re easy enough to find now that you know what to look for). Many scientists operate as if the confidence interval is a Bayesian credible region, <strong>but it demonstrably is not.</strong> This oversight can perhaps be forgiven for the statistical layperson, as even trained statisticians will often mistake the interpretation of the confidence interval.</p>
+<p>I think the reason this mistake is so common is that in many simple cases (as I showed in the first example above) the confidence interval and the credible region happen to coincide.  Frequentism, in this case, correctly answers the question you ask, <strong>but only because of the happy accident that Bayesianism gives the same result for that problem.</strong></p>
+<p>Now, I should point out that I am certainly not the first person to state things this way, or even this strongly. The Physicist <a href="http://en.wikipedia.org/wiki/Edwin_Thompson_Jaynes">E.T. Jaynes</a> was known as an ardent defender of Bayesianism in science; one of my primary inspirations for this post was his 1976 paper, <em>Confidence Intervals vs. Bayesian Intervals</em> (<a href="http://bayes.wustl.edu/etj/articles/confidence.pdf">pdf</a>). More recently, statistician and blogger <a href="http://wmbriggs.com/">W.M. Briggs</a> posted a diatribe on arXiv called <a href="http://arxiv.org/abs/1201.2590"><em>It&#39;s Time To Stop Teaching Frequentism to Non-Statisticians</em></a> which brings up this same point. It&#39;s in the same vein of argument that <a href="http://en.wikipedia.org/wiki/Leonard_Jimmie_Savage">Savage</a>, <a href="http://en.wikipedia.org/wiki/Jerome_Cornfield">Cornfield</a>, and other outspoken 20th-century Bayesian practitioners made throughout their writings, talks, and correspondance.</p>
+<p>So should you ever use confidence intervals at all? Perhaps in situations (such as analyzing gambling odds) where multiple data realizations are the reality, frequentism makes sense. But in most scientific applications where you&#39;re concerned with what one particular observed set of data is telling you, <strong>frequentism simply answers the wrong question</strong>.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="The-Moral-of-the-Story:-Frequentism-and-Science-Do-Not-Mix">The Moral of the Story: Frequentism and Science Do Not Mix<a class="anchor-link" href="#The-Moral-of-the-Story:-Frequentism-and-Science-Do-Not-Mix">&#182;</a></h2>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The moral of the story is that frequentism and Science do not mix. Let me say it directly: <em>you should be suspicious of the use of frequentist confidence intervals and p-values in science</em>. In a scientific setting, confidence intervals, and closely-related p-values, provide the correct answer to the wrong question. In particular, if you ever find someone stating or implying that a 95% confidence interval is 95% certain to contain a parameter of interest, <strong>do not trust their interpretation or their results</strong>. If you happen to be peer-reviewing the paper, <strong>reject it</strong>. Their data do not back-up their conclusion.</p>
+<p>The moral of the story is that frequentism and Science do not mix. Let me say it directly: <em>you should be suspicious of the use of frequentist confidence intervals and p-values in science</em>. In a scientific setting, confidence intervals, and closely-related p-values, provide the correct answer to the wrong question. In particular, if you ever find someone stating or implying that a 95% confidence interval is 95% certain to contain a parameter of interest, <strong>do not trust their interpretation or their results</strong>.  If you happen to be peer-reviewing the paper, <strong>reject it</strong>. Their data do not back-up their conclusion.</p>
 <p>If you have made it this far, I thank you for reading! I hope that this exploration succeeded in clarifying that the philosophical assumptions of frequentism and Bayesianism lead to real, practical consequences in the analysis and interpretation of data. If this post leads just one researcher to stop using frequentist confidence intervals in their scientific research, I will consider it a success.</p>
-<p><small> This post was written entirely in the IPython notebook. You can <a href="http://jakevdp.github.io/downloads/notebooks/FreqBayes3.ipynb">download</a> this notebook, or see a static view on <a href="http://nbviewer.ipython.org/url/jakevdp.github.io/downloads/notebooks/FreqBayes3.ipynb">nbviewer</a>. Many thanks to David W. Hogg for some helpful critiques on an early version of this post. </small></p>
+<p><small>
+This post was written entirely in the IPython notebook.  You can <a href="http://jakevdp.github.io/downloads/notebooks/FreqBayes3.ipynb">download</a> this notebook, or see a static view on <a href="http://nbviewer.ipython.org/url/jakevdp.github.io/downloads/notebooks/FreqBayes3.ipynb">nbviewer</a>.
+Many thanks to David W. Hogg for some helpful critiques on an early version of this post.
+</small></p>
+</div>
+</div>
 </div></p></div>
     <footer>
 <p class="meta">
@@ -3033,7 +3401,7 @@ Fraction of thetas in Credible Region: 0.954
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Jake Vanderplas -
+    Copyright &copy;  2012-2014  - Jake Vanderplas -
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
     <script type="text/javascript">
@@ -3061,7 +3429,7 @@ Fraction of thetas in Credible Region: 0.954
           var disqus_title = 'Frequentism and Bayesianism III: Confidence, Credibility, and why Frequentism and Science do not Mix';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-	    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
 	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 	   })();
 	</script>

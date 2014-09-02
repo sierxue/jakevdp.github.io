@@ -1777,7 +1777,7 @@ jQuery(document).ready(function($) {
 </ul>
 
 
-<form action="http://google.com/search" method="get">
+<form action="//google.com/search" method="get">
   <fieldset role="search">
     <input type="hidden" name="q" value="site:jakevdp.github.io" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
@@ -1798,22 +1798,42 @@ jQuery(document).ready(function($) {
 </header>
 
   <div class="entry-content"><p>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><em>Note: this blog has since moved from octopress to</em> <a href="http://www.getpelican.org"><em>Pelican</em></a>, <em>though the tips below should still help for octopress.</em></p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Note: this blog has since moved from octopress to</em>
+<a href="http://www.getpelican.org"><em>Pelican</em></a>,
+<em>though the tips below should still help for octopress.</em></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 
-<p>A few weeks ago, Fernando Perez, the creator of IPython, wrote a <a href="http://blog.fperez.org/2012/09/blogging-with-ipython-notebook.html">post</a> about blogging with IPython notebooks. I decided to take a stab at making this work in Octopress.</p>
-<p>I started by following Fernando's outline: I first went to <a href="http://github.com/ipython/nbconvert">http://github.com/ipython/nbconvert</a> and obtained the current version of the notebook converter. Running <code>nbconvert.py -f blogger-html filename.ipynb</code> produces a separate html and header file with the notebook content. I inserted the stylesheet info into my header (in octopress, the default location is <code>source/_includes/custom/head.html</code>) and copied the html directly into my post.</p>
-<p>I immediately encountered a problem. <code>nbconvert</code> uses global CSS classes and style markups, and some of these (notably the &quot;hightlight&quot; class and the <code>&lt;pre&gt;</code> tag formatting) conflict with styles defined in my octopress theme. The result was that every post in my blog ended up looking like an ugly hybrid of octopress and an ipython notebook. Not very nice.</p>
-<p>So I did some surgery. Admittedly, this is a terrible hack, but the following code takes the files output by nbconvert, slices them up, and creates a specific set of CSS classes for the notebook markup, such that there's no longer a conflict with the native octopress styles (you can download this script <a href="http://jakevdp.github.com/downloads/code/convert_notebook.py">here</a>): </p>
+A few weeks ago, Fernando Perez, the creator of IPython, wrote a <a href="http://blog.fperez.org/2012/09/blogging-with-ipython-notebook.html">post</a> about blogging with IPython notebooks.  I decided to take a stab at making this work in Octopress.
+
+I started by following Fernando&#39;s outline:  I first went to <a href="http://github.com/ipython/nbconvert"><a href="http://github.com/ipython/nbconvert">http://github.com/ipython/nbconvert</a></a> and obtained the current version of the notebook converter.  Running <code>nbconvert.py -f blogger-html filename.ipynb</code> produces a separate html and header file with the notebook content.  I inserted the stylesheet info into my header (in octopress, the default location is <code>source/_includes/custom/head.html</code>) and copied the html directly into my post.
+
+I immediately encountered a problem.  <code>nbconvert</code> uses global CSS classes and style markups, and some of these (notably the &quot;hightlight&quot; class and the <code>&lt;pre&gt;</code> tag formatting) conflict with styles defined in my octopress theme.  The result was that every post in my blog ended up looking like an ugly hybrid of octopress and an ipython notebook.  Not very nice.
+
+So I did some surgery.  Admittedly, this is a terrible hack, but the following code takes the files output by nbconvert, slices them up, and creates a specific set of CSS classes for the notebook markup, such that there&#39;s no longer a conflict with the native octopress styles
+(you can download this script <a href="http://jakevdp.github.com/downloads/code/convert_notebook.py">here</a>):
+
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c">#!/usr/bin/python</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">sys</span>
@@ -1893,42 +1913,69 @@ In&nbsp;[]:
 
 </div>
 </div>
+</div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This code should be run with two arguments: first the file to be converted, then the path to <code>nbconvert.py</code>. Like the native <code>nbconvert.py</code> this produces a separate file of header code (which is inserted once into the master blog header) and body code which can be copied verbatim into the post.</p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This code should be run with two arguments: first the file to be converted, then the path to <code>nbconvert.py</code>.  Like the native <code>nbconvert.py</code> this produces a separate file of header code (which is inserted once into the  master blog header) and body code which can be copied verbatim into the post.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Trying-it-out">Trying it out<a class="anchor-link" href="#Trying-it-out">&#182;</a></h2>
 </div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>If you haven't noticed already, this post is written entirely in an IPython notebook. So let's see how some things look.</p>
 </div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If you haven&#39;t noticed already, this post is written entirely in an IPython notebook.  So let&#39;s see how some things look.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>First of all, we can write some math, which is rendered using mathjax:</p>
-<p><span class="math">\(f(x) = \int_0^\infty \left(\frac{\sin(x)}{x^2}\right)dx\)</span></p>
+<p>$f(x) = \int_0^\infty \left(\frac{\sin(x)}{x^2}\right)dx$</p>
 <p>As we see, it renders nicely.</p>
 <p>Or we can do some inline plotting:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[1]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="o">%</span><span class="k">pylab</span> <span class="n">inline</span>
 </pre></div>
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
 
 Welcome to pylab, a matplotlib-based Python environment [backend: module://IPython.zmq.pylab.backend_inline].
@@ -1942,12 +1989,13 @@ For more information, type &apos;help(pylab)&apos;.
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">
 In&nbsp;[2]:
 </div>
-<div class="input_area box-flex1">
+<div class="inner_cell">
+    <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="n">pylab</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
@@ -1955,27 +2003,28 @@ In&nbsp;[2]:
 
 </div>
 </div>
+</div>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
+<div class="output_wrapper">
+<div class="output">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
+<div class="output_area"><div class="prompt output_prompt">
     Out[2]:</div>
-<div class="box-flex1 output_subarea output_pyout">
 
 
+<div class="output_text output_subarea output_pyout">
 <pre>
 [&lt;matplotlib.lines.Line2D at 0x2cdba90&gt;]
 </pre>
-
-</div>
 </div>
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_display_data">
+</div>
+
+<div class="output_area"><div class="prompt"></div>
 
 
+<div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAX0AAAD9CAYAAABQvqc9AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XlYVdX6B/DvUchSc0zQACUFBZwNMzWTQjRREcRUyjRt
 sMG6eS1/3e7vuVdv5U8fu5Vdy6x7LS3nCTGR1Aw1lUjFIbXEAWVQKqcknMD9++O9OKIezjn7rD18
@@ -2167,26 +2216,46 @@ VGvSpIk2fvx41eEos379es3hcGitW7fW2rRpo7Vp00ZbsWKF6rCUSk9P1/r06aM6DOW2bdumRUZG
 aq1atdISEhK0kydPqg5JmYkTJ15asjlkyBDt/PnzqkPymkGDBmkNGjTQfH19tcDAQG369OnasWPH
 tOjo6Aot2TTEwehEROQdXB5BRGQjTPpERDbCpE9EZCNM+kRENsKkT0RkI0z6REQ28v8ujsxbbCsI
 oAAAAABJRU5ErkJggg==
-">
+"
+>
+</div>
+
+</div>
 
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
-
-</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>You can do pretty much anything else a notebook does as well. The IPython team did the hard part.</p>
+<p>You can do pretty much anything else a notebook does as well.  The IPython team did the hard part.</p>
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Where-to-go-from-here?">Where to go from here?<a class="anchor-link" href="#Where-to-go-from-here?">&#182;</a></h2>
 </div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>There's clearly a cleaner way to do this. If the IPython team would be open to the idea, I think their HTML stylesheets should be modified so that notebooks can be embedded within any CSS framework with as few conflicts as possible. This means getting rid of all top-level formatting in the style-sheets, and removing potentially common class names like &quot;highlight&quot;. Once this is done, <code>nbconvert.py</code> could output this directly, obviating the need for my unforgivable hack shown above.</p>
-<p>Second, I'd love to build notebook support directly into octopress. If <code>nbconvert.py</code> is available on the user's system, it could be called directly from the Ruby script that generates Octopress HTML. I have about as much experience with Ruby as I do with Swahili (read: None) so this would take some work for me. I'd be happy to pass the baton to any Octopress gurus out there...</p>
-<p>Either of those options will smooth out the notebook/blogging combo considerably, and give me the potential to prognosticate Python in perpetuum. By the way, the notebook used to generate this page can be downloaded <a href="http://jakevdp.github.com/downloads/notebooks/nb_in_octopress.ipynb">here</a>. Happy coding!</p>
+<p>There&#39;s clearly a cleaner way to do this.  If the IPython team would be open to the idea, I think their HTML stylesheets should be modified so that notebooks can be embedded within any CSS framework with as few conflicts as possible.  This means getting rid of all top-level formatting in the style-sheets, and removing potentially common class names like &quot;highlight&quot;.  Once this is done, <code>nbconvert.py</code> could output this directly, obviating the need for my unforgivable hack shown above.</p>
+<p>Second, I&#39;d love to build notebook support directly into octopress.  If <code>nbconvert.py</code> is available on the user&#39;s system, it could be called directly from the Ruby script that generates Octopress HTML.  I have about as much experience with Ruby as I do with Swahili (read: None) so this would take some work for me.  I&#39;d be happy to pass the baton to any Octopress gurus out there...</p>
+<p>Either of those options will smooth out the notebook/blogging combo considerably, and give me the potential to prognosticate Python in perpetuum.
+By the way, the notebook used to generate this page can be downloaded <a href="http://jakevdp.github.com/downloads/notebooks/nb_in_octopress.ipynb">here</a>.  Happy coding!</p>
+</div>
+</div>
 </div></p></div>
     <footer>
 <p class="meta">
@@ -2240,7 +2309,7 @@ oAAAAABJRU5ErkJggg==
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Jake Vanderplas -
+    Copyright &copy;  2012-2014  - Jake Vanderplas -
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
     <script type="text/javascript">
@@ -2268,7 +2337,7 @@ oAAAAABJRU5ErkJggg==
           var disqus_title = 'Blogging with IPython in Octopress';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-	    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
 	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 	   })();
 	</script>
