@@ -1794,6 +1794,52 @@ jQuery(document).ready(function($) {
   		<article>
 <header>
       <h1 class="entry-title">
+        <a href="https://jakevdp.github.io/blog/2014/10/16/how-bad-is-your-colormap/">How Bad Is Your Colormap?</a>
+      </h1>
+      <p class="meta"><time datetime="2014-10-16T09:30:00" pubdate>Oct 16, 2014</time></p>
+</header>
+
+  <div class="entry-content">
+
+<p><strong>(Or, Why People Hate Jet – and You Should Too)</strong></p>
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>I made a little code snippet that I find helpful, and you might too:</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[1]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="k">def</span> <span class="nf">grayify_cmap</span><span class="p">(</span><span class="n">cmap</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return a grayscale version of the colormap&quot;&quot;&quot;</span>
+    <span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="n">cmap</span><span class="p">)</span>
+    <span class="n">colors</span> <span class="o">=</span> <span class="n">cmap</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">cmap</span><span class="o">.</span><span class="n">N</span><span class="p">))</span>
+    
+    <span class="c"># convert RGBA to perceived greyscale luminance</span>
+    <span class="c"># cf. http://alienryderflex.com/hsp.html</span>
+    <span class="n">RGB_weight</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.299</span><span class="p">,</span> <span class="mf">0.587</span><span class="p">,</span> <span class="mf">0.114</span><span class="p">]</span>
+    <span class="n">luminance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">colors</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">RGB_weight</span><span class="p">))</span>
+    <span class="n">colors</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">luminance</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="n">cmap</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">cmap</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s">&quot;_grayscale&quot;</span><span class="p">,</span> <span class="n">colors</span><span class="p">,</span> <span class="n">cmap</span><span class="o">.</span><span class="n">N</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>What this function does is to give you a <em>lumninance-correct</em> grayscale version of any matplotlib colormap. I've found this useful for quickly checking how my plots might appear if printed in black and white, but I think it's probably even more useful for stoking the flame of the internet's general rant against <em>jet</em>.</p>
+</div>
+  <footer>
+    <a rel="full-article" href="https://jakevdp.github.io/blog/2014/10/16/how-bad-is-your-colormap/">Read On &crarr;</a>
+  </footer>
+  		</article>
+  		<article>
+<header>
+      <h1 class="entry-title">
         <a href="https://jakevdp.github.io/blog/2014/09/02/on-frequentism-and-fried-chicken/">On Frequentism and Fried Chicken</a>
       </h1>
       <p class="meta"><time datetime="2014-09-02T16:00:00" pubdate>Sep 02, 2014</time></p>
@@ -1963,23 +2009,6 @@ jQuery(document).ready(function($) {
     <a rel="full-article" href="https://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/">Read On &crarr;</a>
   </footer>
   		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://jakevdp.github.io/blog/2014/01/10/d3-plugins-truly-interactive/">D3 Plugins: Truly Interactive Matplotlib In Your Browser</a>
-      </h1>
-      <p class="meta"><time datetime="2014-01-10T16:00:00" pubdate>Jan 10, 2014</time></p>
-</header>
-
-  <div class="entry-content">
-
-<p>It's been a few weeks since I introduced <a href="http://github.com/jakevdp/mpld3">mpld3</a>, a toolkit for visualizing matplotlib graphics in-browser via d3, and a lot of progress has been made. I've added a lot of features, and there have also been dozens of pull requests from other users which have made the package much more complete.</p>
-<p>One thing I recognized early was the potential to use mpld3 to add interactive bells and whistles to matplotlib plots. Yesterday, at the <a href="http://twitter.com/search?q=%23HackAAS">#HackAAS</a> event at the American Astronomical Society meeting, I had a solid chunk of time to work this out. The result is what I'll describe and demonstrate below: a general plugin framework for matplotlib plots, which, given some d3 skills, can be utilized to modify your matplotlib plots in almost any imaginable way.</p>
-</div>
-  <footer>
-    <a rel="full-article" href="https://jakevdp.github.io/blog/2014/01/10/d3-plugins-truly-interactive/">Read On &crarr;</a>
-  </footer>
-  		</article>
 <div class="pagination">
     <a class="prev" href="https://jakevdp.github.io/index2.html">&larr; Older</a>
 
@@ -1989,6 +2018,9 @@ jQuery(document).ready(function($) {
   <section>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
+      <li class="post">
+          <a href="https://jakevdp.github.io/blog/2014/10/16/how-bad-is-your-colormap/">How Bad Is Your Colormap?</a>
+      </li>
       <li class="post">
           <a href="https://jakevdp.github.io/blog/2014/09/02/on-frequentism-and-fried-chicken/">On Frequentism and Fried Chicken</a>
       </li>
@@ -2000,9 +2032,6 @@ jQuery(document).ready(function($) {
       </li>
       <li class="post">
           <a href="https://jakevdp.github.io/blog/2014/06/12/frequentism-and-bayesianism-3-confidence-credibility/">Frequentism and Bayesianism III: Confidence, Credibility, and why Frequentism and Science do not Mix</a>
-      </li>
-      <li class="post">
-          <a href="https://jakevdp.github.io/blog/2014/06/10/is-seattle-really-seeing-an-uptick-in-cycling/">Is Seattle Really Seeing an Uptick In Cycling?</a>
       </li>
     </ul>
   </section>
