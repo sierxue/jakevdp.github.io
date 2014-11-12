@@ -1816,9 +1816,10 @@ jQuery(document).ready(function($) {
 </ul>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The idea of the model is this: on any given day, person <span class="math">\(i\)</span> looks at the world around him or her, and sees some previous day's version of everyone else. This information is <span class="math">\(s_j(t - \tau_{ij})\)</span> The amount that person <span class="math">\(j\)</span> influences person <span class="math">\(i\)</span> is given by the influence matrix, <span class="math">\(J_{ij}\)</span>. After factoring all the information together, we see that person <span class="math">\(i\)</span>'s mean impression of the world's style is</p>
+<p>The idea of the model is this: on any given day, person <span class="math">\(i\)</span> looks at the world around him or her, and sees some previous day's version of everyone else. This information is <span class="math">\(s_j(t - \tau_{ij})\)</span>.</p>
+<p>The amount that person <span class="math">\(j\)</span> influences person <span class="math">\(i\)</span> is given by the influence matrix, <span class="math">\(J_{ij}\)</span>, and after putting all the information together, we see that person <span class="math">\(i\)</span>'s mean impression of the world's style is</p>
 <p><span class="math">\[
-m_i(t) = \frac{1}{N} J_{ij} \cdot s_j(t - \tau_{ij})
+m_i(t) = \frac{1}{N} \sum_j J_{ij} \cdot s_j(t - \tau_{ij})
 \]</span></p>
 <p>Given the problem setup, we can quickly check whether this impression matches their own current style:</p>
 <ul>
@@ -2502,7 +2503,7 @@ In&nbsp;[4]:
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="exploring-the-result">Exploring the Result</h2>
-<p>With this code in place, we can now explore the result. We'll start by seeing what happens when just 20% of the population is hipsters</p>
+<p>With this code in place, we can now explore the result. We'll start by seeing what happens when just 10% of the population is made up of non-conformist hipsters:</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
@@ -3296,7 +3297,7 @@ ICIiIrUUKIiIiEgtBQoiIiJSS4GCiIiI1FKgICIiIrX+D7AL5CIIpNLCAAAAAElFTkSuQmCC
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's describe this plot briefly: the top panel has 500 rows and 200 columns: each row represents an individual person, and the color (white or black) along the row represents the style of that person at that time.</p>
-<p>In the bottom panel, we see the mean and standard deviation of the styles of hipsters (red) and of conformists (blue).</p>
+<p>In the bottom panel, we see the mean and standard deviation of the styles of all hipsters (red) and all conformists (blue).</p>
 <p>This plot shows something relatively unsurprising: when there are only a few hipsters in the population, we quickly reach an equilibrium where hipsters all have one style (a bushy beard) while the norm-core conformists have the opposite (clean shaven faces).</p>
 <p>Let's see what happens if there are more hipsters in the population:</p>
 </div>
@@ -4423,7 +4424,7 @@ Mi4AAAAASUVORK5CYII=
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>With half the population made up of hipsters, the trend washes out. There is so much noise and confusion about styles, that both the hipsters and the conformists have a wide range of styles at any given time.</p>
-<p>Let's see what happens when we have even more hipsters:</p>
+<p>Now let's see what happens when we have even more hipsters:</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
@@ -5661,7 +5662,7 @@ BApCCCGEKEkCBSGEEEKUJIGCEEIIIUqSQEEIIYQQJf0/9lF3141eCYIAAAAASUVORK5CYII=
 
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now this is getting interesting! With a population dominated by hipsters, we end up approaching steady cycles in trends. The hipsters start trying to distance themselves from the &quot;normal&quot; style, and then the normal style moves to catch up with them. The hipsters then swing the other way, and the process repeats. This is an example of the &quot;phase transition&quot; that the author of the original paper talked about in analogy to thermodynamic systems: above certain critical values of the model parameters, oscillatory behavior appears out of the noise. This oscillation can be thought of as a rough and simplistic mathematical model for recurrent cycles of fashion trends that anyone over a couple decades old has probably noticed.</p>
+<p>Now this is getting interesting! With a population dominated by hipsters, we end up approaching steady cycles in trends. The hipsters start trying to distance themselves from the &quot;normal&quot; style, and then the normal style moves to catch up with them. The hipsters then swing the other way, and the process repeats. This is an example of the &quot;phase transition&quot; that the author of the original paper talked about in analogy to thermodynamic systems: above certain critical values of the model parameters, a qualitatively new type of behavior appears out of the noise. This oscillation can be thought of as a rough and simplistic mathematical model for recurrent cycles of cultural and fashion trends that anyone over a couple decades old has probably noticed over time.</p>
 <p>But let's explore this even more.</p>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
