@@ -1794,6 +1794,22 @@ jQuery(document).ready(function($) {
   		<article>
 <header>
       <h1 class="entry-title">
+        <a href="https://jakevdp.github.io/blog/2014/05/05/introduction-to-the-python-buffer-protocol/">An Introduction to the Python Buffer Protocol</a>
+      </h1>
+      <p class="meta"><time datetime="2014-05-05T16:00:00" pubdate>May 05, 2014</time></p>
+</header>
+
+  <div class="entry-content">
+<p>This is a bit of a niche topic, but I figured there might be one or two people out there who would find this useful (including my future self)... today I managed to implement a simple Python object which exposes the buffer protocol. If that means nothing to you, you may want to stop reading and instead browse this <a href="http://imgur.com/gallery/zWeJ5">gallery of puppy gifs</a>.</p>
+<p>But if you're the kind of person who becomes mildly excited at the words <em>Python buffer protocol</em>, I hope this short post will help you in your quest...</p>
+</div>
+  <footer>
+    <a rel="full-article" href="https://jakevdp.github.io/blog/2014/05/05/introduction-to-the-python-buffer-protocol/">Read On &crarr;</a>
+  </footer>
+  		</article>
+  		<article>
+<header>
+      <h1 class="entry-title">
         <a href="https://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/">Frequentism and Bayesianism: A Practical Introduction</a>
       </h1>
       <p class="meta"><time datetime="2014-03-11T11:00:00" pubdate>Mar 11, 2014</time></p>
@@ -2426,23 +2442,6 @@ cAGAg4ODw0HhAgAHBweHg8IFAA4ODg4HhQsAHBwcHA7KX60VJk94SH9vAAAAAElFTkSuQmCC
     <a rel="full-article" href="https://jakevdp.github.io/blog/2013/07/10/XKCD-plots-in-matplotlib/">Read On &crarr;</a>
   </footer>
   		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://jakevdp.github.io/blog/2013/06/15/numba-vs-cython-take-2/">Numba vs. Cython: Take 2</a>
-      </h1>
-      <p class="meta"><time datetime="2013-06-15T08:00:00" pubdate>Jun 15, 2013</time></p>
-</header>
-
-  <div class="entry-content">
-<p>Last summer I wrote a <a href="http://jakevdp.github.io/blog/2012/08/24/numba-vs-cython/">post</a> comparing the performance of <a href="http://numba.pydata.org/">Numba</a> and <a href="http://cython.org/">Cython</a> for optimizing array-based computation. Since posting, the page has received thousands of hits, and resulted in a number of interesting discussions. But in the meantime, the Numba package has come a long way both in its interface and its performance.</p>
-<p>Here I want to revisit those timing comparisons with a more recent Numba release, using the newer and more convenient <code>autojit</code> syntax, and also add in a few additional benchmarks for completeness. I've also written this post entirely within an IPython notebook, so it can be easily downloaded and modified.</p>
-<p>As before, I'll use a <strong>pairwise distance</strong> function. This will take an array representing <code>M</code> points in <code>N</code> dimensions, and return the <code>M x M</code> matrix of pairwise distances. This is a nice test function for a few reasons. First of all, it's a very clean and well-defined test. Second of all, it illustrates the kind of array-based operation that is common in statistics, datamining, and machine learning. Third, it is a function that results in large memory consumption if the standard numpy broadcasting approach is used (it requires a temporary array containing <code>M * M * N</code> elements), making it a good candidate for an alternate approach.</p>
-</div>
-  <footer>
-    <a rel="full-article" href="https://jakevdp.github.io/blog/2013/06/15/numba-vs-cython-take-2/">Read On &crarr;</a>
-  </footer>
-  		</article>
 <div class="pagination">
     <a class="prev" href="https://jakevdp.github.io/index3.html">&larr; Older</a>
 
@@ -2454,6 +2453,9 @@ cAGAg4ODw0HhAgAHBweHg8IFAA4ODg4HhQsAHBwcHA7KX60VJk94SH9vAAAAAElFTkSuQmCC
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="https://jakevdp.github.io/blog/2015/02/24/optimizing-python-with-numpy-and-numba/">Optimizing Python in the Real World: NumPy, Numba, and the NUFFT</a>
+      </li>
+      <li class="post">
           <a href="https://jakevdp.github.io/blog/2014/11/11/the-hipster-effect-interactive/">The Hipster Effect: An IPython Interactive Exploration</a>
       </li>
       <li class="post">
@@ -2464,9 +2466,6 @@ cAGAg4ODw0HhAgAHBweHg8IFAA4ODg4HhQsAHBwcHA7KX60VJk94SH9vAAAAAElFTkSuQmCC
       </li>
       <li class="post">
           <a href="https://jakevdp.github.io/blog/2014/08/22/hacking-academia/">Hacking Academia: Data Science and the University</a>
-      </li>
-      <li class="post">
-          <a href="https://jakevdp.github.io/blog/2014/06/14/frequentism-and-bayesianism-4-bayesian-in-python/">Frequentism and Bayesianism IV: How to be a Bayesian in Python</a>
       </li>
     </ul>
   </section>
@@ -2485,7 +2484,7 @@ cAGAg4ODw0HhAgAHBweHg8IFAA4ODg4HhQsAHBwcHA7KX60VJk94SH9vAAAAAElFTkSuQmCC
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
-    Copyright &copy;  2012-2014  - Jake Vanderplas -
+    Copyright &copy;  2012-2015  - Jake Vanderplas -
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
     <script type="text/javascript">

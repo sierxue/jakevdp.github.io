@@ -1794,6 +1794,23 @@ jQuery(document).ready(function($) {
   		<article>
 <header>
       <h1 class="entry-title">
+        <a href="https://jakevdp.github.io/blog/2015/02/24/optimizing-python-with-numpy-and-numba/">Optimizing Python in the Real World: NumPy, Numba, and the NUFFT</a>
+      </h1>
+      <p class="meta"><time datetime="2015-02-24T12:00:00" pubdate>Feb 24, 2015</time></p>
+</header>
+
+  <div class="entry-content">
+
+<p>Donald Knuth famously quipped that &quot;premature optimization is the root of all evil.&quot; The reasons are straightforward: optimized code tends to be much more difficult to read and debug than simpler implementations of the same algorithm, and optimizing too early leads to greater costs down the road. In the Python world, there is another cost to optimization: optimized code often is written in a compiled language like Fortran or C, and this leads to barriers to its development, use, and deployment.</p>
+<p>Too often, tutorials about optimizing Python use trivial or toy examples which may not map well to the real world. I've certainly been <a href="https://jakevdp.github.io/blog/2012/08/24/numba-vs-cython/">guilty</a> of this <a href="https://jakevdp.github.io/blog/2013/06/15/numba-vs-cython-take-2/">myself</a>. Here, I'm going to take a different route: in this post I will outline the process of understanding, implementing, and optimizing a non-trivial algorithm in Python, in this case the <a href="http://www.cims.nyu.edu/cmcl/nufft/nufft.html">Non-uniform Fast Fourier Transform</a> (NUFFT). Along the way, we'll dig into the process of optimizing Python code, and see how a relatively straightforward pure Python implementation, with a little help from <a href="http://numba.pydata.org">Numba</a>, can be made to nearly match the performance of a highly-optimized Fortran implementation of the same algorithm.</p>
+</div>
+  <footer>
+    <a rel="full-article" href="https://jakevdp.github.io/blog/2015/02/24/optimizing-python-with-numpy-and-numba/">Read On &crarr;</a>
+  </footer>
+  		</article>
+  		<article>
+<header>
+      <h1 class="entry-title">
         <a href="https://jakevdp.github.io/blog/2014/11/11/the-hipster-effect-interactive/">The Hipster Effect: An IPython Interactive Exploration</a>
       </h1>
       <p class="meta"><time datetime="2014-11-11T21:00:00" pubdate>Nov 11, 2014</time></p>
@@ -1995,22 +2012,6 @@ In&nbsp;[1]:
     <a rel="full-article" href="https://jakevdp.github.io/blog/2014/05/09/why-python-is-slow/">Read On &crarr;</a>
   </footer>
   		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://jakevdp.github.io/blog/2014/05/05/introduction-to-the-python-buffer-protocol/">An Introduction to the Python Buffer Protocol</a>
-      </h1>
-      <p class="meta"><time datetime="2014-05-05T16:00:00" pubdate>May 05, 2014</time></p>
-</header>
-
-  <div class="entry-content">
-<p>This is a bit of a niche topic, but I figured there might be one or two people out there who would find this useful (including my future self)... today I managed to implement a simple Python object which exposes the buffer protocol. If that means nothing to you, you may want to stop reading and instead browse this <a href="http://imgur.com/gallery/zWeJ5">gallery of puppy gifs</a>.</p>
-<p>But if you're the kind of person who becomes mildly excited at the words <em>Python buffer protocol</em>, I hope this short post will help you in your quest...</p>
-</div>
-  <footer>
-    <a rel="full-article" href="https://jakevdp.github.io/blog/2014/05/05/introduction-to-the-python-buffer-protocol/">Read On &crarr;</a>
-  </footer>
-  		</article>
 <div class="pagination">
     <a class="prev" href="https://jakevdp.github.io/author/jake-vanderplas2.html">&larr; Older</a>
 
@@ -2020,6 +2021,9 @@ In&nbsp;[1]:
   <section>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
+      <li class="post">
+          <a href="https://jakevdp.github.io/blog/2015/02/24/optimizing-python-with-numpy-and-numba/">Optimizing Python in the Real World: NumPy, Numba, and the NUFFT</a>
+      </li>
       <li class="post">
           <a href="https://jakevdp.github.io/blog/2014/11/11/the-hipster-effect-interactive/">The Hipster Effect: An IPython Interactive Exploration</a>
       </li>
@@ -2031,9 +2035,6 @@ In&nbsp;[1]:
       </li>
       <li class="post">
           <a href="https://jakevdp.github.io/blog/2014/08/22/hacking-academia/">Hacking Academia: Data Science and the University</a>
-      </li>
-      <li class="post">
-          <a href="https://jakevdp.github.io/blog/2014/06/14/frequentism-and-bayesianism-4-bayesian-in-python/">Frequentism and Bayesianism IV: How to be a Bayesian in Python</a>
       </li>
     </ul>
   </section>
@@ -2052,7 +2053,7 @@ In&nbsp;[1]:
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
-    Copyright &copy;  2012-2014  - Jake Vanderplas -
+    Copyright &copy;  2012-2015  - Jake Vanderplas -
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
     <script type="text/javascript">
