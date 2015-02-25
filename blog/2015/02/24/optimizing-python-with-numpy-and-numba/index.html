@@ -1825,7 +1825,7 @@ Y_k^\pm = \sum_{n=0}^{N-1} y_n e^{\pm i k n / N}
 Y_k^\pm = \sum_{j=1}^N y(x_j) e^{\pm i k x_j}
 \]</span> where <span class="math">\(y(x)\)</span> is evaluated at an arbitrary set of points <span class="math">\(x_j\)</span>? In this case, the FFT is no longer directly applicable, and you're stuck using a much slower <span class="math">\(O[N^2]\)</span> direct summation.</p>
 <p>Stuck, that is, until the NUFFT came along.</p>
-<p>The NUFFT is a clever algorithm which converts the non-uniform transform into an approximate uniform transform, not with error-prone interpolation, but instead using a clever &quot;gridding&quot; operation motivated by the convolution theorem. If you'd like to read about the algorithm in detail, the Courant Institute's <a href="http://www.cims.nyu.edu/cmcl/nufft/nufft.html">NUFFT page</a> has a nice set of resources.</p>
+<p>The NUFFT is an algorithm which converts the non-uniform transform into an approximate uniform transform, not with error-prone interpolation, but instead using a clever &quot;gridding&quot; operation motivated by the convolution theorem. If you'd like to read about the algorithm in detail, the Courant Institute's <a href="http://www.cims.nyu.edu/cmcl/nufft/nufft.html">NUFFT page</a> has a nice set of resources.</p>
 <p>Below we'll take a look at implementing this algorithm in Python.</p>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -2101,7 +2101,7 @@ In&nbsp;[7]:
 
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>With the line profiler loaded, the <code>%lprun</code> magic function is now available, which we can use to profile our function line-by-line. In order to display these results here, we'll save them to file and then use <code>%cat</code> to view the file:</p>
+<p>With the line profiler loaded, the <code>%lprun</code> magic function is now available, which we can use to profile our function line-by-line. In order to display these results here, we'll save them to file and then use <code>%cat</code> to view the file. The lines wrap in the notebook, making it difficult to read, so you may wish to <a href="http://jakevdp.github.io/downloads/notebooks/NUFFT_lpr.txt">view the raw file</a> instead.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
@@ -2173,7 +2173,11 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="nufft-with-numpy-broadcasting">NUFFT with NumPy Broadcasting</h2>
-<p>Let's rewrite the above implementation and use broadcasting tricks to elliminate the loops. Because of the structure of this problem, the approach is a bit complicated here, but it turns out that we can take advantage here of the little-known <code>at()</code> method of NumPy's ufunc. Briefly, <code>python &gt;&gt;&gt; np.add.at(x, i, y)</code> is similar to <code>python &gt;&gt;&gt; x[i] += y</code> but works as desired even if the incides <code>i</code> have duplicate entries.</p>
+<p>Let's rewrite the above implementation and use broadcasting tricks to elliminate the loops. Because of the structure of this problem, the approach is a bit complicated here, but it turns out that we can take advantage here of the little-known <code>at()</code> method of NumPy's ufunc (available since NumPy 1.8). Briefly,</p>
+<pre><code>&gt;&gt;&gt; np.add.at(x, i, y)</code></pre>
+<p>is similar to</p>
+<pre><code>&gt;&gt;&gt; x[i] += y</code></pre>
+<p>but works as desired even if the incides <code>i</code> have duplicate entries.</p>
 <p>Using this, we can adjust our implementation as follows:</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
@@ -2357,7 +2361,7 @@ testing nufft_fortran
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Much better! We're now within about a factor of 3 of the Fortran speed, and we're still writing pure Python!</p>
 <p>Having plucked all the low-hanging fruit, any further optimization will now be very low-level: that is, thinking about things like reduction of the number of <code>exp()</code> evaluations through application of mathematical identities. This type of careful logic is one reason the Fortran implementation is so fast, and many of these low-level strategies are discussed in the NUFFT paper linked above.</p>
-<p>To gain some more speed, we can follow their advice and optimize the expressions at this level by precomputing expensive expressions and recombining these expressions later: This makes the algorithm a bit more obfuscated, but it does lead to some faster execution. Here is an example of this:</p>
+<p>To gain some more speed, we can follow their advice and optimize the expressions at this level by precomputing expensive expressions and recombining these expressions later: This obfuscates the logic of the algorithm a bit, but it does lead to some faster execution. Here is an example of this:</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
