@@ -1794,6 +1794,21 @@ jQuery(document).ready(function($) {
   		<article>
 <header>
       <h1 class="entry-title">
+        <a href="https://jakevdp.github.io/blog/2012/10/14/scipy-sparse-graph-module-word-ladders/">Sparse Graphs in Python: Playing with Word Ladders</a>
+      </h1>
+      <p class="meta"><time datetime="2012-10-14T21:23:00" pubdate>Oct 14, 2012</time></p>
+</header>
+
+  <div class="entry-content">
+<p>The recent <a href="http://sourceforge.net/projects/scipy/files/">0.11 release</a> of scipy includes several new features, one of which is the <a href="http://docs.scipy.org/doc/scipy/reference/sparse.csgraph.html">sparse graph submodule</a> which I contributed, with help from other developers. I'm pretty excited about this: there are some classic algorithms implemented, and it will open up whole new realms of computational possibilities in Python.</p>
+<p>Before we start, I should say: this post is based on a <a href="http://pyvideo.org/video/1346/lightning-talks-wednesday">lightning talk</a> I gave at Scipy 2012, and some of the material below comes from a <a href="http://docs.scipy.org/doc/scipy/reference/tutorial/csgraph.html">tutorial</a> I wrote for the scipy documentation. </div>
+  <footer>
+    <a rel="full-article" href="https://jakevdp.github.io/blog/2012/10/14/scipy-sparse-graph-module-word-ladders/">Read On &crarr;</a>
+  </footer>
+  		</article>
+  		<article>
+<header>
+      <h1 class="entry-title">
         <a href="https://jakevdp.github.io/blog/2012/10/07/xkcd-style-plots-in-matplotlib/">XKCD-style plots in Matplotlib</a>
       </h1>
       <p class="meta"><time datetime="2012-10-07T13:30:00" pubdate>Oct 07, 2012</time></p>
@@ -2561,38 +2576,8 @@ function.</p>
     <a rel="full-article" href="https://jakevdp.github.io/blog/2012/08/16/memoryview-benchmarks-2/">Read On &crarr;</a>
   </footer>
   		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://jakevdp.github.io/blog/2012/08/08/memoryview-benchmarks/">Memoryview Benchmarks</a>
-      </h1>
-      <p class="meta"><time datetime="2012-08-08T18:50:00" pubdate>Aug 08, 2012</time></p>
-</header>
-
-  <div class="entry-content">
-
-<p>There was recently a <a href="https://groups.google.com/forum/?fromgroups#!topic/cython-users/8uuxjB_wbBQ[1-25]" title="cython-users archive">thread</a>
-on cython-users which caught my eye.  It has to do with 
-<a href="http://docs.cython.org/src/userguide/memoryviews.html">memoryviews</a>, a new
-way of working with memory buffers in cython.</p>
-<p>I've been thinking recently about how to do fast
-and flexible memory buffer access in cython.  I contributed the
-<a href="http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.BallTree.html">BallTree</a>
-implementation for nearest neighbors searching in
-<a href="http://www.scikit-learn.org">scikit-learn</a>, and have been actively thinking
-about how to make it faster and more flexible, including adding the ability
-to specify distance metrics other than euclidean and minkowski.</p>
-<p>In order to accomplish this, I'd like to have a set of distance metric
-functions which take two vectors and compute a distance.  There would
-be many functions with similar call signatures which could then be
-plugged into a code that would iterate over a set of vectors and
-compute the appropriate distances.</p>
-</div>
-  <footer>
-    <a rel="full-article" href="https://jakevdp.github.io/blog/2012/08/08/memoryview-benchmarks/">Read On &crarr;</a>
-  </footer>
-  		</article>
 <div class="pagination">
+    <a class="prev" href="https://jakevdp.github.io/index6.html">&larr; Older</a>
 
     <a class="next" href="https://jakevdp.github.io/index4.html">Newer &rarr;</a>
   <br />
@@ -2601,6 +2586,9 @@ compute the appropriate distances.</p>
   <section>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
+      <li class="post">
+          <a href="https://jakevdp.github.io/blog/2015/07/06/model-complexity-myth/">The Model Complexity Myth</a>
+      </li>
       <li class="post">
           <a href="https://jakevdp.github.io/blog/2015/06/13/lomb-scargle-in-python/">Fast Lomb-Scargle Periodograms in Python</a>
       </li>
@@ -2612,9 +2600,6 @@ compute the appropriate distances.</p>
       </li>
       <li class="post">
           <a href="https://jakevdp.github.io/blog/2014/10/16/how-bad-is-your-colormap/">How Bad Is Your Colormap?</a>
-      </li>
-      <li class="post">
-          <a href="https://jakevdp.github.io/blog/2014/09/02/on-frequentism-and-fried-chicken/">On Frequentism and Fried Chicken</a>
       </li>
     </ul>
   </section>

@@ -1794,6 +1794,23 @@ jQuery(document).ready(function($) {
   		<article>
 <header>
       <h1 class="entry-title">
+        <a href="https://jakevdp.github.io/blog/2015/07/06/model-complexity-myth/">The Model Complexity Myth</a>
+      </h1>
+      <p class="meta"><time datetime="2015-07-06T08:00:00" pubdate>Jul 06, 2015</time></p>
+</header>
+
+  <div class="entry-content">
+
+<p>An oft-repeated rule of thumb in any sort of statistical model fitting is &quot;you can't fit a model with more parameters than data points&quot;. This idea appears to be as wide-spread as it is incorrect. On the contrary, if you construct your models carefully, <em>you can fit models with more parameters than datapoints</em>, and this is much more than mere trivia with which you can impress the nerdiest of your friends: as I will show here, this fact can prove to be very useful in real-world scientific applications.</p>
+<p>A model with more parameters than datapoints is known as an <em>under-determined system</em>, and it's a common misperception that such a model cannot be solved in any circumstance. In this post I will consider this misconception, which I call the <em>model complexity myth</em>. I'll start by showing where this model complexity myth holds true, first from from an intuitive point of view, and then from a more mathematically-heavy point of view. I'll build from this mathematical treatment and discuss how underdetermined models may be addressed from a frequentist standpoint, and then from a Bayesian standpoint. (If you're unclear about the general differences between frequentist and Bayesian approaches, I might suggest reading <a href="http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/">my posts</a> on the subject). Finally, I'll discuss some practical examples of where such an underdetermined model can be useful, and demonstrate one of these examples: quantitatively accounting for measurement biases in scientific data.</p>
+</div>
+  <footer>
+    <a rel="full-article" href="https://jakevdp.github.io/blog/2015/07/06/model-complexity-myth/">Read On &crarr;</a>
+  </footer>
+  		</article>
+  		<article>
+<header>
+      <h1 class="entry-title">
         <a href="https://jakevdp.github.io/blog/2015/06/13/lomb-scargle-in-python/">Fast Lomb-Scargle Periodograms in Python</a>
       </h1>
       <p class="meta"><time datetime="2015-06-13T14:00:00" pubdate>Jun 13, 2015</time></p>
@@ -2000,26 +2017,6 @@ In&nbsp;[1]:
     <a rel="full-article" href="https://jakevdp.github.io/blog/2014/06/10/is-seattle-really-seeing-an-uptick-in-cycling/">Read On &crarr;</a>
   </footer>
   		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://jakevdp.github.io/blog/2014/06/06/frequentism-and-bayesianism-2-when-results-differ/">Frequentism and Bayesianism II: When Results Differ</a>
-      </h1>
-      <p class="meta"><time datetime="2014-06-06T02:00:00" pubdate>Jun 06, 2014</time></p>
-</header>
-
-  <div class="entry-content">
-<p>In a <a href="http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/">previous post</a> I gave a brief practical introduction to frequentism and Bayesianism as they relate to the analysis of scientific data. In it, I discussed the fundamental philosophical difference between frequentism and Bayesianism, and showed several simple problems where the two approaches give basically the same results.</p>
-<p>While it is easy to show that the two approaches are often equivalent for simple problems, it is also true that they can diverge greatly for more complicated problems. I've found that in practice, this divergence makes itself most clear in two different situations:</p>
-<ol style="list-style-type: decimal">
-<li>The handling of nuisance parameters</li>
-<li>The subtle (and often overlooked) difference between frequentist confidence intervals and Bayesian credible intervals</li>
-</ol>
-<p>The second point is a bit more philosophical and in-depth, and I'm going to save it for a later post and focus here on the first point: the difference between frequentist and Bayesian treatment of nuisance parameters. Though I tried my best to stay impartial in the previous post, here you'll start to see my leanings toward the Bayesian approach. Consider this a warmup for when I get around to addressing point number 2: that will likely get downright polemical. </div>
-  <footer>
-    <a rel="full-article" href="https://jakevdp.github.io/blog/2014/06/06/frequentism-and-bayesianism-2-when-results-differ/">Read On &crarr;</a>
-  </footer>
-  		</article>
 <div class="pagination">
     <a class="prev" href="https://jakevdp.github.io/author/jake-vanderplas2.html">&larr; Older</a>
 
@@ -2029,6 +2026,9 @@ In&nbsp;[1]:
   <section>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
+      <li class="post">
+          <a href="https://jakevdp.github.io/blog/2015/07/06/model-complexity-myth/">The Model Complexity Myth</a>
+      </li>
       <li class="post">
           <a href="https://jakevdp.github.io/blog/2015/06/13/lomb-scargle-in-python/">Fast Lomb-Scargle Periodograms in Python</a>
       </li>
@@ -2040,9 +2040,6 @@ In&nbsp;[1]:
       </li>
       <li class="post">
           <a href="https://jakevdp.github.io/blog/2014/10/16/how-bad-is-your-colormap/">How Bad Is Your Colormap?</a>
-      </li>
-      <li class="post">
-          <a href="https://jakevdp.github.io/blog/2014/09/02/on-frequentism-and-fried-chicken/">On Frequentism and Fried Chicken</a>
       </li>
     </ul>
   </section>

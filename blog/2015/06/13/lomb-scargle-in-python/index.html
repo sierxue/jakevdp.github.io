@@ -3031,7 +3031,7 @@ P(\omega) \propto
     {\sum_k \sin^2\omega(t_k - \tau)}
 \]</span></p>
 <p>where <span class="math">\(\tau\)</span> is an easily computed time-offset which orthogonalizes the model and makes <span class="math">\(P(\omega)\)</span> independent of a translation in <span class="math">\(t\)</span>.</p>
-<p>Rather than get lost in the math, I want to emphasize the key feature of this expression: <strong>for any frequency <span class="math">\(\omega\)</span>, the power is an <span class="math">\(O[N]\)</span> computation involving simple trigonometric sums over the data,</strong> where <span class="math">\(N\)</span> is the number of observed data poitns. The main computational question then becomes: how many frequencies must you compute? In my experience, the most common mistake people make when doing this sort of periodic analysis is not thinking hard enough about the frequency grid. It turns out that the grid-spacing question is <em>very</em> important. If you choose too fine a grid, you do much more computation than is required. Worse, if you choose too coarse a grid, the periodogram peak may fall between grid points and you'll miss it entirely!</p>
+<p>Rather than get lost in the math, I want to emphasize the key feature of this expression: <strong>for any frequency <span class="math">\(\omega\)</span>, the power is an <span class="math">\(O[N]\)</span> computation involving simple trigonometric sums over the data,</strong> where <span class="math">\(N\)</span> is the number of observed data points. The main computational question then becomes: how many frequencies must you compute? In my experience, the most common mistake people make when doing this sort of periodic analysis is not thinking hard enough about the frequency grid. It turns out that the grid-spacing question is <em>very</em> important. If you choose too fine a grid, you do much more computation than is required. Worse, if you choose too coarse a grid, the periodogram peak may fall between grid points and you'll miss it entirely!</p>
 <p>Let's think about the required frequency range and frequency spacing for Lomb-Scargle.</p>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -5631,6 +5631,9 @@ tdpBW+cAAAAASUVORK5CYII=
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="https://jakevdp.github.io/blog/2015/07/06/model-complexity-myth/">The Model Complexity Myth</a>
+      </li>
+      <li class="post">
           <a href="https://jakevdp.github.io/blog/2015/06/13/lomb-scargle-in-python/">Fast Lomb-Scargle Periodograms in Python</a>
       </li>
       <li class="post">
@@ -5641,9 +5644,6 @@ tdpBW+cAAAAASUVORK5CYII=
       </li>
       <li class="post">
           <a href="https://jakevdp.github.io/blog/2014/10/16/how-bad-is-your-colormap/">How Bad Is Your Colormap?</a>
-      </li>
-      <li class="post">
-          <a href="https://jakevdp.github.io/blog/2014/09/02/on-frequentism-and-fried-chicken/">On Frequentism and Fried Chicken</a>
       </li>
     </ul>
   </section>

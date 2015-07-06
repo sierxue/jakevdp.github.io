@@ -1794,6 +1794,31 @@ jQuery(document).ready(function($) {
   		<article>
 <header>
       <h1 class="entry-title">
+        <a href="https://jakevdp.github.io/blog/2013/08/07/conways-game-of-life/">The Game of Life in Python</a>
+      </h1>
+      <p class="meta"><time datetime="2013-08-07T16:00:00" pubdate>Aug 07, 2013</time></p>
+</header>
+
+  <div class="entry-content">
+<p>In 1970 the British Mathematician John Conway created his &quot;Game of Life&quot; -- a set of rules that mimics the chaotic yet patterned growth of a colony of biological organisms. The &quot;game&quot; takes place on a two-dimensional grid consisting of &quot;living&quot; and &quot;dead&quot; cells, and the rules to step from generation to generation are simple:</p>
+<ul>
+<li><strong>Overpopulation:</strong> if a living cell is surrounded by more than three living cells, it dies.</li>
+<li><strong>Stasis:</strong> if a living cell is surrounded by two or three living cells, it survives.</li>
+<li><strong>Underpopulation:</strong> if a living cell is surrounded by fewer than two living cells, it dies.</li>
+<li><strong>Reproduction:</strong> if a dead cell is surrounded by exactly three cells, it becomes a live cell.</li>
+</ul>
+<p>By enforcing these rules in sequential steps, beautiful and unexpected patterns can appear.</p>
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>I was thinking about classic problems that could be used to demonstrate the effectiveness of Python for computing and visualizing dynamic phenomena, and thought back to a high school course I took where we had an assignment to implement a Game Of Life computation in C++. If only I'd had access to IPython and associated tools back then, my homework assignment would have been a whole lot easier!</p>
+<p>Here I'll use Python and NumPy to compute generational steps for the game of life, and use my <a href="http://github.com/jakevdp/JSAnimation">JSAnimation</a> package to animate the results. </div>
+  <footer>
+    <a rel="full-article" href="https://jakevdp.github.io/blog/2013/08/07/conways-game-of-life/">Read On &crarr;</a>
+  </footer>
+  		</article>
+  		<article>
+<header>
+      <h1 class="entry-title">
         <a href="https://jakevdp.github.io/blog/2013/07/10/XKCD-plots-in-matplotlib/">XKCD Plots in Matplotlib: Going the Whole Way</a>
       </h1>
       <p class="meta"><time datetime="2013-07-10T16:00:00" pubdate>Jul 10, 2013</time></p>
@@ -20334,40 +20359,6 @@ In&nbsp;[1]:
     <a rel="full-article" href="https://jakevdp.github.io/blog/2013/04/15/code-golf-in-python-sudoku/">Read On &crarr;</a>
   </footer>
   		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://jakevdp.github.io/blog/2013/03/23/matplotlib-and-the-future-of-visualization-in-python/">Matplotlib and the Future of Visualization in Python</a>
-      </h1>
-      <p class="meta"><time datetime="2013-03-23T08:31:00" pubdate>Mar 23, 2013</time></p>
-</header>
-
-  <div class="entry-content">
-
-<p>Last week, I had the privilege of attending and speaking at the
-PyCon and PyData conferences in Santa Clara, CA.  As usual, there were some
-amazing and inspiring talks throughout: I would highly recommend browsing
-through the videos as they are put up on
-<a href="http://pyvideo.org/category/33/pycon-us-2013">pyvideo</a>.</p>
-<p>One thing I spent a lot of time thinking, talking, and learning about
-during these two conferences was the topic of data visualization in Python.
-Data visualization seemed to be everywhere: PyData had
-<a href="http://sv2013.pydata.org/abstracts/#11">two</a>
-<a href="http://sv2013.pydata.org/abstracts/#15">tutorials</a>
-on matplotlib (the second given by yours truly), as well as a talk about
-<a href="http://sv2013.pydata.org/abstracts/#41">NodeBox OpenGL</a> and a
-<a href="http://sv2013.pydata.org/keynotes/#abstract_33">keynote</a> by
-Fernando Perez about IPython, including the notebook and the
-nice interactive data-visualization it allows. Pycon had a tutorial on
-<a href="https://us.pycon.org/2013/schedule/presentation/29/">network visualization</a>,
-a talk on <a href="https://us.pycon.org/2013/schedule/presentation/58/">generating art</a>
-in Python, and a talk on
-<a href="https://us.pycon.org/2013/schedule/presentation/108/">visualizing Github</a>. </p>
-</div>
-  <footer>
-    <a rel="full-article" href="https://jakevdp.github.io/blog/2013/03/23/matplotlib-and-the-future-of-visualization-in-python/">Read On &crarr;</a>
-  </footer>
-  		</article>
 <div class="pagination">
     <a class="prev" href="https://jakevdp.github.io/index4.html">&larr; Older</a>
 
@@ -20379,6 +20370,9 @@ in Python, and a talk on
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="https://jakevdp.github.io/blog/2015/07/06/model-complexity-myth/">The Model Complexity Myth</a>
+      </li>
+      <li class="post">
           <a href="https://jakevdp.github.io/blog/2015/06/13/lomb-scargle-in-python/">Fast Lomb-Scargle Periodograms in Python</a>
       </li>
       <li class="post">
@@ -20389,9 +20383,6 @@ in Python, and a talk on
       </li>
       <li class="post">
           <a href="https://jakevdp.github.io/blog/2014/10/16/how-bad-is-your-colormap/">How Bad Is Your Colormap?</a>
-      </li>
-      <li class="post">
-          <a href="https://jakevdp.github.io/blog/2014/09/02/on-frequentism-and-fried-chicken/">On Frequentism and Fried Chicken</a>
       </li>
     </ul>
   </section>

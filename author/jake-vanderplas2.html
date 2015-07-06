@@ -1794,6 +1794,26 @@ jQuery(document).ready(function($) {
   		<article>
 <header>
       <h1 class="entry-title">
+        <a href="https://jakevdp.github.io/blog/2014/06/06/frequentism-and-bayesianism-2-when-results-differ/">Frequentism and Bayesianism II: When Results Differ</a>
+      </h1>
+      <p class="meta"><time datetime="2014-06-06T02:00:00" pubdate>Jun 06, 2014</time></p>
+</header>
+
+  <div class="entry-content">
+<p>In a <a href="http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/">previous post</a> I gave a brief practical introduction to frequentism and Bayesianism as they relate to the analysis of scientific data. In it, I discussed the fundamental philosophical difference between frequentism and Bayesianism, and showed several simple problems where the two approaches give basically the same results.</p>
+<p>While it is easy to show that the two approaches are often equivalent for simple problems, it is also true that they can diverge greatly for more complicated problems. I've found that in practice, this divergence makes itself most clear in two different situations:</p>
+<ol style="list-style-type: decimal">
+<li>The handling of nuisance parameters</li>
+<li>The subtle (and often overlooked) difference between frequentist confidence intervals and Bayesian credible intervals</li>
+</ol>
+<p>The second point is a bit more philosophical and in-depth, and I'm going to save it for a later post and focus here on the first point: the difference between frequentist and Bayesian treatment of nuisance parameters. Though I tried my best to stay impartial in the previous post, here you'll start to see my leanings toward the Bayesian approach. Consider this a warmup for when I get around to addressing point number 2: that will likely get downright polemical. </div>
+  <footer>
+    <a rel="full-article" href="https://jakevdp.github.io/blog/2014/06/06/frequentism-and-bayesianism-2-when-results-differ/">Read On &crarr;</a>
+  </footer>
+  		</article>
+  		<article>
+<header>
+      <h1 class="entry-title">
         <a href="https://jakevdp.github.io/blog/2014/05/09/why-python-is-slow/">Why Python is Slow: Looking Under the Hood</a>
       </h1>
       <p class="meta"><time datetime="2014-05-09T07:00:00" pubdate>May 09, 2014</time></p>
@@ -1950,31 +1970,6 @@ jQuery(document).ready(function($) {
     <a rel="full-article" href="https://jakevdp.github.io/blog/2013/08/28/understanding-the-fft/">Read On &crarr;</a>
   </footer>
   		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://jakevdp.github.io/blog/2013/08/07/conways-game-of-life/">The Game of Life in Python</a>
-      </h1>
-      <p class="meta"><time datetime="2013-08-07T16:00:00" pubdate>Aug 07, 2013</time></p>
-</header>
-
-  <div class="entry-content">
-<p>In 1970 the British Mathematician John Conway created his &quot;Game of Life&quot; -- a set of rules that mimics the chaotic yet patterned growth of a colony of biological organisms. The &quot;game&quot; takes place on a two-dimensional grid consisting of &quot;living&quot; and &quot;dead&quot; cells, and the rules to step from generation to generation are simple:</p>
-<ul>
-<li><strong>Overpopulation:</strong> if a living cell is surrounded by more than three living cells, it dies.</li>
-<li><strong>Stasis:</strong> if a living cell is surrounded by two or three living cells, it survives.</li>
-<li><strong>Underpopulation:</strong> if a living cell is surrounded by fewer than two living cells, it dies.</li>
-<li><strong>Reproduction:</strong> if a dead cell is surrounded by exactly three cells, it becomes a live cell.</li>
-</ul>
-<p>By enforcing these rules in sequential steps, beautiful and unexpected patterns can appear.</p>
-</div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>I was thinking about classic problems that could be used to demonstrate the effectiveness of Python for computing and visualizing dynamic phenomena, and thought back to a high school course I took where we had an assignment to implement a Game Of Life computation in C++. If only I'd had access to IPython and associated tools back then, my homework assignment would have been a whole lot easier!</p>
-<p>Here I'll use Python and NumPy to compute generational steps for the game of life, and use my <a href="http://github.com/jakevdp/JSAnimation">JSAnimation</a> package to animate the results. </div>
-  <footer>
-    <a rel="full-article" href="https://jakevdp.github.io/blog/2013/08/07/conways-game-of-life/">Read On &crarr;</a>
-  </footer>
-  		</article>
 <div class="pagination">
     <a class="prev" href="https://jakevdp.github.io/author/jake-vanderplas3.html">&larr; Older</a>
 
@@ -1986,6 +1981,9 @@ jQuery(document).ready(function($) {
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="https://jakevdp.github.io/blog/2015/07/06/model-complexity-myth/">The Model Complexity Myth</a>
+      </li>
+      <li class="post">
           <a href="https://jakevdp.github.io/blog/2015/06/13/lomb-scargle-in-python/">Fast Lomb-Scargle Periodograms in Python</a>
       </li>
       <li class="post">
@@ -1996,9 +1994,6 @@ jQuery(document).ready(function($) {
       </li>
       <li class="post">
           <a href="https://jakevdp.github.io/blog/2014/10/16/how-bad-is-your-colormap/">How Bad Is Your Colormap?</a>
-      </li>
-      <li class="post">
-          <a href="https://jakevdp.github.io/blog/2014/09/02/on-frequentism-and-fried-chicken/">On Frequentism and Fried Chicken</a>
       </li>
     </ul>
   </section>
