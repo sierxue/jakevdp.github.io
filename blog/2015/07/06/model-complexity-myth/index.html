@@ -3528,12 +3528,12 @@ zJLDQs8wDLPksNAzDMMsOSz0DMMwSw4LPcMwzJLz/wHFnWc4n36lxgAAAABJRU5ErkJggg==
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="bayesian-conditioning-priors">Bayesian Conditioning: Priors</h2>
 <p>Regularization illuminates the meaning of matrix conditioning, but it still sometimes seems like a bit of black magic. What does this penalization of model parameters within the <span class="math">\(\chi^2\)</span> actually mean? Here, we can make progress in understanding the problem by examining regularization from a Bayesian perspective.</p>
-<p>As I pointed out in my <a href="http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/">series of posts</a> on Frequentism and Bayesianism, for many simple problems, the frequentist likelihood (proportional to the negative exponent of the <span class="math">\(\chi^2\)</span>) is equivalent to the Bayesian posterior – albeit with a subtley but fundamentally different interpretation.</p>
+<p>As I pointed out in my <a href="http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/">series of posts</a> on Frequentism and Bayesianism, for many simple problems, the frequentist likelihood (proportional to the negative exponent of the <span class="math">\(\chi^2\)</span>) is equivalent to the Bayesian posterior – albeit with a subtlely but fundamentally different interpretation.</p>
 <p>The Bayesian posterior probability on the model parameters <span class="math">\(\theta\)</span> is given by</p>
 <p><span class="math">\[
 P(\theta~|~D, M) = \frac{P(D~|~\theta, M) P(\theta~|~M)}{P(D~|~M)}
 \]</span></p>
-<p>where the most important terms are the likelihood <span class="math">\(P(D~|~\theta, M)\)</span> and the prior <span class="math">\(P(\theta~|~M)\)</span>. From the expected correspondance with the frequentist result, we can write:</p>
+<p>where the most important terms are the likelihood <span class="math">\(P(D~|~\theta, M)\)</span> and the prior <span class="math">\(P(\theta~|~M)\)</span>. From the expected correspondence with the frequentist result, we can write:</p>
 <p><span class="math">\[
 P(D~|~\theta, M) P(\theta~|~M) \propto \exp[- \chi^2]
 \]</span></p>
@@ -5134,7 +5134,7 @@ TkSuQmCC
 <p><span class="math">\[
 y_M(x~|~\theta) = \theta_0 + \theta_1 x
 \]</span></p>
-<p>For a non-outlear (let's call it an &quot;inlier&quot;) point, the likelihood is</p>
+<p>For a non-outlier (let's call it an &quot;inlier&quot;) point at <span class="math">\(x\)</span>, <span class="math">\(y\)</span>, with error on <span class="math">\(y\)</span> given by <span class="math">\(dy\)</span>, the likelihood is</p>
 <p><span class="math">\[
 L_{in, i}(D~|~\theta) = \frac{1}{\sqrt{2\pi dy_i^2}} \exp\frac{-[y_i - y_M(x_i~|~\theta)]^2}{2 dy_i^2}
 \]</span></p>
@@ -5197,7 +5197,7 @@ In&nbsp;[15]:
 
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now we use the <code>emcee</code> package to run this model. Note that because of the high dimensionality of the moel, the <code>run_mcmc</code> command below will take a couple minutes to complete:</p>
+<p>Now we use the <code>emcee</code> package to run this model. Note that because of the high dimensionality of the model, the <code>run_mcmc</code> command below will take a couple minutes to complete:</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
