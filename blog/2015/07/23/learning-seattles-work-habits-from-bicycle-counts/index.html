@@ -7521,7 +7521,8 @@ qohMqpIkSZJURWRSlSRJkqQqIpOqJEmSJFWR/wcMv7GP7Ql2lQAAAABJRU5ErkJggg==
 
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We see that the weekday/weekend intuition holds, but only to a point: in particular, it is clear that <strong>there are a handful of weekdays which follow the typical weekend pattern!</strong> Further, it's interesting to note Let's take a look at what these &quot;special&quot; weekdays are. We start by constructing a dataset listing the cluster id and the day of the week for each of the dates in our dataset:</p>
+<p>We see that the weekday/weekend intuition holds, but only to a point: in particular, it is clear that <strong>there are a handful of weekdays which follow the typical weekend pattern!</strong> Further, it's interesting to note that Fridays tend to be pulled closer to weekend days in this plot, though as a whole they still fall solidly in the work-day cluster.</p>
+<p>Let's take a closer look at the &quot;special&quot; weekdays that fall in the &quot;wrong&quot; cluster. We start by constructing a dataset listing the cluster id and the day of the week for each of the dates in our dataset:</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
@@ -7675,7 +7676,7 @@ In&nbsp;[16]:
 
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>There were 23 weekdays over the past several years in which Seattle cyclists as a whole did not go to work. To label these, let's quickly load a database of US Bank holidays, which can be found at <a href="https://gist.github.com/shivaas/4758439">https://gist.github.com/shivaas/4758439</a>. You can uncomment the following to download the file directly:</p>
+<p>There were 23 weekdays over the past several years in which Seattle cyclists as a whole did not go to work. To label these, let's load the US Federal holiday calendar available in Pandas:</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
@@ -7683,26 +7684,35 @@ In&nbsp;[16]:
 In&nbsp;[17]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="c"># !curl -o BankHolidays.csv https://gist.githubusercontent.com/shivaas/4758439/raw/b0d3ddec380af69930d0d67a9e0519c047047ff8/US%2520Bank%2520holidays</span>
+<div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">pandas.tseries.holiday</span> <span class="kn">import</span> <span class="n">USFederalHolidayCalendar</span>
+<span class="n">cal</span> <span class="o">=</span> <span class="n">USFederalHolidayCalendar</span><span class="p">()</span>
+<span class="n">holidays</span> <span class="o">=</span> <span class="n">cal</span><span class="o">.</span><span class="n">holidays</span><span class="p">(</span><span class="s">&#39;2012&#39;</span><span class="p">,</span> <span class="s">&#39;2016&#39;</span><span class="p">,</span> <span class="n">return_name</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">holidays</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
 </div>
 </div>
 
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[17]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+
+<pre>
+2012-01-02                 New Years Day
+2012-01-16    Dr. Martin Luther King Jr.
+2012-02-20                Presidents Day
+2012-05-28                   MemorialDay
+2012-07-04                      July 4th
+dtype: object
+</pre>
+
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Once these are downloaded, we can load them into pandas as follows:</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[18]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="n">holidays</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;BankHolidays.csv&#39;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
-                       <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">,</span> <span class="s">&#39;date&#39;</span><span class="p">,</span> <span class="s">&#39;name&#39;</span><span class="p">],</span>
-                       <span class="n">index_col</span><span class="o">=</span><span class="s">&#39;date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s">&#39;id&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-</pre></div>
 
 </div>
 </div>
@@ -7714,7 +7724,7 @@ In&nbsp;[18]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[19]:
+In&nbsp;[18]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">holidays_all</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">holidays</span><span class="p">,</span>
@@ -7732,47 +7742,18 @@ In&nbsp;[19]:
 
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[19]:</div>
+    Out[18]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
-<div class="output_html rendered_html">
-<div style="max-height:1000px;max-width:1500px;overflow:auto;">
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>name</th>
-    </tr>
-    <tr>
-      <th>date</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2012-01-01</th>
-      <td>               Day Before New Year Day</td>
-    </tr>
-    <tr>
-      <th>2012-01-02</th>
-      <td>                          New Year Day</td>
-    </tr>
-    <tr>
-      <th>2012-01-03</th>
-      <td>                Day After New Year Day</td>
-    </tr>
-    <tr>
-      <th>2012-01-15</th>
-      <td> Day Before Martin Luther King Jr. Day</td>
-    </tr>
-    <tr>
-      <th>2012-01-16</th>
-      <td>            Martin Luther King Jr. Day</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
+
+<pre>
+2012-01-01                 Day Before New Years Day
+2012-01-02                            New Years Day
+2012-01-03                  Day After New Years Day
+2012-01-15    Day Before Dr. Martin Luther King Jr.
+2012-01-16               Dr. Martin Luther King Jr.
+dtype: object
+</pre>
 
 </div>
 </div>
@@ -7787,10 +7768,11 @@ In&nbsp;[19]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[20]:
+In&nbsp;[19]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="n">joined</span> <span class="o">=</span> <span class="n">midweek_holidays</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">holidays_all</span><span class="p">)</span>
+<div class="highlight-ipynb"><pre class="ipynb"><span class="n">holidays_all</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;name&#39;</span>  <span class="c"># required for join</span>
+<span class="n">joined</span> <span class="o">=</span> <span class="n">midweek_holidays</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">holidays_all</span><span class="p">)</span>
 <span class="nb">set</span><span class="p">(</span><span class="n">joined</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">])</span>
 </pre></div>
 
@@ -7802,20 +7784,20 @@ In&nbsp;[20]:
 
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[20]:</div>
+    Out[19]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 
 <pre>
-{&apos;Christmas Day&apos;,
- &apos;Day After Christmas Day&apos;,
- &apos;Day After Thanksgiving Day&apos;,
- &apos;Day Before Christmas Day&apos;,
- &apos;Independence Day&apos;,
+{&apos;Christmas&apos;,
+ &apos;Day After Christmas&apos;,
+ &apos;Day After Thanksgiving&apos;,
+ &apos;Day Before Christmas&apos;,
+ &apos;July 4th&apos;,
  &apos;Labor Day&apos;,
- &apos;Memorial Day&apos;,
- &apos;New Year Day&apos;,
- &apos;Thanksgiving Day&apos;}
+ &apos;MemorialDay&apos;,
+ &apos;New Years Day&apos;,
+ &apos;Thanksgiving&apos;}
 </pre>
 
 </div>
@@ -7831,10 +7813,10 @@ In&nbsp;[20]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[21]:
+In&nbsp;[20]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="nb">set</span><span class="p">(</span><span class="n">holidays</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">joined</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<div class="highlight-ipynb"><pre class="ipynb"><span class="nb">set</span><span class="p">(</span><span class="n">holidays</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">joined</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -7845,14 +7827,14 @@ In&nbsp;[21]:
 
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[21]:</div>
+    Out[20]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 
 <pre>
 {&apos;Columbus Day&apos;,
- &apos;Martin Luther King Jr. Day&apos;,
- &apos;Presidents Day (Washingtons Birthday)&apos;,
+ &apos;Dr. Martin Luther King Jr.&apos;,
+ &apos;Presidents Day&apos;,
  &apos;Veterans Day&apos;}
 </pre>
 
