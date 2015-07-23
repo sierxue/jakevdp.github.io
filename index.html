@@ -1794,6 +1794,25 @@ jQuery(document).ready(function($) {
   		<article>
 <header>
       <h1 class="entry-title">
+        <a href="https://jakevdp.github.io/blog/2015/07/23/learning-seattles-work-habits-from-bicycle-counts/">Learning Seattle's Work Habits from Bicycle Counts</a>
+      </h1>
+      <p class="meta"><time datetime="2015-07-23T08:00:00" pubdate>Jul 23, 2015</time></p>
+</header>
+
+  <div class="entry-content">
+
+<p>Last year I wrote a <a href="https://jakevdp.github.io/blog/2014/06/10/is-seattle-really-seeing-an-uptick-in-cycling/">blog post</a> examining trends in Seattle bicycling and how they relate to weather, daylight, day of the week, and other factors.</p>
+<p>Here I want to revisit the same data from a different perspective: rather than making assumptions in order to build models that might describe the data, I'll instead wipe the slate clean and ask what information we can extract from the data themselves, without reliance on any model assumptions. In other words, where the previous post examined the data using a <em>supervised machine learning</em> approach for <em>data modeling</em>, this post will examine the data using an <em>unsupervised learning approach</em> for <em>data exploration</em>.</p>
+<p>Along the way, we'll see some examples of importing, transforming, visualizing, and analyzing data in the Python language, using mostly <a href="http://pandas.pydata.org/">Pandas</a>, <a href="http://matplotlib.org/">Matplotlib</a>, and <a href="http://scikit-learn.org/">Scikit-learn</a>. We will also see some real-world examples of the use of unsupervised machine learning algorithms, such as Principal Component Analysis and Gaussian Mixture Models, in exploring and extracting meaning from data.</p>
+<p>To spoil the punchline (and perhaps whet your appetite) what we will find is that from analysis of bicycle counts alone, we can make some definite statements about the aggregate work habits of Seattleites who commute by bicycle.</p>
+</div>
+  <footer>
+    <a rel="full-article" href="https://jakevdp.github.io/blog/2015/07/23/learning-seattles-work-habits-from-bicycle-counts/">Read On &crarr;</a>
+  </footer>
+  		</article>
+  		<article>
+<header>
+      <h1 class="entry-title">
         <a href="https://jakevdp.github.io/blog/2015/07/06/model-complexity-myth/">The Model Complexity Myth</a>
       </h1>
       <p class="meta"><time datetime="2015-07-06T08:00:00" pubdate>Jul 06, 2015</time></p>
@@ -1999,24 +2018,6 @@ In&nbsp;[1]:
     <a rel="full-article" href="https://jakevdp.github.io/blog/2014/06/12/frequentism-and-bayesianism-3-confidence-credibility/">Read On &crarr;</a>
   </footer>
   		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://jakevdp.github.io/blog/2014/06/10/is-seattle-really-seeing-an-uptick-in-cycling/">Is Seattle Really Seeing an Uptick In Cycling?</a>
-      </h1>
-      <p class="meta"><time datetime="2014-06-10T08:30:00" pubdate>Jun 10, 2014</time></p>
-</header>
-
-  <div class="entry-content">
-<p>Cycling in Seattle seems to be taking off. This can be seen qualitatively in the increased visibility of advocacy groups like <a href="http://seattlegreenways.org/">Seattle Neighborhood Greenways</a> and <a href="http://www.cascade.org/">Cascade Bicycle Club</a>, the excellent reporting of sites like the <a href="http://www.seattlebikeblog.com/">Seattle Bike Blog</a>, and the investment by the city in high-profile traffic safety projects such as <a href="http://www.seattle.gov/transportation/PBL.htm">Protected Bike Lanes</a>, <a href="http://www.seattle.gov/transportation/pedestrian_masterplan/pedestrian_toolbox/tools_deua_diets.htm">Road diets/Rechannelizations</a> and the <a href="http://www.seattle.gov/transportation/bikemaster.htm">Seattle Bicycle Master Plan</a>.</p>
-<p>But, qualitative arguments aside, there is also an increasing array of quantitative data available, primarily from the <a href="http://www.seattle.gov/transportation/bikecounter.htm">Bicycle counters</a> installed at key locations around the city. The first was the <a href="http://www.seattle.gov/transportation/bikecounter_fremont.htm">Fremont Bridge Bicycle Counter</a>, installed in October 2012, which gives daily updates on the number of bicycles crossing the bridge: currently upwards of 5000-6000 per day during sunny commute days.</p>
-<p>Bicycle advocates have been <a href="http://www.seattlebikeblog.com/2014/05/14/fremont-bridge-smashes-bike-count-record-for-real-this-time-bike-use-rises-all-over-town/">pointing out</a> the upward trend of the counter, and I must admit I've been excited as anyone else to see this surge in popularity of cycling (Most days, I bicycle 22 miles round trip, crossing both the Spokane St. and Fremont bridge each way).</p>
-<p>But anyone who looks closely at the data must admit: there is a large weekly and monthly swing in the bicycle counts, and people seem most willing to ride on dry, sunny summer days. Given the warm streak we've had in Seattle this spring, I wondered: <strong>are we really seeing an increase in cycling, or can it just be attributed to good weather?</strong></p>
-</div>
-  <footer>
-    <a rel="full-article" href="https://jakevdp.github.io/blog/2014/06/10/is-seattle-really-seeing-an-uptick-in-cycling/">Read On &crarr;</a>
-  </footer>
-  		</article>
 <div class="pagination">
     <a class="prev" href="https://jakevdp.github.io/index2.html">&larr; Older</a>
 
@@ -2026,6 +2027,9 @@ In&nbsp;[1]:
   <section>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
+      <li class="post">
+          <a href="https://jakevdp.github.io/blog/2015/07/23/learning-seattles-work-habits-from-bicycle-counts/">Learning Seattle's Work Habits from Bicycle Counts</a>
+      </li>
       <li class="post">
           <a href="https://jakevdp.github.io/blog/2015/07/06/model-complexity-myth/">The Model Complexity Myth</a>
       </li>
@@ -2037,9 +2041,6 @@ In&nbsp;[1]:
       </li>
       <li class="post">
           <a href="https://jakevdp.github.io/blog/2014/11/11/the-hipster-effect-interactive/">The Hipster Effect: An IPython Interactive Exploration</a>
-      </li>
-      <li class="post">
-          <a href="https://jakevdp.github.io/blog/2014/10/16/how-bad-is-your-colormap/">How Bad Is Your Colormap?</a>
       </li>
     </ul>
   </section>
