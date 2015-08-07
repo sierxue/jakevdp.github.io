@@ -1794,6 +1794,30 @@ jQuery(document).ready(function($) {
   		<article>
 <header>
       <h1 class="entry-title">
+        <a href="https://jakevdp.github.io/blog/2015/08/07/frequentism-and-bayesianism-5-model-selection/">Frequentism and Bayesianism V: Model Selection</a>
+      </h1>
+      <p class="meta"><time datetime="2015-08-07T11:00:00" pubdate>Aug 07, 2015</time></p>
+</header>
+
+  <div class="entry-content">
+
+<p>Last year I wrote a series of posts comparing frequentist and Bayesian approaches to various problems:</p>
+<ul>
+<li>In <a href="http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/">Frequentism and Bayesianism I: a Practical Introduction</a> I gave an introduction to the main philosophical differences between frequentism and Bayesianism, and showed that for many common problems the two methods give basically the same point estimates.</li>
+<li>In <a href="http://jakevdp.github.io/blog/2014/06/06/frequentism-and-bayesianism-2-when-results-differ/">Frequentism and Bayesianism II: When Results Differ</a> I went into a bit more depth on when frequentism and Bayesianism start to diverge, particularly when it comes to the handling of nuisance parameters.</li>
+<li>In <a href="http://jakevdp.github.io/blog/2014/06/12/frequentism-and-bayesianism-3-confidence-credibility/">Frequentism and Bayesianism III: Confidence, Credibility, and why Frequentism and Science Don't Mix</a> I talked about the subtle difference between frequentist confidence intervals and Bayesian credible intervals, and argued that in most scientific settings frequentism answers the wrong question.</li>
+<li>In <a href="http://jakevdp.github.io/blog/2014/06/14/frequentism-and-bayesianism-4-bayesian-in-python/">Frequentism and Bayesianism IV: How to be a Bayesian in Python</a> I compared three Python packages for doing Bayesian analysis via MCMC: <a href="http://dan.iel.fm/emcee">emcee</a>, <a href="http://pymc-devs.github.io/pymc/">pymc</a>, and <a href="https://pystan.readthedocs.org/en/latest/">pystan</a>.</li>
+</ul>
+<p>Here I am going to dive into an important topic that I've not yet covered: <em>model selection</em>. We will take a look at this from both a frequentist and Bayesian standpoint, and along the way gain some more insight into the fundamental philosophical divide between frequentist and Bayesian methods, and the practical consequences of this divide.</p>
+<p>My quick, TL;DR summary is this: for model selection, frequentist methods tend to be <strong>conceptually difficult but computationally straightforward</strong>, while Bayesian methods tend to be <strong>conceptually straightforward but computationally difficult</strong>.</p>
+</div>
+  <footer>
+    <a rel="full-article" href="https://jakevdp.github.io/blog/2015/08/07/frequentism-and-bayesianism-5-model-selection/">Read On &crarr;</a>
+  </footer>
+  		</article>
+  		<article>
+<header>
+      <h1 class="entry-title">
         <a href="https://jakevdp.github.io/blog/2015/07/23/learning-seattles-work-habits-from-bicycle-counts/">Learning Seattle's Work Habits from Bicycle Counts (Updated!)</a>
       </h1>
       <p class="meta"><time datetime="2015-07-23T08:00:00" pubdate>Jul 23, 2015</time></p>
@@ -1997,27 +2021,6 @@ In&nbsp;[1]:
     <a rel="full-article" href="https://jakevdp.github.io/blog/2014/06/14/frequentism-and-bayesianism-4-bayesian-in-python/">Read On &crarr;</a>
   </footer>
   		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://jakevdp.github.io/blog/2014/06/12/frequentism-and-bayesianism-3-confidence-credibility/">Frequentism and Bayesianism III: Confidence, Credibility, and why Frequentism and Science do not Mix</a>
-      </h1>
-      <p class="meta"><time datetime="2014-06-12T12:00:00" pubdate>Jun 12, 2014</time></p>
-</header>
-
-  <div class="entry-content">
-
-<p>In Douglas Adams' classic <em>Hitchhiker's Guide to the Galaxy</em>, hyper-intelligent pan-dimensional beings build a computer named <em>Deep Thought</em> in order to calculate &quot;the Answer to the Ultimate Question of Life, the Universe, and Everything&quot;. After seven and a half million years spinning its hyper-dimensional gears, before an excited crowd, Deep Thought finally outputs the answer:</p>
-<p><strong>42</strong></p>
-<p>The disappointed technicians, who trained a lifetime for this moment, are stupefied. They probe Deep Though for more information, and after some back-and-forth, the computer responds: &quot;once you do know what the question actually is, you'll know what the answer means.&quot;</p>
-<p>An answer does you no good if you don't know the question.</p>
-<p>I find this story be an apt metaphor for statistics as sometimes used in the scientific literature. When trying to estimate the value of an unknown parameter, the frequentist approach generally relies on a <strong>confidence interval</strong> (CI), while the Bayesian approach relies on a <strong>credible region</strong> (CR). While these concepts sound and look very similar, their subtle difference can be extremely important, as they answer essentially different questions.</p>
-<p>Like the poor souls hoping for enlightenment in Douglas Adams' universe, scientists often turn the crank of frequentism hoping for useful answers, but in the process overlook the fact that in science, <strong>frequentism is generally answering the wrong question.</strong> This is far from simple philosophical navel-gazing: as I'll show, it can have real consequences for the conclusions we draw from observed data.</p>
-</div>
-  <footer>
-    <a rel="full-article" href="https://jakevdp.github.io/blog/2014/06/12/frequentism-and-bayesianism-3-confidence-credibility/">Read On &crarr;</a>
-  </footer>
-  		</article>
 <div class="pagination">
     <a class="prev" href="https://jakevdp.github.io/index2.html">&larr; Older</a>
 
@@ -2027,6 +2030,9 @@ In&nbsp;[1]:
   <section>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
+      <li class="post">
+          <a href="https://jakevdp.github.io/blog/2015/08/07/frequentism-and-bayesianism-5-model-selection/">Frequentism and Bayesianism V: Model Selection</a>
+      </li>
       <li class="post">
           <a href="https://jakevdp.github.io/blog/2015/07/23/learning-seattles-work-habits-from-bicycle-counts/">Learning Seattle's Work Habits from Bicycle Counts (Updated!)</a>
       </li>
@@ -2038,9 +2044,6 @@ In&nbsp;[1]:
       </li>
       <li class="post">
           <a href="https://jakevdp.github.io/blog/2015/02/24/optimizing-python-with-numpy-and-numba/">Optimizing Python in the Real World: NumPy, Numba, and the NUFFT</a>
-      </li>
-      <li class="post">
-          <a href="https://jakevdp.github.io/blog/2014/11/11/the-hipster-effect-interactive/">The Hipster Effect: An IPython Interactive Exploration</a>
       </li>
     </ul>
   </section>
