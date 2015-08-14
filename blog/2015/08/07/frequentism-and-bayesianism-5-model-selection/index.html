@@ -5113,7 +5113,7 @@ In&nbsp;[13]:
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">def</span> <span class="nf">log_prior</span><span class="p">(</span><span class="n">theta</span><span class="p">):</span>
     <span class="c"># size of theta determines the model.</span>
     <span class="c"># flat prior over a large range</span>
-    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">):</span>
         <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span>  <span class="c"># log(0)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="mi">200</span> <span class="o">**</span> <span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
@@ -7920,6 +7920,9 @@ In&nbsp;[22]:
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="https://jakevdp.github.io/blog/2015/08/14/out-of-core-dataframes-in-python/">Out-of-Core Dataframes in Python: Dask and OpenStreetMap</a>
+      </li>
+      <li class="post">
           <a href="https://jakevdp.github.io/blog/2015/08/07/frequentism-and-bayesianism-5-model-selection/">Frequentism and Bayesianism V: Model Selection</a>
       </li>
       <li class="post">
@@ -7930,9 +7933,6 @@ In&nbsp;[22]:
       </li>
       <li class="post">
           <a href="https://jakevdp.github.io/blog/2015/06/13/lomb-scargle-in-python/">Fast Lomb-Scargle Periodograms in Python</a>
-      </li>
-      <li class="post">
-          <a href="https://jakevdp.github.io/blog/2015/02/24/optimizing-python-with-numpy-and-numba/">Optimizing Python in the Real World: NumPy, Numba, and the NUFFT</a>
       </li>
     </ul>
   </section>
