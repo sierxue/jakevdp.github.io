@@ -1804,14 +1804,14 @@ jQuery(document).ready(function($) {
 <div class="text_cell_render border-box-sizing rendered_html">
 
 
-<p>An oft-repeated rule of thumb in any sort of statistical model fitting is &quot;you can't fit a model with more parameters than data points&quot;. This idea appears to be as wide-spread as it is incorrect. On the contrary, if you construct your models carefully, <em>you can fit models with more parameters than datapoints</em>, and this is much more than mere trivia with which you can impress the nerdiest of your friends: as I will show here, this fact can prove to be very useful in real-world scientific applications.</p>
-<p>A model with more parameters than datapoints is known as an <em>under-determined system</em>, and it's a common misperception that such a model cannot be solved in any circumstance. In this post I will consider this misconception, which I call the <em>model complexity myth</em>. I'll start by showing where this model complexity myth holds true, first from from an intuitive point of view, and then from a more mathematically-heavy point of view. I'll build from this mathematical treatment and discuss how underdetermined models may be addressed from a frequentist standpoint, and then from a Bayesian standpoint. (If you're unclear about the general differences between frequentist and Bayesian approaches, I might suggest reading <a href="http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/">my posts</a> on the subject). Finally, I'll discuss some practical examples of where such an underdetermined model can be useful, and demonstrate one of these examples: quantitatively accounting for measurement biases in scientific data.</p>
+<p>An oft-repeated rule of thumb in any sort of statistical model fitting is &quot;you can't fit a model with more parameters than data points&quot;. This idea appears to be as wide-spread as it is incorrect. On the contrary, if you construct your models carefully, <strong>you can fit models with more parameters than datapoints</strong>, and this is much more than mere trivia with which you can impress the nerdiest of your friends: as I will show here, this fact can prove to be very useful in real-world scientific applications.</p>
+<p>A model with more parameters than datapoints is known as an <em>under-determined system</em>, and it's a common misperception that such a model cannot be solved in any circumstance. In this post I will consider this misconception, which I like to call the &quot;model complexity myth&quot;. I'll start by showing where this model complexity myth holds true, first from from an intuitive point of view, and then from a more mathematically-heavy point of view. I'll build from this mathematical treatment and discuss how underdetermined models may be addressed from a frequentist standpoint, and then from a Bayesian standpoint. (If you're unclear about the general differences between frequentist and Bayesian approaches, I might suggest reading <a href="http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/">my posts</a> on the subject). Finally, I'll discuss some practical examples of where such an underdetermined model can be useful, and demonstrate one of these examples: quantitatively accounting for measurement biases in scientific data.</p>
 
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="the-root-of-the-model-complexity-myth">The Root of the Model Complexity Myth</h2>
-<p>While the model complexity myth is not true in general, it is true in the specific case of <em>simple linear models</em>, which perhaps explains why the myth is so pervasive. In this section I first want to motivate the reason for the underdetermination issue in simple linear models, first from an intuitive view, and then from a more mathematical view.</p>
-<p>I'll start by defining some functions to create plots for the examples below; you can skip reading this code block for now:</p>
+<p>While the model complexity myth is not true in general, it is true in the specific case of simple linear models, which perhaps explains why the myth is so pervasive. In this section I first want to motivate the reason for the underdetermination issue in simple linear models, first from an intuitive view, and then from a more mathematical view.</p>
+<p>I'll start by defining some Python functions to create plots for the examples below; you can skip reading this code block for now:</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
@@ -2485,7 +2485,7 @@ FhwWeoZhmAWHhZ5hGGbBYaFnGIZZcP4fs6SDphj8S5AAAAAASUVORK5CYII=
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="fitting-a-more-general-linear-model">Fitting a More General Linear Model</h3>
-<p>While it's harder to see intuitively, this same notion extends to models with more terms. For example, let's think consider fitting a general cubic curve to data. In this case our model is</p>
+<p>While it's harder to see intuitively, this same notion extends to simple linear models with more terms. For example, let's think consider fitting a general cubic curve to data. In this case our model is</p>
 <p><span class="math">\[
 y_M = \theta_0 + \theta_1 x + \theta_2 x^2 + \theta_3 x^3
 \]</span></p>
@@ -2927,7 +2927,7 @@ y_M(x~|~\theta) = \theta_0 + \theta_1 x
 <p><span class="math">\[
 y = [y_1, y_2, y_3, \cdots y_N]
 \]</span></p>
-<p>We'll also define the <em>design matrix</em> which we'll call <span class="math">\(X\)</span>; this contains all the information about the form of the model:</p>
+<p>We'll also define the design matrix <span class="math">\(X\)</span>; this contains all the information about the form of the model:</p>
 <p><span class="math">\[
 X = \left[
 \begin{array}{ll}
@@ -2971,7 +2971,7 @@ X = \left[
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="why-underdetermined-models-break">Why Underdetermined Models Break</h3>
-<p>Taking a look at this Maximum Likelihood solution for <span class="math">\(\theta\)</span>, we see that there is only one place that it might go wrong: the inversion of the matrix <span class="math">\(X^T X\)</span>. If this matrix is not invertible (i.e. if it is a <em>singular</em> matrix) then the maximum likelihood solution will not be well-defined.</p>
+<p>Taking a look at this Maximum Likelihood solution for <span class="math">\(\theta\)</span>, we see that there is only one place that it might go wrong: the inversion of the matrix <span class="math">\(X^T X\)</span>. If this matrix is not invertible (i.e. if it is a singular matrix) then the maximum likelihood solution will not be well-defined.</p>
 <p>The number of rows in <span class="math">\(X\)</span> corresponds to the number of data points, and the number of columns in <span class="math">\(X\)</span> corresponds to the number of parameters in the model. It turns out that a matrix <span class="math">\(C = X^TX\)</span> will <em>always</em> be singular if <span class="math">\(X\)</span> has fewer rows than columns, and this is the source of the problem. For underdetermined models, <span class="math">\(X^TX\)</span> is a singular matrix, and so the maximum likelihood fit is not well-defined.</p>
 <p>Let's take a look at this in the case of fitting a line to the single point shown above, <span class="math">\((x=0.37, y=0.95)\)</span>. For this value of <span class="math">\(x\)</span>, here is the design matrix:</p>
 </div>
@@ -3509,7 +3509,7 @@ zJLDQs8wDLPksNAzDMMsOSz0DMMwSw4LPcMwzJLz/wHFnWc4n36lxgAAAABJRU5ErkJggg==
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="frequentist-conditioning-regularization">Frequentist Conditioning: Regularization</h2>
-<p>In a frequentist approach, this type of conditioning is known as <em>regularization</em>. Regularization is motivated by a desire to penalize large values of model parameters. For example, in the underdetermined fit above (with <span class="math">\((x, y) = (0.37, 0.95)\)</span>), you could fit the data perfectly with a slope of one billion and an intercept near negative 370 million, but in most real-world applications this would be a silly fit. To prevent this sort of canceling parameter divergence, in a frequentist setting you can &quot;regularize&quot; the model by adding a penalty term to the <span class="math">\(\chi^2\)</span>:</p>
+<p>In a frequentist approach, this type of conditioning is known as <em>regularization</em>. Regularization is motivated by a desire to penalize large values of model parameters. For example, in the underdetermined fit above (with <span class="math">\((x, y) = (0.37, 0.95)\)</span>), you could fit the data perfectly with a slope of one billion and an intercept near negative 370 million, but in most real-world applications this would be a silly fit. To prevent this sort of canceling parameter divergence, in a frequentist setting you can &quot;regularize&quot; the model by adding a penalty term to the <span class="math">\(\chi^2\)</span>; one popular choice is a penalty term proportional to the sum of squares of the model parameters themselves:</p>
 <p><span class="math">\[
 \chi^2_{reg} = \chi^2 + \lambda~\theta^T\theta
 \]</span></p>
@@ -3528,7 +3528,7 @@ zJLDQs8wDLPksNAzDMMsOSz0DMMwSw4LPcMwzJLz/wHFnWc4n36lxgAAAABJRU5ErkJggg==
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="bayesian-conditioning-priors">Bayesian Conditioning: Priors</h2>
 <p>Regularization illuminates the meaning of matrix conditioning, but it still sometimes seems like a bit of black magic. What does this penalization of model parameters within the <span class="math">\(\chi^2\)</span> actually mean? Here, we can make progress in understanding the problem by examining regularization from a Bayesian perspective.</p>
-<p>As I pointed out in my <a href="http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/">series of posts</a> on Frequentism and Bayesianism, for many simple problems, the frequentist likelihood (proportional to the negative exponent of the <span class="math">\(\chi^2\)</span>) is equivalent to the Bayesian posterior – albeit with a subtlely but fundamentally different interpretation.</p>
+<p>As I pointed out in my <a href="http://jakevdp.github.io/blog/2014/03/11/frequentism-and-bayesianism-a-practical-intro/">series of posts</a> on Frequentism and Bayesianism, for many simple problems, the frequentist likelihood (proportional to the negative exponent of the <span class="math">\(\chi^2\)</span>) is equivalent to the Bayesian posterior (albeit with a subtlely but fundamentally different interpretation).</p>
 <p>The Bayesian posterior probability on the model parameters <span class="math">\(\theta\)</span> is given by</p>
 <p><span class="math">\[
 P(\theta~|~D, M) = \frac{P(D~|~\theta, M) P(\theta~|~M)}{P(D~|~M)}
@@ -3929,7 +3929,7 @@ zJLDQs8wDLPksNAzDMMsOSz0DMMwSw4LPcMwzJLz/wHFnWc4n36lxgAAAABJRU5ErkJggg==
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The benefit of the Bayesian view is that it helps us understand exactly what this conditioning means for our model, and given this understanding we can easily extend use more general priors. For example, what if you have reason to believe your slope is near 1, but have no prior information on your intercept? In the Bayesian approach, it is easy to add such information to your model in a rigorous way.</p>
-<p>But regardless of which approach you use, this central fact remains clear: you <em>can</em> fit models with more parameters than data points, if you restrict your parameter space through the use of frequentist regularization or Bayesian priors.</p>
+<p>But regardless of which approach you use, this central fact remains clear: you <strong>can</strong> fit models with more parameters than data points, if you restrict your parameter space through the use of frequentist regularization or Bayesian priors.</p>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="underdetermined-models-in-action">Underdetermined Models in Action</h2>
@@ -3937,7 +3937,7 @@ zJLDQs8wDLPksNAzDMMsOSz0DMMwSw4LPcMwzJLz/wHFnWc4n36lxgAAAABJRU5ErkJggg==
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="compressed-sensing-image-reconstruction">Compressed Sensing: Image Reconstruction</h3>
-<p>One area where underdetermined models are often used is in the field of <em>Compressed Sensing</em>. Compressed sensing comprises a set of models in which underdetermined linear systems are solved using a sparsity prior, the classic example of which is the reconstruction of a full image from just a handful of its pixels. As a simple linear model this would fail, because there are far more unknown pixels than known pixels. But by carefully training a model on the structure of typical images and applying priors based on sparsity, this seemingly impossible problem becomes tractable. This <a href="http://www.wired.com/2010/02/ff_algorithm/">2010 Wired article</a> has a good popular-level discussion of the technique and its applications, and includes this image showing how a partially-hidden input image can be iteratively reconstructed from a handful of pixels using a sparsity prior:</p>
+<p>One area where underdetermined models are often used is in the area of <em>Compressed Sensing</em>. Compressed sensing comprises a set of models in which underdetermined linear systems are solved using a sparsity prior, the classic example of which is the reconstruction of a full image from just a handful of its pixels. As a simple linear model this would fail, because there are far more unknown pixels than known pixels. But by carefully training a model on the structure of typical images and applying priors based on sparsity, this seemingly impossible problem becomes tractable. This <a href="http://www.wired.com/2010/02/ff_algorithm/">2010 Wired article</a> has a good popular-level discussion of the technique and its applications, and includes this image showing how a partially-hidden input image can be iteratively reconstructed from a handful of pixels using a sparsity prior:</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
@@ -4755,11 +4755,11 @@ qhVAW518Cw/Z64pez/kn6v8AghfUr/vRJwr4UXKJ82UeT0PIMlnwfWP+LOHv9mv3dcVf/9k=
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="kernel-based-methods-gaussian-processes">Kernel-based Methods: Gaussian Processes</h3>
 <p>Another area where a classically underdetermined model is solved is in the case of <em>Gaussian Process Regression</em>. Gaussian Processes are an interesting beast, and one way to view them is that rather than fitting, say, a two-parameter line or four-parameter cubic curve, they actually fit an <em>infinite-dimensional</em> model to data! They accomplish this by judicious use of certain priors on the model, along with a so-called &quot;kernel trick&quot; which solves the infinite dimensional regression implicitly using a finite-dimensional representation constructed based on these priors.</p>
-<p>In my opinion, the best resource to learn more about Gaussian Process methods is the <a href="http://www.gaussianprocess.org/gpml/">Gaussian Processes for Machine Learning</a> book, which is available for free online (though it is a bit on the technical side). You might also take a look at the <a href="http://scikit-learn.org/stable/modules/gaussian_process.html">scikit-learn Gaussian Process</a> documentation. If you'd like to experiment with a rather fast Gaussian Process implementation in Python, check out the <a href="http://dan.iel.fm/george/current/"><code>george</code></a> library.</p>
+<p>In my opinion, the best resource to learn more about Gaussian Process methods is the <a href="http://www.gaussianprocess.org/gpml/">Gaussian Processes for Machine Learning</a> book, which is available for free online (though it is a bit on the technical side). You might also take a look at the <a href="http://scikit-learn.org/stable/modules/gaussian_process.html">scikit-learn Gaussian Process</a> documentation. If you'd like to experiment with a fast and flexible Gaussian Process implementation in Python, check out the <a href="http://dan.iel.fm/george/current/"><code>george</code></a> library.</p>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="imperfect-detectors-extrasolar-planets">Imperfect Detectors: Extrasolar Planets</h3>
-<p>Another place I've seen effective use of the above ideas is in situations where the data collection process has unavoidable imperfections. There are two basic ways forward when working with such noisy and biased data:</p>
+<p>Another place I've seen effective use of the above ideas is in situations where the data collection process has unavoidable imperfections or biases. There are two basic ways forward when working with such noisy and biased data:</p>
 <ul>
 <li>you can pre-process the data to try to remove and/or correct data imperfections, and then fit a conventional model to the corrected data.</li>
 <li>you can account for the data imperfections along with interesting model parameters as part of a unified model: this type of unified approach is often preferable in scientific settings, where even the most careful pre-processing can lead to biased results.</li>
@@ -5126,10 +5126,9 @@ TkSuQmCC
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This reflects a well-known deficiency of <span class="math">\(\chi^2\)</span> minimization: it is not robust to the presence of outliers.</p>
-<p>What we would like to do is propose a model which somehow accounts for the possibility that each of these points <em>may</em> be the result of a biased measurement. One possible route is to add <span class="math">\(N\)</span> new model parameters: one associated with each point which indicates whether it is an outlier or not. If it is an outlier, we use the standard model likelihood; if not, we use a likelihood with a much larger error. The result for our straight-line fit will be a model with <span class="math">\(N + 2\)</span> parameters, where <span class="math">\(N\)</span> is the number of data points. An overzealous application of lessons from simple linear models might lead you to believe this model can't be solved. But, if carefully constructed, it can!</p>
+<p>What we would like to do is propose a model which somehow accounts for the possibility that each of these points <em>may</em> be the result of a biased measurement. One possible route is to add <span class="math">\(N\)</span> new model parameters: one associated with each point which indicates whether it is an outlier or not. If it is an outlier, we use the standard model likelihood; if not, we use a likelihood with a much larger error. The result for our straight-line fit will be a model with <span class="math">\(N + 2\)</span> parameters, where <span class="math">\(N\)</span> is the number of data points. An overzealous application of lessons from simple linear models might lead you to believe this model can't be solved. But, if carefully constructed, it can! Let's see how it can be done.</p>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's show how it can be done.</p>
 <p>Our linear model is:</p>
 <p><span class="math">\[
 y_M(x~|~\theta) = \theta_0 + \theta_1 x
@@ -5633,6 +5632,7 @@ iIgUsUgQEZEiFgkiIlLEIkFERIpYJIiISBGLBBERKfoHk7pqh4VksHQAAAAASUVORK5CYII=
 
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>These points describe the marginalized posterior distribution of the slope and intercept for our model given the data.</p>
 <p>Finally, we can make use of the marginalized values of all <span class="math">\(N + 2\)</span> parameters and plot both the best-fit model, along with a model-derived indication of whether each point is an outlier:</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
@@ -5900,11 +5900,11 @@ w9UNz/Fm6MEAAAAASUVORK5CYII=
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The red circles mark the points that were determined to be outliers by our model, and the black line shows the marginalized best-fit slope and intercept. For comparison, the grey line is the standard maximum likelihood fit.</p>
-<p>Notice that we have successfully fit an <span class="math">\((N + 2)\)</span>-parameter model to <span class="math">\(N\)</span> data points, and the best-fit parameters are actually <em>meaningful</em> in a deep way – the <span class="math">\(N\)</span> extra parameters give us individual estimates of whether each of the <span class="math">\(N\)</span> data points has misreported errors. I think this is a striking example of how a model that would be considered impossible under the <em>model complexity myth</em> can be solved in practice to produce very useful results!</p>
+<p>Notice that we have successfully fit an <span class="math">\((N + 2)\)</span>-parameter model to <span class="math">\(N\)</span> data points, and the best-fit parameters are actually <em>meaningful</em> in a deep way – the <span class="math">\(N\)</span> extra parameters give us individual estimates of whether each of the <span class="math">\(N\)</span> data points has misreported errors. I think this is a striking example of the practical use of a model which might seem impossible under the model complexity myth!</p>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="conclusion">Conclusion</h2>
-<p>I hope you will see after reading this post that the <em>model complexity myth</em>, while rooted in a solid understanding of simple linear models, should not be assumed to apply to all possible models. In fact, <em>it is possible to fit models with more parameters than datapoints</em>: and for the types of noisy, biased, and heterogeneous data we often encounter in scientific research, you can make a lot of progress by taking advantage of such models. Thanks for reading!</p>
+<p>I hope you will see after reading this post that the model complexity myth, while rooted in a solid understanding of simple linear models, should not be assumed to apply to all possible models. In fact, <strong>it is possible to fit models with more parameters than datapoints</strong>: and for the types of noisy, biased, and heterogeneous data we often encounter in scientific research, you can make a lot of progress by taking advantage of such models. Thanks for reading!</p>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><small> This post was written entirely in the IPython notebook. You can <a href="http://jakevdp.github.io/downloads/notebooks/ModelComplexityMyth.ipynb">download</a> this notebook, or see a static view <a href="http://nbviewer.ipython.org/url/jakevdp.github.io/downloads/notebooks/ModelComplexityMyth.ipynb">here</a>. </small></p>
